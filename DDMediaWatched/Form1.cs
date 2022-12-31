@@ -28,7 +28,8 @@ namespace DDMediaWatched
         public List<Control>
             controlsNewFranchise = new List<Control>(),
             controlsInfo = new List<Control>(),
-            controlsNewPart = new List<Control>();
+            controlsNewPart = new List<Control>(),
+            controlsRightButtons = new List<Control>();
 
         public Form1()
         {
@@ -40,7 +41,7 @@ namespace DDMediaWatched
             LoadColumnsParts();
             FindDiskLetter();
             LoadControls();
-            textBoxTitleInfo.Text += Program.pathLetter + "\r\n";
+            textBoxTitleInfo.Text += String.Format("Current media volume: {0}\r\n", Program.pathLetter);
         }
 
         private static void FindDiskLetter()
@@ -131,6 +132,14 @@ namespace DDMediaWatched
             controlsNewPart.Add(textBoxNewPartLength);
             controlsNewPart.Add(checkBoxNewPartIsPathFile);
             controlsNewPart.Add(buttonNewPartSave);
+            controlsRightButtons.Add(buttonNewFranchise);
+            controlsRightButtons.Add(buttonEditFranchise);
+            controlsRightButtons.Add(buttonDeleteFranchise);
+            controlsRightButtons.Add(buttonNewPart);
+            controlsRightButtons.Add(buttonEditPart);
+            controlsRightButtons.Add(buttonDeletePart);
+            controlsRightButtons.Add(buttonFindPartSize);
+            controlsRightButtons.Add(buttonFindAllSize);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -151,7 +160,6 @@ namespace DDMediaWatched
                     break;
                 case Keys.Escape:
                     {
-                        SaveMedia();
                         Environment.Exit(0);
                     }
                     break;
@@ -191,6 +199,7 @@ namespace DDMediaWatched
             }
             f.Dispose();
             f.Close();
+            MessageBox.Show("Media has been saved succesful!!!", "Saved!");
         }
 
         public void SelectNone()
@@ -205,6 +214,7 @@ namespace DDMediaWatched
 
         private void buttonNewFranchise_Click(object sender, EventArgs e)
         {
+            ControlsDisable(controlsRightButtons);
             currentFranchise = new Franchise();
             franchises.Add(currentFranchise);
             int p = 0;
@@ -223,12 +233,14 @@ namespace DDMediaWatched
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
             ControlsOn(controlsInfo);
             FranchisesToListView();
+            ControlsEnable(controlsRightButtons);
         }
 
         private void buttonNewPart_Click(object sender, EventArgs e)
         {
             if (currentFranchise == null)
                 return;
+            ControlsDisable(controlsRightButtons);
             currentPart = new Part(currentFranchise);
             currentFranchise.getParts().Add(currentPart);
             int p = 0;
@@ -262,13 +274,17 @@ namespace DDMediaWatched
             ControlsOn(controlsInfo);
             currentPart = null;
             PartsToListView();
+            ControlsEnable(controlsRightButtons);
         }
 
         private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewTitles.SelectedItems.Count < 1)
             {
-                SelectNone();
+                currentFranchise = null;
+                textBoxTitleInfo.Text = "Selected None!\r\n";
+                currentPart = null;
+                textBoxPartInfo.Text = "Selected None!\r\n";
             }
             else
             {
@@ -308,6 +324,7 @@ namespace DDMediaWatched
         {
             if (listViewTitles.SelectedItems.Count > 0)
             {
+                ControlsDisable(controlsRightButtons);
                 string selected = listViewTitles.SelectedItems[0].Text;
                 foreach (Franchise franchise in franchises)
                     if (franchise.getName() == selected)
@@ -323,6 +340,7 @@ namespace DDMediaWatched
         {
             if (listViewParts.SelectedItems.Count > 0)
             {
+                ControlsDisable(controlsRightButtons);
                 string selected = listViewParts.SelectedItems[0].Text;
                 foreach (Part p in currentFranchise.getParts())
                     if (p.getName() == selected)
@@ -366,6 +384,18 @@ namespace DDMediaWatched
                 s.Visible = false;
         }
 
+        private void ControlsEnable(List<Control> controls)
+        {
+            foreach (Control s in controls)
+                s.Enabled = true;
+        }
+
+        private void ControlsDisable(List<Control> controls)
+        {
+            foreach (Control s in controls)
+                s.Enabled = false;
+        }
+
         private void buttonFindPartSize_Click(object sender, EventArgs e)
         {
             if (currentPart == null)
@@ -373,20 +403,69 @@ namespace DDMediaWatched
             currentPart.findSize();
         }
 
+        private void buttonFindAllSize_Click(object sender, EventArgs e)
+        {
+            if (Program.pathLetter == "null")
+            {
+                MessageBox.Show("There isn't media volume!", "Error");
+            }
+            else
+            {
+                foreach (Franchise franchise in franchises)
+                {
+                    foreach (Part part in franchise.getParts())
+                        part.findSize();
+                }
+            }
+        }
+
         private void buttonDeletePart_Click(object sender, EventArgs e)
         {
-            if (currentPart == null)
-                return;
-            if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                for (int i = 0; i < currentFranchise.getParts().Count; i++)
-                    if (currentFranchise.getParts()[i].getName() == currentPart.getName())
-                    {
-                        currentFranchise.getParts().RemoveAt(i);
-                        break;
-                    }
-                SelectNone();
-            }
+            ControlsDisable(controlsRightButtons);
+            if (currentPart != null)
+                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    for (int i = 0; i < currentFranchise.getParts().Count; i++)
+                        if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+                        {
+                            currentFranchise.getParts().RemoveAt(i);
+                            break;
+                        }
+                    SelectNone();
+                }
+            ControlsEnable(controlsRightButtons);
+        }
+
+        private void buttonDeleteFranchise_Click(object sender, EventArgs e)
+        {
+            ControlsDisable(controlsRightButtons);
+            if (currentFranchise != null)
+                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    for (int i = 0; i < franchises.Count; i++)
+                        if (franchises[i].getName() == currentFranchise.getName())
+                        {
+                            franchises.RemoveAt(i);
+                            break;
+                        }
+                    SelectNone();
+                    FranchisesToListView();
+                }
+            ControlsEnable(controlsRightButtons);
+        }
+
+        private void buttonSaveExit_Click(object sender, EventArgs e)
+        {
+            SaveMedia();
+            Environment.Exit(0);
+        }
+
+        private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            listViewParts.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
+            listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
+            textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
+            textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
         }
 
         public void FranchisesToListView()
@@ -455,6 +534,11 @@ namespace DDMediaWatched
                 item.SubItems.Add(si);
                 listViewParts.Items.Add(item);
             }
+        }
+
+        public void Log(string s)
+        {
+            textBoxLog.Text += s + "\r\n";
         }
     }
 }

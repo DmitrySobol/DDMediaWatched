@@ -13,7 +13,7 @@ namespace DDMediaWatched
             name;//Name of part (Season, Film ...)
 
         private int
-            length,//common length
+            commonLength,//common length
             number,//Number of part
             width,//Resolution width
             height;//Resolution height
@@ -36,7 +36,7 @@ namespace DDMediaWatched
         public Part(Franchise parent)
         {
             name = "";
-            length = 1440;
+            commonLength = 1440;
             width = 0;
             height = 0;
             number = -1;
@@ -65,7 +65,7 @@ namespace DDMediaWatched
             //isPathFile
             isPathFile = Program.FileReadByte(f);
             //common length
-            length = Program.FileReadInt32(f);
+            commonLength = Program.FileReadInt32(f);
             //series
             p = Program.FileReadInt32(f);
             series = new List<Series>();
@@ -89,7 +89,7 @@ namespace DDMediaWatched
             //isPathFile
             Program.FileWriteByte(f, isPathFile);
             //common length
-            Program.FileWriteInt32(f, length);
+            Program.FileWriteInt32(f, commonLength);
             //series
             Program.FileWriteInt32(f, series.Count);
             foreach (Series s in series)
@@ -98,7 +98,11 @@ namespace DDMediaWatched
 
         public void findSize()
         {
-            string path = parentFranchise.getAbsolutePath() + this.path;
+            string path = parentFranchise.getAbsolutePath();
+            if (path == "null")
+                return;
+            long sizeBack = sizeD;
+            path += this.path;
             if (isPathFile == 0)
                 if (Directory.Exists(path))
                 {
@@ -112,6 +116,7 @@ namespace DDMediaWatched
                     FileInfo f = new FileInfo(path);
                     sizeD = f.Length;
                 }
+            Program.form1.Log(String.Format("{0}'s size has been updated from {1:f2} GB to {2:f2} GB", this.getName(), sizeBack / 1024d / 1024 / 1024, sizeD / 1024d / 1024 / 1024));
         }
 
         public void setIsPathFile(bool isPathFile)
@@ -187,12 +192,18 @@ namespace DDMediaWatched
 
         public int getCommonLength()
         {
-            return this.length;
+            return this.commonLength;
         }
         
         public void setCommonLength(int length)
         {
-            this.length = length;
+            this.commonLength = length;
+        }
+
+        public void setSeriesLengthToCommon()
+        {
+            foreach (Series s in series)
+                s.setLength(this.commonLength);
         }
 
         public override string ToString()
@@ -204,6 +215,13 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.isPathFile > 0 ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.getSize() / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}x{2}\r\n", "Resolution", this.getWidth(), this.getHeight());
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
+            int i = 0;
+            foreach (Series ser in series)
+            {
+                i++;
+                s += String.Format("{0,3}| {1}\r\n", i, ser.ToString());
+            }
             return s;
         }
     }

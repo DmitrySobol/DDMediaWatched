@@ -124,8 +124,9 @@ namespace DDMediaWatched
         public void setPath(string path)
         {
             this.path = path;
-            if (this.path[this.path.Length - 1] != '\\')
-                this.path += '\\';
+            if (this.path.Length > 0)
+                if (this.path[this.path.Length - 1] != '\\')
+                    this.path += '\\';
         }
 
         public string getPath()
@@ -135,6 +136,8 @@ namespace DDMediaWatched
 
         public string getAbsolutePath()
         {
+            if (Program.pathLetter == "null")
+                return "null";
             return Program.pathLetter + path;
         }
 

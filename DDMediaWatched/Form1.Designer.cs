@@ -64,6 +64,13 @@ namespace DDMediaWatched
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
             this.buttonFindPartSize = new System.Windows.Forms.Button();
             this.buttonDeletePart = new System.Windows.Forms.Button();
+            this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
+            this.labelFontSize = new System.Windows.Forms.Label();
+            this.buttonDeleteFranchise = new System.Windows.Forms.Button();
+            this.buttonSaveExit = new System.Windows.Forms.Button();
+            this.buttonFindAllSize = new System.Windows.Forms.Button();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -97,6 +104,7 @@ namespace DDMediaWatched
             this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 362);
             this.textBoxTitleInfo.Multiline = true;
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
+            this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxTitleInfo.Size = new System.Drawing.Size(410, 336);
             this.textBoxTitleInfo.TabIndex = 2;
             // 
@@ -415,6 +423,7 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Location = new System.Drawing.Point(436, 362);
             this.textBoxPartInfo.Multiline = true;
             this.textBoxPartInfo.Name = "textBoxPartInfo";
+            this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxPartInfo.Size = new System.Drawing.Size(410, 336);
             this.textBoxPartInfo.TabIndex = 32;
             // 
@@ -440,11 +449,93 @@ namespace DDMediaWatched
             this.buttonDeletePart.UseVisualStyleBackColor = true;
             this.buttonDeletePart.Click += new System.EventHandler(this.buttonDeletePart_Click);
             // 
+            // numericUpDownFontSize
+            // 
+            this.numericUpDownFontSize.Font = new System.Drawing.Font("Consolas", 8F);
+            this.numericUpDownFontSize.Location = new System.Drawing.Point(917, 454);
+            this.numericUpDownFontSize.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.numericUpDownFontSize.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDownFontSize.Name = "numericUpDownFontSize";
+            this.numericUpDownFontSize.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownFontSize.TabIndex = 36;
+            this.numericUpDownFontSize.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDownFontSize.ValueChanged += new System.EventHandler(this.numericUpDownFontSize_ValueChanged);
+            // 
+            // labelFontSize
+            // 
+            this.labelFontSize.AutoSize = true;
+            this.labelFontSize.Location = new System.Drawing.Point(859, 458);
+            this.labelFontSize.Name = "labelFontSize";
+            this.labelFontSize.Size = new System.Drawing.Size(52, 13);
+            this.labelFontSize.TabIndex = 37;
+            this.labelFontSize.Text = "Font size:";
+            // 
+            // buttonDeleteFranchise
+            // 
+            this.buttonDeleteFranchise.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonDeleteFranchise.Location = new System.Drawing.Point(1130, 367);
+            this.buttonDeleteFranchise.Name = "buttonDeleteFranchise";
+            this.buttonDeleteFranchise.Size = new System.Drawing.Size(130, 23);
+            this.buttonDeleteFranchise.TabIndex = 38;
+            this.buttonDeleteFranchise.Text = "Delete franchise";
+            this.buttonDeleteFranchise.UseVisualStyleBackColor = true;
+            this.buttonDeleteFranchise.Click += new System.EventHandler(this.buttonDeleteFranchise_Click);
+            // 
+            // buttonSaveExit
+            // 
+            this.buttonSaveExit.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonSaveExit.Location = new System.Drawing.Point(862, 675);
+            this.buttonSaveExit.Name = "buttonSaveExit";
+            this.buttonSaveExit.Size = new System.Drawing.Size(130, 23);
+            this.buttonSaveExit.TabIndex = 39;
+            this.buttonSaveExit.Text = "Save + Exit";
+            this.buttonSaveExit.UseVisualStyleBackColor = true;
+            this.buttonSaveExit.Click += new System.EventHandler(this.buttonSaveExit_Click);
+            // 
+            // buttonFindAllSize
+            // 
+            this.buttonFindAllSize.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonFindAllSize.Location = new System.Drawing.Point(994, 425);
+            this.buttonFindAllSize.Name = "buttonFindAllSize";
+            this.buttonFindAllSize.Size = new System.Drawing.Size(130, 23);
+            this.buttonFindAllSize.TabIndex = 40;
+            this.buttonFindAllSize.Text = "Find all size";
+            this.buttonFindAllSize.UseVisualStyleBackColor = true;
+            this.buttonFindAllSize.Click += new System.EventHandler(this.buttonFindAllSize_Click);
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxLog.Location = new System.Drawing.Point(862, 480);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxLog.Size = new System.Drawing.Size(410, 189);
+            this.textBoxLog.TabIndex = 41;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.textBoxLog);
+            this.Controls.Add(this.buttonFindAllSize);
+            this.Controls.Add(this.buttonSaveExit);
+            this.Controls.Add(this.buttonDeleteFranchise);
+            this.Controls.Add(this.labelFontSize);
+            this.Controls.Add(this.numericUpDownFontSize);
             this.Controls.Add(this.buttonDeletePart);
             this.Controls.Add(this.buttonFindPartSize);
             this.Controls.Add(this.labelPartInfo);
@@ -486,6 +577,7 @@ namespace DDMediaWatched
             this.ShowIcon = false;
             this.Text = "Dax_Donamo Media Watched";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,6 +620,12 @@ namespace DDMediaWatched
         private System.Windows.Forms.TextBox textBoxPartInfo;
         private System.Windows.Forms.Button buttonFindPartSize;
         private System.Windows.Forms.Button buttonDeletePart;
+        private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
+        private System.Windows.Forms.Label labelFontSize;
+        private System.Windows.Forms.Button buttonDeleteFranchise;
+        private System.Windows.Forms.Button buttonSaveExit;
+        private System.Windows.Forms.Button buttonFindAllSize;
+        private System.Windows.Forms.TextBox textBoxLog;
     }
 }
 

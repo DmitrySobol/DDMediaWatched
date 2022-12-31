@@ -29,6 +29,11 @@ namespace DDMediaWatched
             Program.FileWriteInt32(f, countWatch);
         }
 
+        public void setLength(int length)
+        {
+            this.length = length;
+        }
+
         public int getLength()
         {
             return length;
@@ -37,6 +42,12 @@ namespace DDMediaWatched
         public int getCountWatch()
         {
             return countWatch;
+        }
+
+        public override string ToString()
+        {
+            string s = String.Format("{0:f2} min|{1} times", length / 60d, countWatch);
+            return s;
         }
     }
 }

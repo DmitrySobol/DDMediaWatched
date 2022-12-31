@@ -14,7 +14,7 @@ namespace DDMediaWatched
             buf = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 },
             BigBuf = new byte[1024];
         public static string
-            pathLetter = "";
+            pathLetter = "null";
         public static Form1 form1;
         public static string[]
             args;
