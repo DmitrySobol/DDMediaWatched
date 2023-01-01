@@ -45,6 +45,7 @@ namespace DDMediaWatched
             isPathFile = 0;
             parentFranchise = parent;
             series = new List<Series>();
+            series.Add(new Series());
         }
 
         public Part(FileStream f, Franchise parent)
@@ -96,27 +97,46 @@ namespace DDMediaWatched
                 s.SaveToBin(f);
         }
 
-        public void findSize()
+        public int findSize()
         {
+            long sizeBack = sizeD;
+            int output = 0;
+            if (this.path == "")
+            {
+                sizeD = 0;
+            }
             string path = parentFranchise.getAbsolutePath();
             if (path == "null")
-                return;
-            long sizeBack = sizeD;
-            path += this.path;
-            if (isPathFile == 0)
-                if (Directory.Exists(path))
-                {
-                    sizeD = 0;
-                    Program.DirectorySize(path, ref sizeD);
-                }
-            if (isPathFile != 0)
-                if (File.Exists(path))
-                {
-                    sizeD = 0;
-                    FileInfo f = new FileInfo(path);
-                    sizeD = f.Length;
-                }
+                return output;
+            if (this.path.Length > 0)
+            {
+                path += this.path;
+                if (isPathFile == 0)
+                    if (Directory.Exists(path))
+                    {
+                        sizeD = 0;
+                        Program.DirectorySize(path, ref sizeD);
+                    }
+                if (isPathFile != 0)
+                    if (File.Exists(path))
+                    {
+                        sizeD = 0;
+                        FileInfo f = new FileInfo(path);
+                        sizeD = f.Length;
+                    }
+            }
             Program.form1.Log(String.Format("{0}'s size has been updated from {1:f2} GB to {2:f2} GB", this.getName(), sizeBack / 1024d / 1024 / 1024, sizeD / 1024d / 1024 / 1024));
+            if (sizeBack == 0 && sizeD > 0)
+                output = 1;
+            if (sizeBack == sizeD)
+                output = 2;
+            if (sizeBack > 0 && sizeD == 0)
+                output = 3;
+            return output;
+            //0 no path
+            //1 0 -> x
+            //2 x -> x
+            //3 x -> 0
         }
 
         public void setIsPathFile(bool isPathFile)
@@ -125,6 +145,14 @@ namespace DDMediaWatched
                 this.isPathFile = 1;
             else
                 this.isPathFile = 0;
+        }
+
+        public bool isFull()
+        {
+            if (isPathFile > 0)
+                return true;
+            else
+                return false;
         }
 
         public long getSize()
@@ -206,6 +234,16 @@ namespace DDMediaWatched
                 s.setLength(this.commonLength);
         }
 
+        public List<Series> getSeries()
+        {
+            return series;
+        }
+
+        public Franchise getParent()
+        {
+            return parentFranchise;
+        }
+
         public override string ToString()
         {
             string s = "";
@@ -220,7 +258,7 @@ namespace DDMediaWatched
             foreach (Series ser in series)
             {
                 i++;
-                s += String.Format("{0,3}| {1}\r\n", i, ser.ToString());
+                s += String.Format("{0,4}| {1}\r\n", i, ser.ToString());
             }
             return s;
         }

@@ -224,6 +224,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.getTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.getMark() < 0 ? "" : this.getMark().ToString());
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.getSize() / 1024d / 1024/ 1024);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
             return s;
         }
     }

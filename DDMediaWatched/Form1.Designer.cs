@@ -70,7 +70,13 @@ namespace DDMediaWatched
             this.buttonSaveExit = new System.Windows.Forms.Button();
             this.buttonFindAllSize = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.textBoxNewPartLengths = new System.Windows.Forms.TextBox();
+            this.labelNewPartLengths = new System.Windows.Forms.Label();
+            this.labelNewPartSeries = new System.Windows.Forms.Label();
+            this.numericUpDownNewPartSeries = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxNewPartResolutions = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -104,9 +110,11 @@ namespace DDMediaWatched
             this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 362);
             this.textBoxTitleInfo.Multiline = true;
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
-            this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxTitleInfo.ReadOnly = true;
+            this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxTitleInfo.Size = new System.Drawing.Size(410, 336);
             this.textBoxTitleInfo.TabIndex = 2;
+            this.textBoxTitleInfo.WordWrap = false;
             // 
             // textBoxInfo
             // 
@@ -114,6 +122,7 @@ namespace DDMediaWatched
             this.textBoxInfo.Location = new System.Drawing.Point(858, 25);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
+            this.textBoxInfo.ReadOnly = true;
             this.textBoxInfo.Size = new System.Drawing.Size(410, 336);
             this.textBoxInfo.TabIndex = 3;
             // 
@@ -339,6 +348,7 @@ namespace DDMediaWatched
             this.checkBoxNewPartIsPathFile.Text = "Is path file";
             this.checkBoxNewPartIsPathFile.UseVisualStyleBackColor = true;
             this.checkBoxNewPartIsPathFile.Visible = false;
+            this.checkBoxNewPartIsPathFile.CheckedChanged += new System.EventHandler(this.checkBoxNewPartIsPathFile_CheckedChanged);
             // 
             // textBoxNewPartLength
             // 
@@ -348,6 +358,7 @@ namespace DDMediaWatched
             this.textBoxNewPartLength.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewPartLength.TabIndex = 27;
             this.textBoxNewPartLength.Visible = false;
+            this.textBoxNewPartLength.TextChanged += new System.EventHandler(this.textBoxNewPartLength_TextChanged);
             // 
             // labelNewPart5
             // 
@@ -355,9 +366,9 @@ namespace DDMediaWatched
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
             this.labelNewPart5.Location = new System.Drawing.Point(857, 150);
             this.labelNewPart5.Name = "labelNewPart5";
-            this.labelNewPart5.Size = new System.Drawing.Size(211, 13);
+            this.labelNewPart5.Size = new System.Drawing.Size(217, 13);
             this.labelNewPart5.TabIndex = 26;
-            this.labelNewPart5.Text = "Average legth of series (seconds):";
+            this.labelNewPart5.Text = "Average legth of series (HH:MM:SS):";
             this.labelNewPart5.Visible = false;
             // 
             // buttonEditFranchise
@@ -423,9 +434,11 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Location = new System.Drawing.Point(436, 362);
             this.textBoxPartInfo.Multiline = true;
             this.textBoxPartInfo.Name = "textBoxPartInfo";
-            this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxPartInfo.ReadOnly = true;
+            this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxPartInfo.Size = new System.Drawing.Size(410, 336);
             this.textBoxPartInfo.TabIndex = 32;
+            this.textBoxPartInfo.WordWrap = false;
             // 
             // buttonFindPartSize
             // 
@@ -521,15 +534,95 @@ namespace DDMediaWatched
             this.textBoxLog.Location = new System.Drawing.Point(862, 480);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxLog.Size = new System.Drawing.Size(410, 189);
             this.textBoxLog.TabIndex = 41;
+            this.textBoxLog.WordWrap = false;
+            // 
+            // textBoxNewPartLengths
+            // 
+            this.textBoxNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxNewPartLengths.Location = new System.Drawing.Point(858, 240);
+            this.textBoxNewPartLengths.Multiline = true;
+            this.textBoxNewPartLengths.Name = "textBoxNewPartLengths";
+            this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 80);
+            this.textBoxNewPartLengths.TabIndex = 42;
+            this.textBoxNewPartLengths.Visible = false;
+            // 
+            // labelNewPartLengths
+            // 
+            this.labelNewPartLengths.AutoSize = true;
+            this.labelNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartLengths.Location = new System.Drawing.Point(857, 224);
+            this.labelNewPartLengths.Name = "labelNewPartLengths";
+            this.labelNewPartLengths.Size = new System.Drawing.Size(163, 13);
+            this.labelNewPartLengths.TabIndex = 43;
+            this.labelNewPartLengths.Text = "Lengths (separate with ;):";
+            this.labelNewPartLengths.Visible = false;
+            // 
+            // labelNewPartSeries
+            // 
+            this.labelNewPartSeries.AutoSize = true;
+            this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(857, 189);
+            this.labelNewPartSeries.Name = "labelNewPartSeries";
+            this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
+            this.labelNewPartSeries.TabIndex = 44;
+            this.labelNewPartSeries.Text = "Series:";
+            this.labelNewPartSeries.Visible = false;
+            // 
+            // numericUpDownNewPartSeries
+            // 
+            this.numericUpDownNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
+            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(859, 205);
+            this.numericUpDownNewPartSeries.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDownNewPartSeries.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownNewPartSeries.Name = "numericUpDownNewPartSeries";
+            this.numericUpDownNewPartSeries.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownNewPartSeries.TabIndex = 45;
+            this.numericUpDownNewPartSeries.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDownNewPartSeries.Visible = false;
+            this.numericUpDownNewPartSeries.ValueChanged += new System.EventHandler(this.numericUpDownNewPartSeries_ValueChanged);
+            // 
+            // comboBoxNewPartResolutions
+            // 
+            this.comboBoxNewPartResolutions.FormattingEnabled = true;
+            this.comboBoxNewPartResolutions.Items.AddRange(new object[] {
+            "NULL",
+            "960x720",
+            "1280x720",
+            "1920x1080",
+            "3840x2160"});
+            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(1091, 64);
+            this.comboBoxNewPartResolutions.Name = "comboBoxNewPartResolutions";
+            this.comboBoxNewPartResolutions.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxNewPartResolutions.TabIndex = 46;
+            this.comboBoxNewPartResolutions.Visible = false;
+            this.comboBoxNewPartResolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewPartResolutions_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.comboBoxNewPartResolutions);
+            this.Controls.Add(this.numericUpDownNewPartSeries);
+            this.Controls.Add(this.labelNewPartSeries);
+            this.Controls.Add(this.labelNewPartLengths);
+            this.Controls.Add(this.textBoxNewPartLengths);
             this.Controls.Add(this.textBoxLog);
             this.Controls.Add(this.buttonFindAllSize);
             this.Controls.Add(this.buttonSaveExit);
@@ -578,6 +671,7 @@ namespace DDMediaWatched
             this.Text = "Dax_Donamo Media Watched";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -626,6 +720,11 @@ namespace DDMediaWatched
         private System.Windows.Forms.Button buttonSaveExit;
         private System.Windows.Forms.Button buttonFindAllSize;
         private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.TextBox textBoxNewPartLengths;
+        private System.Windows.Forms.Label labelNewPartLengths;
+        private System.Windows.Forms.Label labelNewPartSeries;
+        private System.Windows.Forms.NumericUpDown numericUpDownNewPartSeries;
+        private System.Windows.Forms.ComboBox comboBoxNewPartResolutions;
     }
 }
 

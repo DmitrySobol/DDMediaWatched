@@ -125,6 +125,8 @@ namespace DDMediaWatched
             controlsNewPart.Add(labelNewPart3);
             controlsNewPart.Add(labelNewPart4);
             controlsNewPart.Add(labelNewPart5);
+            controlsNewPart.Add(labelNewPartLengths);
+            controlsNewPart.Add(labelNewPartSeries);
             controlsNewPart.Add(textBoxNewPartName);
             controlsNewPart.Add(textBoxNewPartPath);
             controlsNewPart.Add(textBoxNewPartWidth);
@@ -132,6 +134,9 @@ namespace DDMediaWatched
             controlsNewPart.Add(textBoxNewPartLength);
             controlsNewPart.Add(checkBoxNewPartIsPathFile);
             controlsNewPart.Add(buttonNewPartSave);
+            controlsNewPart.Add(textBoxNewPartLengths);
+            controlsNewPart.Add(numericUpDownNewPartSeries);
+            controlsNewPart.Add(comboBoxNewPartResolutions);
             controlsRightButtons.Add(buttonNewFranchise);
             controlsRightButtons.Add(buttonEditFranchise);
             controlsRightButtons.Add(buttonDeleteFranchise);
@@ -248,26 +253,44 @@ namespace DDMediaWatched
                 if (part.getNumber() > p)
                     p = part.getNumber();
             currentPart.setNumber(p + 1);
-            ControlsOff(controlsInfo);
-            ControlsOn(controlsNewPart);
+            EditPart();
         }
 
         private void buttonNewPartSave_Click(object sender, EventArgs e)
         {
+            int len = HMStoSecs(textBoxNewPartLength.Text);
+            if (!currentPart.isFull())
+                if (!MakeLengthsNewPart())
+                    return;
+            if (currentPart.isFull())
+            {
+                if (len == -1)
+                    return;
+                currentPart.setCommonLength(len);
+                currentPart.setSeriesLengthToCommon();
+            }
             ControlsOff(controlsNewPart);
             currentPart.setName(textBoxNewPartName.Text);
-            currentPart.setPath(textBoxNewPartPath.Text);
+            if (textBoxNewPartPath.Text.Length > 0)
+                if (textBoxNewPartPath.Text[0] == '"')
+                {
+                    string path = textBoxNewPartPath.Text.Substring(4, textBoxNewPartPath.Text.Length - 5);
+                    path = path.Substring(currentPart.getParent().getPath().Length);
+                    currentPart.setPath(path);
+                }
+                else
+                    currentPart.setPath(textBoxNewPartPath.Text);
+            else
+                currentPart.setPath("");
             int p = 0;
             int.TryParse(textBoxNewPartWidth.Text, out p);
             currentPart.setWidth(p);
             p = 0;
             int.TryParse(textBoxNewPartHeight.Text, out p);
             currentPart.setHeight(p);
-            if (!String.IsNullOrEmpty(textBoxNewPartLength.Text))
+            if (len != -1)
             {
-                p = 0;
-                int.TryParse(textBoxNewPartLength.Text, out p);
-                currentPart.setCommonLength(p);
+                currentPart.setCommonLength(len);
             }
             currentPart.setIsPathFile(checkBoxNewPartIsPathFile.Checked);
             currentPart.findSize();
@@ -365,11 +388,16 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsInfo);
             ControlsOn(controlsNewPart);
+            comboBoxNewPartResolutions.SelectedIndex = -1;
             textBoxNewPartName.Text = currentPart.getName();
             textBoxNewPartPath.Text = currentPart.getPath();
-            textBoxNewPartLength.Text = currentPart.getCommonLength().ToString();
+            int p = currentPart.getCommonLength();
+            textBoxNewPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
             textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
             textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
+            numericUpDownNewPartSeries.Value = currentPart.getSeries().Count();
+            checkBoxNewPartIsPathFile.Checked = currentPart.isFull();
+            MakeNewPartLengths();
         }
 
         private void ControlsOn(List<Control> controls)
@@ -466,6 +494,144 @@ namespace DDMediaWatched
             listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
+        }
+
+        private void textBoxNewPartLength_TextChanged(object sender, EventArgs e)
+        {
+            int p = HMStoSecs(textBoxNewPartLength.Text);
+            if (p == -1)
+                return;
+            currentPart.setCommonLength(p);
+            if (!currentPart.isFull())
+                MakeNewPartLengths();
+            else
+                currentPart.setSeriesLengthToCommon();
+        }
+
+        private void numericUpDownNewPartSeries_ValueChanged(object sender, EventArgs e)
+        {
+            int p = (int)numericUpDownNewPartSeries.Value;
+            if (currentPart.getSeries().Count < p)
+            {
+                p = p - currentPart.getSeries().Count;
+                for (int i = 0; i < p; i++)
+                    currentPart.getSeries().Add(new Series());
+            }
+            else
+            {
+                p = currentPart.getSeries().Count - p;
+                for (int i = 0; i < p; i++)
+                    currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
+            }
+            if (!currentPart.isFull())
+                MakeNewPartLengths();
+            else
+                currentPart.setSeriesLengthToCommon();
+        }
+
+        private void MakeNewPartLengths()
+        {
+            currentPart.setSeriesLengthToCommon();
+            string str = "";
+            foreach (Series s in currentPart.getSeries())
+            {
+                str += String.Format("{0};", s.getLength());
+            }
+            if (!String.IsNullOrEmpty(str))
+                str = str.Remove(str.Length - 1);
+            textBoxNewPartLengths.Text = str;
+        }
+
+        private bool MakeLengthsNewPart()
+        {
+            string[] s = textBoxNewPartLengths.Text.Split(';');
+            if (s.Length != currentPart.getSeries().Count)
+                return false;
+            int[] l = new int[s.Length];
+            bool b = true;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!int.TryParse(s[i], out l[i]))
+                    b = false;
+            }
+            if (!b)
+                return false;
+            for (int i = 0; i < l.Length; i++)
+                currentPart.getSeries()[i].setLength(l[i]);
+            return true;
+        }
+
+        private void checkBoxNewPartIsPathFile_CheckedChanged(object sender, EventArgs e)
+        {
+            currentPart.setIsPathFile(checkBoxNewPartIsPathFile.Checked);
+            if (checkBoxNewPartIsPathFile.Checked)
+            {
+                numericUpDownNewPartSeries.Value = 1;
+                numericUpDownNewPartSeries.Enabled = false;
+                textBoxNewPartLengths.Enabled = false;
+            }
+            else
+            {
+                numericUpDownNewPartSeries.Enabled = true;
+                textBoxNewPartLengths.Enabled = true;
+            }
+        }
+
+        private void comboBoxNewPartResolutions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxNewPartResolutions.Text)
+            {
+                case "NULL":
+                    {
+                        currentPart.setWidth(0);
+                        currentPart.setHeight(0);
+                    }
+                    break;
+                case "960x720":
+                    {
+                        currentPart.setWidth(960);
+                        currentPart.setHeight(720);
+                    }
+                    break;
+                case "1280x720":
+                    {
+                        currentPart.setWidth(1280);
+                        currentPart.setHeight(720);
+                    }
+                    break;
+                case "1920x1080":
+                    {
+                        currentPart.setWidth(1920);
+                        currentPart.setHeight(1080);
+                    }
+                    break;
+                case "3840x2160":
+                    {
+                        currentPart.setWidth(3840);
+                        currentPart.setHeight(2160);
+                    }
+                    break;
+            }
+            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
+            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
+        }
+
+        private int HMStoSecs(string s)
+        {
+            int ret = 0, p = 0;
+            string[] hms = s.Split(':');
+            if (hms.Length != 3)
+                return -1;
+            if (!int.TryParse(hms[0], out p))
+                return -1;
+            ret += p * 3600;
+            if (!int.TryParse(hms[1], out p))
+                return -1;
+            ret += p * 60;
+            if (!int.TryParse(hms[2], out p))
+                return -1;
+            ret += p;
+            return ret;
         }
 
         public void FranchisesToListView()

@@ -13,6 +13,12 @@ namespace DDMediaWatched
             length,//length in seconds
             countWatch;
 
+        public Series()
+        {
+            this.length = 0;
+            this.countWatch = 0;
+        }
+
         public Series(FileStream f)
         {
             //length
