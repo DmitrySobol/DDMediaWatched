@@ -712,14 +712,14 @@ namespace DDMediaWatched
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Size",
-                    Text = String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
                 };
                 item.SubItems.Add(si);
                 //BPS
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
                 };
                 item.SubItems.Add(si);
                 //Path
@@ -768,14 +768,14 @@ namespace DDMediaWatched
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Size",
-                    Text = String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
                 };
                 item.SubItems.Add(si);
                 //BPS
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
                 };
                 item.SubItems.Add(si);
                 //Path
@@ -792,11 +792,6 @@ namespace DDMediaWatched
         public void Log(string s)
         {
             textBoxLog.Text += s + "\r\n";
-        }
-
-        public void CheckLocalMedia()
-        {
-
         }
     }
 }
