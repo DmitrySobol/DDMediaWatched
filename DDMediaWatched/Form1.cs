@@ -679,6 +679,23 @@ namespace DDMediaWatched
             return ret;
         }
 
+        private void textBoxNewPartPath_TextChanged(object sender, EventArgs e)
+        {
+            string path = textBoxNewPartPath.Text;
+            if (path.Length > 0)
+                if (path[0] == '"')
+                    path = path.Substring(1, path.Length - 2);
+            int p = Program.IsFileOrDirr(path);
+            if (p == 0)
+            {
+                checkBoxNewPartIsPathFile.Checked = false;
+            }
+            if (p == 1)
+            {
+                checkBoxNewPartIsPathFile.Checked = true;
+            }
+        }
+
         public void FranchisesToListView()
         {
             listViewTitles.Items.Clear();

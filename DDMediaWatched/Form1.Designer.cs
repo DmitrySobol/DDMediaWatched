@@ -325,6 +325,7 @@ namespace DDMediaWatched
             this.textBoxNewPartPath.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewPartPath.TabIndex = 23;
             this.textBoxNewPartPath.Visible = false;
+            this.textBoxNewPartPath.TextChanged += new System.EventHandler(this.textBoxNewPartPath_TextChanged);
             // 
             // labelNewPart4
             // 

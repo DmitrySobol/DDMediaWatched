@@ -123,5 +123,19 @@ namespace DDMediaWatched
                     }
             return size;
         }
+
+        public static int IsFileOrDirr(string path)
+        {
+            int ret = -1;
+            if (Directory.Exists(path))
+            {
+                ret = 0;
+            }
+            if (File.Exists(path))
+            {
+                ret = 1;
+            }
+            return ret;
+        }
     }
 }
