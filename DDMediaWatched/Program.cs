@@ -137,5 +137,21 @@ namespace DDMediaWatched
             }
             return ret;
         }
+
+        public static string GetVideoLength(string path)
+        {
+            string value = "NULL";
+            if (File.Exists(path) || Directory.Exists(path))
+            {
+                string dir = Path.GetDirectoryName(path);
+                string file = Path.GetFileName(path);
+                Type shellAppType = Type.GetTypeFromProgID("Shell.Application");
+                dynamic shell = Activator.CreateInstance(shellAppType);
+                dynamic folder = shell.NameSpace(dir);
+                dynamic folderItem = folder.ParseName(file);
+                value = folder.GetDetailsOf(folderItem, 27).ToString();
+            }
+            return value;
+        }
     }
 }
