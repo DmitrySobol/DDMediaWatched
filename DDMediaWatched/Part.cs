@@ -99,11 +99,11 @@ namespace DDMediaWatched
 
         public int findSize()
         {
-            long sizeBack = sizeD;
+            long newSize = 0;
             int output = 0;
             if (this.path == "")
             {
-                sizeD = 0;
+                newSize = 0;
             }
             string path = parentFranchise.getAbsolutePath();
             if (path == "null")
@@ -111,27 +111,19 @@ namespace DDMediaWatched
             if (this.path.Length > 0)
             {
                 path += this.path;
-                if (isPathFile == 0)
-                    if (Directory.Exists(path))
-                    {
-                        sizeD = 0;
-                        Program.DirectorySize(path, ref sizeD);
-                    }
-                if (isPathFile != 0)
-                    if (File.Exists(path))
-                    {
-                        sizeD = 0;
-                        FileInfo f = new FileInfo(path);
-                        sizeD = f.Length;
-                    }
+                newSize = Program.GetPathSize(path, this.isFull());
             }
-            Program.form1.Log(String.Format("{0}'s size has been updated from {1:f2} GB to {2:f2} GB", this.getName(), sizeBack / 1024d / 1024 / 1024, sizeD / 1024d / 1024 / 1024));
-            if (sizeBack == 0 && sizeD > 0)
+            if (sizeD != newSize)
+                Program.form1.Log(String.Format("{0} size has been updated from {1:f2} GB to {2:f2} GB", this.getName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
+            else
+                Program.form1.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
+            if (sizeD == 0 && newSize > 0)
                 output = 1;
-            if (sizeBack == sizeD)
+            if (sizeD == newSize)
                 output = 2;
-            if (sizeBack > 0 && sizeD == 0)
+            if (sizeD > 0 && newSize == 0)
                 output = 3;
+            sizeD = newSize;
             return output;
             //0 no path
             //1 0 -> x
@@ -191,6 +183,14 @@ namespace DDMediaWatched
         public string getPath()
         {
             return path;
+        }
+
+        public string getAbsolutePath()
+        {
+            string s = "";
+            if (this.path != "")
+                s = parentFranchise.getAbsolutePath() + this.path;
+            return s;
         }
 
         public void setPath(string path)

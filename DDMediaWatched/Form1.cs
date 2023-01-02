@@ -63,7 +63,7 @@ namespace DDMediaWatched
             {
                 DisplayIndex = 1,
                 Text = "Name",
-                Width = 200
+                Width = 150
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -71,6 +71,24 @@ namespace DDMediaWatched
                 DisplayIndex = 0,
                 Text = "Num",
                 Width = 30
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "Length",
+                Width = 70
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "Size",
+                Width = 70
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "BPS",
+                Width = 70
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -90,7 +108,7 @@ namespace DDMediaWatched
             {
                 DisplayIndex = 1,
                 Text = "Name",
-                Width = 200
+                Width = 135
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -98,6 +116,24 @@ namespace DDMediaWatched
                 DisplayIndex = 0,
                 Text = "Num",
                 Width = 30
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "Length",
+                Width = 70
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "Size",
+                Width = 70
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "BPS",
+                Width = 70
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -234,7 +270,16 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsNewFranchise);
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
-            currentFranchise.setPath(textBoxNewFranchisePath.Text);
+            if (textBoxNewFranchisePath.Text.Length > 0)
+                if (textBoxNewFranchisePath.Text[0] == '"')
+                {
+                    string path = textBoxNewFranchisePath.Text.Substring(4, textBoxNewFranchisePath.Text.Length - 5);
+                    currentFranchise.setPath(path);
+                }
+                else
+                    currentFranchise.setPath(textBoxNewFranchisePath.Text);
+            else
+                currentFranchise.setPath(textBoxNewFranchisePath.Text);
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
             ControlsOn(controlsInfo);
             FranchisesToListView();
@@ -656,6 +701,27 @@ namespace DDMediaWatched
                 else
                     si.Text = "";
                 item.SubItems.Add(si);
+                //Length
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Length",
+                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                };
+                item.SubItems.Add(si);
+                //Size
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Size",
+                    Text = String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                };
+                item.SubItems.Add(si);
+                //BPS
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "BPS",
+                    Text = String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                };
+                item.SubItems.Add(si);
                 //Path
                 si = new ListViewItem.ListViewSubItem
                 {
@@ -691,6 +757,27 @@ namespace DDMediaWatched
                 else
                     si.Text = "";
                 item.SubItems.Add(si);
+                //Length
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Length",
+                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                };
+                item.SubItems.Add(si);
+                //Size
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Size",
+                    Text = String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                };
+                item.SubItems.Add(si);
+                //BPS
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "BPS",
+                    Text = String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                };
+                item.SubItems.Add(si);
                 //Path
                 si = new ListViewItem.ListViewSubItem
                 {
@@ -705,6 +792,11 @@ namespace DDMediaWatched
         public void Log(string s)
         {
             textBoxLog.Text += s + "\r\n";
+        }
+
+        public void CheckLocalMedia()
+        {
+
         }
     }
 }

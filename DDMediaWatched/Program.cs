@@ -22,7 +22,7 @@ namespace DDMediaWatched
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -103,6 +103,25 @@ namespace DDMediaWatched
                 }
             }
             catch { }
+        }
+
+        public static long GetPathSize(string path, bool IsFile)
+        {
+            long size = -1;
+            if (IsFile)
+                if (File.Exists(path))
+                {
+                    size = 0;
+                    FileInfo f = new FileInfo(path);
+                    size = f.Length;
+                }
+            if (!IsFile)
+                if (Directory.Exists(path))
+                    {
+                        size = 0;
+                        DirectorySize(path, ref size);
+                    }
+            return size;
         }
     }
 }
