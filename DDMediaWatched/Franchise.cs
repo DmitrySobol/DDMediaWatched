@@ -9,7 +9,7 @@ namespace DDMediaWatched
 {
     public class Franchise
     {
-        enum FranchiseType {A, C, F, No};
+        enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
 
         private List<string>
             names;
@@ -143,7 +143,7 @@ namespace DDMediaWatched
 
         public void setType(int index)
         {
-            if (index >= 0 && index <= 2)
+            if (index >= 0)
                 this.type = (FranchiseType)index;
             else
                 this.type = FranchiseType.No;
@@ -162,19 +162,24 @@ namespace DDMediaWatched
             string s = "";
             switch (type)
             {
-                case FranchiseType.A:
+                case FranchiseType.Anime:
                     {
                         s = "Anime";
                     }
                     break;
-                case FranchiseType.C:
+                case FranchiseType.Cartoon:
                     {
                         s = "Cartoon";
                     }
                     break;
-                case FranchiseType.F:
+                case FranchiseType.Film:
                     {
                         s = "Film";
+                    }
+                    break;
+                case FranchiseType.Dorama:
+                    {
+                        s = "Dorama";
                     }
                     break;
                 case FranchiseType.No:
