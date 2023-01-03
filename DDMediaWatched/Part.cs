@@ -48,6 +48,31 @@ namespace DDMediaWatched
             series.Add(new Series());
         }
 
+        public Part(string name, string path, int number, int serCount, bool autoSize, bool autoLength, Franchise parent)
+        {
+            this.name = name;
+            width = 0;
+            height = 0;
+            this.number = number;
+            this.path = path;
+            this.isPathFile = (byte)Program.IsFileOrDirr(this.path);
+            if (autoSize)
+                this.sizeD = Program.GetPathSize(this.path, this.isFull());
+            else
+                this.sizeD = 0;
+            if (autoLength)
+            {
+                this.commonLength = Program.HMStoSecs(Program.GetVideoLength(this.path));
+            }
+            else
+                commonLength = 1440;
+            parentFranchise = parent;
+            series = new List<Series>();
+            for (int i = 0; i < serCount; i++)
+                series.Add(new Series());
+            this.setSeriesLengthToCommon();
+        }
+
         public Part(FileStream f, Franchise parent)
         {
             parentFranchise = parent;

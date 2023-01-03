@@ -153,5 +153,33 @@ namespace DDMediaWatched
             }
             return value;
         }
+
+        public static int HMStoSecs(string s)
+        {
+            int ret = 0, p = 0;
+            string[] hms = s.Split(':');
+            if (hms.Length != 3)
+                return -1;
+            if (!int.TryParse(hms[0], out p))
+                return -1;
+            ret += p * 3600;
+            if (!int.TryParse(hms[1], out p))
+                return -1;
+            ret += p * 60;
+            if (!int.TryParse(hms[2], out p))
+                return -1;
+            ret += p;
+            return ret;
+        }
+
+        public static int GetFirstAvailableNumber()
+        {
+            int p = 0;
+            foreach (Franchise f in Form1.franchises)
+                if (f.getNumber() > p)
+                    p = f.getNumber();
+            p++;
+            return p;
+        }
     }
 }

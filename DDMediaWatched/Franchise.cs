@@ -34,7 +34,61 @@ namespace DDMediaWatched
             parts = new List<Part>();
             path = "";
             type = FranchiseType.No;
-            number = 0;
+            number = Program.GetFirstAvailableNumber();
+            mark = -1;
+        }
+
+        public Franchise(string[] args)
+        {
+            names = new List<string>();
+            this.setNames(args[0].Trim().Split(';'));
+            string path = args[1].Trim();
+            switch(args[2].ToLower())
+            {
+                case "a":
+                    {
+                        this.type = FranchiseType.Anime;
+                    }
+                    break;
+                case "c":
+                    {
+                        this.type = FranchiseType.Cartoon;
+                    }
+                    break;
+                case "f":
+                    {
+                        this.type = FranchiseType.Film;
+                    }
+                    break;
+                case "d":
+                    {
+                        this.type = FranchiseType.Dorama;
+                    }
+                    break;
+                default:
+                    {
+                        this.type = FranchiseType.No;
+                    }
+                    break;
+            }
+            parts = new List<Part>();
+            if (args.Length > 3)
+            {
+                this.path = path;
+                int[] ser = new int[args.Length - 3];
+                for (int i = 3; i < args.Length; i++)
+                    ser[i - 3] = int.Parse(args[i]);
+                for (int i = 0; i < ser.Length; i++)
+                {
+                    parts.Add(new Part(String.Format("Part {0}", i + 1), "", i + 1, ser[i], true, false, this));
+                }
+            }
+            else
+            {
+                this.path = "";
+                parts.Add(new Part("Film", path, 1, 1, true, true, this));
+            }
+            number = Program.GetFirstAvailableNumber();
             mark = -1;
         }
 

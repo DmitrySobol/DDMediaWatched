@@ -258,11 +258,6 @@ namespace DDMediaWatched
             ControlsDisable(controlsRightButtons);
             currentFranchise = new Franchise();
             franchises.Add(currentFranchise);
-            int p = 0;
-            foreach (Franchise franchise in franchises)
-                if (franchise.getNumber() > p)
-                    p = franchise.getNumber();
-            currentFranchise.setNumber(p + 1);
             EditFranchise();
         }
 
@@ -303,7 +298,7 @@ namespace DDMediaWatched
 
         private void buttonNewPartSave_Click(object sender, EventArgs e)
         {
-            int len = HMStoSecs(textBoxNewPartLength.Text);
+            int len = Program.HMStoSecs(textBoxNewPartLength.Text);
             if (!currentPart.isFull())
                 if (!MakeLengthsNewPart())
                     return;
@@ -543,7 +538,7 @@ namespace DDMediaWatched
 
         private void textBoxNewPartLength_TextChanged(object sender, EventArgs e)
         {
-            int p = HMStoSecs(textBoxNewPartLength.Text);
+            int p = Program.HMStoSecs(textBoxNewPartLength.Text);
             if (p == -1)
                 return;
             currentPart.setCommonLength(p);
@@ -664,24 +659,6 @@ namespace DDMediaWatched
             }
             textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
             textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
-        }
-
-        private int HMStoSecs(string s)
-        {
-            int ret = 0, p = 0;
-            string[] hms = s.Split(':');
-            if (hms.Length != 3)
-                return -1;
-            if (!int.TryParse(hms[0], out p))
-                return -1;
-            ret += p * 3600;
-            if (!int.TryParse(hms[1], out p))
-                return -1;
-            ret += p * 60;
-            if (!int.TryParse(hms[2], out p))
-                return -1;
-            ret += p;
-            return ret;
         }
 
         private void textBoxNewPartPath_TextChanged(object sender, EventArgs e)
