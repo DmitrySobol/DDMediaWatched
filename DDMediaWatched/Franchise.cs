@@ -138,7 +138,8 @@ namespace DDMediaWatched
         public void setNames(string[] names)
         {
             this.names.Clear();
-            this.names.AddRange(names);
+            foreach (string s in names)
+                this.names.Add(s.Trim());
         }
 
         public string getName()

@@ -276,6 +276,8 @@ namespace DDMediaWatched
             else
                 currentFranchise.setPath(textBoxNewFranchisePath.Text);
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
+            foreach (Part part in currentFranchise.getParts())
+                part.findSize();
             ControlsOn(controlsInfo);
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
@@ -311,7 +313,7 @@ namespace DDMediaWatched
             }
             ControlsOff(controlsNewPart);
             currentPart.setName(textBoxNewPartName.Text);
-            if (textBoxNewPartPath.Text.Length > 0)
+            if (textBoxNewPartPath.Text.Length > 3)
                 if (textBoxNewPartPath.Text[0] == '"')
                 {
                     string path = textBoxNewPartPath.Text.Substring(4, textBoxNewPartPath.Text.Length - 5);
@@ -319,7 +321,14 @@ namespace DDMediaWatched
                     currentPart.setPath(path);
                 }
                 else
-                    currentPart.setPath(textBoxNewPartPath.Text);
+                {
+                    string path = textBoxNewPartPath.Text;
+                    if (textBoxNewPartPath.Text.Substring(1, 2) == @":\")
+                    {
+                        path = path.Substring(3, textBoxNewPartPath.Text.Length - 3);
+                    }
+                    currentPart.setPath(path);
+                }
             else
                 currentPart.setPath("");
             int p = 0;
@@ -551,18 +560,19 @@ namespace DDMediaWatched
         private void numericUpDownNewPartSeries_ValueChanged(object sender, EventArgs e)
         {
             int p = (int)numericUpDownNewPartSeries.Value;
-            if (currentPart.getSeries().Count < p)
-            {
-                p = p - currentPart.getSeries().Count;
-                for (int i = 0; i < p; i++)
-                    currentPart.getSeries().Add(new Series());
-            }
-            else
-            {
-                p = currentPart.getSeries().Count - p;
-                for (int i = 0; i < p; i++)
-                    currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
-            }
+            if (currentPart.getSeries().Count != p)
+                if (currentPart.getSeries().Count < p)
+                {
+                    p = p - currentPart.getSeries().Count;
+                    for (int i = 0; i < p; i++)
+                        currentPart.getSeries().Add(new Series());
+                }
+                else 
+                {
+                    p = currentPart.getSeries().Count - p;
+                    for (int i = 0; i < p; i++)
+                        currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
+                }
             if (!currentPart.isFull())
                 MakeNewPartLengths();
             else
@@ -675,6 +685,18 @@ namespace DDMediaWatched
             if (p == 1)
             {
                 checkBoxNewPartIsPathFile.Checked = true;
+            }
+        }
+
+        private void buttonImport_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] s = File.ReadAllLines(openFileDialog1.FileName);
+                foreach (string p in s)
+                    franchises.Add(new Franchise(p.Split('|')));
+                SelectNone();
+                FranchisesToListView();
             }
         }
 

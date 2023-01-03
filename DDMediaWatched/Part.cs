@@ -55,17 +55,23 @@ namespace DDMediaWatched
             height = 0;
             this.number = number;
             this.path = path;
-            this.isPathFile = (byte)Program.IsFileOrDirr(this.path);
+            int typeP = Program.IsFileOrDirr(this.path);
+            this.isPathFile = 0;
+            if (typeP == 1)
+                this.isPathFile = 1;
             if (autoSize)
                 this.sizeD = Program.GetPathSize(this.path, this.isFull());
             else
                 this.sizeD = 0;
+            if (this.sizeD < 0)
+                this.sizeD = 0;
+            this.commonLength = 1440;
             if (autoLength)
             {
-                this.commonLength = Program.HMStoSecs(Program.GetVideoLength(this.path));
+                int p = Program.HMStoSecs(Program.GetVideoLength(this.path));
+                if (p >= 0)
+                    this.commonLength = p;
             }
-            else
-                commonLength = 1440;
             parentFranchise = parent;
             series = new List<Series>();
             for (int i = 0; i < serCount; i++)
@@ -164,17 +170,28 @@ namespace DDMediaWatched
                 this.isPathFile = 0;
         }
 
+        public byte getIsPathFile()
+        {
+            return isPathFile;
+        }
+
         public bool isFull()
         {
-            if (isPathFile > 0)
+            if (isPathFile == 1)
                 return true;
-            else
+            if (isPathFile == 0)
                 return false;
+            return false;//ERROR
         }
 
         public long getSize()
         {
             return sizeD;
+        }
+
+        public void setSize(long size)
+        {
+            this.sizeD = size;
         }
 
         public int getLength()
@@ -275,7 +292,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Number", this.getNumber());
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.getName());
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
-            s += String.Format("{0,-15}| {1}\r\n", "Path type", this.isPathFile > 0 ? "File" : "Dirr");
+            s += String.Format("{0,-15}| {1}\r\n", "Path type", this.isFull() ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.getSize() / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}x{2}\r\n", "Resolution", this.getWidth(), this.getHeight());
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);

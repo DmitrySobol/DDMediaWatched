@@ -75,6 +75,8 @@ namespace DDMediaWatched
             this.labelNewPartSeries = new System.Windows.Forms.Label();
             this.numericUpDownNewPartSeries = new System.Windows.Forms.NumericUpDown();
             this.comboBoxNewPartResolutions = new System.Windows.Forms.ComboBox();
+            this.buttonImport = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.SuspendLayout();
@@ -207,7 +209,8 @@ namespace DDMediaWatched
             this.comboBoxNewFranchiseType.Items.AddRange(new object[] {
             "Anime",
             "Cartoon",
-            "Fillm"});
+            "Film",
+            "Dorama"});
             this.comboBoxNewFranchiseType.Location = new System.Drawing.Point(858, 64);
             this.comboBoxNewFranchiseType.Name = "comboBoxNewFranchiseType";
             this.comboBoxNewFranchiseType.Size = new System.Drawing.Size(121, 21);
@@ -367,9 +370,9 @@ namespace DDMediaWatched
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
             this.labelNewPart5.Location = new System.Drawing.Point(857, 150);
             this.labelNewPart5.Name = "labelNewPart5";
-            this.labelNewPart5.Size = new System.Drawing.Size(217, 13);
+            this.labelNewPart5.Size = new System.Drawing.Size(223, 13);
             this.labelNewPart5.TabIndex = 26;
-            this.labelNewPart5.Text = "Average legth of series (HH:MM:SS):";
+            this.labelNewPart5.Text = "Average length of series (HH:MM:SS):";
             this.labelNewPart5.Visible = false;
             // 
             // buttonEditFranchise
@@ -614,11 +617,28 @@ namespace DDMediaWatched
             this.comboBoxNewPartResolutions.Visible = false;
             this.comboBoxNewPartResolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewPartResolutions_SelectedIndexChanged);
             // 
+            // buttonImport
+            // 
+            this.buttonImport.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonImport.Location = new System.Drawing.Point(1130, 425);
+            this.buttonImport.Name = "buttonImport";
+            this.buttonImport.Size = new System.Drawing.Size(130, 23);
+            this.buttonImport.TabIndex = 47;
+            this.buttonImport.Text = "Import";
+            this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "Films";
+            this.openFileDialog1.Filter = "Text files (*.txt)|*.txt";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.comboBoxNewPartResolutions);
             this.Controls.Add(this.numericUpDownNewPartSeries);
             this.Controls.Add(this.labelNewPartSeries);
@@ -726,6 +746,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelNewPartSeries;
         private System.Windows.Forms.NumericUpDown numericUpDownNewPartSeries;
         private System.Windows.Forms.ComboBox comboBoxNewPartResolutions;
+        private System.Windows.Forms.Button buttonImport;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
