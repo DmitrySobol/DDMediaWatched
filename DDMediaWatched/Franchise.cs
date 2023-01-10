@@ -189,6 +189,22 @@ namespace DDMediaWatched
                 length += part.getLength();
             return length;
         }
+
+        public int getWatchedLength()
+        {
+            int length = 0;
+            foreach (Part part in this.parts)
+                length += part.getWatchedLength();
+            return length;
+        }
+
+        public int getUniqueWatchedLength()
+        {
+            int length = 0;
+            foreach (Part part in this.parts)
+                length += part.getUniqueWatchedLength();
+            return length;
+        }
         //Size
         public long getSize()
         {
@@ -337,6 +353,8 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.getSize() / 1024d / 1024/ 1024);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.getWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.getUniqueWatchedLength() / 3600d);
             return s;
         }
     }

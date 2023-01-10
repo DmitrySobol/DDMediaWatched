@@ -202,6 +202,22 @@ namespace DDMediaWatched
             return length;
         }
 
+        public int getWatchedLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.getWatchedLength();
+            return length;
+        }
+
+        public int getUniqueWatchedLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.getUniqueWatchedLength();
+            return length;
+        }
+
         public string getName()
         {
             return name;
@@ -300,6 +316,12 @@ namespace DDMediaWatched
             return parentFranchise;
         }
 
+        public void addWatch()
+        {
+            foreach (Series s in series)
+                s.addWatch();
+        }
+
         public override string ToString()
         {
             string s = "";
@@ -310,6 +332,8 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.getSize() / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}x{2}\r\n", "Resolution", this.getWidth(), this.getHeight());
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.getWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.getUniqueWatchedLength() / 3600d);
             int i = 0;
             foreach (Series ser in series)
             {

@@ -51,6 +51,18 @@ namespace DDMediaWatched
             return length;
         }
 
+        public int getWatchedLength()
+        {
+            return length * countWatch;
+        }
+
+        public int getUniqueWatchedLength()
+        {
+            if (countWatch > 0)
+                return length;
+            return 0;
+        }
+
         public void setCountWatch(int countWatch)
         {
             this.countWatch = countWatch;
@@ -59,6 +71,11 @@ namespace DDMediaWatched
         public int getCountWatch()
         {
             return countWatch;
+        }
+
+        public void addWatch()
+        {
+            this.countWatch++;
         }
 
         public override string ToString()

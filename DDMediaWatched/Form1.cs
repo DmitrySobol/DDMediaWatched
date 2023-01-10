@@ -300,6 +300,19 @@ namespace DDMediaWatched
         {
             textBoxNewFranchiseDate.Text = DateTime.Now.ToString("yyyy.MM.dd");
         }
+        //ContexFranchise
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("I'm so sorry, but this function don't work :(", "Error");
+        }
+
+        private void addFullWatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentFranchise == null)
+                return;
+            foreach (Part p in currentFranchise.getParts())
+                p.addWatch();
+        }
         //Edit Part
         private void buttonNewPart_Click(object sender, EventArgs e)
         {
@@ -323,9 +336,9 @@ namespace DDMediaWatched
             {
                 if (!MakeLengthsNewPart())
                     return;
-                if (!MakeCOWNewPart())
-                    return;
             }
+            if (!MakeCOWNewPart())
+                return;
             if (currentPart.isFull())
             {
                 if (len == -1)
@@ -559,6 +572,18 @@ namespace DDMediaWatched
                 checkBoxNewPartIsPathFile.Checked = true;
             }
         }
+        //ContexParts
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("I'm so sorry, but this function don't work :(", "Error");
+        }
+
+        private void addFullViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentPart == null)
+                return;
+            currentPart.addWatch();
+        }
         //Other
         private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -686,10 +711,9 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
-        private void buttonSaveExit_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             SaveMedia();
-            Environment.Exit(0);
         }
 
         private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
