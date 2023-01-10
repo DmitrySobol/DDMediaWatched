@@ -741,6 +741,13 @@ namespace DDMediaWatched
             reverseSort = checkBoxSortReverse.Checked;
         }
 
+        private void buttonBackUP_Click(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            File.Copy(path + "Media.bin", path + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
+            MessageBox.Show("BackUP has been created!", "Success");
+        }
+
         public void FranchisesToListView()
         {
             listViewTitles.Items.Clear();

@@ -81,6 +81,7 @@ namespace DDMediaWatched
             this.labelNewPartCOW = new System.Windows.Forms.Label();
             this.textBoxNewPartCOW = new System.Windows.Forms.TextBox();
             this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
+            this.buttonNewFranchiseToday = new System.Windows.Forms.Button();
             this.labelNewFranchiseDate = new System.Windows.Forms.Label();
             this.textBoxNewFranchiseDate = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
@@ -91,7 +92,7 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypes = new System.Windows.Forms.CheckedListBox();
             this.labelSortTypes = new System.Windows.Forms.Label();
             this.buttonSortSave = new System.Windows.Forms.Button();
-            this.buttonNewFranchiseToday = new System.Windows.Forms.Button();
+            this.buttonBackUP = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.groupBoxNewPart.SuspendLayout();
@@ -697,6 +698,17 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.Text = "Edit franchise";
             this.groupBoxNewFranchise.Visible = false;
             // 
+            // buttonNewFranchiseToday
+            // 
+            this.buttonNewFranchiseToday.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonNewFranchiseToday.Location = new System.Drawing.Point(290, 147);
+            this.buttonNewFranchiseToday.Name = "buttonNewFranchiseToday";
+            this.buttonNewFranchiseToday.Size = new System.Drawing.Size(130, 23);
+            this.buttonNewFranchiseToday.TabIndex = 16;
+            this.buttonNewFranchiseToday.Text = "Today";
+            this.buttonNewFranchiseToday.UseVisualStyleBackColor = true;
+            this.buttonNewFranchiseToday.Click += new System.EventHandler(this.buttonNewFranchiseToday_Click);
+            // 
             // labelNewFranchiseDate
             // 
             this.labelNewFranchiseDate.AutoSize = true;
@@ -735,7 +747,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(352, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(852, 11);
             this.groupBoxSort.Name = "groupBoxSort";
             this.groupBoxSort.Size = new System.Drawing.Size(420, 352);
             this.groupBoxSort.TabIndex = 51;
@@ -814,22 +826,23 @@ namespace DDMediaWatched
             this.buttonSortSave.UseVisualStyleBackColor = true;
             this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
             // 
-            // buttonNewFranchiseToday
+            // buttonBackUP
             // 
-            this.buttonNewFranchiseToday.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseToday.Location = new System.Drawing.Point(290, 147);
-            this.buttonNewFranchiseToday.Name = "buttonNewFranchiseToday";
-            this.buttonNewFranchiseToday.Size = new System.Drawing.Size(130, 23);
-            this.buttonNewFranchiseToday.TabIndex = 16;
-            this.buttonNewFranchiseToday.Text = "Today";
-            this.buttonNewFranchiseToday.UseVisualStyleBackColor = true;
-            this.buttonNewFranchiseToday.Click += new System.EventHandler(this.buttonNewFranchiseToday_Click);
+            this.buttonBackUP.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonBackUP.Location = new System.Drawing.Point(1138, 675);
+            this.buttonBackUP.Name = "buttonBackUP";
+            this.buttonBackUP.Size = new System.Drawing.Size(130, 23);
+            this.buttonBackUP.TabIndex = 52;
+            this.buttonBackUP.Text = "BackUP";
+            this.buttonBackUP.UseVisualStyleBackColor = true;
+            this.buttonBackUP.Click += new System.EventHandler(this.buttonBackUP_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.buttonBackUP);
             this.Controls.Add(this.groupBoxSort);
             this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.groupBoxNewFranchise);
@@ -942,6 +955,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.ComboBox comboBoxSortSortBy;
         private System.Windows.Forms.Label labelSortSortBy;
         private System.Windows.Forms.Button buttonNewFranchiseToday;
+        private System.Windows.Forms.Button buttonBackUP;
     }
 }
 
