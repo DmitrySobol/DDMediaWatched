@@ -79,10 +79,16 @@ namespace DDMediaWatched
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxNewPart = new System.Windows.Forms.GroupBox();
             this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
+            this.buttonSort = new System.Windows.Forms.Button();
+            this.groupBoxSort = new System.Windows.Forms.GroupBox();
+            this.buttonSortSave = new System.Windows.Forms.Button();
+            this.labelSortTypes = new System.Windows.Forms.Label();
+            this.checkedListBoxSortTypes = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.groupBoxNewPart.SuspendLayout();
             this.groupBoxNewFranchise.SuspendLayout();
+            this.groupBoxSort.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -659,11 +665,72 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.Text = "Edit franchise";
             this.groupBoxNewFranchise.Visible = false;
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonSort.Location = new System.Drawing.Point(1130, 454);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(130, 23);
+            this.buttonSort.TabIndex = 50;
+            this.buttonSort.Text = "Sort";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
+            // groupBoxSort
+            // 
+            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypes);
+            this.groupBoxSort.Controls.Add(this.labelSortTypes);
+            this.groupBoxSort.Controls.Add(this.buttonSortSave);
+            this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
+            this.groupBoxSort.Location = new System.Drawing.Point(852, 11);
+            this.groupBoxSort.Name = "groupBoxSort";
+            this.groupBoxSort.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxSort.TabIndex = 51;
+            this.groupBoxSort.TabStop = false;
+            this.groupBoxSort.Text = "Sort";
+            this.groupBoxSort.Visible = false;
+            // 
+            // buttonSortSave
+            // 
+            this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonSortSave.Location = new System.Drawing.Point(284, 318);
+            this.buttonSortSave.Name = "buttonSortSave";
+            this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
+            this.buttonSortSave.TabIndex = 14;
+            this.buttonSortSave.Text = "Save";
+            this.buttonSortSave.UseVisualStyleBackColor = true;
+            this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
+            // 
+            // labelSortTypes
+            // 
+            this.labelSortTypes.AutoSize = true;
+            this.labelSortTypes.Location = new System.Drawing.Point(7, 14);
+            this.labelSortTypes.Name = "labelSortTypes";
+            this.labelSortTypes.Size = new System.Drawing.Size(43, 13);
+            this.labelSortTypes.TabIndex = 15;
+            this.labelSortTypes.Text = "Types:";
+            // 
+            // checkedListBoxSortTypes
+            // 
+            this.checkedListBoxSortTypes.CheckOnClick = true;
+            this.checkedListBoxSortTypes.FormattingEnabled = true;
+            this.checkedListBoxSortTypes.Items.AddRange(new object[] {
+            "Anime",
+            "Cartoon",
+            "Film",
+            "Dorama"});
+            this.checkedListBoxSortTypes.Location = new System.Drawing.Point(6, 30);
+            this.checkedListBoxSortTypes.Name = "checkedListBoxSortTypes";
+            this.checkedListBoxSortTypes.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBoxSortTypes.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.groupBoxSort);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.groupBoxNewFranchise);
             this.Controls.Add(this.groupBoxNewPart);
             this.Controls.Add(this.buttonImport);
@@ -702,6 +769,8 @@ namespace DDMediaWatched
             this.groupBoxNewPart.PerformLayout();
             this.groupBoxNewFranchise.ResumeLayout(false);
             this.groupBoxNewFranchise.PerformLayout();
+            this.groupBoxSort.ResumeLayout(false);
+            this.groupBoxSort.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -759,6 +828,11 @@ namespace DDMediaWatched
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBoxNewPart;
         private System.Windows.Forms.GroupBox groupBoxNewFranchise;
+        private System.Windows.Forms.Button buttonSort;
+        private System.Windows.Forms.GroupBox groupBoxSort;
+        private System.Windows.Forms.Button buttonSortSave;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypes;
+        private System.Windows.Forms.Label labelSortTypes;
     }
 }
 

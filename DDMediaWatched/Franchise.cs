@@ -9,7 +9,7 @@ namespace DDMediaWatched
 {
     public class Franchise
     {
-        enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
+        public enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
 
         private List<string>
             names;
@@ -202,6 +202,11 @@ namespace DDMediaWatched
                 this.type = (FranchiseType)index;
             else
                 this.type = FranchiseType.No;
+        }
+
+        public FranchiseType getType()
+        {
+            return type;
         }
 
         public int getTypeInt()

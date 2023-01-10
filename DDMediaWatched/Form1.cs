@@ -29,12 +29,22 @@ namespace DDMediaWatched
             controlsNewFranchise = new List<Control>(),
             controlsInfo = new List<Control>(),
             controlsNewPart = new List<Control>(),
-            controlsRightButtons = new List<Control>();
+            controlsRightButtons = new List<Control>(),
+            controlsSort = new List<Control>();
+
+        public List<Franchise.FranchiseType>
+            TypeOn = new List<Franchise.FranchiseType>();
 
         public Form1()
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+            checkedListBoxSortTypes.SetItemChecked(0, true);
+            checkedListBoxSortTypes.SetItemChecked(1, true);
+            checkedListBoxSortTypes.SetItemChecked(2, true);
+            checkedListBoxSortTypes.SetItemChecked(3, true);
+            foreach (int p in checkedListBoxSortTypes.CheckedIndices)
+                TypeOn.Add((Franchise.FranchiseType)p);
             LoadColumnsFranchises();
             LoadColumnsParts();
             FindDiskLetter();
@@ -157,6 +167,9 @@ namespace DDMediaWatched
             controlsRightButtons.Add(buttonDeletePart);
             controlsRightButtons.Add(buttonFindPartSize);
             controlsRightButtons.Add(buttonFindAllSize);
+            controlsRightButtons.Add(buttonImport);
+            controlsRightButtons.Add(buttonSort);
+            controlsSort.Add(groupBoxSort);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -676,58 +689,78 @@ namespace DDMediaWatched
             }
         }
 
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            ControlsDisable(controlsRightButtons);
+
+            ControlsOff(controlsInfo);
+            ControlsOn(controlsSort);
+        }
+
+        private void buttonSortSave_Click(object sender, EventArgs e)
+        {
+            ControlsOff(controlsSort);
+            ControlsOn(controlsInfo);
+            TypeOn.Clear();
+            foreach (int p in checkedListBoxSortTypes.CheckedIndices)
+                TypeOn.Add((Franchise.FranchiseType)p);
+            FranchisesToListView();
+            ControlsEnable(controlsRightButtons);
+        }
+
         public void FranchisesToListView()
         {
             listViewTitles.Items.Clear();
             foreach (Franchise el in franchises)
-            {
-                ListViewItem item = new ListViewItem()
+                if (IsTypeOn(el))
                 {
-                    Text = el.getName()
-                };
-                ListViewItem.ListViewSubItem si;
-                int p = 0;
-                //Number
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Number"
-                };
-                p = el.getNumber();
-                if (p > 0)
-                    si.Text = p.ToString();
-                else
-                    si.Text = "";
-                item.SubItems.Add(si);
-                //Length
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Length",
-                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
-                };
-                item.SubItems.Add(si);
-                //Size
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Size",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
-                };
-                item.SubItems.Add(si);
-                //BPS
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "BPS",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
-                };
-                item.SubItems.Add(si);
-                //Path
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Path",
-                    Text = el.getPath()
-                };
-                item.SubItems.Add(si);
-                listViewTitles.Items.Add(item);
-            }
+                    ListViewItem item = new ListViewItem()
+                    {
+                        Text = el.getName()
+                    };
+                    ListViewItem.ListViewSubItem si;
+                    int p = 0;
+                    //Number
+                    si = new ListViewItem.ListViewSubItem
+                    {
+                        Tag = "Number"
+                    };
+                    p = el.getNumber();
+                    if (p > 0)
+                        si.Text = p.ToString();
+                    else
+                        si.Text = "";
+                    item.SubItems.Add(si);
+                    //Length
+                    si = new ListViewItem.ListViewSubItem
+                    {
+                        Tag = "Length",
+                        Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                    };
+                    item.SubItems.Add(si);
+                    //Size
+                    si = new ListViewItem.ListViewSubItem
+                    {
+                        Tag = "Size",
+                        Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                    };
+                    item.SubItems.Add(si);
+                    //BPS
+                    si = new ListViewItem.ListViewSubItem
+                    {
+                        Tag = "BPS",
+                        Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                    };
+                    item.SubItems.Add(si);
+                    //Path
+                    si = new ListViewItem.ListViewSubItem
+                    {
+                        Tag = "Path",
+                        Text = el.getPath()
+                    };
+                    item.SubItems.Add(si);
+                    listViewTitles.Items.Add(item);
+                }
         }
 
         public void PartsToListView()
@@ -784,6 +817,14 @@ namespace DDMediaWatched
                 item.SubItems.Add(si);
                 listViewParts.Items.Add(item);
             }
+        }
+
+        public bool IsTypeOn(Franchise el)
+        {
+            bool b = false;
+            if (TypeOn.Contains(el.getType()))
+                b = true;
+            return b;
         }
 
         public void Log(string s)
