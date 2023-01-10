@@ -100,6 +100,7 @@ namespace DDMediaWatched
             this.labelSortTypes = new System.Windows.Forms.Label();
             this.buttonSortSave = new System.Windows.Forms.Button();
             this.buttonBackUP = new System.Windows.Forms.Button();
+            this.buttonNewPartCommonLengthToAll = new System.Windows.Forms.Button();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -362,7 +363,7 @@ namespace DDMediaWatched
             this.textBoxNewPartPath.Font = new System.Drawing.Font("Consolas", 8F);
             this.textBoxNewPartPath.Location = new System.Drawing.Point(50, 74);
             this.textBoxNewPartPath.Name = "textBoxNewPartPath";
-            this.textBoxNewPartPath.Size = new System.Drawing.Size(367, 20);
+            this.textBoxNewPartPath.Size = new System.Drawing.Size(264, 20);
             this.textBoxNewPartPath.TabIndex = 23;
             this.textBoxNewPartPath.TextChanged += new System.EventHandler(this.textBoxNewPartPath_TextChanged);
             // 
@@ -380,7 +381,7 @@ namespace DDMediaWatched
             // 
             this.checkBoxNewPartIsPathFile.AutoSize = true;
             this.checkBoxNewPartIsPathFile.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(320, 100);
+            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(319, 76);
             this.checkBoxNewPartIsPathFile.Name = "checkBoxNewPartIsPathFile";
             this.checkBoxNewPartIsPathFile.Size = new System.Drawing.Size(98, 17);
             this.checkBoxNewPartIsPathFile.TabIndex = 25;
@@ -685,6 +686,7 @@ namespace DDMediaWatched
             // 
             // groupBoxNewPart
             // 
+            this.groupBoxNewPart.Controls.Add(this.buttonNewPartCommonLengthToAll);
             this.groupBoxNewPart.Controls.Add(this.labelNewPartCOW);
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartCOW);
             this.groupBoxNewPart.Controls.Add(this.labelNewPart1);
@@ -892,6 +894,17 @@ namespace DDMediaWatched
             this.buttonBackUP.UseVisualStyleBackColor = true;
             this.buttonBackUP.Click += new System.EventHandler(this.buttonBackUP_Click);
             // 
+            // buttonNewPartCommonLengthToAll
+            // 
+            this.buttonNewPartCommonLengthToAll.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonNewPartCommonLengthToAll.Location = new System.Drawing.Point(317, 98);
+            this.buttonNewPartCommonLengthToAll.Name = "buttonNewPartCommonLengthToAll";
+            this.buttonNewPartCommonLengthToAll.Size = new System.Drawing.Size(100, 23);
+            this.buttonNewPartCommonLengthToAll.TabIndex = 49;
+            this.buttonNewPartCommonLengthToAll.Text = "Common to all";
+            this.buttonNewPartCommonLengthToAll.UseVisualStyleBackColor = true;
+            this.buttonNewPartCommonLengthToAll.Click += new System.EventHandler(this.buttonNewPartCommonLengthToAll_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1019,6 +1032,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTitle;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addFullWatchToolStripMenuItem;
+        private System.Windows.Forms.Button buttonNewPartCommonLengthToAll;
     }
 }
 

@@ -345,6 +345,15 @@ namespace DDMediaWatched
 
         private void buttonNewPartSave_Click(object sender, EventArgs e)
         {
+            bool b = false;
+            foreach (Part part in currentFranchise.getParts())
+                if (part.getName() == textBoxNewPartName.Text)
+                    b = true;
+            if (b)
+            {
+                MessageBox.Show("There is alredy exist part with this name!", "Error");
+                return;
+            }
             int len = Program.HMStoSecs(textBoxNewPartLength.Text);
             if (!currentPart.isFull())
             {
@@ -585,6 +594,12 @@ namespace DDMediaWatched
             {
                 checkBoxNewPartIsPathFile.Checked = true;
             }
+        }
+
+        private void buttonNewPartCommonLengthToAll_Click(object sender, EventArgs e)
+        {
+            currentPart.setSeriesLengthToCommon();
+            MakeNewPartLengths();
         }
         //ContexParts
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
