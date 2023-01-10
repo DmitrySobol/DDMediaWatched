@@ -241,7 +241,7 @@ namespace DDMediaWatched
             FranchisesToListView();
             PartsToListView();
         }
-
+        //Edit Franchise
         private void buttonNewFranchise_Click(object sender, EventArgs e)
         {
             ControlsDisable(controlsRightButtons);
@@ -263,6 +263,31 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
+        private void buttonEditFranchise_Click(object sender, EventArgs e)
+        {
+            if (listViewTitles.SelectedItems.Count > 0)
+            {
+                ControlsDisable(controlsRightButtons);
+                string selected = listViewTitles.SelectedItems[0].Text;
+                foreach (Franchise franchise in franchises)
+                    if (franchise.getName() == selected)
+                    {
+                        currentFranchise = franchise;
+                        break;
+                    }
+                EditFranchise();
+            }
+        }
+
+        private void EditFranchise()
+        {
+            ControlsOff(controlsInfo);
+            ControlsOn(controlsNewFranchise);
+            textBoxNewFranchiseNames.Text = currentFranchise.getAllNames();
+            textBoxNewFranchisePath.Text = currentFranchise.getPath();
+            comboBoxNewFranchiseType.SelectedIndex = currentFranchise.getTypeInt();
+        }
+        //Edit Part
         private void buttonNewPart_Click(object sender, EventArgs e)
         {
             if (currentFranchise == null)
@@ -282,8 +307,12 @@ namespace DDMediaWatched
         {
             int len = Program.HMStoSecs(textBoxNewPartLength.Text);
             if (!currentPart.isFull())
+            {
                 if (!MakeLengthsNewPart())
                     return;
+                if (!MakeCOWNewPart())
+                    return;
+            }
             if (currentPart.isFull())
             {
                 if (len == -1)
@@ -312,6 +341,212 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
+        private void buttonEditPart_Click(object sender, EventArgs e)
+        {
+            if (listViewParts.SelectedItems.Count > 0)
+            {
+                ControlsDisable(controlsRightButtons);
+                string selected = listViewParts.SelectedItems[0].Text;
+                foreach (Part p in currentFranchise.getParts())
+                    if (p.getName() == selected)
+                    {
+                        currentPart = p;
+                        break;
+                    }
+                EditPart();
+            }
+        }
+
+        private void EditPart()
+        {
+            ControlsOff(controlsInfo);
+            ControlsOn(controlsNewPart);
+            comboBoxNewPartResolutions.SelectedIndex = -1;
+            textBoxNewPartName.Text = currentPart.getName();
+            textBoxNewPartPath.Text = currentPart.getPath();
+            int p = currentPart.getCommonLength();
+            textBoxNewPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
+            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
+            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
+            numericUpDownNewPartSeries.Value = currentPart.getSeries().Count();
+            checkBoxNewPartIsPathFile.Checked = currentPart.isFull();
+            MakeNewPartLengths();
+            MakeNewPartCOW();
+        }
+
+        private void textBoxNewPartLength_TextChanged(object sender, EventArgs e)
+        {
+            int p = Program.HMStoSecs(textBoxNewPartLength.Text);
+            if (p == -1)
+                return;
+            currentPart.setCommonLength(p);
+            if (!currentPart.isFull())
+                MakeNewPartLengths();
+            else
+                currentPart.setSeriesLengthToCommon();
+        }
+
+        private void numericUpDownNewPartSeries_ValueChanged(object sender, EventArgs e)
+        {
+            int p = (int)numericUpDownNewPartSeries.Value;
+            if (currentPart.getSeries().Count != p)
+                if (currentPart.getSeries().Count < p)
+                {
+                    p = p - currentPart.getSeries().Count;
+                    for (int i = 0; i < p; i++)
+                        currentPart.getSeries().Add(new Series(currentPart.getCommonLength(), 0));
+                }
+                else
+                {
+                    p = currentPart.getSeries().Count - p;
+                    for (int i = 0; i < p; i++)
+                        currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
+                }
+            if (!currentPart.isFull())
+            {
+                MakeNewPartLengths();
+                MakeNewPartCOW();
+            }
+            else
+                currentPart.setSeriesLengthToCommon();
+        }
+
+        private void MakeNewPartLengths()
+        {
+            string str = "";
+            foreach (Series s in currentPart.getSeries())
+            {
+                str += String.Format("{0};", s.getLength());
+            }
+            if (!String.IsNullOrEmpty(str))
+                str = str.Remove(str.Length - 1);
+            textBoxNewPartLengths.Text = str;
+        }
+
+        private void MakeNewPartCOW()
+        {
+            string str = "";
+            foreach (Series s in currentPart.getSeries())
+            {
+                str += String.Format("{0};", s.getCountWatch());
+            }
+            if (!String.IsNullOrEmpty(str))
+                str = str.Remove(str.Length - 1);
+            textBoxNewPartCOW.Text = str;
+        }
+
+        private bool MakeLengthsNewPart()
+        {
+            string[] s = textBoxNewPartLengths.Text.Split(';');
+            if (s.Length != currentPart.getSeries().Count)
+                return false;
+            int[] l = new int[s.Length];
+            bool b = true;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!int.TryParse(s[i], out l[i]))
+                    b = false;
+            }
+            if (!b)
+                return false;
+            for (int i = 0; i < l.Length; i++)
+                currentPart.getSeries()[i].setLength(l[i]);
+            return true;
+        }
+
+        private bool MakeCOWNewPart()
+        {
+            string[] s = textBoxNewPartCOW.Text.Split(';');
+            if (s.Length != currentPart.getSeries().Count)
+                return false;
+            int[] l = new int[s.Length];
+            bool b = true;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!int.TryParse(s[i], out l[i]))
+                    b = false;
+            }
+            if (!b)
+                return false;
+            for (int i = 0; i < l.Length; i++)
+                currentPart.getSeries()[i].setCountWatch(l[i]);
+            return true;
+        }
+
+        private void checkBoxNewPartIsPathFile_CheckedChanged(object sender, EventArgs e)
+        {
+            currentPart.setIsPathFile(checkBoxNewPartIsPathFile.Checked);
+            if (checkBoxNewPartIsPathFile.Checked)
+            {
+                numericUpDownNewPartSeries.Value = 1;
+                numericUpDownNewPartSeries.Enabled = false;
+                textBoxNewPartLengths.Enabled = false;
+                currentPart.setPath(textBoxNewPartPath.Text);
+                textBoxNewPartLength.Text = Program.GetVideoLength(currentPart.getAbsolutePath());
+            }
+            else
+            {
+                numericUpDownNewPartSeries.Enabled = true;
+                textBoxNewPartLengths.Enabled = true;
+            }
+        }
+
+        private void comboBoxNewPartResolutions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxNewPartResolutions.Text)
+            {
+                case "NULL":
+                    {
+                        currentPart.setWidth(0);
+                        currentPart.setHeight(0);
+                    }
+                    break;
+                case "960x720":
+                    {
+                        currentPart.setWidth(960);
+                        currentPart.setHeight(720);
+                    }
+                    break;
+                case "1280x720":
+                    {
+                        currentPart.setWidth(1280);
+                        currentPart.setHeight(720);
+                    }
+                    break;
+                case "1920x1080":
+                    {
+                        currentPart.setWidth(1920);
+                        currentPart.setHeight(1080);
+                    }
+                    break;
+                case "3840x2160":
+                    {
+                        currentPart.setWidth(3840);
+                        currentPart.setHeight(2160);
+                    }
+                    break;
+            }
+            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
+            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
+        }
+
+        private void textBoxNewPartPath_TextChanged(object sender, EventArgs e)
+        {
+            string path = textBoxNewPartPath.Text;
+            if (path.Length > 0)
+                if (path[0] == '"')
+                    path = path.Substring(1, path.Length - 2);
+            int p = Program.IsFileOrDirr(path);
+            if (p == 0)
+            {
+                checkBoxNewPartIsPathFile.Checked = false;
+            }
+            if (p == 1)
+            {
+                checkBoxNewPartIsPathFile.Checked = true;
+            }
+        }
+        //Other
         private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewTitles.SelectedItems.Count < 1)
@@ -353,63 +588,6 @@ namespace DDMediaWatched
                         break;
                     }
             }
-        }
-
-        private void buttonEditFranchise_Click(object sender, EventArgs e)
-        {
-            if (listViewTitles.SelectedItems.Count > 0)
-            {
-                ControlsDisable(controlsRightButtons);
-                string selected = listViewTitles.SelectedItems[0].Text;
-                foreach (Franchise franchise in franchises)
-                    if (franchise.getName() == selected)
-                    {
-                        currentFranchise = franchise;
-                        break;
-                    }
-                EditFranchise();
-            }
-        }
-
-        private void buttonEditPart_Click(object sender, EventArgs e)
-        {
-            if (listViewParts.SelectedItems.Count > 0)
-            {
-                ControlsDisable(controlsRightButtons);
-                string selected = listViewParts.SelectedItems[0].Text;
-                foreach (Part p in currentFranchise.getParts())
-                    if (p.getName() == selected)
-                    {
-                        currentPart = p;
-                        break;
-                    }
-                EditPart();
-            }
-        }
-
-        private void EditFranchise()
-        {
-            ControlsOff(controlsInfo);
-            ControlsOn(controlsNewFranchise);
-            textBoxNewFranchiseNames.Text = currentFranchise.getAllNames();
-            textBoxNewFranchisePath.Text = currentFranchise.getPath();
-            comboBoxNewFranchiseType.SelectedIndex = currentFranchise.getTypeInt();
-        }
-
-        private void EditPart()
-        {
-            ControlsOff(controlsInfo);
-            ControlsOn(controlsNewPart);
-            comboBoxNewPartResolutions.SelectedIndex = -1;
-            textBoxNewPartName.Text = currentPart.getName();
-            textBoxNewPartPath.Text = currentPart.getPath();
-            int p = currentPart.getCommonLength();
-            textBoxNewPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
-            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
-            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
-            numericUpDownNewPartSeries.Value = currentPart.getSeries().Count();
-            checkBoxNewPartIsPathFile.Checked = currentPart.isFull();
-            MakeNewPartLengths();
         }
 
         private void ControlsOn(List<Control> controls)
@@ -507,146 +685,6 @@ namespace DDMediaWatched
             listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
-        }
-
-        private void textBoxNewPartLength_TextChanged(object sender, EventArgs e)
-        {
-            int p = Program.HMStoSecs(textBoxNewPartLength.Text);
-            if (p == -1)
-                return;
-            currentPart.setCommonLength(p);
-            if (!currentPart.isFull())
-                MakeNewPartLengths();
-            else
-                currentPart.setSeriesLengthToCommon();
-        }
-
-        private void numericUpDownNewPartSeries_ValueChanged(object sender, EventArgs e)
-        {
-            int p = (int)numericUpDownNewPartSeries.Value;
-            if (currentPart.getSeries().Count != p)
-                if (currentPart.getSeries().Count < p)
-                {
-                    p = p - currentPart.getSeries().Count;
-                    for (int i = 0; i < p; i++)
-                        currentPart.getSeries().Add(new Series());
-                }
-                else 
-                {
-                    p = currentPart.getSeries().Count - p;
-                    for (int i = 0; i < p; i++)
-                        currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
-                }
-            if (!currentPart.isFull())
-                MakeNewPartLengths();
-            else
-                currentPart.setSeriesLengthToCommon();
-        }
-
-        private void MakeNewPartLengths()
-        {
-            currentPart.setSeriesLengthToCommon();
-            string str = "";
-            foreach (Series s in currentPart.getSeries())
-            {
-                str += String.Format("{0};", s.getLength());
-            }
-            if (!String.IsNullOrEmpty(str))
-                str = str.Remove(str.Length - 1);
-            textBoxNewPartLengths.Text = str;
-        }
-
-        private bool MakeLengthsNewPart()
-        {
-            string[] s = textBoxNewPartLengths.Text.Split(';');
-            if (s.Length != currentPart.getSeries().Count)
-                return false;
-            int[] l = new int[s.Length];
-            bool b = true;
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (!int.TryParse(s[i], out l[i]))
-                    b = false;
-            }
-            if (!b)
-                return false;
-            for (int i = 0; i < l.Length; i++)
-                currentPart.getSeries()[i].setLength(l[i]);
-            return true;
-        }
-
-        private void checkBoxNewPartIsPathFile_CheckedChanged(object sender, EventArgs e)
-        {
-            currentPart.setIsPathFile(checkBoxNewPartIsPathFile.Checked);
-            if (checkBoxNewPartIsPathFile.Checked)
-            {
-                numericUpDownNewPartSeries.Value = 1;
-                numericUpDownNewPartSeries.Enabled = false;
-                textBoxNewPartLengths.Enabled = false;
-                currentPart.setPath(textBoxNewPartPath.Text);
-                textBoxNewPartLength.Text = Program.GetVideoLength(currentPart.getAbsolutePath());
-            }
-            else
-            {
-                numericUpDownNewPartSeries.Enabled = true;
-                textBoxNewPartLengths.Enabled = true;
-            }
-        }
-
-        private void comboBoxNewPartResolutions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBoxNewPartResolutions.Text)
-            {
-                case "NULL":
-                    {
-                        currentPart.setWidth(0);
-                        currentPart.setHeight(0);
-                    }
-                    break;
-                case "960x720":
-                    {
-                        currentPart.setWidth(960);
-                        currentPart.setHeight(720);
-                    }
-                    break;
-                case "1280x720":
-                    {
-                        currentPart.setWidth(1280);
-                        currentPart.setHeight(720);
-                    }
-                    break;
-                case "1920x1080":
-                    {
-                        currentPart.setWidth(1920);
-                        currentPart.setHeight(1080);
-                    }
-                    break;
-                case "3840x2160":
-                    {
-                        currentPart.setWidth(3840);
-                        currentPart.setHeight(2160);
-                    }
-                    break;
-            }
-            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
-            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
-        }
-
-        private void textBoxNewPartPath_TextChanged(object sender, EventArgs e)
-        {
-            string path = textBoxNewPartPath.Text;
-            if (path.Length > 0)
-                if (path[0] == '"')
-                    path = path.Substring(1, path.Length - 2);
-            int p = Program.IsFileOrDirr(path);
-            if (p == 0)
-            {
-                checkBoxNewPartIsPathFile.Checked = false;
-            }
-            if (p == 1)
-            {
-                checkBoxNewPartIsPathFile.Checked = true;
-            }
         }
 
         private void buttonImport_Click(object sender, EventArgs e)

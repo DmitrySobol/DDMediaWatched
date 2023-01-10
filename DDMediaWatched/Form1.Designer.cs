@@ -81,9 +81,11 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
-            this.buttonSortSave = new System.Windows.Forms.Button();
-            this.labelSortTypes = new System.Windows.Forms.Label();
             this.checkedListBoxSortTypes = new System.Windows.Forms.CheckedListBox();
+            this.labelSortTypes = new System.Windows.Forms.Label();
+            this.buttonSortSave = new System.Windows.Forms.Button();
+            this.labelNewPartCOW = new System.Windows.Forms.Label();
+            this.textBoxNewPartCOW = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.groupBoxNewPart.SuspendLayout();
@@ -265,16 +267,16 @@ namespace DDMediaWatched
             // textBoxNewPartName
             // 
             this.textBoxNewPartName.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartName.Location = new System.Drawing.Point(7, 32);
+            this.textBoxNewPartName.Location = new System.Drawing.Point(50, 19);
             this.textBoxNewPartName.Name = "textBoxNewPartName";
-            this.textBoxNewPartName.Size = new System.Drawing.Size(410, 20);
+            this.textBoxNewPartName.Size = new System.Drawing.Size(367, 20);
             this.textBoxNewPartName.TabIndex = 17;
             // 
             // labelNewPart1
             // 
             this.labelNewPart1.AutoSize = true;
             this.labelNewPart1.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart1.Location = new System.Drawing.Point(6, 16);
+            this.labelNewPart1.Location = new System.Drawing.Point(6, 22);
             this.labelNewPart1.Name = "labelNewPart1";
             this.labelNewPart1.Size = new System.Drawing.Size(37, 13);
             this.labelNewPart1.TabIndex = 16;
@@ -283,16 +285,16 @@ namespace DDMediaWatched
             // textBoxNewPartWidth
             // 
             this.textBoxNewPartWidth.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartWidth.Location = new System.Drawing.Point(7, 71);
+            this.textBoxNewPartWidth.Location = new System.Drawing.Point(103, 45);
             this.textBoxNewPartWidth.Name = "textBoxNewPartWidth";
-            this.textBoxNewPartWidth.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNewPartWidth.Size = new System.Drawing.Size(80, 20);
             this.textBoxNewPartWidth.TabIndex = 19;
             // 
             // labelNewPart2
             // 
             this.labelNewPart2.AutoSize = true;
             this.labelNewPart2.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart2.Location = new System.Drawing.Point(6, 55);
+            this.labelNewPart2.Location = new System.Drawing.Point(7, 49);
             this.labelNewPart2.Name = "labelNewPart2";
             this.labelNewPart2.Size = new System.Drawing.Size(73, 13);
             this.labelNewPart2.TabIndex = 18;
@@ -302,7 +304,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPart3.AutoSize = true;
             this.labelNewPart3.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart3.Location = new System.Drawing.Point(113, 74);
+            this.labelNewPart3.Location = new System.Drawing.Point(191, 48);
             this.labelNewPart3.Name = "labelNewPart3";
             this.labelNewPart3.Size = new System.Drawing.Size(13, 13);
             this.labelNewPart3.TabIndex = 20;
@@ -311,17 +313,17 @@ namespace DDMediaWatched
             // textBoxNewPartHeight
             // 
             this.textBoxNewPartHeight.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartHeight.Location = new System.Drawing.Point(134, 72);
+            this.textBoxNewPartHeight.Location = new System.Drawing.Point(210, 46);
             this.textBoxNewPartHeight.Name = "textBoxNewPartHeight";
-            this.textBoxNewPartHeight.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNewPartHeight.Size = new System.Drawing.Size(80, 20);
             this.textBoxNewPartHeight.TabIndex = 21;
             // 
             // textBoxNewPartPath
             // 
             this.textBoxNewPartPath.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartPath.Location = new System.Drawing.Point(7, 111);
+            this.textBoxNewPartPath.Location = new System.Drawing.Point(50, 74);
             this.textBoxNewPartPath.Name = "textBoxNewPartPath";
-            this.textBoxNewPartPath.Size = new System.Drawing.Size(410, 20);
+            this.textBoxNewPartPath.Size = new System.Drawing.Size(367, 20);
             this.textBoxNewPartPath.TabIndex = 23;
             this.textBoxNewPartPath.TextChanged += new System.EventHandler(this.textBoxNewPartPath_TextChanged);
             // 
@@ -329,7 +331,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPart4.AutoSize = true;
             this.labelNewPart4.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart4.Location = new System.Drawing.Point(6, 95);
+            this.labelNewPart4.Location = new System.Drawing.Point(6, 78);
             this.labelNewPart4.Name = "labelNewPart4";
             this.labelNewPart4.Size = new System.Drawing.Size(37, 13);
             this.labelNewPart4.TabIndex = 22;
@@ -339,7 +341,7 @@ namespace DDMediaWatched
             // 
             this.checkBoxNewPartIsPathFile.AutoSize = true;
             this.checkBoxNewPartIsPathFile.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(9, 137);
+            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(320, 100);
             this.checkBoxNewPartIsPathFile.Name = "checkBoxNewPartIsPathFile";
             this.checkBoxNewPartIsPathFile.Size = new System.Drawing.Size(98, 17);
             this.checkBoxNewPartIsPathFile.TabIndex = 25;
@@ -350,9 +352,9 @@ namespace DDMediaWatched
             // textBoxNewPartLength
             // 
             this.textBoxNewPartLength.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLength.Location = new System.Drawing.Point(7, 173);
+            this.textBoxNewPartLength.Location = new System.Drawing.Point(109, 100);
             this.textBoxNewPartLength.Name = "textBoxNewPartLength";
-            this.textBoxNewPartLength.Size = new System.Drawing.Size(410, 20);
+            this.textBoxNewPartLength.Size = new System.Drawing.Size(205, 20);
             this.textBoxNewPartLength.TabIndex = 27;
             this.textBoxNewPartLength.TextChanged += new System.EventHandler(this.textBoxNewPartLength_TextChanged);
             // 
@@ -360,11 +362,11 @@ namespace DDMediaWatched
             // 
             this.labelNewPart5.AutoSize = true;
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart5.Location = new System.Drawing.Point(6, 157);
+            this.labelNewPart5.Location = new System.Drawing.Point(6, 104);
             this.labelNewPart5.Name = "labelNewPart5";
-            this.labelNewPart5.Size = new System.Drawing.Size(223, 13);
+            this.labelNewPart5.Size = new System.Drawing.Size(97, 13);
             this.labelNewPart5.TabIndex = 26;
-            this.labelNewPart5.Text = "Average length of series (HH:MM:SS):";
+            this.labelNewPart5.Text = "Average length:";
             // 
             // buttonEditFranchise
             // 
@@ -538,17 +540,17 @@ namespace DDMediaWatched
             // textBoxNewPartLengths
             // 
             this.textBoxNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLengths.Location = new System.Drawing.Point(7, 247);
+            this.textBoxNewPartLengths.Location = new System.Drawing.Point(8, 164);
             this.textBoxNewPartLengths.Multiline = true;
             this.textBoxNewPartLengths.Name = "textBoxNewPartLengths";
-            this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 80);
+            this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 60);
             this.textBoxNewPartLengths.TabIndex = 42;
             // 
             // labelNewPartLengths
             // 
             this.labelNewPartLengths.AutoSize = true;
             this.labelNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartLengths.Location = new System.Drawing.Point(6, 231);
+            this.labelNewPartLengths.Location = new System.Drawing.Point(7, 148);
             this.labelNewPartLengths.Name = "labelNewPartLengths";
             this.labelNewPartLengths.Size = new System.Drawing.Size(163, 13);
             this.labelNewPartLengths.TabIndex = 43;
@@ -558,7 +560,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPartSeries.AutoSize = true;
             this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartSeries.Location = new System.Drawing.Point(6, 196);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(5, 127);
             this.labelNewPartSeries.Name = "labelNewPartSeries";
             this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
             this.labelNewPartSeries.TabIndex = 44;
@@ -567,7 +569,7 @@ namespace DDMediaWatched
             // numericUpDownNewPartSeries
             // 
             this.numericUpDownNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(8, 212);
+            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(109, 125);
             this.numericUpDownNewPartSeries.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -597,7 +599,7 @@ namespace DDMediaWatched
             "1280x720",
             "1920x1080",
             "3840x2160"});
-            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(240, 71);
+            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(296, 45);
             this.comboBoxNewPartResolutions.Name = "comboBoxNewPartResolutions";
             this.comboBoxNewPartResolutions.Size = new System.Drawing.Size(121, 21);
             this.comboBoxNewPartResolutions.TabIndex = 46;
@@ -621,6 +623,8 @@ namespace DDMediaWatched
             // 
             // groupBoxNewPart
             // 
+            this.groupBoxNewPart.Controls.Add(this.labelNewPartCOW);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartCOW);
             this.groupBoxNewPart.Controls.Add(this.labelNewPart1);
             this.groupBoxNewPart.Controls.Add(this.buttonNewPartSave);
             this.groupBoxNewPart.Controls.Add(this.comboBoxNewPartResolutions);
@@ -690,26 +694,6 @@ namespace DDMediaWatched
             this.groupBoxSort.Text = "Sort";
             this.groupBoxSort.Visible = false;
             // 
-            // buttonSortSave
-            // 
-            this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSortSave.Location = new System.Drawing.Point(284, 318);
-            this.buttonSortSave.Name = "buttonSortSave";
-            this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
-            this.buttonSortSave.TabIndex = 14;
-            this.buttonSortSave.Text = "Save";
-            this.buttonSortSave.UseVisualStyleBackColor = true;
-            this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
-            // 
-            // labelSortTypes
-            // 
-            this.labelSortTypes.AutoSize = true;
-            this.labelSortTypes.Location = new System.Drawing.Point(7, 14);
-            this.labelSortTypes.Name = "labelSortTypes";
-            this.labelSortTypes.Size = new System.Drawing.Size(43, 13);
-            this.labelSortTypes.TabIndex = 15;
-            this.labelSortTypes.Text = "Types:";
-            // 
             // checkedListBoxSortTypes
             // 
             this.checkedListBoxSortTypes.CheckOnClick = true;
@@ -723,6 +707,45 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypes.Name = "checkedListBoxSortTypes";
             this.checkedListBoxSortTypes.Size = new System.Drawing.Size(120, 94);
             this.checkedListBoxSortTypes.TabIndex = 16;
+            // 
+            // labelSortTypes
+            // 
+            this.labelSortTypes.AutoSize = true;
+            this.labelSortTypes.Location = new System.Drawing.Point(7, 14);
+            this.labelSortTypes.Name = "labelSortTypes";
+            this.labelSortTypes.Size = new System.Drawing.Size(43, 13);
+            this.labelSortTypes.TabIndex = 15;
+            this.labelSortTypes.Text = "Types:";
+            // 
+            // buttonSortSave
+            // 
+            this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonSortSave.Location = new System.Drawing.Point(284, 318);
+            this.buttonSortSave.Name = "buttonSortSave";
+            this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
+            this.buttonSortSave.TabIndex = 14;
+            this.buttonSortSave.Text = "Save";
+            this.buttonSortSave.UseVisualStyleBackColor = true;
+            this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
+            // 
+            // labelNewPartCOW
+            // 
+            this.labelNewPartCOW.AutoSize = true;
+            this.labelNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 227);
+            this.labelNewPartCOW.Name = "labelNewPartCOW";
+            this.labelNewPartCOW.Size = new System.Drawing.Size(205, 13);
+            this.labelNewPartCOW.TabIndex = 48;
+            this.labelNewPartCOW.Text = "Count of watch (separate with ;):";
+            // 
+            // textBoxNewPartCOW
+            // 
+            this.textBoxNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 243);
+            this.textBoxNewPartCOW.Multiline = true;
+            this.textBoxNewPartCOW.Name = "textBoxNewPartCOW";
+            this.textBoxNewPartCOW.Size = new System.Drawing.Size(410, 80);
+            this.textBoxNewPartCOW.TabIndex = 47;
             // 
             // Form1
             // 
@@ -833,6 +856,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.Button buttonSortSave;
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypes;
         private System.Windows.Forms.Label labelSortTypes;
+        private System.Windows.Forms.Label labelNewPartCOW;
+        private System.Windows.Forms.TextBox textBoxNewPartCOW;
     }
 }
 

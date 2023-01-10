@@ -19,6 +19,12 @@ namespace DDMediaWatched
             this.countWatch = 0;
         }
 
+        public Series(int length, int countWatch)
+        {
+            this.length = length;
+            this.countWatch = countWatch;
+        }
+
         public Series(FileStream f)
         {
             //length
@@ -43,6 +49,11 @@ namespace DDMediaWatched
         public int getLength()
         {
             return length;
+        }
+
+        public void setCountWatch(int countWatch)
+        {
+            this.countWatch = countWatch;
         }
 
         public int getCountWatch()
