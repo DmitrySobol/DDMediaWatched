@@ -78,7 +78,7 @@ namespace DDMediaWatched
             parts = new List<Part>();
             if (args.Length > 3)
             {
-                this.path = path;
+                this.setPath(path);
                 int[] ser = new int[args.Length - 3];
                 for (int i = 3; i < args.Length; i++)
                     ser[i - 3] = int.Parse(args[i]);
