@@ -456,6 +456,7 @@ namespace DDMediaWatched
                     foreach (Part part in franchise.getParts())
                         part.findSize();
                 }
+                Log("All size has been updated!");
             }
         }
 
