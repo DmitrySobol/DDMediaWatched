@@ -254,16 +254,17 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsNewFranchise);
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
-            if (textBoxNewFranchisePath.Text.Length > 0)
-                if (textBoxNewFranchisePath.Text[0] == '"')
-                {
-                    string path = textBoxNewFranchisePath.Text.Substring(4, textBoxNewFranchisePath.Text.Length - 5);
-                    currentFranchise.setPath(path);
-                }
-                else
-                    currentFranchise.setPath(textBoxNewFranchisePath.Text);
+            if (textBoxNewFranchisePath.Text.Length > 3)
+            {
+                string path = textBoxNewFranchisePath.Text;
+                if (path[0] == '"')
+                    path = path.Substring(1, path.Length - 2);
+                if (path.Substring(1, 2) == @":\")
+                    path = path.Substring(3);
+                currentFranchise.setPath(path);
+            }
             else
-                currentFranchise.setPath(textBoxNewFranchisePath.Text);
+                currentFranchise.setPath("");
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
             foreach (Part part in currentFranchise.getParts())
                 part.findSize();
@@ -303,21 +304,19 @@ namespace DDMediaWatched
             ControlsOff(controlsNewPart);
             currentPart.setName(textBoxNewPartName.Text);
             if (textBoxNewPartPath.Text.Length > 3)
-                if (textBoxNewPartPath.Text[0] == '"')
-                {
-                    string path = textBoxNewPartPath.Text.Substring(4, textBoxNewPartPath.Text.Length - 5);
-                    path = path.Substring(currentPart.getParent().getPath().Length);
-                    currentPart.setPath(path);
-                }
-                else
-                {
-                    string path = textBoxNewPartPath.Text;
-                    if (textBoxNewPartPath.Text.Substring(1, 2) == @":\")
+            {
+                string path = textBoxNewPartPath.Text;
+                if (path[0] == '"')
+                    path = path.Substring(1, path.Length - 2);
+                if (path.Substring(1, 2) == @":\")
+                    path = path.Substring(3);
+                if (path.Length >= currentPart.getParent().getPath().Length)
+                    if (path.Substring(0, currentPart.getParent().getPath().Length) == currentPart.getParent().getPath())
                     {
-                        path = path.Substring(3, textBoxNewPartPath.Text.Length - 3);
+                        path = path.Substring(currentPart.getParent().getPath().Length);
                     }
-                    currentPart.setPath(path);
-                }
+                currentPart.setPath(path);
+            }
             else
                 currentPart.setPath("");
             int p = 0;

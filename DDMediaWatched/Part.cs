@@ -146,8 +146,8 @@ namespace DDMediaWatched
             }
             if (sizeD != newSize)
                 Program.form1.Log(String.Format("{0} size has been updated from {1:f2} GB to {2:f2} GB", this.getName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
-            else
-                Program.form1.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
+            //else
+            //    Program.form1.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
             if (sizeD == 0 && newSize > 0)
                 output = 1;
             if (sizeD == newSize)
