@@ -237,7 +237,21 @@ namespace DDMediaWatched
 
         public void setPath(string path)
         {
-            this.path = path;
+            if (path.Length > 3)
+            {
+                if (path[0] == '"')
+                    path = path.Substring(1, path.Length - 2);
+                if (path.Substring(1, 2) == @":\")
+                    path = path.Substring(3);
+                if (path.Length >= getParent().getPath().Length)
+                    if (path.Substring(0, getParent().getPath().Length) == getParent().getPath())
+                    {
+                        path = path.Substring(getParent().getPath().Length);
+                    }
+                this.path = path;
+            }
+            else
+                this.path = "";
         }
 
         public int getWidth()

@@ -254,17 +254,7 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsNewFranchise);
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
-            if (textBoxNewFranchisePath.Text.Length > 3)
-            {
-                string path = textBoxNewFranchisePath.Text;
-                if (path[0] == '"')
-                    path = path.Substring(1, path.Length - 2);
-                if (path.Substring(1, 2) == @":\")
-                    path = path.Substring(3);
-                currentFranchise.setPath(path);
-            }
-            else
-                currentFranchise.setPath("");
+            currentFranchise.setPath(textBoxNewFranchisePath.Text);
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
             foreach (Part part in currentFranchise.getParts())
                 part.findSize();
@@ -303,22 +293,7 @@ namespace DDMediaWatched
             }
             ControlsOff(controlsNewPart);
             currentPart.setName(textBoxNewPartName.Text);
-            if (textBoxNewPartPath.Text.Length > 3)
-            {
-                string path = textBoxNewPartPath.Text;
-                if (path[0] == '"')
-                    path = path.Substring(1, path.Length - 2);
-                if (path.Substring(1, 2) == @":\")
-                    path = path.Substring(3);
-                if (path.Length >= currentPart.getParent().getPath().Length)
-                    if (path.Substring(0, currentPart.getParent().getPath().Length) == currentPart.getParent().getPath())
-                    {
-                        path = path.Substring(currentPart.getParent().getPath().Length);
-                    }
-                currentPart.setPath(path);
-            }
-            else
-                currentPart.setPath("");
+            currentPart.setPath(textBoxNewPartPath.Text);
             int p = 0;
             int.TryParse(textBoxNewPartWidth.Text, out p);
             currentPart.setWidth(p);
