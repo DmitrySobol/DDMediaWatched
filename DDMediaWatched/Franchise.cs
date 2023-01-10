@@ -27,6 +27,9 @@ namespace DDMediaWatched
             number,
             mark;
 
+        private DateTime
+            startingDate;
+
         public Franchise()
         {
             names = new List<string>();
@@ -36,6 +39,7 @@ namespace DDMediaWatched
             type = FranchiseType.No;
             number = Program.GetFirstAvailableNumber();
             mark = -1;
+            startingDate = new DateTime(2000, 1, 1);
         }
 
         public Franchise(string[] args)
@@ -90,6 +94,7 @@ namespace DDMediaWatched
             }
             number = Program.GetFirstAvailableNumber();
             mark = -1;
+            startingDate = new DateTime(2000, 1, 1);
         }
 
         public Franchise(FileStream f)
@@ -113,6 +118,11 @@ namespace DDMediaWatched
             parts = new List<Part>();
             for (int i = 0; i < p; i++)
                 parts.Add(new Part(f, this));
+            //startingDate
+            int yy = Program.FileReadInt32(f);
+            int mm = Program.FileReadInt32(f);
+            int dd = Program.FileReadInt32(f);
+            startingDate = new DateTime(yy, mm, dd);
         }
 
         public void SaveToBin(FileStream f)
@@ -133,8 +143,12 @@ namespace DDMediaWatched
             Program.FileWriteInt32(f, parts.Count);
             foreach (Part s in parts)
                 s.SaveToBin(f);
+            //startingDate
+            Program.FileWriteInt32(f, startingDate.Year);
+            Program.FileWriteInt32(f, startingDate.Month);
+            Program.FileWriteInt32(f, startingDate.Day);
         }
-
+        //Names
         public void setNames(string[] names)
         {
             this.names.Clear();
@@ -156,14 +170,6 @@ namespace DDMediaWatched
             return s;
         }
 
-        public int getLength()
-        {
-            int length = 0;
-            foreach (Part part in this.parts)
-                length += part.getLength();
-            return length;
-        }
-
         public string getOtherNames()
         {
             string s = "";
@@ -175,7 +181,28 @@ namespace DDMediaWatched
             }
             return s;
         }
-
+        //Length
+        public int getLength()
+        {
+            int length = 0;
+            foreach (Part part in this.parts)
+                length += part.getLength();
+            return length;
+        }
+        //Size
+        public long getSize()
+        {
+            long p = 0;
+            foreach (Part part in parts)
+                p += part.getSize();
+            return p;
+        }
+        //BPS
+        public double getBPS()
+        {
+            return this.getSize() / (this.getLength() / 60d / 24);
+        }
+        //Path
         public void setPath(string path)
         {
             if (path.Length > 3)
@@ -204,7 +231,7 @@ namespace DDMediaWatched
                 return "null";
             return Program.pathLetter + path;
         }
-
+        //Type
         public void setType(int index)
         {
             if (index >= 0)
@@ -259,7 +286,7 @@ namespace DDMediaWatched
             }
             return s;
         }
-
+        //Number
         public void setNumber(int number)
         {
             this.number = number;
@@ -269,25 +296,35 @@ namespace DDMediaWatched
         {
             return number;
         }
-
+        //Mark
         public int getMark()
         {
             return mark;
         }
-
+        //Parts
         public List<Part> getParts()
         {
             return parts;
         }
-
-        public long getSize()
+        //Date
+        public DateTime getStartingDate()
         {
-            long p = 0;
-            foreach (Part part in parts)
-                p += part.getSize();
-            return p;
+            return startingDate;
         }
 
+        public void setStartingDate(string arg)
+        {
+            string[] args = arg.Split('.');
+            if (args.Length < 3)
+                return;
+            this.setStartingDate(int.Parse(args[0]), int.Parse(args[1]), int.Parse(args[2]));
+        }
+
+        public void setStartingDate(int yy, int mm, int dd)
+        {
+            startingDate = new DateTime(yy, mm, dd);
+        }
+        //Other
         public override string ToString()
         {
             string s = "";
@@ -297,6 +334,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.getTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.getMark() < 0 ? "" : this.getMark().ToString());
+            s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.getSize() / 1024d / 1024/ 1024);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
             return s;

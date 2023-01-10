@@ -35,6 +35,12 @@ namespace DDMediaWatched
         public List<Franchise.FranchiseType>
             TypeOn = new List<Franchise.FranchiseType>();
 
+        public static string
+            sortBy = "";
+
+        public static bool
+            reverseSort = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -256,6 +262,7 @@ namespace DDMediaWatched
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
             currentFranchise.setPath(textBoxNewFranchisePath.Text);
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
+            currentFranchise.setStartingDate(textBoxNewFranchiseDate.Text);
             foreach (Part part in currentFranchise.getParts())
                 part.findSize();
             ControlsOn(controlsInfo);
@@ -286,6 +293,12 @@ namespace DDMediaWatched
             textBoxNewFranchiseNames.Text = currentFranchise.getAllNames();
             textBoxNewFranchisePath.Text = currentFranchise.getPath();
             comboBoxNewFranchiseType.SelectedIndex = currentFranchise.getTypeInt();
+            textBoxNewFranchiseDate.Text = currentFranchise.getStartingDate().ToString("yyyy.MM.dd");
+        }
+
+        private void buttonNewFranchiseToday_Click(object sender, EventArgs e)
+        {
+            textBoxNewFranchiseDate.Text = DateTime.Now.ToString("yyyy.MM.dd");
         }
         //Edit Part
         private void buttonNewPart_Click(object sender, EventArgs e)
@@ -718,59 +731,112 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
+        private void comboBoxSortSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            sortBy = comboBoxSortSortBy.Text;
+        }
+
+        private void checkBoxSortReverse_CheckedChanged(object sender, EventArgs e)
+        {
+            reverseSort = checkBoxSortReverse.Checked;
+        }
+
         public void FranchisesToListView()
         {
             listViewTitles.Items.Clear();
+            List<Franchise> franchisesType = new List<Franchise>();
             foreach (Franchise el in franchises)
                 if (IsTypeOn(el))
+                    franchisesType.Add(el);
+            switch (sortBy)
+            {
+                case "Name":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getName()).ToList();
+                    }
+                    break;
+                case "Size":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getSize()).ToList();
+                    }
+                    break;
+                case "Length":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getLength()).ToList();
+                    }
+                    break;
+                case "BPS":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getBPS()).ToList();
+                    }
+                    break;
+                case "Date":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getStartingDate()).ToList();
+                    }
+                    break;
+                case "Mark":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getMark()).ToList();
+                    }
+                    break;
+                default:
+                    {
+
+                    }
+                    break;
+            }
+            if (reverseSort)
+                franchisesType.Reverse();
+            foreach (Franchise el in franchisesType)
+            {
+                ListViewItem item = new ListViewItem()
                 {
-                    ListViewItem item = new ListViewItem()
-                    {
-                        Text = el.getName()
-                    };
-                    ListViewItem.ListViewSubItem si;
-                    int p = 0;
-                    //Number
-                    si = new ListViewItem.ListViewSubItem
-                    {
-                        Tag = "Number"
-                    };
-                    p = el.getNumber();
-                    if (p > 0)
-                        si.Text = p.ToString();
-                    else
-                        si.Text = "";
-                    item.SubItems.Add(si);
-                    //Length
-                    si = new ListViewItem.ListViewSubItem
-                    {
-                        Tag = "Length",
-                        Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
-                    };
-                    item.SubItems.Add(si);
-                    //Size
-                    si = new ListViewItem.ListViewSubItem
-                    {
-                        Tag = "Size",
-                        Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
-                    };
-                    item.SubItems.Add(si);
-                    //BPS
-                    si = new ListViewItem.ListViewSubItem
-                    {
-                        Tag = "BPS",
-                        Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
-                    };
-                    item.SubItems.Add(si);
-                    //Path
-                    si = new ListViewItem.ListViewSubItem
-                    {
-                        Tag = "Path",
-                        Text = el.getPath()
-                    };
-                    item.SubItems.Add(si);
-                    listViewTitles.Items.Add(item);
-                }
+                    Text = el.getName()
+                };
+                ListViewItem.ListViewSubItem si;
+                int p = 0;
+                //Number
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Number"
+                };
+                p = el.getNumber();
+                if (p > 0)
+                    si.Text = p.ToString();
+                else
+                    si.Text = "";
+                item.SubItems.Add(si);
+                //Length
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Length",
+                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                };
+                item.SubItems.Add(si);
+                //Size
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Size",
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                };
+                item.SubItems.Add(si);
+                //BPS
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "BPS",
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getBPS() / 1024 / 1024))
+                };
+                item.SubItems.Add(si);
+                //Path
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Path",
+                    Text = el.getPath()
+                };
+                item.SubItems.Add(si);
+                listViewTitles.Items.Add(item);
+            }
         }
 
         public void PartsToListView()

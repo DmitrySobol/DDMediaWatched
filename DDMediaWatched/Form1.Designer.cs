@@ -78,14 +78,20 @@ namespace DDMediaWatched
             this.buttonImport = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxNewPart = new System.Windows.Forms.GroupBox();
+            this.labelNewPartCOW = new System.Windows.Forms.Label();
+            this.textBoxNewPartCOW = new System.Windows.Forms.TextBox();
             this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
+            this.labelNewFranchiseDate = new System.Windows.Forms.Label();
+            this.textBoxNewFranchiseDate = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
+            this.checkBoxSortReverse = new System.Windows.Forms.CheckBox();
+            this.comboBoxSortSortBy = new System.Windows.Forms.ComboBox();
+            this.labelSortSortBy = new System.Windows.Forms.Label();
             this.checkedListBoxSortTypes = new System.Windows.Forms.CheckedListBox();
             this.labelSortTypes = new System.Windows.Forms.Label();
             this.buttonSortSave = new System.Windows.Forms.Button();
-            this.labelNewPartCOW = new System.Windows.Forms.Label();
-            this.textBoxNewPartCOW = new System.Windows.Forms.TextBox();
+            this.buttonNewFranchiseToday = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.groupBoxNewPart.SuspendLayout();
@@ -651,8 +657,30 @@ namespace DDMediaWatched
             this.groupBoxNewPart.Text = "Edit part";
             this.groupBoxNewPart.Visible = false;
             // 
+            // labelNewPartCOW
+            // 
+            this.labelNewPartCOW.AutoSize = true;
+            this.labelNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 227);
+            this.labelNewPartCOW.Name = "labelNewPartCOW";
+            this.labelNewPartCOW.Size = new System.Drawing.Size(205, 13);
+            this.labelNewPartCOW.TabIndex = 48;
+            this.labelNewPartCOW.Text = "Count of watch (separate with ;):";
+            // 
+            // textBoxNewPartCOW
+            // 
+            this.textBoxNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 243);
+            this.textBoxNewPartCOW.Multiline = true;
+            this.textBoxNewPartCOW.Name = "textBoxNewPartCOW";
+            this.textBoxNewPartCOW.Size = new System.Drawing.Size(410, 80);
+            this.textBoxNewPartCOW.TabIndex = 47;
+            // 
             // groupBoxNewFranchise
             // 
+            this.groupBoxNewFranchise.Controls.Add(this.buttonNewFranchiseToday);
+            this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchiseDate);
+            this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchiseDate);
             this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchise1);
             this.groupBoxNewFranchise.Controls.Add(this.buttonNewFranchiseSave);
             this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchiseNames);
@@ -669,6 +697,24 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.Text = "Edit franchise";
             this.groupBoxNewFranchise.Visible = false;
             // 
+            // labelNewFranchiseDate
+            // 
+            this.labelNewFranchiseDate.AutoSize = true;
+            this.labelNewFranchiseDate.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewFranchiseDate.Location = new System.Drawing.Point(5, 133);
+            this.labelNewFranchiseDate.Name = "labelNewFranchiseDate";
+            this.labelNewFranchiseDate.Size = new System.Drawing.Size(37, 13);
+            this.labelNewFranchiseDate.TabIndex = 14;
+            this.labelNewFranchiseDate.Text = "Date:";
+            // 
+            // textBoxNewFranchiseDate
+            // 
+            this.textBoxNewFranchiseDate.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxNewFranchiseDate.Location = new System.Drawing.Point(6, 149);
+            this.textBoxNewFranchiseDate.Name = "textBoxNewFranchiseDate";
+            this.textBoxNewFranchiseDate.Size = new System.Drawing.Size(278, 20);
+            this.textBoxNewFranchiseDate.TabIndex = 15;
+            // 
             // buttonSort
             // 
             this.buttonSort.Font = new System.Drawing.Font("Consolas", 8F);
@@ -682,17 +728,57 @@ namespace DDMediaWatched
             // 
             // groupBoxSort
             // 
+            this.groupBoxSort.Controls.Add(this.checkBoxSortReverse);
+            this.groupBoxSort.Controls.Add(this.comboBoxSortSortBy);
+            this.groupBoxSort.Controls.Add(this.labelSortSortBy);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypes);
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(852, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(352, 11);
             this.groupBoxSort.Name = "groupBoxSort";
             this.groupBoxSort.Size = new System.Drawing.Size(420, 352);
             this.groupBoxSort.TabIndex = 51;
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
             this.groupBoxSort.Visible = false;
+            // 
+            // checkBoxSortReverse
+            // 
+            this.checkBoxSortReverse.AutoSize = true;
+            this.checkBoxSortReverse.Location = new System.Drawing.Point(142, 63);
+            this.checkBoxSortReverse.Name = "checkBoxSortReverse";
+            this.checkBoxSortReverse.Size = new System.Drawing.Size(68, 17);
+            this.checkBoxSortReverse.TabIndex = 19;
+            this.checkBoxSortReverse.Text = "Reverse";
+            this.checkBoxSortReverse.UseVisualStyleBackColor = true;
+            this.checkBoxSortReverse.CheckedChanged += new System.EventHandler(this.checkBoxSortReverse_CheckedChanged);
+            // 
+            // comboBoxSortSortBy
+            // 
+            this.comboBoxSortSortBy.FormattingEnabled = true;
+            this.comboBoxSortSortBy.Items.AddRange(new object[] {
+            "Number",
+            "Name",
+            "Size",
+            "Length",
+            "BPS",
+            "Date",
+            "Mark"});
+            this.comboBoxSortSortBy.Location = new System.Drawing.Point(142, 33);
+            this.comboBoxSortSortBy.Name = "comboBoxSortSortBy";
+            this.comboBoxSortSortBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSortSortBy.TabIndex = 18;
+            this.comboBoxSortSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortSortBy_SelectedIndexChanged);
+            // 
+            // labelSortSortBy
+            // 
+            this.labelSortSortBy.AutoSize = true;
+            this.labelSortSortBy.Location = new System.Drawing.Point(139, 14);
+            this.labelSortSortBy.Name = "labelSortSortBy";
+            this.labelSortSortBy.Size = new System.Drawing.Size(55, 13);
+            this.labelSortSortBy.TabIndex = 17;
+            this.labelSortSortBy.Text = "Sort by:";
             // 
             // checkedListBoxSortTypes
             // 
@@ -728,24 +814,16 @@ namespace DDMediaWatched
             this.buttonSortSave.UseVisualStyleBackColor = true;
             this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
             // 
-            // labelNewPartCOW
+            // buttonNewFranchiseToday
             // 
-            this.labelNewPartCOW.AutoSize = true;
-            this.labelNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 227);
-            this.labelNewPartCOW.Name = "labelNewPartCOW";
-            this.labelNewPartCOW.Size = new System.Drawing.Size(205, 13);
-            this.labelNewPartCOW.TabIndex = 48;
-            this.labelNewPartCOW.Text = "Count of watch (separate with ;):";
-            // 
-            // textBoxNewPartCOW
-            // 
-            this.textBoxNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 243);
-            this.textBoxNewPartCOW.Multiline = true;
-            this.textBoxNewPartCOW.Name = "textBoxNewPartCOW";
-            this.textBoxNewPartCOW.Size = new System.Drawing.Size(410, 80);
-            this.textBoxNewPartCOW.TabIndex = 47;
+            this.buttonNewFranchiseToday.Font = new System.Drawing.Font("Consolas", 8F);
+            this.buttonNewFranchiseToday.Location = new System.Drawing.Point(290, 147);
+            this.buttonNewFranchiseToday.Name = "buttonNewFranchiseToday";
+            this.buttonNewFranchiseToday.Size = new System.Drawing.Size(130, 23);
+            this.buttonNewFranchiseToday.TabIndex = 16;
+            this.buttonNewFranchiseToday.Text = "Today";
+            this.buttonNewFranchiseToday.UseVisualStyleBackColor = true;
+            this.buttonNewFranchiseToday.Click += new System.EventHandler(this.buttonNewFranchiseToday_Click);
             // 
             // Form1
             // 
@@ -858,6 +936,12 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelSortTypes;
         private System.Windows.Forms.Label labelNewPartCOW;
         private System.Windows.Forms.TextBox textBoxNewPartCOW;
+        private System.Windows.Forms.Label labelNewFranchiseDate;
+        private System.Windows.Forms.TextBox textBoxNewFranchiseDate;
+        private System.Windows.Forms.CheckBox checkBoxSortReverse;
+        private System.Windows.Forms.ComboBox comboBoxSortSortBy;
+        private System.Windows.Forms.Label labelSortSortBy;
+        private System.Windows.Forms.Button buttonNewFranchiseToday;
     }
 }
 
