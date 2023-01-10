@@ -77,8 +77,12 @@ namespace DDMediaWatched
             this.comboBoxNewPartResolutions = new System.Windows.Forms.ComboBox();
             this.buttonImport = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBoxNewPart = new System.Windows.Forms.GroupBox();
+            this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
+            this.groupBoxNewPart.SuspendLayout();
+            this.groupBoxNewFranchise.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -162,45 +166,41 @@ namespace DDMediaWatched
             // buttonNewFranchiseSave
             // 
             this.buttonNewFranchiseSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(1138, 338);
+            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(290, 327);
             this.buttonNewFranchiseSave.Name = "buttonNewFranchiseSave";
             this.buttonNewFranchiseSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchiseSave.TabIndex = 7;
             this.buttonNewFranchiseSave.Text = "Save";
             this.buttonNewFranchiseSave.UseVisualStyleBackColor = true;
-            this.buttonNewFranchiseSave.Visible = false;
             this.buttonNewFranchiseSave.Click += new System.EventHandler(this.buttonNewFranchiseSave_Click);
             // 
             // labelNewFranchise1
             // 
             this.labelNewFranchise1.AutoSize = true;
             this.labelNewFranchise1.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewFranchise1.Location = new System.Drawing.Point(857, 9);
+            this.labelNewFranchise1.Location = new System.Drawing.Point(6, 16);
             this.labelNewFranchise1.Name = "labelNewFranchise1";
             this.labelNewFranchise1.Size = new System.Drawing.Size(151, 13);
             this.labelNewFranchise1.TabIndex = 8;
             this.labelNewFranchise1.Text = "Names (separate with ;):";
-            this.labelNewFranchise1.Visible = false;
             // 
             // textBoxNewFranchiseNames
             // 
             this.textBoxNewFranchiseNames.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewFranchiseNames.Location = new System.Drawing.Point(858, 25);
+            this.textBoxNewFranchiseNames.Location = new System.Drawing.Point(7, 32);
             this.textBoxNewFranchiseNames.Name = "textBoxNewFranchiseNames";
             this.textBoxNewFranchiseNames.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewFranchiseNames.TabIndex = 9;
-            this.textBoxNewFranchiseNames.Visible = false;
             // 
             // labelNewFranchise2
             // 
             this.labelNewFranchise2.AutoSize = true;
             this.labelNewFranchise2.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewFranchise2.Location = new System.Drawing.Point(857, 48);
+            this.labelNewFranchise2.Location = new System.Drawing.Point(6, 55);
             this.labelNewFranchise2.Name = "labelNewFranchise2";
             this.labelNewFranchise2.Size = new System.Drawing.Size(37, 13);
             this.labelNewFranchise2.TabIndex = 10;
             this.labelNewFranchise2.Text = "Type:";
-            this.labelNewFranchise2.Visible = false;
             // 
             // comboBoxNewFranchiseType
             // 
@@ -211,31 +211,28 @@ namespace DDMediaWatched
             "Cartoon",
             "Film",
             "Dorama"});
-            this.comboBoxNewFranchiseType.Location = new System.Drawing.Point(858, 64);
+            this.comboBoxNewFranchiseType.Location = new System.Drawing.Point(7, 71);
             this.comboBoxNewFranchiseType.Name = "comboBoxNewFranchiseType";
             this.comboBoxNewFranchiseType.Size = new System.Drawing.Size(121, 21);
             this.comboBoxNewFranchiseType.TabIndex = 11;
-            this.comboBoxNewFranchiseType.Visible = false;
             // 
             // textBoxNewFranchisePath
             // 
             this.textBoxNewFranchisePath.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewFranchisePath.Location = new System.Drawing.Point(858, 104);
+            this.textBoxNewFranchisePath.Location = new System.Drawing.Point(7, 111);
             this.textBoxNewFranchisePath.Name = "textBoxNewFranchisePath";
             this.textBoxNewFranchisePath.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewFranchisePath.TabIndex = 13;
-            this.textBoxNewFranchisePath.Visible = false;
             // 
             // labelNewFranchise3
             // 
             this.labelNewFranchise3.AutoSize = true;
             this.labelNewFranchise3.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewFranchise3.Location = new System.Drawing.Point(857, 88);
+            this.labelNewFranchise3.Location = new System.Drawing.Point(6, 95);
             this.labelNewFranchise3.Name = "labelNewFranchise3";
             this.labelNewFranchise3.Size = new System.Drawing.Size(37, 13);
             this.labelNewFranchise3.TabIndex = 12;
             this.labelNewFranchise3.Text = "Path:";
-            this.labelNewFranchise3.Visible = false;
             // 
             // buttonNewPart
             // 
@@ -251,129 +248,117 @@ namespace DDMediaWatched
             // buttonNewPartSave
             // 
             this.buttonNewPartSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPartSave.Location = new System.Drawing.Point(1138, 338);
+            this.buttonNewPartSave.Location = new System.Drawing.Point(287, 327);
             this.buttonNewPartSave.Name = "buttonNewPartSave";
             this.buttonNewPartSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewPartSave.TabIndex = 15;
             this.buttonNewPartSave.Text = "Save";
             this.buttonNewPartSave.UseVisualStyleBackColor = true;
-            this.buttonNewPartSave.Visible = false;
             this.buttonNewPartSave.Click += new System.EventHandler(this.buttonNewPartSave_Click);
             // 
             // textBoxNewPartName
             // 
             this.textBoxNewPartName.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartName.Location = new System.Drawing.Point(858, 25);
+            this.textBoxNewPartName.Location = new System.Drawing.Point(7, 32);
             this.textBoxNewPartName.Name = "textBoxNewPartName";
             this.textBoxNewPartName.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewPartName.TabIndex = 17;
-            this.textBoxNewPartName.Visible = false;
             // 
             // labelNewPart1
             // 
             this.labelNewPart1.AutoSize = true;
             this.labelNewPart1.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart1.Location = new System.Drawing.Point(857, 9);
+            this.labelNewPart1.Location = new System.Drawing.Point(6, 16);
             this.labelNewPart1.Name = "labelNewPart1";
             this.labelNewPart1.Size = new System.Drawing.Size(37, 13);
             this.labelNewPart1.TabIndex = 16;
             this.labelNewPart1.Text = "Name:";
-            this.labelNewPart1.Visible = false;
             // 
             // textBoxNewPartWidth
             // 
             this.textBoxNewPartWidth.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartWidth.Location = new System.Drawing.Point(858, 64);
+            this.textBoxNewPartWidth.Location = new System.Drawing.Point(7, 71);
             this.textBoxNewPartWidth.Name = "textBoxNewPartWidth";
             this.textBoxNewPartWidth.Size = new System.Drawing.Size(100, 20);
             this.textBoxNewPartWidth.TabIndex = 19;
-            this.textBoxNewPartWidth.Visible = false;
             // 
             // labelNewPart2
             // 
             this.labelNewPart2.AutoSize = true;
             this.labelNewPart2.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart2.Location = new System.Drawing.Point(857, 48);
+            this.labelNewPart2.Location = new System.Drawing.Point(6, 55);
             this.labelNewPart2.Name = "labelNewPart2";
             this.labelNewPart2.Size = new System.Drawing.Size(73, 13);
             this.labelNewPart2.TabIndex = 18;
             this.labelNewPart2.Text = "Resolution:";
-            this.labelNewPart2.Visible = false;
             // 
             // labelNewPart3
             // 
             this.labelNewPart3.AutoSize = true;
             this.labelNewPart3.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart3.Location = new System.Drawing.Point(964, 67);
+            this.labelNewPart3.Location = new System.Drawing.Point(113, 74);
             this.labelNewPart3.Name = "labelNewPart3";
             this.labelNewPart3.Size = new System.Drawing.Size(13, 13);
             this.labelNewPart3.TabIndex = 20;
             this.labelNewPart3.Text = "X";
-            this.labelNewPart3.Visible = false;
             // 
             // textBoxNewPartHeight
             // 
             this.textBoxNewPartHeight.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartHeight.Location = new System.Drawing.Point(985, 65);
+            this.textBoxNewPartHeight.Location = new System.Drawing.Point(134, 72);
             this.textBoxNewPartHeight.Name = "textBoxNewPartHeight";
             this.textBoxNewPartHeight.Size = new System.Drawing.Size(100, 20);
             this.textBoxNewPartHeight.TabIndex = 21;
-            this.textBoxNewPartHeight.Visible = false;
             // 
             // textBoxNewPartPath
             // 
             this.textBoxNewPartPath.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartPath.Location = new System.Drawing.Point(858, 104);
+            this.textBoxNewPartPath.Location = new System.Drawing.Point(7, 111);
             this.textBoxNewPartPath.Name = "textBoxNewPartPath";
             this.textBoxNewPartPath.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewPartPath.TabIndex = 23;
-            this.textBoxNewPartPath.Visible = false;
             this.textBoxNewPartPath.TextChanged += new System.EventHandler(this.textBoxNewPartPath_TextChanged);
             // 
             // labelNewPart4
             // 
             this.labelNewPart4.AutoSize = true;
             this.labelNewPart4.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart4.Location = new System.Drawing.Point(857, 88);
+            this.labelNewPart4.Location = new System.Drawing.Point(6, 95);
             this.labelNewPart4.Name = "labelNewPart4";
             this.labelNewPart4.Size = new System.Drawing.Size(37, 13);
             this.labelNewPart4.TabIndex = 22;
             this.labelNewPart4.Text = "Path:";
-            this.labelNewPart4.Visible = false;
             // 
             // checkBoxNewPartIsPathFile
             // 
             this.checkBoxNewPartIsPathFile.AutoSize = true;
             this.checkBoxNewPartIsPathFile.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(860, 130);
+            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(9, 137);
             this.checkBoxNewPartIsPathFile.Name = "checkBoxNewPartIsPathFile";
             this.checkBoxNewPartIsPathFile.Size = new System.Drawing.Size(98, 17);
             this.checkBoxNewPartIsPathFile.TabIndex = 25;
             this.checkBoxNewPartIsPathFile.Text = "Is path file";
             this.checkBoxNewPartIsPathFile.UseVisualStyleBackColor = true;
-            this.checkBoxNewPartIsPathFile.Visible = false;
             this.checkBoxNewPartIsPathFile.CheckedChanged += new System.EventHandler(this.checkBoxNewPartIsPathFile_CheckedChanged);
             // 
             // textBoxNewPartLength
             // 
             this.textBoxNewPartLength.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLength.Location = new System.Drawing.Point(858, 166);
+            this.textBoxNewPartLength.Location = new System.Drawing.Point(7, 173);
             this.textBoxNewPartLength.Name = "textBoxNewPartLength";
             this.textBoxNewPartLength.Size = new System.Drawing.Size(410, 20);
             this.textBoxNewPartLength.TabIndex = 27;
-            this.textBoxNewPartLength.Visible = false;
             this.textBoxNewPartLength.TextChanged += new System.EventHandler(this.textBoxNewPartLength_TextChanged);
             // 
             // labelNewPart5
             // 
             this.labelNewPart5.AutoSize = true;
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart5.Location = new System.Drawing.Point(857, 150);
+            this.labelNewPart5.Location = new System.Drawing.Point(6, 157);
             this.labelNewPart5.Name = "labelNewPart5";
             this.labelNewPart5.Size = new System.Drawing.Size(223, 13);
             this.labelNewPart5.TabIndex = 26;
             this.labelNewPart5.Text = "Average length of series (HH:MM:SS):";
-            this.labelNewPart5.Visible = false;
             // 
             // buttonEditFranchise
             // 
@@ -547,39 +532,36 @@ namespace DDMediaWatched
             // textBoxNewPartLengths
             // 
             this.textBoxNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLengths.Location = new System.Drawing.Point(858, 240);
+            this.textBoxNewPartLengths.Location = new System.Drawing.Point(7, 247);
             this.textBoxNewPartLengths.Multiline = true;
             this.textBoxNewPartLengths.Name = "textBoxNewPartLengths";
             this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 80);
             this.textBoxNewPartLengths.TabIndex = 42;
-            this.textBoxNewPartLengths.Visible = false;
             // 
             // labelNewPartLengths
             // 
             this.labelNewPartLengths.AutoSize = true;
             this.labelNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartLengths.Location = new System.Drawing.Point(857, 224);
+            this.labelNewPartLengths.Location = new System.Drawing.Point(6, 231);
             this.labelNewPartLengths.Name = "labelNewPartLengths";
             this.labelNewPartLengths.Size = new System.Drawing.Size(163, 13);
             this.labelNewPartLengths.TabIndex = 43;
             this.labelNewPartLengths.Text = "Lengths (separate with ;):";
-            this.labelNewPartLengths.Visible = false;
             // 
             // labelNewPartSeries
             // 
             this.labelNewPartSeries.AutoSize = true;
             this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartSeries.Location = new System.Drawing.Point(857, 189);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(6, 196);
             this.labelNewPartSeries.Name = "labelNewPartSeries";
             this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
             this.labelNewPartSeries.TabIndex = 44;
             this.labelNewPartSeries.Text = "Series:";
-            this.labelNewPartSeries.Visible = false;
             // 
             // numericUpDownNewPartSeries
             // 
             this.numericUpDownNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(859, 205);
+            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(8, 212);
             this.numericUpDownNewPartSeries.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -598,7 +580,6 @@ namespace DDMediaWatched
             0,
             0,
             0});
-            this.numericUpDownNewPartSeries.Visible = false;
             this.numericUpDownNewPartSeries.ValueChanged += new System.EventHandler(this.numericUpDownNewPartSeries_ValueChanged);
             // 
             // comboBoxNewPartResolutions
@@ -610,11 +591,10 @@ namespace DDMediaWatched
             "1280x720",
             "1920x1080",
             "3840x2160"});
-            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(1091, 64);
+            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(240, 71);
             this.comboBoxNewPartResolutions.Name = "comboBoxNewPartResolutions";
             this.comboBoxNewPartResolutions.Size = new System.Drawing.Size(121, 21);
             this.comboBoxNewPartResolutions.TabIndex = 46;
-            this.comboBoxNewPartResolutions.Visible = false;
             this.comboBoxNewPartResolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewPartResolutions_SelectedIndexChanged);
             // 
             // buttonImport
@@ -633,17 +613,60 @@ namespace DDMediaWatched
             this.openFileDialog1.FileName = "Films";
             this.openFileDialog1.Filter = "Text files (*.txt)|*.txt";
             // 
+            // groupBoxNewPart
+            // 
+            this.groupBoxNewPart.Controls.Add(this.labelNewPart1);
+            this.groupBoxNewPart.Controls.Add(this.buttonNewPartSave);
+            this.groupBoxNewPart.Controls.Add(this.comboBoxNewPartResolutions);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartName);
+            this.groupBoxNewPart.Controls.Add(this.numericUpDownNewPartSeries);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPart2);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPartSeries);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartWidth);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPartLengths);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPart3);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartLengths);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartHeight);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPart4);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartPath);
+            this.groupBoxNewPart.Controls.Add(this.checkBoxNewPartIsPathFile);
+            this.groupBoxNewPart.Controls.Add(this.labelNewPart5);
+            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartLength);
+            this.groupBoxNewPart.Font = new System.Drawing.Font("Consolas", 8F);
+            this.groupBoxNewPart.Location = new System.Drawing.Point(852, 10);
+            this.groupBoxNewPart.Name = "groupBoxNewPart";
+            this.groupBoxNewPart.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxNewPart.TabIndex = 48;
+            this.groupBoxNewPart.TabStop = false;
+            this.groupBoxNewPart.Text = "Edit part";
+            this.groupBoxNewPart.Visible = false;
+            // 
+            // groupBoxNewFranchise
+            // 
+            this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchise1);
+            this.groupBoxNewFranchise.Controls.Add(this.buttonNewFranchiseSave);
+            this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchiseNames);
+            this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchise2);
+            this.groupBoxNewFranchise.Controls.Add(this.comboBoxNewFranchiseType);
+            this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchise3);
+            this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchisePath);
+            this.groupBoxNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
+            this.groupBoxNewFranchise.Location = new System.Drawing.Point(852, 12);
+            this.groupBoxNewFranchise.Name = "groupBoxNewFranchise";
+            this.groupBoxNewFranchise.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxNewFranchise.TabIndex = 49;
+            this.groupBoxNewFranchise.TabStop = false;
+            this.groupBoxNewFranchise.Text = "Edit franchise";
+            this.groupBoxNewFranchise.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.groupBoxNewFranchise);
+            this.Controls.Add(this.groupBoxNewPart);
             this.Controls.Add(this.buttonImport);
-            this.Controls.Add(this.comboBoxNewPartResolutions);
-            this.Controls.Add(this.numericUpDownNewPartSeries);
-            this.Controls.Add(this.labelNewPartSeries);
-            this.Controls.Add(this.labelNewPartLengths);
-            this.Controls.Add(this.textBoxNewPartLengths);
             this.Controls.Add(this.textBoxLog);
             this.Controls.Add(this.buttonFindAllSize);
             this.Controls.Add(this.buttonSaveExit);
@@ -658,26 +681,7 @@ namespace DDMediaWatched
             this.Controls.Add(this.labelParts);
             this.Controls.Add(this.listViewParts);
             this.Controls.Add(this.buttonEditFranchise);
-            this.Controls.Add(this.textBoxNewPartLength);
-            this.Controls.Add(this.labelNewPart5);
-            this.Controls.Add(this.checkBoxNewPartIsPathFile);
-            this.Controls.Add(this.textBoxNewPartPath);
-            this.Controls.Add(this.labelNewPart4);
-            this.Controls.Add(this.textBoxNewPartHeight);
-            this.Controls.Add(this.labelNewPart3);
-            this.Controls.Add(this.textBoxNewPartWidth);
-            this.Controls.Add(this.labelNewPart2);
-            this.Controls.Add(this.textBoxNewPartName);
-            this.Controls.Add(this.labelNewPart1);
-            this.Controls.Add(this.buttonNewPartSave);
             this.Controls.Add(this.buttonNewPart);
-            this.Controls.Add(this.textBoxNewFranchisePath);
-            this.Controls.Add(this.labelNewFranchise3);
-            this.Controls.Add(this.comboBoxNewFranchiseType);
-            this.Controls.Add(this.labelNewFranchise2);
-            this.Controls.Add(this.textBoxNewFranchiseNames);
-            this.Controls.Add(this.labelNewFranchise1);
-            this.Controls.Add(this.buttonNewFranchiseSave);
             this.Controls.Add(this.buttonNewFranchise);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.labelTitleInfo);
@@ -686,6 +690,7 @@ namespace DDMediaWatched
             this.Controls.Add(this.labelTitles);
             this.Controls.Add(this.listViewTitles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -693,6 +698,10 @@ namespace DDMediaWatched
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).EndInit();
+            this.groupBoxNewPart.ResumeLayout(false);
+            this.groupBoxNewPart.PerformLayout();
+            this.groupBoxNewFranchise.ResumeLayout(false);
+            this.groupBoxNewFranchise.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -748,6 +757,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.ComboBox comboBoxNewPartResolutions;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.GroupBox groupBoxNewPart;
+        private System.Windows.Forms.GroupBox groupBoxNewFranchise;
     }
 }
 

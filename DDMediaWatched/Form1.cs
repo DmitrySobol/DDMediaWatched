@@ -35,8 +35,6 @@ namespace DDMediaWatched
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-            foreach (Control el in this.Controls)
-                el.KeyDown += new KeyEventHandler(Form1_KeyDown);
             LoadColumnsFranchises();
             LoadColumnsParts();
             FindDiskLetter();
@@ -147,32 +145,10 @@ namespace DDMediaWatched
 
         private void LoadControls()
         {
-            controlsNewFranchise.Add(labelNewFranchise1);
-            controlsNewFranchise.Add(labelNewFranchise2);
-            controlsNewFranchise.Add(labelNewFranchise3);
-            controlsNewFranchise.Add(textBoxNewFranchiseNames);
-            controlsNewFranchise.Add(textBoxNewFranchisePath);
-            controlsNewFranchise.Add(comboBoxNewFranchiseType);
-            controlsNewFranchise.Add(buttonNewFranchiseSave);
+            controlsNewFranchise.Add(groupBoxNewFranchise);
             controlsInfo.Add(labelInfo);
             controlsInfo.Add(textBoxInfo);
-            controlsNewPart.Add(labelNewPart1);
-            controlsNewPart.Add(labelNewPart2);
-            controlsNewPart.Add(labelNewPart3);
-            controlsNewPart.Add(labelNewPart4);
-            controlsNewPart.Add(labelNewPart5);
-            controlsNewPart.Add(labelNewPartLengths);
-            controlsNewPart.Add(labelNewPartSeries);
-            controlsNewPart.Add(textBoxNewPartName);
-            controlsNewPart.Add(textBoxNewPartPath);
-            controlsNewPart.Add(textBoxNewPartWidth);
-            controlsNewPart.Add(textBoxNewPartHeight);
-            controlsNewPart.Add(textBoxNewPartLength);
-            controlsNewPart.Add(checkBoxNewPartIsPathFile);
-            controlsNewPart.Add(buttonNewPartSave);
-            controlsNewPart.Add(textBoxNewPartLengths);
-            controlsNewPart.Add(numericUpDownNewPartSeries);
-            controlsNewPart.Add(comboBoxNewPartResolutions);
+            controlsNewPart.Add(groupBoxNewPart);
             controlsRightButtons.Add(buttonNewFranchise);
             controlsRightButtons.Add(buttonEditFranchise);
             controlsRightButtons.Add(buttonDeleteFranchise);
