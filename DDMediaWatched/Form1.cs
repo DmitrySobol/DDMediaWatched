@@ -582,11 +582,8 @@ namespace DDMediaWatched
                 numericUpDownNewPartSeries.Value = 1;
                 numericUpDownNewPartSeries.Enabled = false;
                 textBoxNewPartLengths.Enabled = false;
-                string path = textBoxNewPartPath.Text;
-                if (path.Length > 0)
-                    if (path[0] == '"')
-                        path = path.Substring(1, path.Length - 2);
-                textBoxNewPartLength.Text = Program.GetVideoLength(path);
+                currentPart.setPath(textBoxNewPartPath.Text);
+                textBoxNewPartLength.Text = Program.GetVideoLength(currentPart.getAbsolutePath());
             }
             else
             {
