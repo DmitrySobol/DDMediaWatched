@@ -218,6 +218,13 @@ namespace DDMediaWatched
             return length;
         }
 
+        public double getPersentage()
+        {
+            double persentage = this.getUniqueWatchedLength() * 100;
+            persentage /= this.getLength();
+            return persentage;
+        }
+
         public string getName()
         {
             return name;

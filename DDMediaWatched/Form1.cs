@@ -55,7 +55,6 @@ namespace DDMediaWatched
             LoadColumnsParts();
             FindDiskLetter();
             LoadControls();
-            textBoxTitleInfo.Text += String.Format("Current media volume: {0}\r\n", Program.pathLetter);
         }
 
         private static void FindDiskLetter()
@@ -102,7 +101,13 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "BPS",
-                Width = 70
+                Width = 60
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "%",
+                Width = 40
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -122,7 +127,7 @@ namespace DDMediaWatched
             {
                 DisplayIndex = 1,
                 Text = "Name",
-                Width = 135
+                Width = 100
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -147,7 +152,13 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "BPS",
-                Width = 70
+                Width = 60
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "%",
+                Width = 40
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -183,6 +194,7 @@ namespace DDMediaWatched
             LoadConfigs();
             LoadMedia();
             FranchisesToListView();
+            DrawStatistic();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -191,7 +203,9 @@ namespace DDMediaWatched
             {
                 case Keys.F5:
                     {
+                        SelectNone();
                         FranchisesToListView();
+                        DrawStatistic();
                     }
                     break;
                 case Keys.Escape:
@@ -856,7 +870,14 @@ namespace DDMediaWatched
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getBPS() / 1024 / 1024))
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.getBPS() / 1024 / 1024))
+                };
+                item.SubItems.Add(si);
+                //%
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "%",
+                    Text = String.Format("{0:f0}%", el.getPersentage())
                 };
                 item.SubItems.Add(si);
                 //Path
@@ -912,7 +933,14 @@ namespace DDMediaWatched
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                    Text = el.getSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                };
+                item.SubItems.Add(si);
+                //%
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "%",
+                    Text = String.Format("{0:f0}%", el.getPersentage())
                 };
                 item.SubItems.Add(si);
                 //Path
@@ -924,6 +952,25 @@ namespace DDMediaWatched
                 item.SubItems.Add(si);
                 listViewParts.Items.Add(item);
             }
+        }
+
+        public void DrawStatistic()
+        {
+            string s = "";
+            s += String.Format("Current media volume: {0}\r\n", Program.pathLetter);
+            long size = 0;
+            int watchedLength = 0;
+            int watchedUniqueLength = 0;
+            foreach (Franchise f in franchises)
+            {
+                size += f.getSize();
+                watchedLength += f.getWatchedLength();
+                watchedUniqueLength += f.getUniqueWatchedLength();
+            }
+            s += String.Format("{0,-20}: {1,8:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
+            s += String.Format("{0,-20}: {1,8:f2} Hour| {2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
+            s += String.Format("{0,-20}: {1,8:f2} Hour| {2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
+            textBoxInfo.Text = s;
         }
 
         public bool IsTypeOn(Franchise el)

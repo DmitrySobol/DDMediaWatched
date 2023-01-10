@@ -31,6 +31,9 @@ namespace DDMediaWatched
         {
             this.components = new System.ComponentModel.Container();
             this.listViewTitles = new System.Windows.Forms.ListView();
+            this.contextMenuStripTitle = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFullWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelTitles = new System.Windows.Forms.Label();
             this.textBoxTitleInfo = new System.Windows.Forms.TextBox();
             this.textBoxInfo = new System.Windows.Forms.TextBox();
@@ -60,6 +63,9 @@ namespace DDMediaWatched
             this.buttonEditFranchise = new System.Windows.Forms.Button();
             this.labelParts = new System.Windows.Forms.Label();
             this.listViewParts = new System.Windows.Forms.ListView();
+            this.contextMenuStripPart = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFullViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonEditPart = new System.Windows.Forms.Button();
             this.labelPartInfo = new System.Windows.Forms.Label();
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
@@ -94,19 +100,13 @@ namespace DDMediaWatched
             this.labelSortTypes = new System.Windows.Forms.Label();
             this.buttonSortSave = new System.Windows.Forms.Button();
             this.buttonBackUP = new System.Windows.Forms.Button();
-            this.contextMenuStripPart = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addFullViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripTitle = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addFullWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripTitle.SuspendLayout();
+            this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).BeginInit();
             this.groupBoxNewPart.SuspendLayout();
             this.groupBoxNewFranchise.SuspendLayout();
             this.groupBoxSort.SuspendLayout();
-            this.contextMenuStripPart.SuspendLayout();
-            this.contextMenuStripTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -119,11 +119,33 @@ namespace DDMediaWatched
             this.listViewTitles.Location = new System.Drawing.Point(12, 25);
             this.listViewTitles.MultiSelect = false;
             this.listViewTitles.Name = "listViewTitles";
-            this.listViewTitles.Size = new System.Drawing.Size(410, 315);
+            this.listViewTitles.Size = new System.Drawing.Size(460, 404);
             this.listViewTitles.TabIndex = 0;
             this.listViewTitles.UseCompatibleStateImageBehavior = false;
             this.listViewTitles.View = System.Windows.Forms.View.Details;
             this.listViewTitles.SelectedIndexChanged += new System.EventHandler(this.listViewTitles_SelectedIndexChanged);
+            // 
+            // contextMenuStripTitle
+            // 
+            this.contextMenuStripTitle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem1,
+            this.addFullWatchToolStripMenuItem});
+            this.contextMenuStripTitle.Name = "contextMenuStripTitle";
+            this.contextMenuStripTitle.Size = new System.Drawing.Size(144, 48);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
+            // 
+            // addFullWatchToolStripMenuItem
+            // 
+            this.addFullWatchToolStripMenuItem.Name = "addFullWatchToolStripMenuItem";
+            this.addFullWatchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addFullWatchToolStripMenuItem.Text = "Add full view";
+            this.addFullWatchToolStripMenuItem.Click += new System.EventHandler(this.addFullWatchToolStripMenuItem_Click);
             // 
             // labelTitles
             // 
@@ -138,12 +160,12 @@ namespace DDMediaWatched
             // textBoxTitleInfo
             // 
             this.textBoxTitleInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 362);
+            this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 448);
             this.textBoxTitleInfo.Multiline = true;
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
             this.textBoxTitleInfo.ReadOnly = true;
             this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxTitleInfo.Size = new System.Drawing.Size(410, 336);
+            this.textBoxTitleInfo.Size = new System.Drawing.Size(460, 250);
             this.textBoxTitleInfo.TabIndex = 2;
             this.textBoxTitleInfo.WordWrap = false;
             // 
@@ -161,7 +183,7 @@ namespace DDMediaWatched
             // 
             this.labelTitleInfo.AutoSize = true;
             this.labelTitleInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelTitleInfo.Location = new System.Drawing.Point(9, 346);
+            this.labelTitleInfo.Location = new System.Drawing.Point(9, 432);
             this.labelTitleInfo.Name = "labelTitleInfo";
             this.labelTitleInfo.Size = new System.Drawing.Size(73, 13);
             this.labelTitleInfo.TabIndex = 4;
@@ -400,7 +422,7 @@ namespace DDMediaWatched
             // 
             this.labelParts.AutoSize = true;
             this.labelParts.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelParts.Location = new System.Drawing.Point(436, 9);
+            this.labelParts.Location = new System.Drawing.Point(486, 9);
             this.labelParts.Name = "labelParts";
             this.labelParts.Size = new System.Drawing.Size(43, 13);
             this.labelParts.TabIndex = 30;
@@ -413,14 +435,36 @@ namespace DDMediaWatched
             this.listViewParts.FullRowSelect = true;
             this.listViewParts.GridLines = true;
             this.listViewParts.HideSelection = false;
-            this.listViewParts.Location = new System.Drawing.Point(436, 25);
+            this.listViewParts.Location = new System.Drawing.Point(486, 25);
             this.listViewParts.MultiSelect = false;
             this.listViewParts.Name = "listViewParts";
-            this.listViewParts.Size = new System.Drawing.Size(410, 315);
+            this.listViewParts.Size = new System.Drawing.Size(360, 404);
             this.listViewParts.TabIndex = 29;
             this.listViewParts.UseCompatibleStateImageBehavior = false;
             this.listViewParts.View = System.Windows.Forms.View.Details;
             this.listViewParts.SelectedIndexChanged += new System.EventHandler(this.listViewParts_SelectedIndexChanged);
+            // 
+            // contextMenuStripPart
+            // 
+            this.contextMenuStripPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.addFullViewToolStripMenuItem});
+            this.contextMenuStripPart.Name = "contextMenuStripPart";
+            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 48);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // addFullViewToolStripMenuItem
+            // 
+            this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
+            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addFullViewToolStripMenuItem.Text = "Add full view";
+            this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
             // 
             // buttonEditPart
             // 
@@ -437,7 +481,7 @@ namespace DDMediaWatched
             // 
             this.labelPartInfo.AutoSize = true;
             this.labelPartInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelPartInfo.Location = new System.Drawing.Point(433, 346);
+            this.labelPartInfo.Location = new System.Drawing.Point(483, 432);
             this.labelPartInfo.Name = "labelPartInfo";
             this.labelPartInfo.Size = new System.Drawing.Size(67, 13);
             this.labelPartInfo.TabIndex = 33;
@@ -446,12 +490,12 @@ namespace DDMediaWatched
             // textBoxPartInfo
             // 
             this.textBoxPartInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxPartInfo.Location = new System.Drawing.Point(436, 362);
+            this.textBoxPartInfo.Location = new System.Drawing.Point(486, 448);
             this.textBoxPartInfo.Multiline = true;
             this.textBoxPartInfo.Name = "textBoxPartInfo";
             this.textBoxPartInfo.ReadOnly = true;
             this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxPartInfo.Size = new System.Drawing.Size(410, 336);
+            this.textBoxPartInfo.Size = new System.Drawing.Size(360, 250);
             this.textBoxPartInfo.TabIndex = 32;
             this.textBoxPartInfo.WordWrap = false;
             // 
@@ -848,50 +892,6 @@ namespace DDMediaWatched
             this.buttonBackUP.UseVisualStyleBackColor = true;
             this.buttonBackUP.Click += new System.EventHandler(this.buttonBackUP_Click);
             // 
-            // contextMenuStripPart
-            // 
-            this.contextMenuStripPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem,
-            this.addFullViewToolStripMenuItem});
-            this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 48);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // addFullViewToolStripMenuItem
-            // 
-            this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
-            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.addFullViewToolStripMenuItem.Text = "Add full view";
-            this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
-            // 
-            // contextMenuStripTitle
-            // 
-            this.contextMenuStripTitle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem1,
-            this.addFullWatchToolStripMenuItem});
-            this.contextMenuStripTitle.Name = "contextMenuStripTitle";
-            this.contextMenuStripTitle.Size = new System.Drawing.Size(144, 48);
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
-            this.deleteToolStripMenuItem1.Text = "Delete";
-            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
-            // 
-            // addFullWatchToolStripMenuItem
-            // 
-            this.addFullWatchToolStripMenuItem.Name = "addFullWatchToolStripMenuItem";
-            this.addFullWatchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.addFullWatchToolStripMenuItem.Text = "Add full view";
-            this.addFullWatchToolStripMenuItem.Click += new System.EventHandler(this.addFullWatchToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,6 +932,8 @@ namespace DDMediaWatched
             this.ShowIcon = false;
             this.Text = "Dax_Donamo Media Watched";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStripTitle.ResumeLayout(false);
+            this.contextMenuStripPart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewPartSeries)).EndInit();
             this.groupBoxNewPart.ResumeLayout(false);
@@ -940,8 +942,6 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.PerformLayout();
             this.groupBoxSort.ResumeLayout(false);
             this.groupBoxSort.PerformLayout();
-            this.contextMenuStripPart.ResumeLayout(false);
-            this.contextMenuStripTitle.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
