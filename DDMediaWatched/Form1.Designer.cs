@@ -34,6 +34,8 @@ namespace DDMediaWatched
             this.contextMenuStripTitle = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addFullWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelTitles = new System.Windows.Forms.Label();
             this.textBoxTitleInfo = new System.Windows.Forms.TextBox();
             this.textBoxInfo = new System.Windows.Forms.TextBox();
@@ -65,6 +67,8 @@ namespace DDMediaWatched
             this.contextMenuStripPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFullViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.labelPartInfo = new System.Windows.Forms.Label();
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
@@ -97,13 +101,11 @@ namespace DDMediaWatched
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
+            this.labelSortColorBy = new System.Windows.Forms.Label();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -153,6 +155,20 @@ namespace DDMediaWatched
             this.addFullWatchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullWatchToolStripMenuItem.Text = "Add full view";
             this.addFullWatchToolStripMenuItem.Click += new System.EventHandler(this.addFullWatchToolStripMenuItem_Click);
+            // 
+            // findSizeToolStripMenuItem1
+            // 
+            this.findSizeToolStripMenuItem1.Name = "findSizeToolStripMenuItem1";
+            this.findSizeToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
+            this.findSizeToolStripMenuItem1.Text = "Find size";
+            this.findSizeToolStripMenuItem1.Click += new System.EventHandler(this.findSizeToolStripMenuItem1_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // labelTitles
             // 
@@ -464,6 +480,20 @@ namespace DDMediaWatched
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
             // 
+            // findSizeToolStripMenuItem
+            // 
+            this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.findSizeToolStripMenuItem.Text = "Find size";
+            this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem1
+            // 
+            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
+            this.editToolStripMenuItem1.Text = "Edit";
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            // 
             // labelPartInfo
             // 
             this.labelPartInfo.AutoSize = true;
@@ -728,6 +758,8 @@ namespace DDMediaWatched
             // 
             // groupBoxSort
             // 
+            this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
+            this.groupBoxSort.Controls.Add(this.labelSortColorBy);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesPersentage);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesDown);
             this.groupBoxSort.Controls.Add(this.checkBoxSortReverse);
@@ -785,10 +817,11 @@ namespace DDMediaWatched
             // 
             this.comboBoxSortSortBy.FormattingEnabled = true;
             this.comboBoxSortSortBy.Items.AddRange(new object[] {
-            "Number",
+            "None",
             "Name",
             "Size",
             "Length",
+            "Persentage",
             "BPS",
             "Date",
             "Mark"});
@@ -796,6 +829,7 @@ namespace DDMediaWatched
             this.comboBoxSortSortBy.Name = "comboBoxSortSortBy";
             this.comboBoxSortSortBy.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSortSortBy.TabIndex = 18;
+            this.comboBoxSortSortBy.Text = "None";
             this.comboBoxSortSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortSortBy_SelectedIndexChanged);
             // 
             // labelSortSortBy
@@ -865,58 +899,53 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            // 
+            // findAllSizeToolStripMenuItem
+            // 
+            this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.findAllSizeToolStripMenuItem.Text = "Find all size";
+            this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // findAllSizeToolStripMenuItem
+            // comboBoxSortColorBy
             // 
-            this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.findAllSizeToolStripMenuItem.Text = "Find all size";
-            this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
+            this.comboBoxSortColorBy.FormattingEnabled = true;
+            this.comboBoxSortColorBy.Items.AddRange(new object[] {
+            "None",
+            "Persentage (3)",
+            "Persentage (Gradient)"});
+            this.comboBoxSortColorBy.Location = new System.Drawing.Point(284, 33);
+            this.comboBoxSortColorBy.Name = "comboBoxSortColorBy";
+            this.comboBoxSortColorBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSortColorBy.TabIndex = 24;
+            this.comboBoxSortColorBy.Text = "Persentage (Gradient)";
+            this.comboBoxSortColorBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortColorBy_SelectedIndexChanged);
             // 
-            // findSizeToolStripMenuItem
+            // labelSortColorBy
             // 
-            this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
-            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.findSizeToolStripMenuItem.Text = "Find size";
-            this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
-            // 
-            // findSizeToolStripMenuItem1
-            // 
-            this.findSizeToolStripMenuItem1.Name = "findSizeToolStripMenuItem1";
-            this.findSizeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.findSizeToolStripMenuItem1.Text = "Find size";
-            this.findSizeToolStripMenuItem1.Click += new System.EventHandler(this.findSizeToolStripMenuItem1_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem1
-            // 
-            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem1.Text = "Edit";
-            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            this.labelSortColorBy.AutoSize = true;
+            this.labelSortColorBy.Location = new System.Drawing.Point(281, 14);
+            this.labelSortColorBy.Name = "labelSortColorBy";
+            this.labelSortColorBy.Size = new System.Drawing.Size(61, 13);
+            this.labelSortColorBy.TabIndex = 23;
+            this.labelSortColorBy.Text = "Color by:";
             // 
             // Form1
             // 
@@ -1044,6 +1073,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem findSizeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
+        private System.Windows.Forms.ComboBox comboBoxSortColorBy;
+        private System.Windows.Forms.Label labelSortColorBy;
     }
 }
 

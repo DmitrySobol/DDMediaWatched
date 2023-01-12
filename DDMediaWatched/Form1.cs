@@ -42,10 +42,16 @@ namespace DDMediaWatched
             TypeOnPersentage = new List<Franchise.FranchisePersentage>();
 
         public static string
-            sortBy = "";
+            sortBy = "",
+            colorBy = "";
 
         public static bool
             reverseSort = false;
+
+        private static Color
+            colorPers100 = Color.FromArgb(191, 255, 191),
+            colorPers50 = Color.FromArgb(255, 255, 191),
+            colorPers0 = Color.FromArgb(255, 191, 191);
 
         public Form1()
         {
@@ -66,6 +72,8 @@ namespace DDMediaWatched
             checkedListBoxSortTypesPersentage.SetItemChecked(2, true);
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
                 TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
+            sortBy = comboBoxSortSortBy.Text;
+            colorBy = comboBoxSortColorBy.Text;
             LoadColumnsFranchises();
             LoadColumnsParts();
             FindDiskLetter();
@@ -809,6 +817,11 @@ namespace DDMediaWatched
             sortBy = comboBoxSortSortBy.Text;
         }
 
+        private void comboBoxSortColorBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorBy = comboBoxSortColorBy.Text;
+        }
+
         private void checkBoxSortReverse_CheckedChanged(object sender, EventArgs e)
         {
             reverseSort = checkBoxSortReverse.Checked;
@@ -836,6 +849,11 @@ namespace DDMediaWatched
                 case "Length":
                     {
                         franchisesType = franchisesType.OrderBy(x => x.getLength()).ToList();
+                    }
+                    break;
+                case "Persentage":
+                    {
+                        franchisesType = franchisesType.OrderBy(x => x.getPersentage()).ToList();
                     }
                     break;
                 case "BPS":
@@ -867,6 +885,39 @@ namespace DDMediaWatched
                 {
                     Text = el.getName()
                 };
+                switch (colorBy)
+                {
+                    case "Persentage (3)":
+                        {
+                            switch (el.isPersentage())
+                            {
+                                case Franchise.FranchisePersentage.Zero:
+                                    item.BackColor = colorPers0;
+                                    break;
+                                case Franchise.FranchisePersentage.Started:
+                                    item.BackColor = colorPers50;
+                                    break;
+                                case Franchise.FranchisePersentage.Full:
+                                    item.BackColor = colorPers100;
+                                    break;
+                            }
+                        }
+                        break;
+                    case "Persentage (Gradient)":
+                        {
+                            if (el.getPersentage() > 50)
+                            {
+                                double pColor = 191 + (100 - el.getPersentage()) / 50 * 64;
+                                item.BackColor = Color.FromArgb((int)Math.Round(pColor), 255, 191);
+                            }
+                            else
+                            {
+                                double pColor = 191 + el.getPersentage() / 50 * 64;
+                                item.BackColor = Color.FromArgb(255, (int)Math.Round(pColor), 191);
+                            }
+                        }
+                        break;
+                }
                 ListViewItem.ListViewSubItem si;
                 int p = 0;
                 //Length
