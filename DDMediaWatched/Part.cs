@@ -138,7 +138,10 @@ namespace DDMediaWatched
             }
             string path = parentFranchise.getAbsolutePath();
             if (path == "null")
+            {
+                Program.form1.Log("There is no media drives or no parent's path!");
                 return output;
+            }
             if (this.path.Length > 0)
             {
                 path += this.path;

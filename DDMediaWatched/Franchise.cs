@@ -226,6 +226,22 @@ namespace DDMediaWatched
             return p;
         }
 
+        public void findSize()
+        {
+            if (Program.pathLetter == "null")
+            {
+                Program.form1.Log("There is no media drives!");
+                return;
+            }
+            if (this.getPath() == "")
+            {
+                Program.form1.Log("There is no path!");
+                return;
+            }
+            foreach (Part part in this.getParts())
+                part.findSize();
+        }
+
         public FranchiseDown isDownloaded()
         {
             if (this.getSize() == 0)

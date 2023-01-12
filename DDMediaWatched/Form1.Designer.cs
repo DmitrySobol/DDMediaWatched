@@ -60,19 +60,15 @@ namespace DDMediaWatched
             this.checkBoxNewPartIsPathFile = new System.Windows.Forms.CheckBox();
             this.textBoxNewPartLength = new System.Windows.Forms.TextBox();
             this.labelNewPart5 = new System.Windows.Forms.Label();
-            this.buttonEditFranchise = new System.Windows.Forms.Button();
             this.labelParts = new System.Windows.Forms.Label();
             this.listViewParts = new System.Windows.Forms.ListView();
             this.contextMenuStripPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFullViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonEditPart = new System.Windows.Forms.Button();
             this.labelPartInfo = new System.Windows.Forms.Label();
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
-            this.buttonFindPartSize = new System.Windows.Forms.Button();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
             this.labelFontSize = new System.Windows.Forms.Label();
-            this.buttonFindAllSize = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.textBoxNewPartLengths = new System.Windows.Forms.TextBox();
             this.labelNewPartLengths = new System.Windows.Forms.Label();
@@ -103,6 +99,11 @@ namespace DDMediaWatched
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -133,9 +134,11 @@ namespace DDMediaWatched
             // 
             this.contextMenuStripTitle.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem1,
-            this.addFullWatchToolStripMenuItem});
+            this.addFullWatchToolStripMenuItem,
+            this.findSizeToolStripMenuItem1,
+            this.editToolStripMenuItem});
             this.contextMenuStripTitle.Name = "contextMenuStripTitle";
-            this.contextMenuStripTitle.Size = new System.Drawing.Size(144, 48);
+            this.contextMenuStripTitle.Size = new System.Drawing.Size(144, 92);
             // 
             // deleteToolStripMenuItem1
             // 
@@ -411,17 +414,6 @@ namespace DDMediaWatched
             this.labelNewPart5.TabIndex = 26;
             this.labelNewPart5.Text = "Average length:";
             // 
-            // buttonEditFranchise
-            // 
-            this.buttonEditFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonEditFranchise.Location = new System.Drawing.Point(994, 367);
-            this.buttonEditFranchise.Name = "buttonEditFranchise";
-            this.buttonEditFranchise.Size = new System.Drawing.Size(130, 23);
-            this.buttonEditFranchise.TabIndex = 28;
-            this.buttonEditFranchise.Text = "Edit franchise";
-            this.buttonEditFranchise.UseVisualStyleBackColor = true;
-            this.buttonEditFranchise.Click += new System.EventHandler(this.buttonEditFranchise_Click);
-            // 
             // labelParts
             // 
             this.labelParts.AutoSize = true;
@@ -452,9 +444,11 @@ namespace DDMediaWatched
             // 
             this.contextMenuStripPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
-            this.addFullViewToolStripMenuItem});
+            this.addFullViewToolStripMenuItem,
+            this.findSizeToolStripMenuItem,
+            this.editToolStripMenuItem1});
             this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 48);
+            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 92);
             // 
             // deleteToolStripMenuItem
             // 
@@ -469,17 +463,6 @@ namespace DDMediaWatched
             this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
-            // 
-            // buttonEditPart
-            // 
-            this.buttonEditPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonEditPart.Location = new System.Drawing.Point(994, 396);
-            this.buttonEditPart.Name = "buttonEditPart";
-            this.buttonEditPart.Size = new System.Drawing.Size(130, 23);
-            this.buttonEditPart.TabIndex = 31;
-            this.buttonEditPart.Text = "Edit part";
-            this.buttonEditPart.UseVisualStyleBackColor = true;
-            this.buttonEditPart.Click += new System.EventHandler(this.buttonEditPart_Click);
             // 
             // labelPartInfo
             // 
@@ -502,17 +485,6 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Size = new System.Drawing.Size(360, 250);
             this.textBoxPartInfo.TabIndex = 32;
             this.textBoxPartInfo.WordWrap = false;
-            // 
-            // buttonFindPartSize
-            // 
-            this.buttonFindPartSize.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonFindPartSize.Location = new System.Drawing.Point(1130, 396);
-            this.buttonFindPartSize.Name = "buttonFindPartSize";
-            this.buttonFindPartSize.Size = new System.Drawing.Size(130, 23);
-            this.buttonFindPartSize.TabIndex = 34;
-            this.buttonFindPartSize.Text = "Find part size";
-            this.buttonFindPartSize.UseVisualStyleBackColor = true;
-            this.buttonFindPartSize.Click += new System.EventHandler(this.buttonFindPartSize_Click);
             // 
             // numericUpDownFontSize
             // 
@@ -546,17 +518,6 @@ namespace DDMediaWatched
             this.labelFontSize.Size = new System.Drawing.Size(52, 13);
             this.labelFontSize.TabIndex = 37;
             this.labelFontSize.Text = "Font size:";
-            // 
-            // buttonFindAllSize
-            // 
-            this.buttonFindAllSize.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonFindAllSize.Location = new System.Drawing.Point(1130, 370);
-            this.buttonFindAllSize.Name = "buttonFindAllSize";
-            this.buttonFindAllSize.Size = new System.Drawing.Size(130, 23);
-            this.buttonFindAllSize.TabIndex = 40;
-            this.buttonFindAllSize.Text = "Find all size";
-            this.buttonFindAllSize.UseVisualStyleBackColor = true;
-            this.buttonFindAllSize.Click += new System.EventHandler(this.buttonFindAllSize_Click);
             // 
             // textBoxLog
             // 
@@ -894,6 +855,7 @@ namespace DDMediaWatched
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importToolStripMenuItem,
+            this.findAllSizeToolStripMenuItem,
             this.backUpToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -921,6 +883,41 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // findAllSizeToolStripMenuItem
+            // 
+            this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findAllSizeToolStripMenuItem.Text = "Find all size";
+            this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
+            // 
+            // findSizeToolStripMenuItem
+            // 
+            this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findSizeToolStripMenuItem.Text = "Find size";
+            this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
+            // 
+            // findSizeToolStripMenuItem1
+            // 
+            this.findSizeToolStripMenuItem1.Name = "findSizeToolStripMenuItem1";
+            this.findSizeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.findSizeToolStripMenuItem1.Text = "Find size";
+            this.findSizeToolStripMenuItem1.Click += new System.EventHandler(this.findSizeToolStripMenuItem1_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem1
+            // 
+            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem1.Text = "Edit";
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,16 +929,12 @@ namespace DDMediaWatched
             this.Controls.Add(this.groupBoxNewFranchise);
             this.Controls.Add(this.groupBoxNewPart);
             this.Controls.Add(this.textBoxLog);
-            this.Controls.Add(this.buttonFindAllSize);
             this.Controls.Add(this.labelFontSize);
             this.Controls.Add(this.numericUpDownFontSize);
-            this.Controls.Add(this.buttonFindPartSize);
             this.Controls.Add(this.labelPartInfo);
             this.Controls.Add(this.textBoxPartInfo);
-            this.Controls.Add(this.buttonEditPart);
             this.Controls.Add(this.labelParts);
             this.Controls.Add(this.listViewParts);
-            this.Controls.Add(this.buttonEditFranchise);
             this.Controls.Add(this.buttonNewPart);
             this.Controls.Add(this.buttonNewFranchise);
             this.Controls.Add(this.labelInfo);
@@ -1004,16 +997,12 @@ namespace DDMediaWatched
         private System.Windows.Forms.CheckBox checkBoxNewPartIsPathFile;
         private System.Windows.Forms.TextBox textBoxNewPartLength;
         private System.Windows.Forms.Label labelNewPart5;
-        private System.Windows.Forms.Button buttonEditFranchise;
         private System.Windows.Forms.Label labelParts;
         private System.Windows.Forms.ListView listViewParts;
-        private System.Windows.Forms.Button buttonEditPart;
         private System.Windows.Forms.Label labelPartInfo;
         private System.Windows.Forms.TextBox textBoxPartInfo;
-        private System.Windows.Forms.Button buttonFindPartSize;
         private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
         private System.Windows.Forms.Label labelFontSize;
-        private System.Windows.Forms.Button buttonFindAllSize;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TextBox textBoxNewPartLengths;
         private System.Windows.Forms.Label labelNewPartLengths;
@@ -1050,6 +1039,11 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findAllSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findSizeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
     }
 }
 

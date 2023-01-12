@@ -184,11 +184,7 @@ namespace DDMediaWatched
             controlsInfo.Add(textBoxInfo);
             controlsNewPart.Add(groupBoxNewPart);
             controlsRightButtons.Add(buttonNewFranchise);
-            controlsRightButtons.Add(buttonEditFranchise);
             controlsRightButtons.Add(buttonNewPart);
-            controlsRightButtons.Add(buttonEditPart);
-            controlsRightButtons.Add(buttonFindPartSize);
-            controlsRightButtons.Add(buttonFindAllSize);
             controlsRightButtons.Add(buttonSort);
             controlsSort.Add(groupBoxSort);
         }
@@ -288,22 +284,6 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
-        private void buttonEditFranchise_Click(object sender, EventArgs e)
-        {
-            if (listViewTitles.SelectedItems.Count > 0)
-            {
-                ControlsDisable(controlsRightButtons);
-                string selected = listViewTitles.SelectedItems[0].Text;
-                foreach (Franchise franchise in franchises)
-                    if (franchise.getName() == selected)
-                    {
-                        currentFranchise = franchise;
-                        break;
-                    }
-                EditFranchise();
-            }
-        }
-
         private void EditFranchise()
         {
             ControlsOff(controlsInfo);
@@ -344,6 +324,29 @@ namespace DDMediaWatched
             foreach (Part p in currentFranchise.getParts())
                 p.addWatch();
         }
+
+        private void findSizeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (currentFranchise == null)
+                return;
+            currentFranchise.findSize();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewTitles.SelectedItems.Count > 0)
+            {
+                ControlsDisable(controlsRightButtons);
+                string selected = listViewTitles.SelectedItems[0].Text;
+                foreach (Franchise franchise in franchises)
+                    if (franchise.getName() == selected)
+                    {
+                        currentFranchise = franchise;
+                        break;
+                    }
+                EditFranchise();
+            }
+        }
         //Edit Part
         private void buttonNewPart_Click(object sender, EventArgs e)
         {
@@ -362,11 +365,13 @@ namespace DDMediaWatched
 
         private void buttonNewPartSave_Click(object sender, EventArgs e)
         {
-            bool b = false;
+            int b = 0;
             foreach (Part part in currentFranchise.getParts())
                 if (part.getName() == textBoxNewPartName.Text)
-                    b = true;
-            if (b)
+                    b++;
+            if (currentPart.getName() == textBoxNewPartName.Text)
+                b--;
+            if (b > 0)
             {
                 MessageBox.Show("There is alredy exist part with this name!", "Error");
                 return;
@@ -405,22 +410,6 @@ namespace DDMediaWatched
             currentPart = null;
             PartsToListView();
             ControlsEnable(controlsRightButtons);
-        }
-
-        private void buttonEditPart_Click(object sender, EventArgs e)
-        {
-            if (listViewParts.SelectedItems.Count > 0)
-            {
-                ControlsDisable(controlsRightButtons);
-                string selected = listViewParts.SelectedItems[0].Text;
-                foreach (Part p in currentFranchise.getParts())
-                    if (p.getName() == selected)
-                    {
-                        currentPart = p;
-                        break;
-                    }
-                EditPart();
-            }
         }
 
         private void EditPart()
@@ -642,6 +631,29 @@ namespace DDMediaWatched
                 return;
             currentPart.addWatch();
         }
+
+        private void findSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentPart == null)
+                return;
+            currentPart.findSize();
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listViewParts.SelectedItems.Count > 0)
+            {
+                ControlsDisable(controlsRightButtons);
+                string selected = listViewParts.SelectedItems[0].Text;
+                foreach (Part p in currentFranchise.getParts())
+                    if (p.getName() == selected)
+                    {
+                        currentPart = p;
+                        break;
+                    }
+                EditPart();
+            }
+        }
         //ToolStripMenu
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -652,6 +664,23 @@ namespace DDMediaWatched
                     franchises.Add(new Franchise(p.Split('|')));
                 SelectNone();
                 FranchisesToListView();
+            }
+        }
+
+        private void findAllSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.pathLetter == "null")
+            {
+                MessageBox.Show("There isn't media volume!", "Error");
+            }
+            else
+            {
+                foreach (Franchise franchise in franchises)
+                {
+                    foreach (Part part in franchise.getParts())
+                        part.findSize();
+                }
+                Log("All size has been updated!");
             }
         }
 
@@ -732,30 +761,6 @@ namespace DDMediaWatched
         {
             foreach (Control s in controls)
                 s.Enabled = false;
-        }
-
-        private void buttonFindPartSize_Click(object sender, EventArgs e)
-        {
-            if (currentPart == null)
-                return;
-            currentPart.findSize();
-        }
-
-        private void buttonFindAllSize_Click(object sender, EventArgs e)
-        {
-            if (Program.pathLetter == "null")
-            {
-                MessageBox.Show("There isn't media volume!", "Error");
-            }
-            else
-            {
-                foreach (Franchise franchise in franchises)
-                {
-                    foreach (Part part in franchise.getParts())
-                        part.findSize();
-                }
-                Log("All size has been updated!");
-            }
         }
 
         private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
