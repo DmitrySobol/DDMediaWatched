@@ -127,6 +127,12 @@ namespace DDMediaWatched
             columns.Add(ch);
             ch = new ColumnHeader
             {
+                Text = "Type",
+                Width = 40
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
                 Text = "Path",
                 Width = 200
             };
@@ -946,6 +952,13 @@ namespace DDMediaWatched
                 {
                     Tag = "%",
                     Text = String.Format("{0:f0}%", el.getPersentage())
+                };
+                item.SubItems.Add(si);
+                //Type
+                si = new ListViewItem.ListViewSubItem
+                {
+                    Tag = "Type",
+                    Text = String.Format("{0}", el.getTypeLetter())
                 };
                 item.SubItems.Add(si);
                 //Path

@@ -337,6 +337,40 @@ namespace DDMediaWatched
             }
             return s;
         }
+
+        public string getTypeLetter()
+        {
+            string s = "";
+            switch (type)
+            {
+                case FranchiseType.Anime:
+                    {
+                        s = "A";
+                    }
+                    break;
+                case FranchiseType.Cartoon:
+                    {
+                        s = "C";
+                    }
+                    break;
+                case FranchiseType.Film:
+                    {
+                        s = "F";
+                    }
+                    break;
+                case FranchiseType.Dorama:
+                    {
+                        s = "D";
+                    }
+                    break;
+                case FranchiseType.No:
+                    {
+                        s = "NULL";
+                    }
+                    break;
+            }
+            return s;
+        }
         //Mark
         public int getMark()
         {
