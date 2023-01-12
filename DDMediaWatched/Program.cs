@@ -171,15 +171,5 @@ namespace DDMediaWatched
             ret += p;
             return ret;
         }
-
-        public static int GetFirstAvailableNumber()
-        {
-            int p = 0;
-            foreach (Franchise f in Form1.franchises)
-                if (f.getNumber() > p)
-                    p = f.getNumber();
-            p++;
-            return p;
-        }
     }
 }

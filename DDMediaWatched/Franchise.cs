@@ -24,7 +24,6 @@ namespace DDMediaWatched
             type;
 
         private int
-            number,
             mark;
 
         private DateTime
@@ -37,7 +36,6 @@ namespace DDMediaWatched
             parts = new List<Part>();
             path = "";
             type = FranchiseType.No;
-            number = Program.GetFirstAvailableNumber();
             mark = -1;
             startingDate = new DateTime(2000, 1, 1);
         }
@@ -92,7 +90,6 @@ namespace DDMediaWatched
                 this.path = "";
                 parts.Add(new Part("Film", path, 1, 1, true, true, this));
             }
-            number = Program.GetFirstAvailableNumber();
             mark = -1;
             startingDate = new DateTime(2000, 1, 1);
         }
@@ -100,8 +97,6 @@ namespace DDMediaWatched
         public Franchise(FileStream f)
         {
             int p = 0;
-            //number
-            number = Program.FileReadInt32(f);
             //type
             type = (FranchiseType)Program.FileReadInt32(f);
             //names
@@ -127,8 +122,6 @@ namespace DDMediaWatched
 
         public void SaveToBin(FileStream f)
         {
-            //number
-            Program.FileWriteInt32(f, number);
             //type
             Program.FileWriteInt32(f, (int)type);
             //names
@@ -309,16 +302,6 @@ namespace DDMediaWatched
             }
             return s;
         }
-        //Number
-        public void setNumber(int number)
-        {
-            this.number = number;
-        }
-
-        public int getNumber()
-        {
-            return number;
-        }
         //Mark
         public int getMark()
         {
@@ -351,7 +334,6 @@ namespace DDMediaWatched
         public override string ToString()
         {
             string s = "";
-            s += String.Format("{0,-15}| {1}\r\n", "Number", this.getNumber());
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.getName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.getOtherNames());
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());

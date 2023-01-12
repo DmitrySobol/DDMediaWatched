@@ -74,16 +74,8 @@ namespace DDMediaWatched
             ColumnHeader ch;
             ch = new ColumnHeader
             {
-                DisplayIndex = 1,
                 Text = "Name",
                 Width = 150
-            };
-            columns.Add(ch);
-            ch = new ColumnHeader
-            {
-                DisplayIndex = 0,
-                Text = "Num",
-                Width = 30
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -856,17 +848,6 @@ namespace DDMediaWatched
                 };
                 ListViewItem.ListViewSubItem si;
                 int p = 0;
-                //Number
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Number"
-                };
-                p = el.getNumber();
-                if (p > 0)
-                    si.Text = p.ToString();
-                else
-                    si.Text = "";
-                item.SubItems.Add(si);
                 //Length
                 si = new ListViewItem.ListViewSubItem
                 {
