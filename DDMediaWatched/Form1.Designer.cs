@@ -183,7 +183,7 @@ namespace DDMediaWatched
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
-            this.textBoxInfo.Size = new System.Drawing.Size(410, 336);
+            this.textBoxInfo.Size = new System.Drawing.Size(410, 365);
             this.textBoxInfo.TabIndex = 3;
             // 
             // labelTitleInfo
@@ -209,7 +209,7 @@ namespace DDMediaWatched
             // buttonNewFranchise
             // 
             this.buttonNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchise.Location = new System.Drawing.Point(858, 367);
+            this.buttonNewFranchise.Location = new System.Drawing.Point(852, 396);
             this.buttonNewFranchise.Name = "buttonNewFranchise";
             this.buttonNewFranchise.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchise.TabIndex = 6;
@@ -220,7 +220,7 @@ namespace DDMediaWatched
             // buttonNewFranchiseSave
             // 
             this.buttonNewFranchiseSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(290, 327);
+            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(284, 349);
             this.buttonNewFranchiseSave.Name = "buttonNewFranchiseSave";
             this.buttonNewFranchiseSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchiseSave.TabIndex = 7;
@@ -291,7 +291,7 @@ namespace DDMediaWatched
             // buttonNewPart
             // 
             this.buttonNewPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPart.Location = new System.Drawing.Point(858, 396);
+            this.buttonNewPart.Location = new System.Drawing.Point(997, 396);
             this.buttonNewPart.Name = "buttonNewPart";
             this.buttonNewPart.Size = new System.Drawing.Size(130, 23);
             this.buttonNewPart.TabIndex = 14;
@@ -302,7 +302,7 @@ namespace DDMediaWatched
             // buttonNewPartSave
             // 
             this.buttonNewPartSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPartSave.Location = new System.Drawing.Point(287, 327);
+            this.buttonNewPartSave.Location = new System.Drawing.Point(286, 351);
             this.buttonNewPartSave.Name = "buttonNewPartSave";
             this.buttonNewPartSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewPartSave.TabIndex = 15;
@@ -489,7 +489,7 @@ namespace DDMediaWatched
             // numericUpDownFontSize
             // 
             this.numericUpDownFontSize.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownFontSize.Location = new System.Drawing.Point(1139, 425);
+            this.numericUpDownFontSize.Location = new System.Drawing.Point(1142, 425);
             this.numericUpDownFontSize.Maximum = new decimal(new int[] {
             32,
             0,
@@ -501,7 +501,7 @@ namespace DDMediaWatched
             0,
             0});
             this.numericUpDownFontSize.Name = "numericUpDownFontSize";
-            this.numericUpDownFontSize.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownFontSize.Size = new System.Drawing.Size(130, 20);
             this.numericUpDownFontSize.TabIndex = 36;
             this.numericUpDownFontSize.Value = new decimal(new int[] {
             8,
@@ -513,7 +513,7 @@ namespace DDMediaWatched
             // labelFontSize
             // 
             this.labelFontSize.AutoSize = true;
-            this.labelFontSize.Location = new System.Drawing.Point(1081, 429);
+            this.labelFontSize.Location = new System.Drawing.Point(1084, 429);
             this.labelFontSize.Name = "labelFontSize";
             this.labelFontSize.Size = new System.Drawing.Size(52, 13);
             this.labelFontSize.TabIndex = 37;
@@ -629,7 +629,7 @@ namespace DDMediaWatched
             this.groupBoxNewPart.Font = new System.Drawing.Font("Consolas", 8F);
             this.groupBoxNewPart.Location = new System.Drawing.Point(852, 10);
             this.groupBoxNewPart.Name = "groupBoxNewPart";
-            this.groupBoxNewPart.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxNewPart.Size = new System.Drawing.Size(420, 380);
             this.groupBoxNewPart.TabIndex = 48;
             this.groupBoxNewPart.TabStop = false;
             this.groupBoxNewPart.Text = "Edit part";
@@ -680,7 +680,7 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
             this.groupBoxNewFranchise.Location = new System.Drawing.Point(852, 12);
             this.groupBoxNewFranchise.Name = "groupBoxNewFranchise";
-            this.groupBoxNewFranchise.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxNewFranchise.Size = new System.Drawing.Size(420, 380);
             this.groupBoxNewFranchise.TabIndex = 49;
             this.groupBoxNewFranchise.TabStop = false;
             this.groupBoxNewFranchise.Text = "Edit franchise";
@@ -718,7 +718,7 @@ namespace DDMediaWatched
             // buttonSort
             // 
             this.buttonSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSort.Location = new System.Drawing.Point(858, 425);
+            this.buttonSort.Location = new System.Drawing.Point(1142, 396);
             this.buttonSort.Name = "buttonSort";
             this.buttonSort.Size = new System.Drawing.Size(130, 23);
             this.buttonSort.TabIndex = 50;
@@ -739,7 +739,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
             this.groupBoxSort.Location = new System.Drawing.Point(852, 11);
             this.groupBoxSort.Name = "groupBoxSort";
-            this.groupBoxSort.Size = new System.Drawing.Size(420, 352);
+            this.groupBoxSort.Size = new System.Drawing.Size(420, 380);
             this.groupBoxSort.TabIndex = 51;
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
@@ -833,7 +833,7 @@ namespace DDMediaWatched
             // buttonSortSave
             // 
             this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSortSave.Location = new System.Drawing.Point(284, 318);
+            this.buttonSortSave.Location = new System.Drawing.Point(284, 350);
             this.buttonSortSave.Name = "buttonSortSave";
             this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
             this.buttonSortSave.TabIndex = 14;

@@ -281,6 +281,8 @@ namespace DDMediaWatched
                 part.findSize();
             ControlsOn(controlsInfo);
             FranchisesToListView();
+            listViewParts.Enabled = true;
+            listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
         }
 
@@ -337,6 +339,8 @@ namespace DDMediaWatched
             if (listViewTitles.SelectedItems.Count > 0)
             {
                 ControlsDisable(controlsRightButtons);
+                listViewParts.Enabled = false;
+                listViewTitles.Enabled = false;
                 string selected = listViewTitles.SelectedItems[0].Text;
                 foreach (Franchise franchise in franchises)
                     if (franchise.getName() == selected)
@@ -409,6 +413,8 @@ namespace DDMediaWatched
             ControlsOn(controlsInfo);
             currentPart = null;
             PartsToListView();
+            listViewParts.Enabled = true;
+            listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
         }
 
@@ -644,6 +650,8 @@ namespace DDMediaWatched
             if (listViewParts.SelectedItems.Count > 0)
             {
                 ControlsDisable(controlsRightButtons);
+                listViewParts.Enabled = false;
+                listViewTitles.Enabled = false;
                 string selected = listViewParts.SelectedItems[0].Text;
                 foreach (Part p in currentFranchise.getParts())
                     if (p.getName() == selected)
