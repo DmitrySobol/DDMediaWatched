@@ -33,7 +33,13 @@ namespace DDMediaWatched
             controlsSort = new List<Control>();
 
         public List<Franchise.FranchiseType>
-            TypeOn = new List<Franchise.FranchiseType>();
+            TypeOnType = new List<Franchise.FranchiseType>();
+
+        public List<Franchise.FranchiseDown>
+            TypeOnDown = new List<Franchise.FranchiseDown>();
+
+        public List<Franchise.FranchisePersentage>
+            TypeOnPersentage = new List<Franchise.FranchisePersentage>();
 
         public static string
             sortBy = "";
@@ -45,12 +51,21 @@ namespace DDMediaWatched
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-            checkedListBoxSortTypes.SetItemChecked(0, true);
-            checkedListBoxSortTypes.SetItemChecked(1, true);
-            checkedListBoxSortTypes.SetItemChecked(2, true);
-            checkedListBoxSortTypes.SetItemChecked(3, true);
-            foreach (int p in checkedListBoxSortTypes.CheckedIndices)
-                TypeOn.Add((Franchise.FranchiseType)p);
+            checkedListBoxSortTypesGenre.SetItemChecked(0, true);
+            checkedListBoxSortTypesGenre.SetItemChecked(1, true);
+            checkedListBoxSortTypesGenre.SetItemChecked(2, true);
+            checkedListBoxSortTypesGenre.SetItemChecked(3, true);
+            foreach (int p in checkedListBoxSortTypesGenre.CheckedIndices)
+                TypeOnType.Add((Franchise.FranchiseType)p);
+            checkedListBoxSortTypesDown.SetItemChecked(0, true);
+            checkedListBoxSortTypesDown.SetItemChecked(1, true);
+            foreach (int p in checkedListBoxSortTypesDown.CheckedIndices)
+                TypeOnDown.Add((Franchise.FranchiseDown)p);
+            checkedListBoxSortTypesPersentage.SetItemChecked(0, true);
+            checkedListBoxSortTypesPersentage.SetItemChecked(1, true);
+            checkedListBoxSortTypesPersentage.SetItemChecked(2, true);
+            foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
+                TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
             LoadColumnsFranchises();
             LoadColumnsParts();
             FindDiskLetter();
@@ -75,7 +90,7 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "Name",
-                Width = 150
+                Width = 180
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -170,13 +185,10 @@ namespace DDMediaWatched
             controlsNewPart.Add(groupBoxNewPart);
             controlsRightButtons.Add(buttonNewFranchise);
             controlsRightButtons.Add(buttonEditFranchise);
-            controlsRightButtons.Add(buttonDeleteFranchise);
             controlsRightButtons.Add(buttonNewPart);
             controlsRightButtons.Add(buttonEditPart);
-            controlsRightButtons.Add(buttonDeletePart);
             controlsRightButtons.Add(buttonFindPartSize);
             controlsRightButtons.Add(buttonFindAllSize);
-            controlsRightButtons.Add(buttonImport);
             controlsRightButtons.Add(buttonSort);
             controlsSort.Add(groupBoxSort);
         }
@@ -309,7 +321,20 @@ namespace DDMediaWatched
         //ContexFranchise
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("I'm so sorry, but this function don't work :(", "Error");
+            ControlsDisable(controlsRightButtons);
+            if (currentFranchise != null)
+                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    for (int i = 0; i < franchises.Count; i++)
+                        if (franchises[i].getName() == currentFranchise.getName())
+                        {
+                            franchises.RemoveAt(i);
+                            break;
+                        }
+                    SelectNone();
+                    FranchisesToListView();
+                }
+            ControlsEnable(controlsRightButtons);
         }
 
         private void addFullWatchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -596,7 +621,19 @@ namespace DDMediaWatched
         //ContexParts
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("I'm so sorry, but this function don't work :(", "Error");
+            ControlsDisable(controlsRightButtons);
+            if (currentPart != null)
+                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    for (int i = 0; i < currentFranchise.getParts().Count; i++)
+                        if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+                        {
+                            currentFranchise.getParts().RemoveAt(i);
+                            break;
+                        }
+                    SelectNone();
+                }
+            ControlsEnable(controlsRightButtons);
         }
 
         private void addFullViewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -604,6 +641,30 @@ namespace DDMediaWatched
             if (currentPart == null)
                 return;
             currentPart.addWatch();
+        }
+        //ToolStripMenu
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] s = File.ReadAllLines(openFileDialog1.FileName);
+                foreach (string p in s)
+                    franchises.Add(new Franchise(p.Split('|')));
+                SelectNone();
+                FranchisesToListView();
+            }
+        }
+
+        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            File.Copy(path + "Media.bin", path + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
+            MessageBox.Show("BackUP has been created!", "Success");
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveMedia();
         }
         //Other
         private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)
@@ -697,64 +758,12 @@ namespace DDMediaWatched
             }
         }
 
-        private void buttonDeletePart_Click(object sender, EventArgs e)
-        {
-            ControlsDisable(controlsRightButtons);
-            if (currentPart != null)
-                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    for (int i = 0; i < currentFranchise.getParts().Count; i++)
-                        if (currentFranchise.getParts()[i].getName() == currentPart.getName())
-                        {
-                            currentFranchise.getParts().RemoveAt(i);
-                            break;
-                        }
-                    SelectNone();
-                }
-            ControlsEnable(controlsRightButtons);
-        }
-
-        private void buttonDeleteFranchise_Click(object sender, EventArgs e)
-        {
-            ControlsDisable(controlsRightButtons);
-            if (currentFranchise != null)
-                if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    for (int i = 0; i < franchises.Count; i++)
-                        if (franchises[i].getName() == currentFranchise.getName())
-                        {
-                            franchises.RemoveAt(i);
-                            break;
-                        }
-                    SelectNone();
-                    FranchisesToListView();
-                }
-            ControlsEnable(controlsRightButtons);
-        }
-
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            SaveMedia();
-        }
-
         private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
         {
             listViewParts.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
-        }
-
-        private void buttonImport_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string[] s = File.ReadAllLines(openFileDialog1.FileName);
-                foreach (string p in s)
-                    franchises.Add(new Franchise(p.Split('|')));
-                SelectNone();
-                FranchisesToListView();
-            }
         }
 
         private void buttonSort_Click(object sender, EventArgs e)
@@ -769,9 +778,15 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsSort);
             ControlsOn(controlsInfo);
-            TypeOn.Clear();
-            foreach (int p in checkedListBoxSortTypes.CheckedIndices)
-                TypeOn.Add((Franchise.FranchiseType)p);
+            TypeOnType.Clear();
+            foreach (int p in checkedListBoxSortTypesGenre.CheckedIndices)
+                TypeOnType.Add((Franchise.FranchiseType)p);
+            TypeOnDown.Clear();
+            foreach (int p in checkedListBoxSortTypesDown.CheckedIndices)
+                TypeOnDown.Add((Franchise.FranchiseDown)p);
+            TypeOnPersentage.Clear();
+            foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
+                TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
         }
@@ -784,13 +799,6 @@ namespace DDMediaWatched
         private void checkBoxSortReverse_CheckedChanged(object sender, EventArgs e)
         {
             reverseSort = checkBoxSortReverse.Checked;
-        }
-
-        private void buttonBackUP_Click(object sender, EventArgs e)
-        {
-            DateTime dt = DateTime.Now;
-            File.Copy(path + "Media.bin", path + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
-            MessageBox.Show("BackUP has been created!", "Success");
         }
 
         public void FranchisesToListView()
@@ -971,9 +979,13 @@ namespace DDMediaWatched
 
         public bool IsTypeOn(Franchise el)
         {
-            bool b = false;
-            if (TypeOn.Contains(el.getType()))
-                b = true;
+            bool b = true;
+            if (!TypeOnType.Contains(el.getType()))
+                b = false;
+            if (!TypeOnDown.Contains(el.isDownloaded()))
+                b = false;
+            if (!TypeOnPersentage.Contains(el.isPersentage()))
+                b = false;
             return b;
         }
 

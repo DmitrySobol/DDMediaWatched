@@ -10,6 +10,8 @@ namespace DDMediaWatched
     public class Franchise
     {
         public enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
+        public enum FranchiseDown {Downloaded, NoDownloaded };
+        public enum FranchisePersentage {Zero, Started, Full };
 
         private List<string>
             names;
@@ -205,6 +207,16 @@ namespace DDMediaWatched
             persentage /= this.getLength();
             return persentage;
         }
+
+        public FranchisePersentage isPersentage()
+        {
+            FranchisePersentage fp = FranchisePersentage.Zero;
+            if (this.getPersentage() > 0.001d)
+                fp = FranchisePersentage.Started;
+            if (this.getPersentage() > 99.999d)
+                fp = FranchisePersentage.Full;
+            return fp;
+        }
         //Size
         public long getSize()
         {
@@ -212,6 +224,13 @@ namespace DDMediaWatched
             foreach (Part part in parts)
                 p += part.getSize();
             return p;
+        }
+
+        public FranchiseDown isDownloaded()
+        {
+            if (this.getSize() == 0)
+                return FranchiseDown.NoDownloaded;
+            return FranchiseDown.Downloaded;
         }
         //BPS
         public double getBPS()
