@@ -90,6 +90,8 @@ namespace DDMediaWatched
             this.textBoxNewFranchiseDate = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
+            this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
+            this.labelSortColorBy = new System.Windows.Forms.Label();
             this.checkedListBoxSortTypesPersentage = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesDown = new System.Windows.Forms.CheckedListBox();
             this.checkBoxSortReverse = new System.Windows.Forms.CheckBox();
@@ -104,8 +106,6 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
-            this.labelSortColorBy = new System.Windows.Forms.Label();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -777,6 +777,29 @@ namespace DDMediaWatched
             this.groupBoxSort.Text = "Sort";
             this.groupBoxSort.Visible = false;
             // 
+            // comboBoxSortColorBy
+            // 
+            this.comboBoxSortColorBy.FormattingEnabled = true;
+            this.comboBoxSortColorBy.Items.AddRange(new object[] {
+            "None",
+            "Persentage (3)",
+            "Persentage (Gradient)"});
+            this.comboBoxSortColorBy.Location = new System.Drawing.Point(284, 33);
+            this.comboBoxSortColorBy.Name = "comboBoxSortColorBy";
+            this.comboBoxSortColorBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSortColorBy.TabIndex = 24;
+            this.comboBoxSortColorBy.Text = "Persentage (Gradient)";
+            this.comboBoxSortColorBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortColorBy_SelectedIndexChanged);
+            // 
+            // labelSortColorBy
+            // 
+            this.labelSortColorBy.AutoSize = true;
+            this.labelSortColorBy.Location = new System.Drawing.Point(281, 14);
+            this.labelSortColorBy.Name = "labelSortColorBy";
+            this.labelSortColorBy.Size = new System.Drawing.Size(61, 13);
+            this.labelSortColorBy.TabIndex = 23;
+            this.labelSortColorBy.Text = "Color by:";
+            // 
             // checkedListBoxSortTypesPersentage
             // 
             this.checkedListBoxSortTypesPersentage.CheckOnClick = true;
@@ -924,29 +947,6 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // comboBoxSortColorBy
-            // 
-            this.comboBoxSortColorBy.FormattingEnabled = true;
-            this.comboBoxSortColorBy.Items.AddRange(new object[] {
-            "None",
-            "Persentage (3)",
-            "Persentage (Gradient)"});
-            this.comboBoxSortColorBy.Location = new System.Drawing.Point(284, 33);
-            this.comboBoxSortColorBy.Name = "comboBoxSortColorBy";
-            this.comboBoxSortColorBy.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxSortColorBy.TabIndex = 24;
-            this.comboBoxSortColorBy.Text = "Persentage (Gradient)";
-            this.comboBoxSortColorBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortColorBy_SelectedIndexChanged);
-            // 
-            // labelSortColorBy
-            // 
-            this.labelSortColorBy.AutoSize = true;
-            this.labelSortColorBy.Location = new System.Drawing.Point(281, 14);
-            this.labelSortColorBy.Name = "labelSortColorBy";
-            this.labelSortColorBy.Size = new System.Drawing.Size(61, 13);
-            this.labelSortColorBy.TabIndex = 23;
-            this.labelSortColorBy.Text = "Color by:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -979,6 +979,7 @@ namespace DDMediaWatched
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Dax_Donamo Media Watched";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStripTitle.ResumeLayout(false);
             this.contextMenuStripPart.ResumeLayout(false);

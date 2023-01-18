@@ -224,7 +224,7 @@ namespace DDMediaWatched
                     break;
                 case Keys.Escape:
                     {
-                        Environment.Exit(0);
+                        AppClose();
                     }
                     break;
             }
@@ -823,6 +823,12 @@ namespace DDMediaWatched
             sortBy = comboBoxSortSortBy.Text;
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            AppClose();
+        }
+
         private void comboBoxSortColorBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             colorBy = comboBoxSortColorBy.Text;
@@ -1064,6 +1070,30 @@ namespace DDMediaWatched
             if (!TypeOnPersentage.Contains(el.isPersentage()))
                 b = false;
             return b;
+        }
+
+        public void AppClose()
+        {
+            DialogResult dr = MessageBox.Show("Do you wanna save changes?", "Exit", MessageBoxButtons.YesNoCancel);
+            switch (dr)
+            {
+                case DialogResult.Yes:
+                    {
+                        SaveMedia();
+                        Environment.Exit(0);
+                    }
+                    break;
+                case DialogResult.No:
+                    {
+                        Environment.Exit(0);
+                    }
+                    break;
+                case DialogResult.Cancel:
+                    {
+
+                    }
+                    break;
+            }
         }
 
         public void Log(string s)
