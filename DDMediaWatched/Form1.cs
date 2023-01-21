@@ -46,7 +46,8 @@ namespace DDMediaWatched
             colorBy = "";
 
         public static bool
-            reverseSort = false;
+            reverseSort = false,
+            isEdited = false;
 
         private static Color
             colorPers100 = Color.FromArgb(191, 255, 191),
@@ -286,6 +287,7 @@ namespace DDMediaWatched
 
         private void buttonNewFranchiseSave_Click(object sender, EventArgs e)
         {
+            isEdited = true;
             ControlsOff(controlsNewFranchise);
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
             currentFranchise.setPath(textBoxNewFranchisePath.Text);
@@ -317,6 +319,7 @@ namespace DDMediaWatched
         //ContexFranchise
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            isEdited = true;
             ControlsDisable(controlsRightButtons);
             if (currentFranchise != null)
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -337,6 +340,7 @@ namespace DDMediaWatched
         {
             if (currentFranchise == null)
                 return;
+            isEdited = true;
             foreach (Part p in currentFranchise.getParts())
                 p.addWatch();
         }
@@ -345,6 +349,7 @@ namespace DDMediaWatched
         {
             if (currentFranchise == null)
                 return;
+            isEdited = true;
             currentFranchise.findSize();
         }
 
@@ -352,6 +357,7 @@ namespace DDMediaWatched
         {
             if (listViewTitles.SelectedItems.Count > 0)
             {
+                isEdited = true;
                 ControlsDisable(controlsRightButtons);
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
@@ -383,6 +389,7 @@ namespace DDMediaWatched
 
         private void buttonNewPartSave_Click(object sender, EventArgs e)
         {
+            isEdited = true;
             int b = 0;
             foreach (Part part in currentFranchise.getParts())
                 if (part.getName() == textBoxNewPartName.Text)
@@ -630,6 +637,7 @@ namespace DDMediaWatched
         //ContexParts
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            isEdited = true;
             ControlsDisable(controlsRightButtons);
             if (currentPart != null)
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -649,6 +657,7 @@ namespace DDMediaWatched
         {
             if (currentPart == null)
                 return;
+            isEdited = true;
             currentPart.addWatch();
         }
 
@@ -656,6 +665,7 @@ namespace DDMediaWatched
         {
             if (currentPart == null)
                 return;
+            isEdited = true;
             currentPart.findSize();
         }
 
@@ -663,6 +673,7 @@ namespace DDMediaWatched
         {
             if (listViewParts.SelectedItems.Count > 0)
             {
+                isEdited = true;
                 ControlsDisable(controlsRightButtons);
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
@@ -681,6 +692,7 @@ namespace DDMediaWatched
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                isEdited = true;
                 string[] s = File.ReadAllLines(openFileDialog1.FileName);
                 foreach (string p in s)
                     franchises.Add(new Franchise(p.Split('|')));
@@ -697,6 +709,7 @@ namespace DDMediaWatched
             }
             else
             {
+                isEdited = true;
                 foreach (Franchise franchise in franchises)
                 {
                     foreach (Part part in franchise.getParts())
@@ -998,6 +1011,8 @@ namespace DDMediaWatched
 
         public void AppClose()
         {
+            if (!isEdited)
+                Environment.Exit(0);
             DialogResult dr = MessageBox.Show("Do you wanna save changes?", "Exit", MessageBoxButtons.YesNoCancel);
             switch (dr)
             {
