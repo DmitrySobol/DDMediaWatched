@@ -203,6 +203,8 @@ namespace DDMediaWatched
 
         public double getPersentage()
         {
+            if (this.getLength() == 0)
+                return 0;
             double persentage = this.getUniqueWatchedLength() * 100;
             persentage /= this.getLength();
             return persentage;
