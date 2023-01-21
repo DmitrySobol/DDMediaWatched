@@ -45,7 +45,7 @@ namespace DDMediaWatched
             isPathFile = 0;
             parentFranchise = parent;
             series = new List<Series>();
-            series.Add(new Series(0, 1440));
+            series.Add(new Series(1440, 0));
         }
 
         public Part(string name, string path, int number, int serCount, bool autoSize, bool autoLength, Franchise parent)
