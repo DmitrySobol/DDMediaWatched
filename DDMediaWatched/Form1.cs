@@ -895,41 +895,9 @@ namespace DDMediaWatched
             {
                 ListViewItem item = new ListViewItem()
                 {
-                    Text = el.getName()
+                    Text = el.getName(),
+                    BackColor = GetColor(el)
                 };
-                switch (colorBy)
-                {
-                    case "Persentage (3)":
-                        {
-                            switch (el.isPersentage())
-                            {
-                                case Franchise.FranchisePersentage.Zero:
-                                    item.BackColor = colorPers0;
-                                    break;
-                                case Franchise.FranchisePersentage.Started:
-                                    item.BackColor = colorPers50;
-                                    break;
-                                case Franchise.FranchisePersentage.Full:
-                                    item.BackColor = colorPers100;
-                                    break;
-                            }
-                        }
-                        break;
-                    case "Persentage (Gradient)":
-                        {
-                            if (el.getPersentage() > 50)
-                            {
-                                double pColor = 191 + (100 - el.getPersentage()) / 50 * 64;
-                                item.BackColor = Color.FromArgb((int)Math.Round(pColor), 255, 191);
-                            }
-                            else
-                            {
-                                double pColor = 191 + el.getPersentage() / 50 * 64;
-                                item.BackColor = Color.FromArgb(255, (int)Math.Round(pColor), 191);
-                            }
-                        }
-                        break;
-                }
                 ListViewItem.ListViewSubItem si;
                 int p = 0;
                 //Length
@@ -1099,6 +1067,45 @@ namespace DDMediaWatched
         public void Log(string s)
         {
             textBoxLog.Text += s + "\r\n";
+        }
+
+        public Color GetColor(Franchise franchise)
+        {
+            Color ret = Color.FromArgb(255, 255, 255);
+            switch (colorBy)
+            {
+                case "Persentage (3)":
+                    {
+                        switch (franchise.isPersentage())
+                        {
+                            case Franchise.FranchisePersentage.Zero:
+                                ret = colorPers0;
+                                break;
+                            case Franchise.FranchisePersentage.Started:
+                                ret = colorPers50;
+                                break;
+                            case Franchise.FranchisePersentage.Full:
+                                ret = colorPers100;
+                                break;
+                        }
+                    }
+                    break;
+                case "Persentage (Gradient)":
+                    {
+                        if (franchise.getPersentage() > 50)
+                        {
+                            double pColor = 191 + (100 - franchise.getPersentage()) / 50 * 64;
+                            ret = Color.FromArgb((int)Math.Round(pColor), 255, 191);
+                        }
+                        else
+                        {
+                            double pColor = 191 + franchise.getPersentage() / 50 * 64;
+                            ret = Color.FromArgb(255, (int)Math.Round(pColor), 191);
+                        }
+                    }
+                    break;
+            }
+            return ret;
         }
     }
 }
