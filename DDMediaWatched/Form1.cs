@@ -846,51 +846,7 @@ namespace DDMediaWatched
             foreach (Franchise el in franchises)
                 if (IsTypeOn(el))
                     franchisesType.Add(el);
-            switch (sortBy)
-            {
-                case "Name":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getName()).ToList();
-                    }
-                    break;
-                case "Size":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getSize()).ToList();
-                    }
-                    break;
-                case "Length":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getLength()).ToList();
-                    }
-                    break;
-                case "Persentage":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getPersentage()).ToList();
-                    }
-                    break;
-                case "BPS":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getBPS()).ToList();
-                    }
-                    break;
-                case "Date":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getStartingDate()).ToList();
-                    }
-                    break;
-                case "Mark":
-                    {
-                        franchisesType = franchisesType.OrderBy(x => x.getMark()).ToList();
-                    }
-                    break;
-                default:
-                    {
-
-                    }
-                    break;
-            }
-            if (reverseSort)
-                franchisesType.Reverse();
+            SortFranchises(franchisesType);
             foreach (Franchise el in franchisesType)
             {
                 ListViewItem item = new ListViewItem()
@@ -1106,6 +1062,75 @@ namespace DDMediaWatched
                     break;
             }
             return ret;
+        }
+
+        public void SortFranchises(List<Franchise> list)
+        {
+            switch (sortBy)
+            {
+                case "Name":
+                    {
+                        list = list.OrderBy(x => x.getName()).ToList();
+                    }
+                    break;
+                case "Size":
+                    {
+                        list = list.OrderBy(x => x.getSize()).ToList();
+                    }
+                    break;
+                case "Length":
+                    {
+                        list = list.OrderBy(x => x.getLength()).ToList();
+                    }
+                    break;
+                case "Persentage (0-100)":
+                    {
+                        list = list.OrderBy(x => x.getPersentage()).ToList();
+                    }
+                    break;
+                case "Persentage (99-0, 100)":
+                    {
+                        for (int j = 0; j < list.Count; j++)
+                            for (int i = 0; i < list.Count - 1; i++)
+                            {
+                                if (list[i].getPersentage() < list[i + 1].getPersentage() && list[i + 1].isPersentage() != Franchise.FranchisePersentage.Full)
+                                {
+                                    Franchise fr = list[i];
+                                    list[i] = list[i + 1];
+                                    list[i + 1] = fr;
+                                }
+                                if (list[i].isPersentage() == Franchise.FranchisePersentage.Full)
+                                {
+                                    Franchise fr = list[i];
+                                    list[i] = list[i + 1];
+                                    list[i + 1] = fr;
+                                }
+                            }
+                    }
+                    break;
+                case "BPS":
+                    {
+                        list = list.OrderBy(x => x.getBPS()).ToList();
+                    }
+                    break;
+                case "Date":
+                    {
+                        list = list.OrderBy(x => x.getStartingDate()).ToList();
+                    }
+                    break;
+                case "Mark":
+                    {
+                        list = list.OrderBy(x => x.getMark()).ToList();
+                    }
+                    break;
+                default:
+                    {
+
+                    }
+                    break;
+            }
+            if (reverseSort)
+                list.Reverse();
         }
     }
 }

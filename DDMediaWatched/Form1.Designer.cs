@@ -844,7 +844,8 @@ namespace DDMediaWatched
             "Name",
             "Size",
             "Length",
-            "Persentage",
+            "Persentage (0-100)",
+            "Persentage (99-0, 100)",
             "BPS",
             "Date",
             "Mark"});
@@ -852,7 +853,7 @@ namespace DDMediaWatched
             this.comboBoxSortSortBy.Name = "comboBoxSortSortBy";
             this.comboBoxSortSortBy.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSortSortBy.TabIndex = 18;
-            this.comboBoxSortSortBy.Text = "None";
+            this.comboBoxSortSortBy.Text = "Persentage (99-0, 100)";
             this.comboBoxSortSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortSortBy_SelectedIndexChanged);
             // 
             // labelSortSortBy
