@@ -859,7 +859,7 @@ namespace DDMediaWatched
             foreach (Franchise el in franchises)
                 if (IsTypeOn(el))
                     franchisesType.Add(el);
-            SortFranchises(franchisesType);
+            SortFranchises(ref franchisesType);
             foreach (Franchise el in franchisesType)
             {
                 ListViewItem item = new ListViewItem()
@@ -1079,7 +1079,7 @@ namespace DDMediaWatched
             return ret;
         }
 
-        public void SortFranchises(List<Franchise> list)
+        public void SortFranchises(ref List<Franchise> list)
         {
             switch (sortBy)
             {
