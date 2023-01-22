@@ -427,12 +427,6 @@ namespace DDMediaWatched
             ControlsOff(controlsNewPart);
             currentPart.setName(textBoxNewPartName.Text);
             currentPart.setPath(textBoxNewPartPath.Text);
-            int p = 0;
-            int.TryParse(textBoxNewPartWidth.Text, out p);
-            currentPart.setWidth(p);
-            p = 0;
-            int.TryParse(textBoxNewPartHeight.Text, out p);
-            currentPart.setHeight(p);
             if (len != -1)
             {
                 currentPart.setCommonLength(len);
@@ -452,13 +446,10 @@ namespace DDMediaWatched
         {
             ControlsOff(controlsInfo);
             ControlsOn(controlsNewPart);
-            comboBoxNewPartResolutions.SelectedIndex = -1;
             textBoxNewPartName.Text = currentPart.getName();
             textBoxNewPartPath.Text = currentPart.getPath();
             int p = currentPart.getCommonLength();
             textBoxNewPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
-            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
-            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
             numericUpDownNewPartSeries.Value = currentPart.getSeries().Count();
             checkBoxNewPartIsPathFile.Checked = currentPart.isFull();
             MakeNewPartLengths();
@@ -580,45 +571,6 @@ namespace DDMediaWatched
                 numericUpDownNewPartSeries.Enabled = true;
                 textBoxNewPartLengths.Enabled = true;
             }
-        }
-
-        private void comboBoxNewPartResolutions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBoxNewPartResolutions.Text)
-            {
-                case "NULL":
-                    {
-                        currentPart.setWidth(0);
-                        currentPart.setHeight(0);
-                    }
-                    break;
-                case "960x720":
-                    {
-                        currentPart.setWidth(960);
-                        currentPart.setHeight(720);
-                    }
-                    break;
-                case "1280x720":
-                    {
-                        currentPart.setWidth(1280);
-                        currentPart.setHeight(720);
-                    }
-                    break;
-                case "1920x1080":
-                    {
-                        currentPart.setWidth(1920);
-                        currentPart.setHeight(1080);
-                    }
-                    break;
-                case "3840x2160":
-                    {
-                        currentPart.setWidth(3840);
-                        currentPart.setHeight(2160);
-                    }
-                    break;
-            }
-            textBoxNewPartWidth.Text = currentPart.getWidth().ToString();
-            textBoxNewPartHeight.Text = currentPart.getHeight().ToString();
         }
 
         private void textBoxNewPartPath_TextChanged(object sender, EventArgs e)

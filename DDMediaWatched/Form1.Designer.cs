@@ -53,10 +53,6 @@ namespace DDMediaWatched
             this.buttonNewPartSave = new System.Windows.Forms.Button();
             this.textBoxNewPartName = new System.Windows.Forms.TextBox();
             this.labelNewPart1 = new System.Windows.Forms.Label();
-            this.textBoxNewPartWidth = new System.Windows.Forms.TextBox();
-            this.labelNewPart2 = new System.Windows.Forms.Label();
-            this.labelNewPart3 = new System.Windows.Forms.Label();
-            this.textBoxNewPartHeight = new System.Windows.Forms.TextBox();
             this.textBoxNewPartPath = new System.Windows.Forms.TextBox();
             this.labelNewPart4 = new System.Windows.Forms.Label();
             this.checkBoxNewPartIsPathFile = new System.Windows.Forms.CheckBox();
@@ -78,7 +74,6 @@ namespace DDMediaWatched
             this.labelNewPartLengths = new System.Windows.Forms.Label();
             this.labelNewPartSeries = new System.Windows.Forms.Label();
             this.numericUpDownNewPartSeries = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxNewPartResolutions = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxNewPart = new System.Windows.Forms.GroupBox();
             this.buttonNewPartCommonLengthToAll = new System.Windows.Forms.Button();
@@ -344,46 +339,10 @@ namespace DDMediaWatched
             this.labelNewPart1.TabIndex = 16;
             this.labelNewPart1.Text = "Name:";
             // 
-            // textBoxNewPartWidth
-            // 
-            this.textBoxNewPartWidth.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartWidth.Location = new System.Drawing.Point(103, 45);
-            this.textBoxNewPartWidth.Name = "textBoxNewPartWidth";
-            this.textBoxNewPartWidth.Size = new System.Drawing.Size(80, 20);
-            this.textBoxNewPartWidth.TabIndex = 19;
-            // 
-            // labelNewPart2
-            // 
-            this.labelNewPart2.AutoSize = true;
-            this.labelNewPart2.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart2.Location = new System.Drawing.Point(7, 49);
-            this.labelNewPart2.Name = "labelNewPart2";
-            this.labelNewPart2.Size = new System.Drawing.Size(73, 13);
-            this.labelNewPart2.TabIndex = 18;
-            this.labelNewPart2.Text = "Resolution:";
-            // 
-            // labelNewPart3
-            // 
-            this.labelNewPart3.AutoSize = true;
-            this.labelNewPart3.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart3.Location = new System.Drawing.Point(191, 48);
-            this.labelNewPart3.Name = "labelNewPart3";
-            this.labelNewPart3.Size = new System.Drawing.Size(13, 13);
-            this.labelNewPart3.TabIndex = 20;
-            this.labelNewPart3.Text = "X";
-            // 
-            // textBoxNewPartHeight
-            // 
-            this.textBoxNewPartHeight.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartHeight.Location = new System.Drawing.Point(210, 46);
-            this.textBoxNewPartHeight.Name = "textBoxNewPartHeight";
-            this.textBoxNewPartHeight.Size = new System.Drawing.Size(80, 20);
-            this.textBoxNewPartHeight.TabIndex = 21;
-            // 
             // textBoxNewPartPath
             // 
             this.textBoxNewPartPath.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartPath.Location = new System.Drawing.Point(50, 74);
+            this.textBoxNewPartPath.Location = new System.Drawing.Point(50, 45);
             this.textBoxNewPartPath.Name = "textBoxNewPartPath";
             this.textBoxNewPartPath.Size = new System.Drawing.Size(264, 20);
             this.textBoxNewPartPath.TabIndex = 23;
@@ -393,7 +352,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPart4.AutoSize = true;
             this.labelNewPart4.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart4.Location = new System.Drawing.Point(6, 78);
+            this.labelNewPart4.Location = new System.Drawing.Point(6, 49);
             this.labelNewPart4.Name = "labelNewPart4";
             this.labelNewPart4.Size = new System.Drawing.Size(37, 13);
             this.labelNewPart4.TabIndex = 22;
@@ -403,7 +362,7 @@ namespace DDMediaWatched
             // 
             this.checkBoxNewPartIsPathFile.AutoSize = true;
             this.checkBoxNewPartIsPathFile.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(319, 76);
+            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(319, 47);
             this.checkBoxNewPartIsPathFile.Name = "checkBoxNewPartIsPathFile";
             this.checkBoxNewPartIsPathFile.Size = new System.Drawing.Size(98, 17);
             this.checkBoxNewPartIsPathFile.TabIndex = 25;
@@ -414,7 +373,7 @@ namespace DDMediaWatched
             // textBoxNewPartLength
             // 
             this.textBoxNewPartLength.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLength.Location = new System.Drawing.Point(109, 100);
+            this.textBoxNewPartLength.Location = new System.Drawing.Point(109, 71);
             this.textBoxNewPartLength.Name = "textBoxNewPartLength";
             this.textBoxNewPartLength.Size = new System.Drawing.Size(205, 20);
             this.textBoxNewPartLength.TabIndex = 27;
@@ -424,7 +383,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPart5.AutoSize = true;
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart5.Location = new System.Drawing.Point(6, 104);
+            this.labelNewPart5.Location = new System.Drawing.Point(6, 75);
             this.labelNewPart5.Name = "labelNewPart5";
             this.labelNewPart5.Size = new System.Drawing.Size(97, 13);
             this.labelNewPart5.TabIndex = 26;
@@ -564,7 +523,7 @@ namespace DDMediaWatched
             // textBoxNewPartLengths
             // 
             this.textBoxNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLengths.Location = new System.Drawing.Point(8, 164);
+            this.textBoxNewPartLengths.Location = new System.Drawing.Point(8, 135);
             this.textBoxNewPartLengths.Multiline = true;
             this.textBoxNewPartLengths.Name = "textBoxNewPartLengths";
             this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 60);
@@ -574,7 +533,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPartLengths.AutoSize = true;
             this.labelNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartLengths.Location = new System.Drawing.Point(7, 148);
+            this.labelNewPartLengths.Location = new System.Drawing.Point(7, 119);
             this.labelNewPartLengths.Name = "labelNewPartLengths";
             this.labelNewPartLengths.Size = new System.Drawing.Size(163, 13);
             this.labelNewPartLengths.TabIndex = 43;
@@ -584,7 +543,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPartSeries.AutoSize = true;
             this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartSeries.Location = new System.Drawing.Point(5, 127);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(5, 98);
             this.labelNewPartSeries.Name = "labelNewPartSeries";
             this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
             this.labelNewPartSeries.TabIndex = 44;
@@ -593,7 +552,7 @@ namespace DDMediaWatched
             // numericUpDownNewPartSeries
             // 
             this.numericUpDownNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(109, 125);
+            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(109, 96);
             this.numericUpDownNewPartSeries.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -614,21 +573,6 @@ namespace DDMediaWatched
             0});
             this.numericUpDownNewPartSeries.ValueChanged += new System.EventHandler(this.numericUpDownNewPartSeries_ValueChanged);
             // 
-            // comboBoxNewPartResolutions
-            // 
-            this.comboBoxNewPartResolutions.FormattingEnabled = true;
-            this.comboBoxNewPartResolutions.Items.AddRange(new object[] {
-            "NULL",
-            "960x720",
-            "1280x720",
-            "1920x1080",
-            "3840x2160"});
-            this.comboBoxNewPartResolutions.Location = new System.Drawing.Point(296, 45);
-            this.comboBoxNewPartResolutions.Name = "comboBoxNewPartResolutions";
-            this.comboBoxNewPartResolutions.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxNewPartResolutions.TabIndex = 46;
-            this.comboBoxNewPartResolutions.SelectedIndexChanged += new System.EventHandler(this.comboBoxNewPartResolutions_SelectedIndexChanged);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "Films";
@@ -641,16 +585,11 @@ namespace DDMediaWatched
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartCOW);
             this.groupBoxNewPart.Controls.Add(this.labelNewPart1);
             this.groupBoxNewPart.Controls.Add(this.buttonNewPartSave);
-            this.groupBoxNewPart.Controls.Add(this.comboBoxNewPartResolutions);
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartName);
             this.groupBoxNewPart.Controls.Add(this.numericUpDownNewPartSeries);
-            this.groupBoxNewPart.Controls.Add(this.labelNewPart2);
             this.groupBoxNewPart.Controls.Add(this.labelNewPartSeries);
-            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartWidth);
             this.groupBoxNewPart.Controls.Add(this.labelNewPartLengths);
-            this.groupBoxNewPart.Controls.Add(this.labelNewPart3);
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartLengths);
-            this.groupBoxNewPart.Controls.Add(this.textBoxNewPartHeight);
             this.groupBoxNewPart.Controls.Add(this.labelNewPart4);
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartPath);
             this.groupBoxNewPart.Controls.Add(this.checkBoxNewPartIsPathFile);
@@ -668,7 +607,7 @@ namespace DDMediaWatched
             // buttonNewPartCommonLengthToAll
             // 
             this.buttonNewPartCommonLengthToAll.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPartCommonLengthToAll.Location = new System.Drawing.Point(317, 98);
+            this.buttonNewPartCommonLengthToAll.Location = new System.Drawing.Point(317, 69);
             this.buttonNewPartCommonLengthToAll.Name = "buttonNewPartCommonLengthToAll";
             this.buttonNewPartCommonLengthToAll.Size = new System.Drawing.Size(100, 23);
             this.buttonNewPartCommonLengthToAll.TabIndex = 49;
@@ -680,7 +619,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPartCOW.AutoSize = true;
             this.labelNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 227);
+            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 198);
             this.labelNewPartCOW.Name = "labelNewPartCOW";
             this.labelNewPartCOW.Size = new System.Drawing.Size(205, 13);
             this.labelNewPartCOW.TabIndex = 48;
@@ -689,7 +628,7 @@ namespace DDMediaWatched
             // textBoxNewPartCOW
             // 
             this.textBoxNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 243);
+            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 214);
             this.textBoxNewPartCOW.Multiline = true;
             this.textBoxNewPartCOW.Name = "textBoxNewPartCOW";
             this.textBoxNewPartCOW.Size = new System.Drawing.Size(410, 80);
@@ -1019,10 +958,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.Button buttonNewPartSave;
         private System.Windows.Forms.TextBox textBoxNewPartName;
         private System.Windows.Forms.Label labelNewPart1;
-        private System.Windows.Forms.TextBox textBoxNewPartWidth;
-        private System.Windows.Forms.Label labelNewPart2;
-        private System.Windows.Forms.Label labelNewPart3;
-        private System.Windows.Forms.TextBox textBoxNewPartHeight;
         private System.Windows.Forms.TextBox textBoxNewPartPath;
         private System.Windows.Forms.Label labelNewPart4;
         private System.Windows.Forms.CheckBox checkBoxNewPartIsPathFile;
@@ -1039,7 +974,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelNewPartLengths;
         private System.Windows.Forms.Label labelNewPartSeries;
         private System.Windows.Forms.NumericUpDown numericUpDownNewPartSeries;
-        private System.Windows.Forms.ComboBox comboBoxNewPartResolutions;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBoxNewPart;
         private System.Windows.Forms.GroupBox groupBoxNewFranchise;

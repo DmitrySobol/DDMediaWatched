@@ -14,9 +14,7 @@ namespace DDMediaWatched
 
         private int
             commonLength,//common length
-            number,//Number of part
-            width,//Resolution width
-            height;//Resolution height
+            number;//Number of part
 
         private long
             sizeD;//Size on disk in bytes
@@ -37,8 +35,6 @@ namespace DDMediaWatched
         {
             name = "";
             commonLength = 1440;
-            width = 0;
-            height = 0;
             number = -1;
             sizeD = 0;
             path = "";
@@ -51,8 +47,6 @@ namespace DDMediaWatched
         public Part(string name, string path, int number, int serCount, bool autoSize, bool autoLength, Franchise parent)
         {
             this.name = name;
-            width = 0;
-            height = 0;
             this.number = number;
             this.path = path;
             int typeP = Program.IsFileOrDirr(this.path);
@@ -87,9 +81,6 @@ namespace DDMediaWatched
             number = Program.FileReadInt32(f);
             //name
             name = Program.FileReadString(f);
-            //resolution
-            width = Program.FileReadInt32(f);
-            height = Program.FileReadInt32(f);
             //sizeD
             sizeD = Program.FileReadInt64(f);
             //path
@@ -111,9 +102,6 @@ namespace DDMediaWatched
             Program.FileWriteInt32(f, number);
             //name
             Program.FileWriteString(f, name);
-            //resolution
-            Program.FileWriteInt32(f, width);
-            Program.FileWriteInt32(f, height);
             //sizeD
             Program.FileWriteInt64(f, sizeD);
             //path
@@ -283,26 +271,6 @@ namespace DDMediaWatched
                 this.path = path;
         }
 
-        public int getWidth()
-        {
-            return width;
-        }
-
-        public void setWidth(int width)
-        {
-            this.width = width;
-        }
-
-        public int getHeight()
-        {
-            return height;
-        }
-
-        public void setHeight(int height)
-        {
-            this.height = height;
-        }
-
         public int getCommonLength()
         {
             return this.commonLength;
@@ -343,7 +311,6 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.isFull() ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.getSize() / 1024D / 1024 / 1024);
-            s += String.Format("{0,-15}| {1}x{2}\r\n", "Resolution", this.getWidth(), this.getHeight());
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.getWatchedLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.getUniqueWatchedLength() / 3600d);
