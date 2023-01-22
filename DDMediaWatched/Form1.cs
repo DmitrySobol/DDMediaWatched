@@ -284,6 +284,7 @@ namespace DDMediaWatched
         private void buttonNewFranchise_Click(object sender, EventArgs e)
         {
             ControlsDisable(controlsRightButtons);
+            ControlsDisable(controlsListViews);
             currentFranchise = new Franchise();
             franchises.Add(currentFranchise);
             EditFranchise();
@@ -383,6 +384,7 @@ namespace DDMediaWatched
             if (currentFranchise == null)
                 return;
             ControlsDisable(controlsRightButtons);
+            ControlsDisable(controlsListViews);
             currentPart = new Part(currentFranchise);
             currentFranchise.getParts().Add(currentPart);
             int p = 0;
