@@ -65,6 +65,8 @@ namespace DDMediaWatched
             this.addFullViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelPartInfo = new System.Windows.Forms.Label();
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
@@ -72,7 +74,6 @@ namespace DDMediaWatched
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.textBoxNewPartLengths = new System.Windows.Forms.TextBox();
             this.labelNewPartLengths = new System.Windows.Forms.Label();
-            this.labelNewPartSeries = new System.Windows.Forms.Label();
             this.numericUpDownNewPartSeries = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxNewPart = new System.Windows.Forms.GroupBox();
@@ -101,8 +102,7 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelNewPartSeries = new System.Windows.Forms.Label();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -192,11 +192,11 @@ namespace DDMediaWatched
             // textBoxInfo
             // 
             this.textBoxInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxInfo.Location = new System.Drawing.Point(858, 25);
+            this.textBoxInfo.Location = new System.Drawing.Point(958, 25);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
-            this.textBoxInfo.Size = new System.Drawing.Size(410, 365);
+            this.textBoxInfo.Size = new System.Drawing.Size(310, 365);
             this.textBoxInfo.TabIndex = 3;
             // 
             // labelTitleInfo
@@ -222,9 +222,9 @@ namespace DDMediaWatched
             // buttonNewFranchise
             // 
             this.buttonNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchise.Location = new System.Drawing.Point(852, 396);
+            this.buttonNewFranchise.Location = new System.Drawing.Point(952, 396);
             this.buttonNewFranchise.Name = "buttonNewFranchise";
-            this.buttonNewFranchise.Size = new System.Drawing.Size(130, 23);
+            this.buttonNewFranchise.Size = new System.Drawing.Size(100, 23);
             this.buttonNewFranchise.TabIndex = 6;
             this.buttonNewFranchise.Text = "New franchise";
             this.buttonNewFranchise.UseVisualStyleBackColor = true;
@@ -233,7 +233,7 @@ namespace DDMediaWatched
             // buttonNewFranchiseSave
             // 
             this.buttonNewFranchiseSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(284, 349);
+            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(184, 349);
             this.buttonNewFranchiseSave.Name = "buttonNewFranchiseSave";
             this.buttonNewFranchiseSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchiseSave.TabIndex = 7;
@@ -256,7 +256,7 @@ namespace DDMediaWatched
             this.textBoxNewFranchiseNames.Font = new System.Drawing.Font("Consolas", 8F);
             this.textBoxNewFranchiseNames.Location = new System.Drawing.Point(7, 32);
             this.textBoxNewFranchiseNames.Name = "textBoxNewFranchiseNames";
-            this.textBoxNewFranchiseNames.Size = new System.Drawing.Size(410, 20);
+            this.textBoxNewFranchiseNames.Size = new System.Drawing.Size(305, 20);
             this.textBoxNewFranchiseNames.TabIndex = 9;
             // 
             // labelNewFranchise2
@@ -288,7 +288,7 @@ namespace DDMediaWatched
             this.textBoxNewFranchisePath.Font = new System.Drawing.Font("Consolas", 8F);
             this.textBoxNewFranchisePath.Location = new System.Drawing.Point(7, 111);
             this.textBoxNewFranchisePath.Name = "textBoxNewFranchisePath";
-            this.textBoxNewFranchisePath.Size = new System.Drawing.Size(410, 20);
+            this.textBoxNewFranchisePath.Size = new System.Drawing.Size(305, 20);
             this.textBoxNewFranchisePath.TabIndex = 13;
             // 
             // labelNewFranchise3
@@ -304,9 +304,9 @@ namespace DDMediaWatched
             // buttonNewPart
             // 
             this.buttonNewPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPart.Location = new System.Drawing.Point(997, 396);
+            this.buttonNewPart.Location = new System.Drawing.Point(1062, 396);
             this.buttonNewPart.Name = "buttonNewPart";
-            this.buttonNewPart.Size = new System.Drawing.Size(130, 23);
+            this.buttonNewPart.Size = new System.Drawing.Size(100, 23);
             this.buttonNewPart.TabIndex = 14;
             this.buttonNewPart.Text = "New part";
             this.buttonNewPart.UseVisualStyleBackColor = true;
@@ -315,7 +315,7 @@ namespace DDMediaWatched
             // buttonNewPartSave
             // 
             this.buttonNewPartSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPartSave.Location = new System.Drawing.Point(286, 351);
+            this.buttonNewPartSave.Location = new System.Drawing.Point(184, 351);
             this.buttonNewPartSave.Name = "buttonNewPartSave";
             this.buttonNewPartSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewPartSave.TabIndex = 15;
@@ -328,7 +328,7 @@ namespace DDMediaWatched
             this.textBoxNewPartName.Font = new System.Drawing.Font("Consolas", 8F);
             this.textBoxNewPartName.Location = new System.Drawing.Point(50, 19);
             this.textBoxNewPartName.Name = "textBoxNewPartName";
-            this.textBoxNewPartName.Size = new System.Drawing.Size(367, 20);
+            this.textBoxNewPartName.Size = new System.Drawing.Size(264, 20);
             this.textBoxNewPartName.TabIndex = 17;
             // 
             // labelNewPart1
@@ -364,7 +364,7 @@ namespace DDMediaWatched
             // 
             this.checkBoxNewPartIsPathFile.AutoSize = true;
             this.checkBoxNewPartIsPathFile.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(319, 47);
+            this.checkBoxNewPartIsPathFile.Location = new System.Drawing.Point(216, 71);
             this.checkBoxNewPartIsPathFile.Name = "checkBoxNewPartIsPathFile";
             this.checkBoxNewPartIsPathFile.Size = new System.Drawing.Size(98, 17);
             this.checkBoxNewPartIsPathFile.TabIndex = 25;
@@ -375,9 +375,9 @@ namespace DDMediaWatched
             // textBoxNewPartLength
             // 
             this.textBoxNewPartLength.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLength.Location = new System.Drawing.Point(109, 71);
+            this.textBoxNewPartLength.Location = new System.Drawing.Point(109, 94);
             this.textBoxNewPartLength.Name = "textBoxNewPartLength";
-            this.textBoxNewPartLength.Size = new System.Drawing.Size(205, 20);
+            this.textBoxNewPartLength.Size = new System.Drawing.Size(100, 20);
             this.textBoxNewPartLength.TabIndex = 27;
             this.textBoxNewPartLength.TextChanged += new System.EventHandler(this.textBoxNewPartLength_TextChanged);
             // 
@@ -385,7 +385,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPart5.AutoSize = true;
             this.labelNewPart5.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPart5.Location = new System.Drawing.Point(6, 75);
+            this.labelNewPart5.Location = new System.Drawing.Point(6, 98);
             this.labelNewPart5.Name = "labelNewPart5";
             this.labelNewPart5.Size = new System.Drawing.Size(97, 13);
             this.labelNewPart5.TabIndex = 26;
@@ -411,7 +411,7 @@ namespace DDMediaWatched
             this.listViewParts.Location = new System.Drawing.Point(486, 25);
             this.listViewParts.MultiSelect = false;
             this.listViewParts.Name = "listViewParts";
-            this.listViewParts.Size = new System.Drawing.Size(360, 404);
+            this.listViewParts.Size = new System.Drawing.Size(460, 404);
             this.listViewParts.TabIndex = 29;
             this.listViewParts.UseCompatibleStateImageBehavior = false;
             this.listViewParts.View = System.Windows.Forms.View.Details;
@@ -427,35 +427,49 @@ namespace DDMediaWatched
             this.upToolStripMenuItem,
             this.downToolStripMenuItem});
             this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(181, 158);
+            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 136);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // addFullViewToolStripMenuItem
             // 
             this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
-            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem
             // 
             this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
-            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.findSizeToolStripMenuItem.Text = "Find size";
             this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.editToolStripMenuItem1.Text = "Edit";
             this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            // 
+            // upToolStripMenuItem
+            // 
+            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.upToolStripMenuItem.Text = "Up";
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            // 
+            // downToolStripMenuItem
+            // 
+            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.downToolStripMenuItem.Text = "Down";
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
             // 
             // labelPartInfo
             // 
@@ -475,7 +489,7 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Name = "textBoxPartInfo";
             this.textBoxPartInfo.ReadOnly = true;
             this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxPartInfo.Size = new System.Drawing.Size(360, 250);
+            this.textBoxPartInfo.Size = new System.Drawing.Size(460, 250);
             this.textBoxPartInfo.TabIndex = 32;
             this.textBoxPartInfo.WordWrap = false;
             // 
@@ -515,48 +529,38 @@ namespace DDMediaWatched
             // textBoxLog
             // 
             this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxLog.Location = new System.Drawing.Point(862, 454);
+            this.textBoxLog.Location = new System.Drawing.Point(962, 454);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(410, 244);
+            this.textBoxLog.Size = new System.Drawing.Size(310, 244);
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
             // textBoxNewPartLengths
             // 
             this.textBoxNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartLengths.Location = new System.Drawing.Point(8, 135);
+            this.textBoxNewPartLengths.Location = new System.Drawing.Point(6, 135);
             this.textBoxNewPartLengths.Multiline = true;
             this.textBoxNewPartLengths.Name = "textBoxNewPartLengths";
-            this.textBoxNewPartLengths.Size = new System.Drawing.Size(410, 60);
+            this.textBoxNewPartLengths.Size = new System.Drawing.Size(306, 60);
             this.textBoxNewPartLengths.TabIndex = 42;
             // 
             // labelNewPartLengths
             // 
             this.labelNewPartLengths.AutoSize = true;
             this.labelNewPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartLengths.Location = new System.Drawing.Point(7, 119);
+            this.labelNewPartLengths.Location = new System.Drawing.Point(5, 119);
             this.labelNewPartLengths.Name = "labelNewPartLengths";
             this.labelNewPartLengths.Size = new System.Drawing.Size(163, 13);
             this.labelNewPartLengths.TabIndex = 43;
             this.labelNewPartLengths.Text = "Lengths (separate with ;):";
             // 
-            // labelNewPartSeries
-            // 
-            this.labelNewPartSeries.AutoSize = true;
-            this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartSeries.Location = new System.Drawing.Point(5, 98);
-            this.labelNewPartSeries.Name = "labelNewPartSeries";
-            this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
-            this.labelNewPartSeries.TabIndex = 44;
-            this.labelNewPartSeries.Text = "Series:";
-            // 
             // numericUpDownNewPartSeries
             // 
             this.numericUpDownNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(109, 96);
+            this.numericUpDownNewPartSeries.Location = new System.Drawing.Point(111, 70);
             this.numericUpDownNewPartSeries.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -568,7 +572,7 @@ namespace DDMediaWatched
             0,
             0});
             this.numericUpDownNewPartSeries.Name = "numericUpDownNewPartSeries";
-            this.numericUpDownNewPartSeries.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownNewPartSeries.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownNewPartSeries.TabIndex = 45;
             this.numericUpDownNewPartSeries.Value = new decimal(new int[] {
             12,
@@ -600,9 +604,9 @@ namespace DDMediaWatched
             this.groupBoxNewPart.Controls.Add(this.labelNewPart5);
             this.groupBoxNewPart.Controls.Add(this.textBoxNewPartLength);
             this.groupBoxNewPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxNewPart.Location = new System.Drawing.Point(852, 10);
+            this.groupBoxNewPart.Location = new System.Drawing.Point(952, 10);
             this.groupBoxNewPart.Name = "groupBoxNewPart";
-            this.groupBoxNewPart.Size = new System.Drawing.Size(420, 380);
+            this.groupBoxNewPart.Size = new System.Drawing.Size(320, 380);
             this.groupBoxNewPart.TabIndex = 48;
             this.groupBoxNewPart.TabStop = false;
             this.groupBoxNewPart.Text = "Edit part";
@@ -611,7 +615,7 @@ namespace DDMediaWatched
             // buttonNewPartCommonLengthToAll
             // 
             this.buttonNewPartCommonLengthToAll.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPartCommonLengthToAll.Location = new System.Drawing.Point(317, 69);
+            this.buttonNewPartCommonLengthToAll.Location = new System.Drawing.Point(214, 93);
             this.buttonNewPartCommonLengthToAll.Name = "buttonNewPartCommonLengthToAll";
             this.buttonNewPartCommonLengthToAll.Size = new System.Drawing.Size(100, 23);
             this.buttonNewPartCommonLengthToAll.TabIndex = 49;
@@ -623,7 +627,7 @@ namespace DDMediaWatched
             // 
             this.labelNewPartCOW.AutoSize = true;
             this.labelNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartCOW.Location = new System.Drawing.Point(10, 198);
+            this.labelNewPartCOW.Location = new System.Drawing.Point(8, 198);
             this.labelNewPartCOW.Name = "labelNewPartCOW";
             this.labelNewPartCOW.Size = new System.Drawing.Size(205, 13);
             this.labelNewPartCOW.TabIndex = 48;
@@ -632,10 +636,10 @@ namespace DDMediaWatched
             // textBoxNewPartCOW
             // 
             this.textBoxNewPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxNewPartCOW.Location = new System.Drawing.Point(8, 214);
+            this.textBoxNewPartCOW.Location = new System.Drawing.Point(6, 214);
             this.textBoxNewPartCOW.Multiline = true;
             this.textBoxNewPartCOW.Name = "textBoxNewPartCOW";
-            this.textBoxNewPartCOW.Size = new System.Drawing.Size(410, 80);
+            this.textBoxNewPartCOW.Size = new System.Drawing.Size(306, 80);
             this.textBoxNewPartCOW.TabIndex = 47;
             // 
             // groupBoxNewFranchise
@@ -651,9 +655,9 @@ namespace DDMediaWatched
             this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchise3);
             this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchisePath);
             this.groupBoxNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxNewFranchise.Location = new System.Drawing.Point(852, 12);
+            this.groupBoxNewFranchise.Location = new System.Drawing.Point(952, 12);
             this.groupBoxNewFranchise.Name = "groupBoxNewFranchise";
-            this.groupBoxNewFranchise.Size = new System.Drawing.Size(420, 380);
+            this.groupBoxNewFranchise.Size = new System.Drawing.Size(320, 380);
             this.groupBoxNewFranchise.TabIndex = 49;
             this.groupBoxNewFranchise.TabStop = false;
             this.groupBoxNewFranchise.Text = "Edit franchise";
@@ -662,7 +666,7 @@ namespace DDMediaWatched
             // buttonNewFranchiseToday
             // 
             this.buttonNewFranchiseToday.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseToday.Location = new System.Drawing.Point(290, 147);
+            this.buttonNewFranchiseToday.Location = new System.Drawing.Point(182, 149);
             this.buttonNewFranchiseToday.Name = "buttonNewFranchiseToday";
             this.buttonNewFranchiseToday.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchiseToday.TabIndex = 16;
@@ -685,15 +689,15 @@ namespace DDMediaWatched
             this.textBoxNewFranchiseDate.Font = new System.Drawing.Font("Consolas", 8F);
             this.textBoxNewFranchiseDate.Location = new System.Drawing.Point(6, 149);
             this.textBoxNewFranchiseDate.Name = "textBoxNewFranchiseDate";
-            this.textBoxNewFranchiseDate.Size = new System.Drawing.Size(278, 20);
+            this.textBoxNewFranchiseDate.Size = new System.Drawing.Size(171, 20);
             this.textBoxNewFranchiseDate.TabIndex = 15;
             // 
             // buttonSort
             // 
             this.buttonSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSort.Location = new System.Drawing.Point(1142, 396);
+            this.buttonSort.Location = new System.Drawing.Point(1172, 396);
             this.buttonSort.Name = "buttonSort";
-            this.buttonSort.Size = new System.Drawing.Size(130, 23);
+            this.buttonSort.Size = new System.Drawing.Size(100, 23);
             this.buttonSort.TabIndex = 50;
             this.buttonSort.Text = "Sort";
             this.buttonSort.UseVisualStyleBackColor = true;
@@ -712,9 +716,9 @@ namespace DDMediaWatched
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(852, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(952, 11);
             this.groupBoxSort.Name = "groupBoxSort";
-            this.groupBoxSort.Size = new System.Drawing.Size(420, 380);
+            this.groupBoxSort.Size = new System.Drawing.Size(320, 380);
             this.groupBoxSort.TabIndex = 51;
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
@@ -727,7 +731,7 @@ namespace DDMediaWatched
             "None",
             "Persentage (3)",
             "Persentage (Gradient)"});
-            this.comboBoxSortColorBy.Location = new System.Drawing.Point(284, 33);
+            this.comboBoxSortColorBy.Location = new System.Drawing.Point(142, 102);
             this.comboBoxSortColorBy.Name = "comboBoxSortColorBy";
             this.comboBoxSortColorBy.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSortColorBy.TabIndex = 24;
@@ -737,7 +741,7 @@ namespace DDMediaWatched
             // labelSortColorBy
             // 
             this.labelSortColorBy.AutoSize = true;
-            this.labelSortColorBy.Location = new System.Drawing.Point(281, 14);
+            this.labelSortColorBy.Location = new System.Drawing.Point(139, 83);
             this.labelSortColorBy.Name = "labelSortColorBy";
             this.labelSortColorBy.Size = new System.Drawing.Size(61, 13);
             this.labelSortColorBy.TabIndex = 23;
@@ -834,7 +838,7 @@ namespace DDMediaWatched
             // buttonSortSave
             // 
             this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSortSave.Location = new System.Drawing.Point(284, 350);
+            this.buttonSortSave.Location = new System.Drawing.Point(184, 350);
             this.buttonSortSave.Name = "buttonSortSave";
             this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
             this.buttonSortSave.TabIndex = 14;
@@ -891,19 +895,15 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // upToolStripMenuItem
+            // labelNewPartSeries
             // 
-            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.upToolStripMenuItem.Text = "Up";
-            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
-            // 
-            // downToolStripMenuItem
-            // 
-            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.downToolStripMenuItem.Text = "Down";
-            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
+            this.labelNewPartSeries.AutoSize = true;
+            this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(7, 72);
+            this.labelNewPartSeries.Name = "labelNewPartSeries";
+            this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
+            this.labelNewPartSeries.TabIndex = 44;
+            this.labelNewPartSeries.Text = "Series:";
             // 
             // Form1
             // 
@@ -990,7 +990,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TextBox textBoxNewPartLengths;
         private System.Windows.Forms.Label labelNewPartLengths;
-        private System.Windows.Forms.Label labelNewPartSeries;
         private System.Windows.Forms.NumericUpDown numericUpDownNewPartSeries;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBoxNewPart;
@@ -1031,6 +1030,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelSortColorBy;
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
+        private System.Windows.Forms.Label labelNewPartSeries;
     }
 }
 

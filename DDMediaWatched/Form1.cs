@@ -149,7 +149,7 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "Name",
-                Width = 100
+                Width = 220
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -959,9 +959,9 @@ namespace DDMediaWatched
                 watchedLength += f.getWatchedLength();
                 watchedUniqueLength += f.getUniqueWatchedLength();
             }
-            s += String.Format("{0,-20}: {1,8:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
-            s += String.Format("{0,-20}: {1,8:f2} Hour| {2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
-            s += String.Format("{0,-20}: {1,8:f2} Hour| {2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
+            s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
             textBoxInfo.Text = s;
         }
 
