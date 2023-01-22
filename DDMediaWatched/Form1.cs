@@ -222,7 +222,6 @@ namespace DDMediaWatched
                 case Keys.F5:
                     {
                         SelectNone();
-                        FranchisesToListView();
                         DrawStatistic();
                     }
                     break;
@@ -649,6 +648,43 @@ namespace DDMediaWatched
                 EditPart();
             }
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveMedia();
+        }
+
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isEdited = true;
+            for (int i = 1; i < currentFranchise.getParts().Count; i++)
+                if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+                {
+                    Part p = currentFranchise.getParts()[i];
+                    currentFranchise.getParts()[i] = currentFranchise.getParts()[i - 1];
+                    currentFranchise.getParts()[i - 1] = p;
+                    break;
+                }
+            currentPart = null;
+            textBoxPartInfo.Text = "Selected None!\r\n";
+            PartsToListView();
+        }
+
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isEdited = true;
+            for (int i = 0; i < currentFranchise.getParts().Count - 1; i++)
+                if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+                {
+                    Part p = currentFranchise.getParts()[i];
+                    currentFranchise.getParts()[i] = currentFranchise.getParts()[i + 1];
+                    currentFranchise.getParts()[i + 1] = p;
+                    break;
+                }
+            currentPart = null;
+            textBoxPartInfo.Text = "Selected None!\r\n";
+            PartsToListView();
+        }
         //ToolStripMenu
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -686,11 +722,6 @@ namespace DDMediaWatched
             DateTime dt = DateTime.Now;
             File.Copy(path + "Media.bin", path + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
             MessageBox.Show("BackUP has been created!", "Success");
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveMedia();
         }
         //Other
         private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)

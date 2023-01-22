@@ -101,6 +101,8 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -421,35 +423,37 @@ namespace DDMediaWatched
             this.deleteToolStripMenuItem,
             this.addFullViewToolStripMenuItem,
             this.findSizeToolStripMenuItem,
-            this.editToolStripMenuItem1});
+            this.editToolStripMenuItem1,
+            this.upToolStripMenuItem,
+            this.downToolStripMenuItem});
             this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 92);
+            this.contextMenuStripPart.Size = new System.Drawing.Size(181, 158);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // addFullViewToolStripMenuItem
             // 
             this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
-            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem
             // 
             this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
-            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findSizeToolStripMenuItem.Text = "Find size";
             this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem1.Text = "Edit";
             this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
             // 
@@ -887,6 +891,20 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // upToolStripMenuItem
+            // 
+            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.upToolStripMenuItem.Text = "Up";
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            // 
+            // downToolStripMenuItem
+            // 
+            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downToolStripMenuItem.Text = "Down";
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1011,6 +1029,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ComboBox comboBoxSortColorBy;
         private System.Windows.Forms.Label labelSortColorBy;
+        private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
     }
 }
 
