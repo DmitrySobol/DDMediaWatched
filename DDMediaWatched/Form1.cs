@@ -30,7 +30,8 @@ namespace DDMediaWatched
             controlsInfo = new List<Control>(),
             controlsNewPart = new List<Control>(),
             controlsRightButtons = new List<Control>(),
-            controlsSort = new List<Control>();
+            controlsSort = new List<Control>(),
+            controlsListViews = new List<Control>();
 
         public List<Franchise.FranchiseType>
             TypeOnType = new List<Franchise.FranchiseType>();
@@ -202,6 +203,8 @@ namespace DDMediaWatched
             controlsRightButtons.Add(buttonNewPart);
             controlsRightButtons.Add(buttonSort);
             controlsSort.Add(groupBoxSort);
+            controlsListViews.Add(listViewTitles);
+            controlsListViews.Add(listViewParts);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -265,6 +268,7 @@ namespace DDMediaWatched
             f.Dispose();
             f.Close();
             MessageBox.Show("Media has been saved succesful!!!", "Saved!");
+            isEdited = false;
         }
 
         public void SelectNone()
@@ -300,6 +304,7 @@ namespace DDMediaWatched
             listViewParts.Enabled = true;
             listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
+            ControlsEnable(controlsListViews);
         }
 
         private void EditFranchise()
@@ -359,6 +364,7 @@ namespace DDMediaWatched
             {
                 isEdited = true;
                 ControlsDisable(controlsRightButtons);
+                ControlsDisable(controlsListViews);
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
                 string selected = listViewTitles.SelectedItems[0].Text;
@@ -437,6 +443,7 @@ namespace DDMediaWatched
             listViewParts.Enabled = true;
             listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
+            ControlsEnable(controlsListViews);
         }
 
         private void EditPart()
@@ -675,6 +682,7 @@ namespace DDMediaWatched
             {
                 isEdited = true;
                 ControlsDisable(controlsRightButtons);
+                ControlsDisable(controlsListViews);
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
                 string selected = listViewParts.SelectedItems[0].Text;

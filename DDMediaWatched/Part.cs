@@ -157,12 +157,15 @@ namespace DDMediaWatched
                 output = 2;
             if (sizeD > 0 && newSize == 0)
                 output = 3;
+            if (sizeD != newSize && sizeD > 0 && newSize > 0)
+                output = 4;
             sizeD = newSize;
             return output;
             //0 no path
             //1 0 -> x
-            //2 x -> x
+            //2 x == x
             //3 x -> 0
+            //4 x -> y
         }
 
         public void setIsPathFile(bool isPathFile)
