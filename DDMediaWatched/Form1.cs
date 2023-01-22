@@ -148,16 +148,8 @@ namespace DDMediaWatched
             ColumnHeader ch;
             ch = new ColumnHeader
             {
-                DisplayIndex = 1,
                 Text = "Name",
                 Width = 100
-            };
-            columns.Add(ch);
-            ch = new ColumnHeader
-            {
-                DisplayIndex = 0,
-                Text = "Num",
-                Width = 30
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -386,11 +378,6 @@ namespace DDMediaWatched
             ControlsDisable(controlsListViews);
             currentPart = new Part(currentFranchise);
             currentFranchise.getParts().Add(currentPart);
-            int p = 0;
-            foreach (Part part in currentFranchise.getParts())
-                if (part.getNumber() > p)
-                    p = part.getNumber();
-            currentPart.setNumber(p + 1);
             EditPart();
         }
 
@@ -920,18 +907,6 @@ namespace DDMediaWatched
                     Text = el.getName()
                 };
                 ListViewItem.ListViewSubItem si;
-                int p = 0;
-                //Number
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Number"
-                };
-                p = el.getNumber();
-                if (p > 0)
-                    si.Text = p.ToString();
-                else
-                    si.Text = "";
-                item.SubItems.Add(si);
                 //Length
                 si = new ListViewItem.ListViewSubItem
                 {

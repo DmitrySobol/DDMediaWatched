@@ -13,8 +13,7 @@ namespace DDMediaWatched
             name;//Name of part (Season, Film ...)
 
         private int
-            commonLength,//common length
-            number;//Number of part
+            commonLength;//common length
 
         private long
             sizeD;//Size on disk in bytes
@@ -35,7 +34,6 @@ namespace DDMediaWatched
         {
             name = "";
             commonLength = 1440;
-            number = -1;
             sizeD = 0;
             path = "";
             isPathFile = 0;
@@ -44,10 +42,9 @@ namespace DDMediaWatched
             series.Add(new Series(1440, 0));
         }
 
-        public Part(string name, string path, int number, int serCount, bool autoSize, bool autoLength, Franchise parent)
+        public Part(string name, string path, int serCount, bool autoSize, bool autoLength, Franchise parent)
         {
             this.name = name;
-            this.number = number;
             this.path = path;
             int typeP = Program.IsFileOrDirr(this.path);
             this.isPathFile = 0;
@@ -77,8 +74,6 @@ namespace DDMediaWatched
         {
             parentFranchise = parent;
             int p = 0;
-            //number
-            number = Program.FileReadInt32(f);
             //name
             name = Program.FileReadString(f);
             //sizeD
@@ -98,8 +93,6 @@ namespace DDMediaWatched
 
         public void SaveToBin(FileStream f)
         {
-            //number
-            Program.FileWriteInt32(f, number);
             //name
             Program.FileWriteString(f, name);
             //sizeD
@@ -229,16 +222,6 @@ namespace DDMediaWatched
             this.name = name;
         }
 
-        public int getNumber()
-        {
-            return number;
-        }
-
-        public void setNumber(int number)
-        {
-            this.number = number;
-        }
-
         public string getPath()
         {
             return path;
@@ -306,7 +289,6 @@ namespace DDMediaWatched
         public override string ToString()
         {
             string s = "";
-            s += String.Format("{0,-15}| {1}\r\n", "Number", this.getNumber());
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.getName());
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.isFull() ? "File" : "Dirr");

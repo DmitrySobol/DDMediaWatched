@@ -84,13 +84,13 @@ namespace DDMediaWatched
                     ser[i - 3] = int.Parse(args[i]);
                 for (int i = 0; i < ser.Length; i++)
                 {
-                    parts.Add(new Part(String.Format("Part {0}", i + 1), "", i + 1, ser[i], true, false, this));
+                    parts.Add(new Part(String.Format("Part {0}", i + 1), "", ser[i], true, false, this));
                 }
             }
             else
             {
                 this.path = "";
-                parts.Add(new Part("Film", path, 1, 1, true, true, this));
+                parts.Add(new Part("Film", path, 1, true, true, this));
             }
             mark = -1;
             startingDate = new DateTime(2000, 1, 1);
