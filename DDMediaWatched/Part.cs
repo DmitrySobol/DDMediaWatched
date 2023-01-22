@@ -277,7 +277,7 @@ namespace DDMediaWatched
                 this.path = path;
             }
             else
-                this.path = "";
+                this.path = path;
         }
 
         public int getWidth()
