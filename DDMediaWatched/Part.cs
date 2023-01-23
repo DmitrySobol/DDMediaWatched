@@ -127,6 +127,12 @@ namespace DDMediaWatched
             {
                 path += this.path;
                 newSize = Program.GetPathSize(path, this.isFull());
+                if (newSize == -1)
+                {
+                    Program.form1.Log(String.Format("{0} - {1}. Path \"{2}\" has been removed!", this.parentFranchise.getName(), this.getName(), this.getPath()));
+                    this.path = "";
+                    newSize = 0;
+                }
             }
             if (sizeD != newSize)
                 Program.form1.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.parentFranchise.getName(), this.getName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
