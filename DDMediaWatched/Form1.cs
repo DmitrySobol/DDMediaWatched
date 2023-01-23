@@ -848,7 +848,6 @@ namespace DDMediaWatched
                     BackColor = GetColor(el)
                 };
                 ListViewItem.ListViewSubItem si;
-                int p = 0;
                 //Length
                 si = new ListViewItem.ListViewSubItem
                 {
