@@ -80,6 +80,7 @@ namespace DDMediaWatched
             this.buttonNewPartCommonLengthToAll = new System.Windows.Forms.Button();
             this.labelNewPartCOW = new System.Windows.Forms.Label();
             this.textBoxNewPartCOW = new System.Windows.Forms.TextBox();
+            this.labelNewPartSeries = new System.Windows.Forms.Label();
             this.groupBoxNewFranchise = new System.Windows.Forms.GroupBox();
             this.buttonNewFranchiseToday = new System.Windows.Forms.Button();
             this.labelNewFranchiseDate = new System.Windows.Forms.Label();
@@ -102,7 +103,9 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelNewPartSeries = new System.Windows.Forms.Label();
+            this.labelNewFranchiseURL = new System.Windows.Forms.Label();
+            this.textBoxNewFranchiseURL = new System.Windows.Forms.TextBox();
+            this.checkedListBoxSortTypesURL = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -128,6 +131,7 @@ namespace DDMediaWatched
             this.listViewTitles.UseCompatibleStateImageBehavior = false;
             this.listViewTitles.View = System.Windows.Forms.View.Details;
             this.listViewTitles.SelectedIndexChanged += new System.EventHandler(this.listViewTitles_SelectedIndexChanged);
+            this.listViewTitles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewTitles_MouseDoubleClick);
             // 
             // contextMenuStripTitle
             // 
@@ -642,8 +646,20 @@ namespace DDMediaWatched
             this.textBoxNewPartCOW.Size = new System.Drawing.Size(306, 80);
             this.textBoxNewPartCOW.TabIndex = 47;
             // 
+            // labelNewPartSeries
+            // 
+            this.labelNewPartSeries.AutoSize = true;
+            this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewPartSeries.Location = new System.Drawing.Point(7, 72);
+            this.labelNewPartSeries.Name = "labelNewPartSeries";
+            this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
+            this.labelNewPartSeries.TabIndex = 44;
+            this.labelNewPartSeries.Text = "Series:";
+            // 
             // groupBoxNewFranchise
             // 
+            this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchiseURL);
+            this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchiseURL);
             this.groupBoxNewFranchise.Controls.Add(this.buttonNewFranchiseToday);
             this.groupBoxNewFranchise.Controls.Add(this.labelNewFranchiseDate);
             this.groupBoxNewFranchise.Controls.Add(this.textBoxNewFranchiseDate);
@@ -705,6 +721,7 @@ namespace DDMediaWatched
             // 
             // groupBoxSort
             // 
+            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
             this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
             this.groupBoxSort.Controls.Add(this.labelSortColorBy);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesPersentage);
@@ -870,40 +887,60 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // labelNewPartSeries
+            // labelNewFranchiseURL
             // 
-            this.labelNewPartSeries.AutoSize = true;
-            this.labelNewPartSeries.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelNewPartSeries.Location = new System.Drawing.Point(7, 72);
-            this.labelNewPartSeries.Name = "labelNewPartSeries";
-            this.labelNewPartSeries.Size = new System.Drawing.Size(49, 13);
-            this.labelNewPartSeries.TabIndex = 44;
-            this.labelNewPartSeries.Text = "Series:";
+            this.labelNewFranchiseURL.AutoSize = true;
+            this.labelNewFranchiseURL.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelNewFranchiseURL.Location = new System.Drawing.Point(6, 180);
+            this.labelNewFranchiseURL.Name = "labelNewFranchiseURL";
+            this.labelNewFranchiseURL.Size = new System.Drawing.Size(31, 13);
+            this.labelNewFranchiseURL.TabIndex = 50;
+            this.labelNewFranchiseURL.Text = "URL:";
+            // 
+            // textBoxNewFranchiseURL
+            // 
+            this.textBoxNewFranchiseURL.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxNewFranchiseURL.Location = new System.Drawing.Point(43, 176);
+            this.textBoxNewFranchiseURL.Name = "textBoxNewFranchiseURL";
+            this.textBoxNewFranchiseURL.Size = new System.Drawing.Size(271, 20);
+            this.textBoxNewFranchiseURL.TabIndex = 51;
+            // 
+            // checkedListBoxSortTypesURL
+            // 
+            this.checkedListBoxSortTypesURL.CheckOnClick = true;
+            this.checkedListBoxSortTypesURL.FormattingEnabled = true;
+            this.checkedListBoxSortTypesURL.Items.AddRange(new object[] {
+            "URL",
+            "-URL"});
+            this.checkedListBoxSortTypesURL.Location = new System.Drawing.Point(6, 240);
+            this.checkedListBoxSortTypesURL.Name = "checkedListBoxSortTypesURL";
+            this.checkedListBoxSortTypesURL.Size = new System.Drawing.Size(120, 49);
+            this.checkedListBoxSortTypesURL.TabIndex = 25;
             // 
             // Form1
             // 
@@ -1031,6 +1068,9 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
         private System.Windows.Forms.Label labelNewPartSeries;
+        private System.Windows.Forms.Label labelNewFranchiseURL;
+        private System.Windows.Forms.TextBox textBoxNewFranchiseURL;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesURL;
     }
 }
 

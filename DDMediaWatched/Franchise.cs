@@ -20,7 +20,8 @@ namespace DDMediaWatched
             parts;
 
         private string
-            path;
+            path,
+            URL;
 
         private FranchiseType
             type;
@@ -37,6 +38,7 @@ namespace DDMediaWatched
             names.Add("");
             parts = new List<Part>();
             path = "";
+            URL = "";
             type = FranchiseType.No;
             mark = -1;
             startingDate = new DateTime(2000, 1, 1);
@@ -92,6 +94,7 @@ namespace DDMediaWatched
                 this.path = "";
                 parts.Add(new Part("Film", path, 1, true, true, this));
             }
+            URL = "";
             mark = -1;
             startingDate = new DateTime(2000, 1, 1);
         }
@@ -110,6 +113,8 @@ namespace DDMediaWatched
             mark = Program.FileReadInt32(f);
             //path
             path = Program.FileReadString(f);
+            //URL
+            URL = Program.FileReadString(f);
             //parts
             p = Program.FileReadInt32(f);
             parts = new List<Part>();
@@ -134,6 +139,8 @@ namespace DDMediaWatched
             Program.FileWriteInt32(f, mark);
             //path
             Program.FileWriteString(f, path);
+            //URL
+            Program.FileWriteString(f, URL);
             //parts
             Program.FileWriteInt32(f, parts.Count);
             foreach (Part s in parts)
@@ -284,6 +291,24 @@ namespace DDMediaWatched
                 return "null";
             return Program.pathLetter + path;
         }
+        //ULR
+        public string getURL()
+        {
+            return URL;
+        }
+
+        public void setURL(string URL)
+        {
+            this.URL = URL;
+        }
+
+        public bool isURL()
+        {
+            if (this.URL == "")
+                return false;
+            else
+                return true;
+        }
         //Type
         public void setType(int index)
         {
@@ -408,6 +433,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.getName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.getOtherNames());
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
+            s += String.Format("{0,-15}| {1}\r\n", "URL", this.getURL());
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.getTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.getMark() < 0 ? "" : this.getMark().ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));

@@ -74,6 +74,8 @@ namespace DDMediaWatched
             checkedListBoxSortTypesPersentage.SetItemChecked(2, true);
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
                 TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
+            checkedListBoxSortTypesURL.SetItemChecked(0, true);
+            checkedListBoxSortTypesURL.SetItemChecked(1, true);
             sortBy = comboBoxSortSortBy.Text;
             colorBy = comboBoxSortColorBy.Text;
             LoadColumnsFranchises();
@@ -287,6 +289,7 @@ namespace DDMediaWatched
             ControlsOff(controlsNewFranchise);
             currentFranchise.setNames(textBoxNewFranchiseNames.Text.Split(';'));
             currentFranchise.setPath(textBoxNewFranchisePath.Text);
+            currentFranchise.setURL(textBoxNewFranchiseURL.Text);
             currentFranchise.setType(comboBoxNewFranchiseType.SelectedIndex);
             currentFranchise.setStartingDate(textBoxNewFranchiseDate.Text);
             foreach (Part part in currentFranchise.getParts())
@@ -305,6 +308,7 @@ namespace DDMediaWatched
             ControlsOn(controlsNewFranchise);
             textBoxNewFranchiseNames.Text = currentFranchise.getAllNames();
             textBoxNewFranchisePath.Text = currentFranchise.getPath();
+            textBoxNewFranchiseURL.Text = currentFranchise.getURL();
             comboBoxNewFranchiseType.SelectedIndex = currentFranchise.getTypeInt();
             textBoxNewFranchiseDate.Text = currentFranchise.getStartingDate().ToString("yyyy.MM.dd");
         }
@@ -734,6 +738,14 @@ namespace DDMediaWatched
             PartsToListView();
         }
 
+        private void listViewTitles_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (currentFranchise == null)
+                return;
+            if (currentFranchise.getURL() != "")
+                System.Diagnostics.Process.Start(currentFranchise.getURL());
+        }
+
         private void listViewParts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewParts.SelectedItems.Count < 1)
@@ -972,6 +984,8 @@ namespace DDMediaWatched
             if (!TypeOnDown.Contains(el.isDownloaded()))
                 b = false;
             if (!TypeOnPersentage.Contains(el.isPersentage()))
+                b = false;
+            if (!checkedListBoxSortTypesURL.CheckedItems.Contains(el.isURL() ? "URL" : "-URL"))
                 b = false;
             return b;
         }
