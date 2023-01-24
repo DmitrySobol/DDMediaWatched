@@ -10,9 +10,6 @@ namespace DDMediaWatched
 {
     static class Program
     {
-        public static byte[]
-            buf = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 },
-            BigBuf = new byte[1024];
         public static string
             pathLetter = "null";
         public static Form1 form1;
@@ -31,55 +28,6 @@ namespace DDMediaWatched
                 form1 = new Form1();
                 Application.Run(form1);
             }
-        }
-
-        public static int FileReadInt32(FileStream f)
-        {
-            f.Read(buf, 0, 4);
-            return BitConverter.ToInt32(buf, 0);
-        }
-
-        public static void FileWriteInt32(FileStream f, int a)
-        {
-            f.Write(BitConverter.GetBytes(a), 0, 4);
-        }
-
-        public static long FileReadInt64(FileStream f)
-        {
-            f.Read(buf, 0, 8);
-            return BitConverter.ToInt64(buf, 0);
-        }
-
-        public static void FileWriteInt64(FileStream f, long a)
-        {
-            f.Write(BitConverter.GetBytes(a), 0, 8);
-        }
-
-        public static string FileReadString(FileStream f)
-        {
-            f.Read(buf, 0, 4);
-            int p = BitConverter.ToInt32(buf, 0);
-            f.Read(BigBuf, 0, p);
-            return Encoding.UTF8.GetString(BigBuf, 0, p);
-        }
-
-        public static void FileWriteString(FileStream f, string a)
-        {
-            BigBuf = Encoding.UTF8.GetBytes(a);
-            f.Write(BitConverter.GetBytes(BigBuf.Length), 0, 4);
-            f.Write(BigBuf, 0, BigBuf.Length);
-        }
-
-        public static byte FileReadByte(FileStream f)
-        {
-            f.Read(buf, 0, 1);
-            return buf[0];
-        }
-
-        public static void FileWriteByte(FileStream f, byte a)
-        {
-            buf[0] = a;
-            f.Write(buf, 0, 1);
         }
 
         public static void DirectorySize(string path, ref long size)
@@ -111,16 +59,14 @@ namespace DDMediaWatched
             if (IsFile)
                 if (File.Exists(path))
                 {
-                    size = 0;
-                    FileInfo f = new FileInfo(path);
-                    size = f.Length;
+                    size = new FileInfo(path).Length;
                 }
             if (!IsFile)
                 if (Directory.Exists(path))
-                    {
-                        size = 0;
-                        DirectorySize(path, ref size);
-                    }
+                {
+                    size = 0;
+                    DirectorySize(path, ref size);
+                }
             return size;
         }
 
@@ -141,7 +87,7 @@ namespace DDMediaWatched
         public static string GetVideoLength(string path)
         {
             string value = "NULL";
-            if (File.Exists(path) || Directory.Exists(path))
+            if (File.Exists(path))
             {
                 string dir = Path.GetDirectoryName(path);
                 string file = Path.GetFileName(path);

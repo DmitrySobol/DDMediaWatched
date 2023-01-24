@@ -75,17 +75,17 @@ namespace DDMediaWatched
             parentFranchise = parent;
             int p = 0;
             //name
-            name = Program.FileReadString(f);
+            name = BinaryFile.FileReadString(f);
             //sizeD
-            sizeD = Program.FileReadInt64(f);
+            sizeD = BinaryFile.FileReadInt64(f);
             //path
-            path = Program.FileReadString(f);
+            path = BinaryFile.FileReadString(f);
             //isPathFile
-            isPathFile = Program.FileReadByte(f);
+            isPathFile = BinaryFile.FileReadByte(f);
             //common length
-            commonLength = Program.FileReadInt32(f);
+            commonLength = BinaryFile.FileReadInt32(f);
             //series
-            p = Program.FileReadInt32(f);
+            p = BinaryFile.FileReadInt32(f);
             series = new List<Series>();
             for (int i = 0; i < p; i++)
                 series.Add(new Series(f));
@@ -94,17 +94,17 @@ namespace DDMediaWatched
         public void SaveToBin(FileStream f)
         {
             //name
-            Program.FileWriteString(f, name);
+            BinaryFile.FileWriteString(f, name);
             //sizeD
-            Program.FileWriteInt64(f, sizeD);
+            BinaryFile.FileWriteInt64(f, sizeD);
             //path
-            Program.FileWriteString(f, path);
+            BinaryFile.FileWriteString(f, path);
             //isPathFile
-            Program.FileWriteByte(f, isPathFile);
+            BinaryFile.FileWriteByte(f, isPathFile);
             //common length
-            Program.FileWriteInt32(f, commonLength);
+            BinaryFile.FileWriteInt32(f, commonLength);
             //series
-            Program.FileWriteInt32(f, series.Count);
+            BinaryFile.FileWriteInt32(f, series.Count);
             foreach (Series s in series)
                 s.SaveToBin(f);
         }
