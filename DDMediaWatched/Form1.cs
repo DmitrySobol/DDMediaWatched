@@ -36,6 +36,9 @@ namespace DDMediaWatched
         public List<Franchise.FranchisePersentage>
             TypeOnPersentage = new List<Franchise.FranchisePersentage>();
 
+        public List<bool>
+            TypeOnURL = new List<bool>();
+
         public static string
             sortBy = "",
             colorBy = "";
@@ -86,7 +89,7 @@ namespace DDMediaWatched
             ControlsDisable(controlsRightButtons);
             ControlsDisable(controlsListViews);
             currentFranchise = new Franchise();
-            Franchise.franchises.Add(currentFranchise);
+            Franchise.AddFranchise(currentFranchise);
             EditFranchise();
         }
 
@@ -132,12 +135,7 @@ namespace DDMediaWatched
             if (currentFranchise != null)
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    for (int i = 0; i < Franchise.franchises.Count; i++)
-                        if (Franchise.franchises[i].GetName() == currentFranchise.GetName())
-                        {
-                            Franchise.franchises.RemoveAt(i);
-                            break;
-                        }
+                    Franchise.RemoveFranchise(currentFranchise.GetName());
                     SelectNone();
                     FranchisesToListView();
                 }
@@ -170,13 +168,7 @@ namespace DDMediaWatched
                 ControlsDisable(controlsListViews);
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
-                string selected = listViewTitles.SelectedItems[0].Text;
-                foreach (Franchise franchise in Franchise.franchises)
-                    if (franchise.GetName() == selected)
-                    {
-                        currentFranchise = franchise;
-                        break;
-                    }
+                currentFranchise = Franchise.GetFranchise(listViewTitles.SelectedItems[0].Text);
                 EditFranchise();
             }
         }
@@ -493,7 +485,7 @@ namespace DDMediaWatched
                 isEdited = true;
                 string[] s = File.ReadAllLines(openFileDialog1.FileName);
                 foreach (string p in s)
-                    Franchise.franchises.Add(new Franchise(p.Split('|')));
+                    Franchise.AddFranchise(new Franchise(p.Split('|')));
                 SelectNone();
                 FranchisesToListView();
             }
@@ -508,11 +500,7 @@ namespace DDMediaWatched
             else
             {
                 isEdited = true;
-                foreach (Franchise franchise in Franchise.franchises)
-                {
-                    foreach (Part part in franchise.GetParts())
-                        part.FindSize();
-                }
+                Franchise.FindAllSize();
                 Log("All size has been updated!");
             }
         }
@@ -535,14 +523,8 @@ namespace DDMediaWatched
             }
             else
             {
-                string selected = listViewTitles.SelectedItems[0].Text;
-                foreach (Franchise franchise in Franchise.franchises)
-                    if (franchise.GetName() == selected)
-                    {
-                        currentFranchise = franchise;
-                        textBoxTitleInfo.Text = currentFranchise.ToString();
-                        break;
-                    }
+                currentFranchise = Franchise.GetFranchise(listViewTitles.SelectedItems[0].Text);
+                textBoxTitleInfo.Text = currentFranchise.ToString();
             }
             PartsToListView();
         }
@@ -626,6 +608,11 @@ namespace DDMediaWatched
             TypeOnPersentage.Clear();
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
                 TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
+            TypeOnURL.Clear();
+            if (checkedListBoxSortTypesURL.CheckedItems.Contains("URL"))
+                TypeOnURL.Add(true);
+            if (checkedListBoxSortTypesURL.CheckedItems.Contains("-URL"))
+                TypeOnURL.Add(false);
             sortBy = comboBoxSortSortBy.Text;
             colorBy = comboBoxSortColorBy.Text;
             reverseSort = checkBoxSortReverse.Checked;

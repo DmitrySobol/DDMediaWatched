@@ -166,63 +166,10 @@ namespace DDMediaWatched
         public void FranchisesToListView()
         {
             listViewTitles.Items.Clear();
-            List<Franchise> franchisesType = new List<Franchise>();
-            foreach (Franchise el in Franchise.franchises)
-                if (IsTypeOn(el))
-                    franchisesType.Add(el);
+            List<Franchise> franchisesType = Franchise.GetFranchisesType();
             SortFranchises(ref franchisesType);
             foreach (Franchise el in franchisesType)
-            {
-                ListViewItem item = new ListViewItem()
-                {
-                    Text = el.GetName(),
-                    BackColor = StaticUtils.GetColor(colorBy, el)
-                };
-                ListViewItem.ListViewSubItem si;
-                //Length
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Length",
-                    Text = String.Format("{0:f2} Hr", el.GetLength() / 3600d)
-                };
-                item.SubItems.Add(si);
-                //Size
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Size",
-                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", el.GetSize() / 1024d / 1024 / 1024)
-                };
-                item.SubItems.Add(si);
-                //BPS
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "BPS",
-                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.GetBPS() / 1024 / 1024))
-                };
-                item.SubItems.Add(si);
-                //%
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "%",
-                    Text = String.Format("{0:f0}%", el.GetPersentage())
-                };
-                item.SubItems.Add(si);
-                //Type
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Type",
-                    Text = String.Format("{0}", el.GetFranchiseTypeLetter())
-                };
-                item.SubItems.Add(si);
-                //Path
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Path",
-                    Text = el.GetPath()
-                };
-                item.SubItems.Add(si);
-                listViewTitles.Items.Add(item);
-            }
+                listViewTitles.Items.Add(el.ToListViewItem(colorBy));
         }
 
         public void PartsToListView()
@@ -231,82 +178,20 @@ namespace DDMediaWatched
             if (currentFranchise == null)
                 return;
             foreach (Part el in currentFranchise.GetParts())
-            {
-                ListViewItem item = new ListViewItem()
-                {
-                    Text = el.GetName()
-                };
-                ListViewItem.ListViewSubItem si;
-                //Length
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Length",
-                    Text = String.Format("{0:f2} Hr", el.GetLength() / 3600d)
-                };
-                item.SubItems.Add(si);
-                //Size
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Size",
-                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", el.GetSize() / 1024d / 1024 / 1024)
-                };
-                item.SubItems.Add(si);
-                //BPS
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "BPS",
-                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.GetSize() / 1024d / 1024) / (el.GetLength() / 60d / 24))
-                };
-                item.SubItems.Add(si);
-                //%
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "%",
-                    Text = String.Format("{0:f0}%", el.GetPersentage())
-                };
-                item.SubItems.Add(si);
-                //Path
-                si = new ListViewItem.ListViewSubItem
-                {
-                    Tag = "Path",
-                    Text = el.GetPath()
-                };
-                item.SubItems.Add(si);
-                listViewParts.Items.Add(item);
-            }
+                listViewParts.Items.Add(el.ToListViewItem());
         }
 
         public void DrawStatistic()
         {
             string s = "";
             s += String.Format("Current media volume: {0}\r\n", Program.pathLetter);
-            long size = 0;
-            int watchedLength = 0;
-            int watchedUniqueLength = 0;
-            foreach (Franchise f in Franchise.franchises)
-            {
-                size += f.GetSize();
-                watchedLength += f.GetWatchedLength();
-                watchedUniqueLength += f.GetUniqueWatchedLength();
-            }
+            long size = Franchise.GetAllSize();
+            int watchedLength = Franchise.GetAllWatchedLength();
+            int watchedUniqueLength = Franchise.GetAllUniqueWatchedLength();
             s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
             textBoxInfo.Text = s;
-        }
-
-        public bool IsTypeOn(Franchise el)
-        {
-            bool b = true;
-            if (!TypeOnType.Contains(el.GetFranchiseType()))
-                b = false;
-            if (!TypeOnDown.Contains(el.GetDownloadedType()))
-                b = false;
-            if (!TypeOnPersentage.Contains(el.GetPersentageType()))
-                b = false;
-            if (!checkedListBoxSortTypesURL.CheckedItems.Contains(el.IsURLExists() ? "URL" : "-URL"))
-                b = false;
-            return b;
         }
 
         public void SortFranchises(ref List<Franchise> list)

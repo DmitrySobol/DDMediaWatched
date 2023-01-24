@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace DDMediaWatched
 {
@@ -443,6 +444,59 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
             return s;
+        }
+
+        public ListViewItem ToListViewItem(string colorBy)
+        {
+            ListViewItem item = new ListViewItem()
+            {
+                Text = this.GetName(),
+                BackColor = StaticUtils.GetColor(colorBy, this)
+            };
+            ListViewItem.ListViewSubItem si;
+            //Length
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "Length",
+                Text = String.Format("{0:f2} Hr", this.GetLength() / 3600d)
+            };
+            item.SubItems.Add(si);
+            //Size
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "Size",
+                Text = this.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", this.GetSize() / 1024d / 1024 / 1024)
+            };
+            item.SubItems.Add(si);
+            //BPS
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "BPS",
+                Text = this.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (this.GetBPS() / 1024 / 1024))
+            };
+            item.SubItems.Add(si);
+            //%
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "%",
+                Text = String.Format("{0:f0}%", this.GetPersentage())
+            };
+            item.SubItems.Add(si);
+            //Type
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "Type",
+                Text = String.Format("{0}", this.GetFranchiseTypeLetter())
+            };
+            item.SubItems.Add(si);
+            //Path
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "Path",
+                Text = this.GetPath()
+            };
+            item.SubItems.Add(si);
+            return item;
         }
     }
 }
