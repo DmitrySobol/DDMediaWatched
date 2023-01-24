@@ -399,7 +399,7 @@ namespace DDMediaWatched
                 MessageBox.Show("There is alredy exist part with this name!", "Error");
                 return;
             }
-            int len = Program.HMStoSecs(textBoxNewPartLength.Text);
+            int len = StaticUtils.HMStoSecs(textBoxNewPartLength.Text);
             if (!currentPart.isFull())
             {
                 if (!MakeLengthsNewPart())
@@ -448,7 +448,7 @@ namespace DDMediaWatched
 
         private void textBoxNewPartLength_TextChanged(object sender, EventArgs e)
         {
-            int p = Program.HMStoSecs(textBoxNewPartLength.Text);
+            int p = StaticUtils.HMStoSecs(textBoxNewPartLength.Text);
             if (p == -1)
                 return;
             currentPart.setCommonLength(p);
@@ -554,7 +554,7 @@ namespace DDMediaWatched
                 numericUpDownNewPartSeries.Enabled = false;
                 textBoxNewPartLengths.Enabled = false;
                 currentPart.setPath(textBoxNewPartPath.Text);
-                textBoxNewPartLength.Text = Program.GetVideoLength(currentPart.getAbsolutePath());
+                textBoxNewPartLength.Text = StaticUtils.GetVideoLength(currentPart.getAbsolutePath());
             }
             else
             {
@@ -569,7 +569,7 @@ namespace DDMediaWatched
             if (path.Length > 0)
                 if (path[0] == '"')
                     path = path.Substring(1, path.Length - 2);
-            int p = Program.IsFileOrDirr(path);
+            int p = StaticUtils.IsFileOrDirr(path);
             if (p == 0)
             {
                 checkBoxNewPartIsPathFile.Checked = false;

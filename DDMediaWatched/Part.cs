@@ -46,12 +46,12 @@ namespace DDMediaWatched
         {
             this.name = name;
             this.path = path;
-            int typeP = Program.IsFileOrDirr(this.path);
+            int typeP = StaticUtils.IsFileOrDirr(this.path);
             this.isPathFile = 0;
             if (typeP == 1)
                 this.isPathFile = 1;
             if (autoSize)
-                this.sizeD = Program.GetPathSize(this.path, this.isFull());
+                this.sizeD = StaticUtils.GetPathSize(this.path, this.isFull());
             else
                 this.sizeD = 0;
             if (this.sizeD < 0)
@@ -59,7 +59,7 @@ namespace DDMediaWatched
             this.commonLength = 1440;
             if (autoLength)
             {
-                int p = Program.HMStoSecs(Program.GetVideoLength(this.path));
+                int p = StaticUtils.HMStoSecs(StaticUtils.GetVideoLength(this.path));
                 if (p >= 0)
                     this.commonLength = p;
             }
@@ -126,7 +126,7 @@ namespace DDMediaWatched
             if (this.path.Length > 0)
             {
                 path += this.path;
-                newSize = Program.GetPathSize(path, this.isFull());
+                newSize = StaticUtils.GetPathSize(path, this.isFull());
                 if (newSize == -1)
                 {
                     Program.form1.Log(String.Format("{0} - {1}. Path \"{2}\" has been removed!", this.parentFranchise.getName(), this.getName(), this.getPath()));
