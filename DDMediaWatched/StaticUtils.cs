@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.IO;
 
 namespace DDMediaWatched
@@ -81,20 +82,70 @@ namespace DDMediaWatched
 
         public static int HMStoSecs(string s)
         {
-            int ret = 0, p = 0;
+            int ret = 0, koef = 1;
             string[] hms = s.Split(':');
             if (hms.Length != 3)
                 return -1;
-            if (!int.TryParse(hms[0], out p))
-                return -1;
-            ret += p * 3600;
-            if (!int.TryParse(hms[1], out p))
-                return -1;
-            ret += p * 60;
-            if (!int.TryParse(hms[2], out p))
-                return -1;
-            ret += p;
+            for (int i = 2; i >= 0; i--)
+            {
+                if (!int.TryParse(hms[i], out int p))
+                    return -1;
+                ret += p * koef;
+                koef *= 60;
+            }
             return ret;
+        }
+
+        public static Color GetColor(string colorBy, Franchise franchise)
+        {
+            Color ret = Color.FromArgb(255, 255, 255);
+            switch (colorBy)
+            {
+                case "Persentage (3)":
+                    {
+                        switch (franchise.isPersentage())
+                        {
+                            case Franchise.FranchisePersentage.Zero:
+                                ret = Color.FromArgb(255, 191, 191);
+                                break;
+                            case Franchise.FranchisePersentage.Started:
+                                ret = Color.FromArgb(255, 255, 191);
+                                break;
+                            case Franchise.FranchisePersentage.Full:
+                                ret = Color.FromArgb(191, 255, 191);
+                                break;
+                        }
+                    }
+                    break;
+                case "Persentage (Gradient)":
+                    {
+                        if (franchise.getPersentage() > 50)
+                        {
+                            double pColor = 191 + (100 - franchise.getPersentage()) / 50 * 64;
+                            ret = Color.FromArgb((int)Math.Round(pColor), 255, 191);
+                        }
+                        else
+                        {
+                            double pColor = 191 + franchise.getPersentage() / 50 * 64;
+                            ret = Color.FromArgb(255, (int)Math.Round(pColor), 191);
+                        }
+                    }
+                    break;
+            }
+            return ret;
+        }
+
+        public static string FindDiskLetter()
+        {
+            string path = "null";
+            string[] drivers = Environment.GetLogicalDrives();
+            for (int i = 0; i < drivers.Length; i++)
+            {
+                if (File.Exists(drivers[i] + "config.dat"))
+                    if (File.ReadAllText(drivers[i] + "config.dat", Encoding.UTF8) == "LOLI_HDD")
+                        path = drivers[i];
+            }
+            return path;
         }
     }
 }

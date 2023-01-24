@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DDMediaWatched
 {
-    public class Franchise
+    public partial class Franchise
     {
         public enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
         public enum FranchiseDown {Downloaded, NoDownloaded };
