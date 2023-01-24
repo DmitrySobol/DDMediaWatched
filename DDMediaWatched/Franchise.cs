@@ -13,10 +13,10 @@ namespace DDMediaWatched
         public enum FranchiseDown {Downloaded, NoDownloaded };
         public enum FranchisePersentage {Zero, Started, Full };
 
-        private List<string>
+        private readonly List<string>
             names;
 
-        private List<Part>
+        private readonly List<Part>
             parts;
 
         private string
@@ -34,8 +34,10 @@ namespace DDMediaWatched
 
         public Franchise()
         {
-            names = new List<string>();
-            names.Add("");
+            names = new List<string>
+            {
+                ""
+            };
             parts = new List<Part>();
             path = "";
             URL = "";
@@ -47,7 +49,7 @@ namespace DDMediaWatched
         public Franchise(string[] args)
         {
             names = new List<string>();
-            this.setNames(args[0].Trim().Split(';'));
+            this.SetNames(args[0].Trim().Split(';'));
             string path = args[1].Trim();
             switch(args[2].ToLower())
             {
@@ -80,7 +82,7 @@ namespace DDMediaWatched
             parts = new List<Part>();
             if (args.Length > 3)
             {
-                this.setPath(path);
+                this.SetPath(path);
                 int[] ser = new int[args.Length - 3];
                 for (int i = 3; i < args.Length; i++)
                     ser[i - 3] = int.Parse(args[i]);
@@ -150,19 +152,19 @@ namespace DDMediaWatched
             BinaryFile.FileWriteInt32(f, startingDate.Day);
         }
         //Names
-        public void setNames(string[] names)
+        public void SetNames(string[] names)
         {
             this.names.Clear();
             foreach (string s in names)
                 this.names.Add(s.Trim());
         }
 
-        public string getName()
+        public string GetName()
         {
             return names[0];
         }
 
-        public string getAllNames()
+        public string GetAllNames()
         {
             string s = "";
             for (int i = 0; i < names.Count - 1; i++)
@@ -171,7 +173,7 @@ namespace DDMediaWatched
             return s;
         }
 
-        public string getOtherNames()
+        public string GetOtherNames()
         {
             string s = "";
             if (names.Count >= 2)
@@ -183,86 +185,86 @@ namespace DDMediaWatched
             return s;
         }
         //Length
-        public int getLength()
+        public int GetLength()
         {
             int length = 0;
             foreach (Part part in this.parts)
-                length += part.getLength();
+                length += part.GetLength();
             return length;
         }
 
-        public int getWatchedLength()
+        public int GetWatchedLength()
         {
             int length = 0;
             foreach (Part part in this.parts)
-                length += part.getWatchedLength();
+                length += part.GetWatchedLength();
             return length;
         }
 
-        public int getUniqueWatchedLength()
+        public int GetUniqueWatchedLength()
         {
             int length = 0;
             foreach (Part part in this.parts)
-                length += part.getUniqueWatchedLength();
+                length += part.GetUniqueWatchedLength();
             return length;
         }
 
-        public double getPersentage()
+        public double GetPersentage()
         {
-            if (this.getLength() == 0)
+            if (this.GetLength() == 0)
                 return 0;
-            double persentage = this.getUniqueWatchedLength() * 100;
-            persentage /= this.getLength();
+            double persentage = this.GetUniqueWatchedLength() * 100;
+            persentage /= this.GetLength();
             return persentage;
         }
 
-        public FranchisePersentage isPersentage()
+        public FranchisePersentage GetPersentageType()
         {
             FranchisePersentage fp = FranchisePersentage.Zero;
-            if (this.getPersentage() > 0.001d)
+            if (this.GetPersentage() > 0.001d)
                 fp = FranchisePersentage.Started;
-            if (this.getPersentage() > 99.999d)
+            if (this.GetPersentage() > 99.999d)
                 fp = FranchisePersentage.Full;
             return fp;
         }
         //Size
-        public long getSize()
+        public long GetSize()
         {
             long p = 0;
             foreach (Part part in parts)
-                p += part.getSize();
+                p += part.GetSize();
             return p;
         }
 
-        public void findSize()
+        public void FindSize()
         {
             if (Program.pathLetter == "null")
             {
                 Program.form1.Log("There is no media drives!");
                 return;
             }
-            if (this.getPath() == "")
+            if (this.GetPath() == "")
             {
                 Program.form1.Log("There is no path!");
                 return;
             }
-            foreach (Part part in this.getParts())
-                part.findSize();
+            foreach (Part part in this.GetParts())
+                part.FindSize();
         }
 
-        public FranchiseDown isDownloaded()
+        public FranchiseDown GetDownloadedType()
         {
-            if (this.getSize() == 0)
+            if (this.GetSize() == 0)
                 return FranchiseDown.NoDownloaded;
             return FranchiseDown.Downloaded;
         }
         //BPS
-        public double getBPS()
+        public double GetBPS()
         {
-            return this.getSize() / (this.getLength() / 60d / 24);
+            return this.GetSize() / (this.GetLength() / 60d / 24);
         }
         //Path
-        public void setPath(string path)
+        public void SetPath(string path)
         {
             if (path.Length > 3)
             {
@@ -279,29 +281,29 @@ namespace DDMediaWatched
                     this.path += '\\';
         }
 
-        public string getPath()
+        public string GetPath()
         {
             return path;
         }
 
-        public string getAbsolutePath()
+        public string GetAbsolutePath()
         {
             if (Program.pathLetter == "null")
                 return "null";
             return Program.pathLetter + path;
         }
         //ULR
-        public string getURL()
+        public string GetURL()
         {
             return URL;
         }
 
-        public void setURL(string URL)
+        public void SetURL(string URL)
         {
             this.URL = URL;
         }
 
-        public bool isURL()
+        public bool IsURLExists()
         {
             if (this.URL == "")
                 return false;
@@ -309,7 +311,7 @@ namespace DDMediaWatched
                 return true;
         }
         //Type
-        public void setType(int index)
+        public void SetType(int index)
         {
             if (index >= 0)
                 this.type = (FranchiseType)index;
@@ -317,12 +319,12 @@ namespace DDMediaWatched
                 this.type = FranchiseType.No;
         }
 
-        public FranchiseType getType()
+        public FranchiseType GetFranchiseType()
         {
             return type;
         }
 
-        public int getTypeInt()
+        public int GetFranchiseTypeInt()
         {
             int p = (int)this.type;
             if (this.type == FranchiseType.No)
@@ -330,7 +332,7 @@ namespace DDMediaWatched
             return p;
         }
 
-        public string getTypeString()
+        public string GetFranchiseTypeString()
         {
             string s = "";
             switch (type)
@@ -364,7 +366,7 @@ namespace DDMediaWatched
             return s;
         }
 
-        public string getTypeLetter()
+        public string GetFranchiseTypeLetter()
         {
             string s = "";
             switch (type)
@@ -398,30 +400,30 @@ namespace DDMediaWatched
             return s;
         }
         //Mark
-        public int getMark()
+        public int GetMark()
         {
             return mark;
         }
         //Parts
-        public List<Part> getParts()
+        public List<Part> GetParts()
         {
             return parts;
         }
         //Date
-        public DateTime getStartingDate()
+        public DateTime GetStartingDate()
         {
             return startingDate;
         }
 
-        public void setStartingDate(string arg)
+        public void SetStartingDate(string arg)
         {
             string[] args = arg.Split('.');
             if (args.Length < 3)
                 return;
-            this.setStartingDate(int.Parse(args[0]), int.Parse(args[1]), int.Parse(args[2]));
+            this.SetStartingDate(int.Parse(args[0]), int.Parse(args[1]), int.Parse(args[2]));
         }
 
-        public void setStartingDate(int yy, int mm, int dd)
+        public void SetStartingDate(int yy, int mm, int dd)
         {
             startingDate = new DateTime(yy, mm, dd);
         }
@@ -429,17 +431,17 @@ namespace DDMediaWatched
         public override string ToString()
         {
             string s = "";
-            s += String.Format("{0,-15}| {1}\r\n", "Name", this.getName());
-            s += String.Format("{0,-15}| {1}\r\n", "Other names", this.getOtherNames());
-            s += String.Format("{0,-15}| {1}\r\n", "Path", this.getPath());
-            s += String.Format("{0,-15}| {1}\r\n", "URL", this.getURL());
-            s += String.Format("{0,-15}| {1}\r\n", "Type", this.getTypeString());
-            s += String.Format("{0,-15}| {1}\r\n", "Mark", this.getMark() < 0 ? "" : this.getMark().ToString());
+            s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
+            s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
+            s += String.Format("{0,-15}| {1}\r\n", "Path", this.GetPath());
+            s += String.Format("{0,-15}| {1}\r\n", "URL", this.GetURL());
+            s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
+            s += String.Format("{0,-15}| {1}\r\n", "Mark", this.GetMark() < 0 ? "" : this.GetMark().ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
-            s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.getSize() / 1024d / 1024/ 1024);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.getLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.getWatchedLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.getUniqueWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.GetSize() / 1024d / 1024/ 1024);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
             return s;
         }
     }

@@ -41,39 +41,39 @@ namespace DDMediaWatched
             BinaryFile.FileWriteInt32(f, countWatch);
         }
 
-        public void setLength(int length)
+        public void SetLength(int length)
         {
             this.length = length;
         }
 
-        public int getLength()
+        public int GetLength()
         {
             return length;
         }
 
-        public int getWatchedLength()
+        public int GetWatchedLength()
         {
             return length * countWatch;
         }
 
-        public int getUniqueWatchedLength()
+        public int GetUniqueWatchedLength()
         {
             if (countWatch > 0)
                 return length;
             return 0;
         }
 
-        public void setCountWatch(int countWatch)
+        public void SetCountWatch(int countWatch)
         {
             this.countWatch = countWatch;
         }
 
-        public int getCountWatch()
+        public int GetCountWatch()
         {
             return countWatch;
         }
 
-        public void addWatch()
+        public void AddWatch()
         {
             this.countWatch++;
         }

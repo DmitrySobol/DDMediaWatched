@@ -103,7 +103,7 @@ namespace DDMediaWatched
             {
                 case "Persentage (3)":
                     {
-                        switch (franchise.isPersentage())
+                        switch (franchise.GetPersentageType())
                         {
                             case Franchise.FranchisePersentage.Zero:
                                 ret = Color.FromArgb(255, 191, 191);
@@ -119,14 +119,14 @@ namespace DDMediaWatched
                     break;
                 case "Persentage (Gradient)":
                     {
-                        if (franchise.getPersentage() > 50)
+                        if (franchise.GetPersentage() > 50)
                         {
-                            double pColor = 191 + (100 - franchise.getPersentage()) / 50 * 64;
+                            double pColor = 191 + (100 - franchise.GetPersentage()) / 50 * 64;
                             ret = Color.FromArgb((int)Math.Round(pColor), 255, 191);
                         }
                         else
                         {
-                            double pColor = 191 + franchise.getPersentage() / 50 * 64;
+                            double pColor = 191 + franchise.GetPersentage() / 50 * 64;
                             ret = Color.FromArgb(255, (int)Math.Round(pColor), 191);
                         }
                     }

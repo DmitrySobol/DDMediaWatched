@@ -175,7 +175,7 @@ namespace DDMediaWatched
             {
                 ListViewItem item = new ListViewItem()
                 {
-                    Text = el.getName(),
+                    Text = el.GetName(),
                     BackColor = StaticUtils.GetColor(colorBy, el)
                 };
                 ListViewItem.ListViewSubItem si;
@@ -183,42 +183,42 @@ namespace DDMediaWatched
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Length",
-                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                    Text = String.Format("{0:f2} Hr", el.GetLength() / 3600d)
                 };
                 item.SubItems.Add(si);
                 //Size
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Size",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", el.GetSize() / 1024d / 1024 / 1024)
                 };
                 item.SubItems.Add(si);
                 //BPS
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.getBPS() / 1024 / 1024))
+                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.GetBPS() / 1024 / 1024))
                 };
                 item.SubItems.Add(si);
                 //%
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "%",
-                    Text = String.Format("{0:f0}%", el.getPersentage())
+                    Text = String.Format("{0:f0}%", el.GetPersentage())
                 };
                 item.SubItems.Add(si);
                 //Type
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Type",
-                    Text = String.Format("{0}", el.getTypeLetter())
+                    Text = String.Format("{0}", el.GetFranchiseTypeLetter())
                 };
                 item.SubItems.Add(si);
                 //Path
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Path",
-                    Text = el.getPath()
+                    Text = el.GetPath()
                 };
                 item.SubItems.Add(si);
                 listViewTitles.Items.Add(item);
@@ -230,46 +230,46 @@ namespace DDMediaWatched
             listViewParts.Items.Clear();
             if (currentFranchise == null)
                 return;
-            foreach (Part el in currentFranchise.getParts())
+            foreach (Part el in currentFranchise.GetParts())
             {
                 ListViewItem item = new ListViewItem()
                 {
-                    Text = el.getName()
+                    Text = el.GetName()
                 };
                 ListViewItem.ListViewSubItem si;
                 //Length
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Length",
-                    Text = String.Format("{0:f2} Hr", el.getLength() / 3600d)
+                    Text = String.Format("{0:f2} Hr", el.GetLength() / 3600d)
                 };
                 item.SubItems.Add(si);
                 //Size
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Size",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f2} Gb", el.getSize() / 1024d / 1024 / 1024)
+                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", el.GetSize() / 1024d / 1024 / 1024)
                 };
                 item.SubItems.Add(si);
                 //BPS
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "BPS",
-                    Text = el.getSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.getSize() / 1024d / 1024) / (el.getLength() / 60d / 24))
+                    Text = el.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (el.GetSize() / 1024d / 1024) / (el.GetLength() / 60d / 24))
                 };
                 item.SubItems.Add(si);
                 //%
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "%",
-                    Text = String.Format("{0:f0}%", el.getPersentage())
+                    Text = String.Format("{0:f0}%", el.GetPersentage())
                 };
                 item.SubItems.Add(si);
                 //Path
                 si = new ListViewItem.ListViewSubItem
                 {
                     Tag = "Path",
-                    Text = el.getPath()
+                    Text = el.GetPath()
                 };
                 item.SubItems.Add(si);
                 listViewParts.Items.Add(item);
@@ -285,9 +285,9 @@ namespace DDMediaWatched
             int watchedUniqueLength = 0;
             foreach (Franchise f in Franchise.franchises)
             {
-                size += f.getSize();
-                watchedLength += f.getWatchedLength();
-                watchedUniqueLength += f.getUniqueWatchedLength();
+                size += f.GetSize();
+                watchedLength += f.GetWatchedLength();
+                watchedUniqueLength += f.GetUniqueWatchedLength();
             }
             s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
@@ -298,13 +298,13 @@ namespace DDMediaWatched
         public bool IsTypeOn(Franchise el)
         {
             bool b = true;
-            if (!TypeOnType.Contains(el.getType()))
+            if (!TypeOnType.Contains(el.GetFranchiseType()))
                 b = false;
-            if (!TypeOnDown.Contains(el.isDownloaded()))
+            if (!TypeOnDown.Contains(el.GetDownloadedType()))
                 b = false;
-            if (!TypeOnPersentage.Contains(el.isPersentage()))
+            if (!TypeOnPersentage.Contains(el.GetPersentageType()))
                 b = false;
-            if (!checkedListBoxSortTypesURL.CheckedItems.Contains(el.isURL() ? "URL" : "-URL"))
+            if (!checkedListBoxSortTypesURL.CheckedItems.Contains(el.IsURLExists() ? "URL" : "-URL"))
                 b = false;
             return b;
         }
@@ -315,22 +315,22 @@ namespace DDMediaWatched
             {
                 case "Name":
                     {
-                        list = list.OrderBy(x => x.getName()).ToList();
+                        list = list.OrderBy(x => x.GetName()).ToList();
                     }
                     break;
                 case "Size":
                     {
-                        list = list.OrderBy(x => x.getSize()).ToList();
+                        list = list.OrderBy(x => x.GetSize()).ToList();
                     }
                     break;
                 case "Length":
                     {
-                        list = list.OrderBy(x => x.getLength()).ToList();
+                        list = list.OrderBy(x => x.GetLength()).ToList();
                     }
                     break;
                 case "Persentage (0-100)":
                     {
-                        list = list.OrderBy(x => x.getPersentage()).ToList();
+                        list = list.OrderBy(x => x.GetPersentage()).ToList();
                     }
                     break;
                 case "Persentage (99-0, 100)":
@@ -338,13 +338,13 @@ namespace DDMediaWatched
                         for (int j = 0; j < list.Count; j++)
                             for (int i = 0; i < list.Count - 1; i++)
                             {
-                                if (list[i].getPersentage() < list[i + 1].getPersentage() && list[i + 1].isPersentage() != Franchise.FranchisePersentage.Full)
+                                if (list[i].GetPersentage() < list[i + 1].GetPersentage() && list[i + 1].GetPersentageType() != Franchise.FranchisePersentage.Full)
                                 {
                                     Franchise fr = list[i];
                                     list[i] = list[i + 1];
                                     list[i + 1] = fr;
                                 }
-                                if (list[i].isPersentage() == Franchise.FranchisePersentage.Full)
+                                if (list[i].GetPersentageType() == Franchise.FranchisePersentage.Full)
                                 {
                                     Franchise fr = list[i];
                                     list[i] = list[i + 1];
@@ -355,17 +355,17 @@ namespace DDMediaWatched
                     break;
                 case "BPS":
                     {
-                        list = list.OrderBy(x => x.getBPS()).ToList();
+                        list = list.OrderBy(x => x.GetBPS()).ToList();
                     }
                     break;
                 case "Date":
                     {
-                        list = list.OrderBy(x => x.getStartingDate()).ToList();
+                        list = list.OrderBy(x => x.GetStartingDate()).ToList();
                     }
                     break;
                 case "Mark":
                     {
-                        list = list.OrderBy(x => x.getMark()).ToList();
+                        list = list.OrderBy(x => x.GetMark()).ToList();
                     }
                     break;
                 default:

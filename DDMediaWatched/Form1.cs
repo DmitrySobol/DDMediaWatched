@@ -94,13 +94,13 @@ namespace DDMediaWatched
         {
             isEdited = true;
             ControlsOffVisible(controlsNewFranchise);
-            currentFranchise.setNames(textBoxEditFranchiseNames.Text.Split(';'));
-            currentFranchise.setPath(textBoxEditFranchisePath.Text);
-            currentFranchise.setURL(textBoxEditFranchiseURL.Text);
-            currentFranchise.setType(comboBoxEditFranchiseType.SelectedIndex);
-            currentFranchise.setStartingDate(textBoxEditFranchiseDate.Text);
-            foreach (Part part in currentFranchise.getParts())
-                part.findSize();
+            currentFranchise.SetNames(textBoxEditFranchiseNames.Text.Split(';'));
+            currentFranchise.SetPath(textBoxEditFranchisePath.Text);
+            currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
+            currentFranchise.SetType(comboBoxEditFranchiseType.SelectedIndex);
+            currentFranchise.SetStartingDate(textBoxEditFranchiseDate.Text);
+            foreach (Part part in currentFranchise.GetParts())
+                part.FindSize();
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
             listViewParts.Enabled = true;
@@ -113,11 +113,11 @@ namespace DDMediaWatched
         {
             ControlsOffVisible(controlsInfo);
             ControlsOnVisible(controlsNewFranchise);
-            textBoxEditFranchiseNames.Text = currentFranchise.getAllNames();
-            textBoxEditFranchisePath.Text = currentFranchise.getPath();
-            textBoxEditFranchiseURL.Text = currentFranchise.getURL();
-            comboBoxEditFranchiseType.SelectedIndex = currentFranchise.getTypeInt();
-            textBoxEditFranchiseDate.Text = currentFranchise.getStartingDate().ToString("yyyy.MM.dd");
+            textBoxEditFranchiseNames.Text = currentFranchise.GetAllNames();
+            textBoxEditFranchisePath.Text = currentFranchise.GetPath();
+            textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
+            comboBoxEditFranchiseType.SelectedIndex = currentFranchise.GetFranchiseTypeInt();
+            textBoxEditFranchiseDate.Text = currentFranchise.GetStartingDate().ToString("yyyy.MM.dd");
         }
 
         private void buttonEditFranchiseToday_Click(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace DDMediaWatched
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     for (int i = 0; i < Franchise.franchises.Count; i++)
-                        if (Franchise.franchises[i].getName() == currentFranchise.getName())
+                        if (Franchise.franchises[i].GetName() == currentFranchise.GetName())
                         {
                             Franchise.franchises.RemoveAt(i);
                             break;
@@ -149,8 +149,8 @@ namespace DDMediaWatched
             if (currentFranchise == null)
                 return;
             isEdited = true;
-            foreach (Part p in currentFranchise.getParts())
-                p.addWatch();
+            foreach (Part p in currentFranchise.GetParts())
+                p.AddWatch();
         }
 
         private void findSizeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -158,7 +158,7 @@ namespace DDMediaWatched
             if (currentFranchise == null)
                 return;
             isEdited = true;
-            currentFranchise.findSize();
+            currentFranchise.FindSize();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,7 +172,7 @@ namespace DDMediaWatched
                 listViewTitles.Enabled = false;
                 string selected = listViewTitles.SelectedItems[0].Text;
                 foreach (Franchise franchise in Franchise.franchises)
-                    if (franchise.getName() == selected)
+                    if (franchise.GetName() == selected)
                     {
                         currentFranchise = franchise;
                         break;
@@ -188,7 +188,7 @@ namespace DDMediaWatched
             ControlsDisable(controlsRightButtons);
             ControlsDisable(controlsListViews);
             currentPart = new Part(currentFranchise);
-            currentFranchise.getParts().Add(currentPart);
+            currentFranchise.GetParts().Add(currentPart);
             EditPart();
         }
 
@@ -196,10 +196,10 @@ namespace DDMediaWatched
         {
             isEdited = true;
             int b = 0;
-            foreach (Part part in currentFranchise.getParts())
-                if (part.getName() == textBoxEditPartName.Text)
+            foreach (Part part in currentFranchise.GetParts())
+                if (part.GetName() == textBoxEditPartName.Text)
                     b++;
-            if (currentPart.getName() == textBoxEditPartName.Text)
+            if (currentPart.GetName() == textBoxEditPartName.Text)
                 b--;
             if (b > 0)
             {
@@ -207,29 +207,29 @@ namespace DDMediaWatched
                 return;
             }
             int len = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
-            if (!currentPart.isFull())
+            if (!currentPart.IsFull())
             {
                 if (!MakeLengthsEditPart())
                     return;
             }
             if (!MakeCOWEditPart())
                 return;
-            if (currentPart.isFull())
+            if (currentPart.IsFull())
             {
                 if (len == -1)
                     return;
-                currentPart.setCommonLength(len);
-                currentPart.setSeriesLengthToCommon();
+                currentPart.SetCommonLength(len);
+                currentPart.SetSeriesLengthToCommon();
             }
             ControlsOffVisible(controlsNewPart);
-            currentPart.setName(textBoxEditPartName.Text);
-            currentPart.setPath(textBoxEditPartPath.Text);
+            currentPart.SetName(textBoxEditPartName.Text);
+            currentPart.SetPath(textBoxEditPartPath.Text);
             if (len != -1)
             {
-                currentPart.setCommonLength(len);
+                currentPart.SetCommonLength(len);
             }
-            currentPart.setIsPathFile(checkBoxEditPartIsPathFile.Checked);
-            currentPart.findSize();
+            currentPart.SetIsPathFile(checkBoxEditPartIsPathFile.Checked);
+            currentPart.FindSize();
             ControlsOnVisible(controlsInfo);
             currentPart = null;
             PartsToListView();
@@ -243,12 +243,12 @@ namespace DDMediaWatched
         {
             ControlsOffVisible(controlsInfo);
             ControlsOnVisible(controlsNewPart);
-            textBoxEditPartName.Text = currentPart.getName();
-            textBoxEditPartPath.Text = currentPart.getPath();
-            int p = currentPart.getCommonLength();
+            textBoxEditPartName.Text = currentPart.GetName();
+            textBoxEditPartPath.Text = currentPart.GetPath();
+            int p = currentPart.GetCommonLength();
             textBoxEditPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
-            numericUpDownEditPartSeries.Value = currentPart.getSeries().Count();
-            checkBoxEditPartIsPathFile.Checked = currentPart.isFull();
+            numericUpDownEditPartSeries.Value = currentPart.GetSeries().Count();
+            checkBoxEditPartIsPathFile.Checked = currentPart.IsFull();
             MakeEditPartLengths();
             MakeEditPartCOW();
         }
@@ -258,44 +258,44 @@ namespace DDMediaWatched
             int p = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (p == -1)
                 return;
-            currentPart.setCommonLength(p);
-            if (!currentPart.isFull())
+            currentPart.SetCommonLength(p);
+            if (!currentPart.IsFull())
                 MakeEditPartLengths();
             else
-                currentPart.setSeriesLengthToCommon();
+                currentPart.SetSeriesLengthToCommon();
         }
 
         private void numericUpDownEditPartSeries_ValueChanged(object sender, EventArgs e)
         {
             int p = (int)numericUpDownEditPartSeries.Value;
-            if (currentPart.getSeries().Count != p)
-                if (currentPart.getSeries().Count < p)
+            if (currentPart.GetSeries().Count != p)
+                if (currentPart.GetSeries().Count < p)
                 {
-                    p = p - currentPart.getSeries().Count;
+                    p = p - currentPart.GetSeries().Count;
                     for (int i = 0; i < p; i++)
-                        currentPart.getSeries().Add(new Series(currentPart.getCommonLength(), 0));
+                        currentPart.GetSeries().Add(new Series(currentPart.GetCommonLength(), 0));
                 }
                 else
                 {
-                    p = currentPart.getSeries().Count - p;
+                    p = currentPart.GetSeries().Count - p;
                     for (int i = 0; i < p; i++)
-                        currentPart.getSeries().RemoveAt(currentPart.getSeries().Count - 1);
+                        currentPart.GetSeries().RemoveAt(currentPart.GetSeries().Count - 1);
                 }
-            if (!currentPart.isFull())
+            if (!currentPart.IsFull())
             {
                 MakeEditPartLengths();
                 MakeEditPartCOW();
             }
             else
-                currentPart.setSeriesLengthToCommon();
+                currentPart.SetSeriesLengthToCommon();
         }
 
         private void MakeEditPartLengths()
         {
             string str = "";
-            foreach (Series s in currentPart.getSeries())
+            foreach (Series s in currentPart.GetSeries())
             {
-                str += String.Format("{0};", s.getLength());
+                str += String.Format("{0};", s.GetLength());
             }
             if (!String.IsNullOrEmpty(str))
                 str = str.Remove(str.Length - 1);
@@ -305,9 +305,9 @@ namespace DDMediaWatched
         private void MakeEditPartCOW()
         {
             string str = "";
-            foreach (Series s in currentPart.getSeries())
+            foreach (Series s in currentPart.GetSeries())
             {
-                str += String.Format("{0};", s.getCountWatch());
+                str += String.Format("{0};", s.GetCountWatch());
             }
             if (!String.IsNullOrEmpty(str))
                 str = str.Remove(str.Length - 1);
@@ -317,7 +317,7 @@ namespace DDMediaWatched
         private bool MakeLengthsEditPart()
         {
             string[] s = textBoxEditPartLengths.Text.Split(';');
-            if (s.Length != currentPart.getSeries().Count)
+            if (s.Length != currentPart.GetSeries().Count)
                 return false;
             int[] l = new int[s.Length];
             bool b = true;
@@ -329,14 +329,14 @@ namespace DDMediaWatched
             if (!b)
                 return false;
             for (int i = 0; i < l.Length; i++)
-                currentPart.getSeries()[i].setLength(l[i]);
+                currentPart.GetSeries()[i].SetLength(l[i]);
             return true;
         }
 
         private bool MakeCOWEditPart()
         {
             string[] s = textBoxEditPartCOW.Text.Split(';');
-            if (s.Length != currentPart.getSeries().Count)
+            if (s.Length != currentPart.GetSeries().Count)
                 return false;
             int[] l = new int[s.Length];
             bool b = true;
@@ -348,20 +348,20 @@ namespace DDMediaWatched
             if (!b)
                 return false;
             for (int i = 0; i < l.Length; i++)
-                currentPart.getSeries()[i].setCountWatch(l[i]);
+                currentPart.GetSeries()[i].SetCountWatch(l[i]);
             return true;
         }
 
         private void checkBoxEditPartIsPathFile_CheckedChanged(object sender, EventArgs e)
         {
-            currentPart.setIsPathFile(checkBoxEditPartIsPathFile.Checked);
+            currentPart.SetIsPathFile(checkBoxEditPartIsPathFile.Checked);
             if (checkBoxEditPartIsPathFile.Checked)
             {
                 numericUpDownEditPartSeries.Value = 1;
                 numericUpDownEditPartSeries.Enabled = false;
                 textBoxEditPartLengths.Enabled = false;
-                currentPart.setPath(textBoxEditPartPath.Text);
-                textBoxEditPartLength.Text = StaticUtils.GetVideoLength(currentPart.getAbsolutePath());
+                currentPart.SetPath(textBoxEditPartPath.Text);
+                textBoxEditPartLength.Text = StaticUtils.GetVideoLength(currentPart.GetAbsolutePath());
             }
             else
             {
@@ -389,7 +389,7 @@ namespace DDMediaWatched
 
         private void buttonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
         {
-            currentPart.setSeriesLengthToCommon();
+            currentPart.SetSeriesLengthToCommon();
             MakeEditPartLengths();
         }
         //ContexParts
@@ -400,10 +400,10 @@ namespace DDMediaWatched
             if (currentPart != null)
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    for (int i = 0; i < currentFranchise.getParts().Count; i++)
-                        if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+                    for (int i = 0; i < currentFranchise.GetParts().Count; i++)
+                        if (currentFranchise.GetParts()[i].GetName() == currentPart.GetName())
                         {
-                            currentFranchise.getParts().RemoveAt(i);
+                            currentFranchise.GetParts().RemoveAt(i);
                             break;
                         }
                     SelectNone();
@@ -416,7 +416,7 @@ namespace DDMediaWatched
             if (currentPart == null)
                 return;
             isEdited = true;
-            currentPart.addWatch();
+            currentPart.AddWatch();
         }
 
         private void findSizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -424,7 +424,7 @@ namespace DDMediaWatched
             if (currentPart == null)
                 return;
             isEdited = true;
-            currentPart.findSize();
+            currentPart.FindSize();
         }
 
         private void editToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -437,8 +437,8 @@ namespace DDMediaWatched
                 listViewParts.Enabled = false;
                 listViewTitles.Enabled = false;
                 string selected = listViewParts.SelectedItems[0].Text;
-                foreach (Part p in currentFranchise.getParts())
-                    if (p.getName() == selected)
+                foreach (Part p in currentFranchise.GetParts())
+                    if (p.GetName() == selected)
                     {
                         currentPart = p;
                         break;
@@ -457,12 +457,12 @@ namespace DDMediaWatched
         private void upToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
-            for (int i = 1; i < currentFranchise.getParts().Count; i++)
-                if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+            for (int i = 1; i < currentFranchise.GetParts().Count; i++)
+                if (currentFranchise.GetParts()[i].GetName() == currentPart.GetName())
                 {
-                    Part p = currentFranchise.getParts()[i];
-                    currentFranchise.getParts()[i] = currentFranchise.getParts()[i - 1];
-                    currentFranchise.getParts()[i - 1] = p;
+                    Part p = currentFranchise.GetParts()[i];
+                    currentFranchise.GetParts()[i] = currentFranchise.GetParts()[i - 1];
+                    currentFranchise.GetParts()[i - 1] = p;
                     break;
                 }
             currentPart = null;
@@ -473,12 +473,12 @@ namespace DDMediaWatched
         private void downToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
-            for (int i = 0; i < currentFranchise.getParts().Count - 1; i++)
-                if (currentFranchise.getParts()[i].getName() == currentPart.getName())
+            for (int i = 0; i < currentFranchise.GetParts().Count - 1; i++)
+                if (currentFranchise.GetParts()[i].GetName() == currentPart.GetName())
                 {
-                    Part p = currentFranchise.getParts()[i];
-                    currentFranchise.getParts()[i] = currentFranchise.getParts()[i + 1];
-                    currentFranchise.getParts()[i + 1] = p;
+                    Part p = currentFranchise.GetParts()[i];
+                    currentFranchise.GetParts()[i] = currentFranchise.GetParts()[i + 1];
+                    currentFranchise.GetParts()[i + 1] = p;
                     break;
                 }
             currentPart = null;
@@ -510,8 +510,8 @@ namespace DDMediaWatched
                 isEdited = true;
                 foreach (Franchise franchise in Franchise.franchises)
                 {
-                    foreach (Part part in franchise.getParts())
-                        part.findSize();
+                    foreach (Part part in franchise.GetParts())
+                        part.FindSize();
                 }
                 Log("All size has been updated!");
             }
@@ -537,7 +537,7 @@ namespace DDMediaWatched
             {
                 string selected = listViewTitles.SelectedItems[0].Text;
                 foreach (Franchise franchise in Franchise.franchises)
-                    if (franchise.getName() == selected)
+                    if (franchise.GetName() == selected)
                     {
                         currentFranchise = franchise;
                         textBoxTitleInfo.Text = currentFranchise.ToString();
@@ -551,8 +551,8 @@ namespace DDMediaWatched
         {
             if (currentFranchise == null)
                 return;
-            if (currentFranchise.getURL() != "")
-                System.Diagnostics.Process.Start(currentFranchise.getURL());
+            if (currentFranchise.GetURL() != "")
+                System.Diagnostics.Process.Start(currentFranchise.GetURL());
         }
 
         private void listViewParts_SelectedIndexChanged(object sender, EventArgs e)
@@ -565,8 +565,8 @@ namespace DDMediaWatched
             else
             {
                 string selected = listViewParts.SelectedItems[0].Text;
-                foreach (Part part in currentFranchise.getParts())
-                    if (part.getName() == selected)
+                foreach (Part part in currentFranchise.GetParts())
+                    if (part.GetName() == selected)
                     {
                         currentPart = part;
                         textBoxPartInfo.Text = currentPart.ToString();
