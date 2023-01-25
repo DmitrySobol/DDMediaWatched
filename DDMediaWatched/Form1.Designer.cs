@@ -72,14 +72,13 @@ namespace DDMediaWatched
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
             this.labelFontSize = new System.Windows.Forms.Label();
             this.textBoxLog = new System.Windows.Forms.TextBox();
-            this.textBoxEditPartLengths = new System.Windows.Forms.TextBox();
             this.labelEditPartLengths = new System.Windows.Forms.Label();
             this.numericUpDownEditPartSeries = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxEditPart = new System.Windows.Forms.GroupBox();
+            this.panelEditPartCOW = new System.Windows.Forms.Panel();
             this.buttonEditPartCommonLengthToAll = new System.Windows.Forms.Button();
             this.labelEditPartCOW = new System.Windows.Forms.Label();
-            this.textBoxEditPartCOW = new System.Windows.Forms.TextBox();
             this.labelEditPartSeries = new System.Windows.Forms.Label();
             this.groupBoxEditFranchise = new System.Windows.Forms.GroupBox();
             this.labelEditFranchiseURL = new System.Windows.Forms.Label();
@@ -106,6 +105,7 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelEditPartLengths = new System.Windows.Forms.Panel();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -542,24 +542,15 @@ namespace DDMediaWatched
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
-            // textBoxEditPartLengths
-            // 
-            this.textBoxEditPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxEditPartLengths.Location = new System.Drawing.Point(6, 135);
-            this.textBoxEditPartLengths.Multiline = true;
-            this.textBoxEditPartLengths.Name = "textBoxEditPartLengths";
-            this.textBoxEditPartLengths.Size = new System.Drawing.Size(306, 60);
-            this.textBoxEditPartLengths.TabIndex = 42;
-            // 
             // labelEditPartLengths
             // 
             this.labelEditPartLengths.AutoSize = true;
             this.labelEditPartLengths.Font = new System.Drawing.Font("Consolas", 8F);
             this.labelEditPartLengths.Location = new System.Drawing.Point(5, 119);
             this.labelEditPartLengths.Name = "labelEditPartLengths";
-            this.labelEditPartLengths.Size = new System.Drawing.Size(163, 13);
+            this.labelEditPartLengths.Size = new System.Drawing.Size(55, 13);
             this.labelEditPartLengths.TabIndex = 43;
-            this.labelEditPartLengths.Text = "Lengths (separate with ;):";
+            this.labelEditPartLengths.Text = "Lengths:";
             // 
             // numericUpDownEditPartSeries
             // 
@@ -592,16 +583,16 @@ namespace DDMediaWatched
             // 
             // groupBoxEditPart
             // 
+            this.groupBoxEditPart.Controls.Add(this.panelEditPartLengths);
+            this.groupBoxEditPart.Controls.Add(this.panelEditPartCOW);
             this.groupBoxEditPart.Controls.Add(this.buttonEditPartCommonLengthToAll);
             this.groupBoxEditPart.Controls.Add(this.labelEditPartCOW);
-            this.groupBoxEditPart.Controls.Add(this.textBoxEditPartCOW);
             this.groupBoxEditPart.Controls.Add(this.labelEditPart1);
             this.groupBoxEditPart.Controls.Add(this.buttonEditPartSave);
             this.groupBoxEditPart.Controls.Add(this.textBoxEditPartName);
             this.groupBoxEditPart.Controls.Add(this.numericUpDownEditPartSeries);
             this.groupBoxEditPart.Controls.Add(this.labelEditPartSeries);
             this.groupBoxEditPart.Controls.Add(this.labelEditPartLengths);
-            this.groupBoxEditPart.Controls.Add(this.textBoxEditPartLengths);
             this.groupBoxEditPart.Controls.Add(this.labelEditPart4);
             this.groupBoxEditPart.Controls.Add(this.textBoxEditPartPath);
             this.groupBoxEditPart.Controls.Add(this.checkBoxEditPartIsPathFile);
@@ -615,6 +606,13 @@ namespace DDMediaWatched
             this.groupBoxEditPart.TabStop = false;
             this.groupBoxEditPart.Text = "Edit part";
             this.groupBoxEditPart.Visible = false;
+            // 
+            // panelEditPartCOW
+            // 
+            this.panelEditPartCOW.Location = new System.Drawing.Point(192, 136);
+            this.panelEditPartCOW.Name = "panelEditPartCOW";
+            this.panelEditPartCOW.Size = new System.Drawing.Size(120, 209);
+            this.panelEditPartCOW.TabIndex = 50;
             // 
             // buttonEditPartCommonLengthToAll
             // 
@@ -631,20 +629,11 @@ namespace DDMediaWatched
             // 
             this.labelEditPartCOW.AutoSize = true;
             this.labelEditPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditPartCOW.Location = new System.Drawing.Point(8, 198);
+            this.labelEditPartCOW.Location = new System.Drawing.Point(190, 119);
             this.labelEditPartCOW.Name = "labelEditPartCOW";
-            this.labelEditPartCOW.Size = new System.Drawing.Size(205, 13);
+            this.labelEditPartCOW.Size = new System.Drawing.Size(97, 13);
             this.labelEditPartCOW.TabIndex = 48;
-            this.labelEditPartCOW.Text = "Count of watch (separate with ;):";
-            // 
-            // textBoxEditPartCOW
-            // 
-            this.textBoxEditPartCOW.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxEditPartCOW.Location = new System.Drawing.Point(6, 214);
-            this.textBoxEditPartCOW.Multiline = true;
-            this.textBoxEditPartCOW.Name = "textBoxEditPartCOW";
-            this.textBoxEditPartCOW.Size = new System.Drawing.Size(306, 80);
-            this.textBoxEditPartCOW.TabIndex = 47;
+            this.labelEditPartCOW.Text = "Count of watch:";
             // 
             // labelEditPartSeries
             // 
@@ -671,7 +660,7 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchise3);
             this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchisePath);
             this.groupBoxEditFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxEditFranchise.Location = new System.Drawing.Point(952, 12);
+            this.groupBoxEditFranchise.Location = new System.Drawing.Point(52, 12);
             this.groupBoxEditFranchise.Name = "groupBoxEditFranchise";
             this.groupBoxEditFranchise.Size = new System.Drawing.Size(320, 380);
             this.groupBoxEditFranchise.TabIndex = 49;
@@ -751,7 +740,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(952, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(52, 11);
             this.groupBoxSort.Name = "groupBoxSort";
             this.groupBoxSort.Size = new System.Drawing.Size(320, 380);
             this.groupBoxSort.TabIndex = 51;
@@ -939,6 +928,13 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // panelEditPartLengths
+            // 
+            this.panelEditPartLengths.Location = new System.Drawing.Point(6, 135);
+            this.panelEditPartLengths.Name = "panelEditPartLengths";
+            this.panelEditPartLengths.Size = new System.Drawing.Size(180, 209);
+            this.panelEditPartLengths.TabIndex = 51;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1023,7 +1019,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
         private System.Windows.Forms.Label labelFontSize;
         private System.Windows.Forms.TextBox textBoxLog;
-        private System.Windows.Forms.TextBox textBoxEditPartLengths;
         private System.Windows.Forms.Label labelEditPartLengths;
         private System.Windows.Forms.NumericUpDown numericUpDownEditPartSeries;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -1035,7 +1030,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesGenre;
         private System.Windows.Forms.Label labelSortTypes;
         private System.Windows.Forms.Label labelEditPartCOW;
-        private System.Windows.Forms.TextBox textBoxEditPartCOW;
         private System.Windows.Forms.Label labelEditFranchiseDate;
         private System.Windows.Forms.TextBox textBoxEditFranchiseDate;
         private System.Windows.Forms.CheckBox checkBoxSortReverse;
@@ -1069,6 +1063,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelEditFranchiseURL;
         private System.Windows.Forms.TextBox textBoxEditFranchiseURL;
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesURL;
+        private System.Windows.Forms.Panel panelEditPartCOW;
+        private System.Windows.Forms.Panel panelEditPartLengths;
     }
 }
 

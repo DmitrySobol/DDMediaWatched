@@ -47,9 +47,16 @@ namespace DDMediaWatched
             reverseSort = false,
             isEdited = false;
 
+        private readonly List<NumericUpDown>
+            PanelEditPartCOW = new List<NumericUpDown>();
+
+        private readonly List<TextBox>
+            PanelEditPartLengths = new List<TextBox>();
+
         public Form1()
         {
             InitializeComponent();
+            InitializePanelsEditPart();
             LoadConfigs();
             CheckCheckedListBoxes();
             SaveSortConfigs();
@@ -82,6 +89,20 @@ namespace DDMediaWatched
                     }
                     break;
             }
+        }
+
+        private void InitializePanelsEditPart()
+        {
+            this.panelEditPartCOW.AutoScroll = false;
+            this.panelEditPartCOW.HorizontalScroll.Enabled = false;
+            this.panelEditPartCOW.HorizontalScroll.Visible = false;
+            this.panelEditPartCOW.HorizontalScroll.Maximum = 0;
+            this.panelEditPartCOW.AutoScroll = true;
+            this.panelEditPartLengths.AutoScroll = false;
+            this.panelEditPartLengths.HorizontalScroll.Enabled = false;
+            this.panelEditPartLengths.HorizontalScroll.Visible = false;
+            this.panelEditPartLengths.HorizontalScroll.Maximum = 0;
+            this.panelEditPartLengths.AutoScroll = true;
         }
         //Edit Franchise
         private void buttonNewFranchise_Click(object sender, EventArgs e)
@@ -204,8 +225,7 @@ namespace DDMediaWatched
                 if (!MakeLengthsEditPart())
                     return;
             }
-            if (!MakeCOWEditPart())
-                return;
+            MakeCOWEditPart();
             if (currentPart.IsFull())
             {
                 if (len == -1)
@@ -237,8 +257,7 @@ namespace DDMediaWatched
             ControlsOnVisible(controlsNewPart);
             textBoxEditPartName.Text = currentPart.GetName();
             textBoxEditPartPath.Text = currentPart.GetPath();
-            int p = currentPart.GetCommonLength();
-            textBoxEditPartLength.Text = String.Format("{0}:{1}:{2}", p / 3600, p / 60 % 60, p % 60);
+            textBoxEditPartLength.Text = StaticUtils.SecsToHMS(currentPart.GetCommonLength());
             numericUpDownEditPartSeries.Value = currentPart.GetSeries().Count();
             checkBoxEditPartIsPathFile.Checked = currentPart.IsFull();
             MakeEditPartLengths();
@@ -284,64 +303,88 @@ namespace DDMediaWatched
 
         private void MakeEditPartLengths()
         {
-            string str = "";
+            panelEditPartLengths.Controls.Clear();
+            PanelEditPartLengths.Clear();
+            int i = 0;
             foreach (Series s in currentPart.GetSeries())
             {
-                str += String.Format("{0};", s.GetLength());
+                Label label = new Label()
+                {
+                    Location = new Point(0, i * 20),
+                    Size = new Size(30, 20),
+                    Text = String.Format("{0,3}", i + 1),
+                    Font = new Font("Consolas", 8)
+                };
+                TextBox textBox = new TextBox()
+                {
+                    Location = new Point(30, i * 20),
+                    Size = new Size(105, 20),
+                    Font = new Font("Consolas", 8),
+                    Text = StaticUtils.SecsToHMS(s.GetLength())
+                };
+                panelEditPartLengths.Controls.Add(label);
+                panelEditPartLengths.Controls.Add(textBox);
+                PanelEditPartLengths.Add(textBox);
+                i++;
             }
-            if (!String.IsNullOrEmpty(str))
-                str = str.Remove(str.Length - 1);
-            textBoxEditPartLengths.Text = str;
         }
 
         private void MakeEditPartCOW()
         {
-            string str = "";
+            panelEditPartCOW.Controls.Clear();
+            PanelEditPartCOW.Clear();
+            int i = 0;
             foreach (Series s in currentPart.GetSeries())
             {
-                str += String.Format("{0};", s.GetCountWatch());
+                Label label = new Label()
+                {
+                    Location = new Point(0, i * 20),
+                    Size = new Size(30, 20),
+                    Text = String.Format("{0,3}", i + 1),
+                    Font = new Font("Consolas", 8)
+                };
+                NumericUpDown numericUpDown = new NumericUpDown()
+                {
+                    Location = new Point(30, i * 20),
+                    Size = new Size(45, 20),
+                    Font = new Font("Consolas", 8),
+                    Minimum = 0,
+                    Maximum = 9999,
+                    Increment = 1,
+                    Value = s.GetCountWatch()
+                };
+                panelEditPartCOW.Controls.Add(label);
+                panelEditPartCOW.Controls.Add(numericUpDown);
+                PanelEditPartCOW.Add(numericUpDown);
+                i++;
             }
-            if (!String.IsNullOrEmpty(str))
-                str = str.Remove(str.Length - 1);
-            textBoxEditPartCOW.Text = str;
         }
 
         private bool MakeLengthsEditPart()
         {
-            string[] s = textBoxEditPartLengths.Text.Split(';');
-            if (s.Length != currentPart.GetSeries().Count)
-                return false;
-            int[] l = new int[s.Length];
-            bool b = true;
-            for (int i = 0; i < s.Length; i++)
+            bool isConvertionCorrect = true;
+            int[] lengths = new int[currentPart.GetSeries().Count];
+            for (int i = 0; i < currentPart.GetSeries().Count; i++)
             {
-                if (!int.TryParse(s[i], out l[i]))
-                    b = false;
+                lengths[i] = StaticUtils.HMStoSecs(PanelEditPartLengths[i].Text);
+                if (lengths[i] == -1)
+                    isConvertionCorrect = false;
             }
-            if (!b)
+            if (isConvertionCorrect)
+                for (int i = 0; i < currentPart.GetSeries().Count; i++)
+                    currentPart.GetSeries()[i].SetLength(lengths[i]);
+            else
                 return false;
-            for (int i = 0; i < l.Length; i++)
-                currentPart.GetSeries()[i].SetLength(l[i]);
             return true;
         }
 
-        private bool MakeCOWEditPart()
+        private void MakeCOWEditPart()
         {
-            string[] s = textBoxEditPartCOW.Text.Split(';');
-            if (s.Length != currentPart.GetSeries().Count)
-                return false;
-            int[] l = new int[s.Length];
-            bool b = true;
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < currentPart.GetSeries().Count; i++)
             {
-                if (!int.TryParse(s[i], out l[i]))
-                    b = false;
+                int cow = (int)PanelEditPartCOW[i].Value;
+                currentPart.GetSeries()[i].SetCountWatch(cow);
             }
-            if (!b)
-                return false;
-            for (int i = 0; i < l.Length; i++)
-                currentPart.GetSeries()[i].SetCountWatch(l[i]);
-            return true;
         }
 
         private void checkBoxEditPartIsPathFile_CheckedChanged(object sender, EventArgs e)
@@ -351,14 +394,15 @@ namespace DDMediaWatched
             {
                 numericUpDownEditPartSeries.Value = 1;
                 numericUpDownEditPartSeries.Enabled = false;
-                textBoxEditPartLengths.Enabled = false;
+                panelEditPartLengths.Enabled = false;
                 currentPart.SetPath(textBoxEditPartPath.Text);
-                textBoxEditPartLength.Text = StaticUtils.GetVideoLength(currentPart.GetAbsolutePath());
+                if (File.Exists(currentPart.GetAbsolutePath()))
+                    textBoxEditPartLength.Text = StaticUtils.GetVideoLength(currentPart.GetAbsolutePath());
             }
             else
             {
                 numericUpDownEditPartSeries.Enabled = true;
-                textBoxEditPartLengths.Enabled = true;
+                panelEditPartLengths.Enabled = true;
             }
         }
 
