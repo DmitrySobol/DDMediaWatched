@@ -283,6 +283,24 @@ namespace DDMediaWatched
             return series;
         }
 
+        public void SetSeriesCount(int count)
+        {
+            if (this.GetSeries().Count == count)
+                return;
+            if (this.GetSeries().Count < count)
+            {
+                count -= this.GetSeries().Count;
+                for (int i = 0; i < count; i++)
+                    this.GetSeries().Add(new Series(this.GetCommonLength(), 0));
+            }
+            else
+            {
+                count = this.GetSeries().Count - count;
+                for (int i = 0; i < count; i++)
+                    this.GetSeries().RemoveAt(this.GetSeries().Count - 1);
+            }
+        }
+
         public Franchise GetParent()
         {
             return parentFranchise;

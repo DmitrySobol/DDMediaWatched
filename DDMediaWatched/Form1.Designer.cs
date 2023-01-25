@@ -76,6 +76,7 @@ namespace DDMediaWatched
             this.numericUpDownEditPartSeries = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxEditPart = new System.Windows.Forms.GroupBox();
+            this.panelEditPartLengths = new System.Windows.Forms.Panel();
             this.panelEditPartCOW = new System.Windows.Forms.Panel();
             this.buttonEditPartCommonLengthToAll = new System.Windows.Forms.Button();
             this.labelEditPartCOW = new System.Windows.Forms.Label();
@@ -105,7 +106,6 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelEditPartLengths = new System.Windows.Forms.Panel();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -383,7 +383,6 @@ namespace DDMediaWatched
             this.textBoxEditPartLength.Name = "textBoxEditPartLength";
             this.textBoxEditPartLength.Size = new System.Drawing.Size(100, 20);
             this.textBoxEditPartLength.TabIndex = 27;
-            this.textBoxEditPartLength.TextChanged += new System.EventHandler(this.textBoxEditPartLength_TextChanged);
             // 
             // labelEditPart5
             // 
@@ -607,6 +606,13 @@ namespace DDMediaWatched
             this.groupBoxEditPart.Text = "Edit part";
             this.groupBoxEditPart.Visible = false;
             // 
+            // panelEditPartLengths
+            // 
+            this.panelEditPartLengths.Location = new System.Drawing.Point(6, 135);
+            this.panelEditPartLengths.Name = "panelEditPartLengths";
+            this.panelEditPartLengths.Size = new System.Drawing.Size(180, 209);
+            this.panelEditPartLengths.TabIndex = 51;
+            // 
             // panelEditPartCOW
             // 
             this.panelEditPartCOW.Location = new System.Drawing.Point(192, 136);
@@ -660,7 +666,7 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchise3);
             this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchisePath);
             this.groupBoxEditFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxEditFranchise.Location = new System.Drawing.Point(52, 12);
+            this.groupBoxEditFranchise.Location = new System.Drawing.Point(952, 12);
             this.groupBoxEditFranchise.Name = "groupBoxEditFranchise";
             this.groupBoxEditFranchise.Size = new System.Drawing.Size(320, 380);
             this.groupBoxEditFranchise.TabIndex = 49;
@@ -740,7 +746,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(52, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(952, 11);
             this.groupBoxSort.Name = "groupBoxSort";
             this.groupBoxSort.Size = new System.Drawing.Size(320, 380);
             this.groupBoxSort.TabIndex = 51;
@@ -927,13 +933,6 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // panelEditPartLengths
-            // 
-            this.panelEditPartLengths.Location = new System.Drawing.Point(6, 135);
-            this.panelEditPartLengths.Name = "panelEditPartLengths";
-            this.panelEditPartLengths.Size = new System.Drawing.Size(180, 209);
-            this.panelEditPartLengths.TabIndex = 51;
             // 
             // Form1
             // 

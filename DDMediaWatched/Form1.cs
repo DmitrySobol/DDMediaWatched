@@ -127,8 +127,6 @@ namespace DDMediaWatched
                 part.FindSize();
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
-            listViewParts.Enabled = true;
-            listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
             ControlsEnable(controlsListViews);
         }
@@ -208,47 +206,56 @@ namespace DDMediaWatched
         private void buttonEditPartSave_Click(object sender, EventArgs e)
         {
             isEdited = true;
-            int b = 0;
-            foreach (Part part in currentFranchise.GetParts())
-                if (part.GetName() == textBoxEditPartName.Text)
-                    b++;
-            if (currentPart.GetName() == textBoxEditPartName.Text)
-                b--;
-            if (b > 0)
+            //Name
+            if (!EditPartCheckSameNames())
             {
                 MessageBox.Show("There is alredy exist part with this name!", "Error");
                 return;
             }
-            int len = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
-            if (!currentPart.IsFull())
+            currentPart.SetName(textBoxEditPartName.Text);
+            //Path
+            currentPart.SetPath(textBoxEditPartPath.Text);
+            currentPart.SetIsPathFile(checkBoxEditPartIsPathFile.Checked);
+            //Size
+            currentPart.FindSize();
+            //Lengths
+            if (!MakeLengthsEditPart())
             {
-                if (!MakeLengthsEditPart())
-                    return;
+                MessageBox.Show("Please, check lengths of series!", "Error");
+                return;
             }
+            //COW
             MakeCOWEditPart();
+            //Length
+            int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
+            if (length != -1)
+                currentPart.SetCommonLength(length);
             if (currentPart.IsFull())
             {
-                if (len == -1)
+                if (length == -1)
                     return;
-                currentPart.SetCommonLength(len);
                 currentPart.SetSeriesLengthToCommon();
             }
+            //
             ControlsOffVisible(controlsNewPart);
-            currentPart.SetName(textBoxEditPartName.Text);
-            currentPart.SetPath(textBoxEditPartPath.Text);
-            if (len != -1)
-            {
-                currentPart.SetCommonLength(len);
-            }
-            currentPart.SetIsPathFile(checkBoxEditPartIsPathFile.Checked);
-            currentPart.FindSize();
             ControlsOnVisible(controlsInfo);
             currentPart = null;
             PartsToListView();
-            listViewParts.Enabled = true;
-            listViewTitles.Enabled = true;
             ControlsEnable(controlsRightButtons);
             ControlsEnable(controlsListViews);
+        }
+
+        private bool EditPartCheckSameNames()
+        {
+            int countOfPartWithSameName = 0;
+            foreach (Part part in currentFranchise.GetParts())
+                if (part.GetName() == textBoxEditPartName.Text)
+                    countOfPartWithSameName++;
+            if (currentPart.GetName() == textBoxEditPartName.Text)
+                countOfPartWithSameName--;
+            if (countOfPartWithSameName > 0)
+                return false;
+            return true;
         }
 
         private void EditPart()
@@ -264,41 +271,13 @@ namespace DDMediaWatched
             MakeEditPartCOW();
         }
 
-        private void textBoxEditPartLength_TextChanged(object sender, EventArgs e)
-        {
-            int p = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
-            if (p == -1)
-                return;
-            currentPart.SetCommonLength(p);
-            if (!currentPart.IsFull())
-                MakeEditPartLengths();
-            else
-                currentPart.SetSeriesLengthToCommon();
-        }
-
         private void numericUpDownEditPartSeries_ValueChanged(object sender, EventArgs e)
         {
-            int p = (int)numericUpDownEditPartSeries.Value;
-            if (currentPart.GetSeries().Count != p)
-                if (currentPart.GetSeries().Count < p)
-                {
-                    p = p - currentPart.GetSeries().Count;
-                    for (int i = 0; i < p; i++)
-                        currentPart.GetSeries().Add(new Series(currentPart.GetCommonLength(), 0));
-                }
-                else
-                {
-                    p = currentPart.GetSeries().Count - p;
-                    for (int i = 0; i < p; i++)
-                        currentPart.GetSeries().RemoveAt(currentPart.GetSeries().Count - 1);
-                }
+            int seriesCount = (int)numericUpDownEditPartSeries.Value;
+            currentPart.SetSeriesCount(seriesCount);
+            MakeEditPartCOW();
             if (!currentPart.IsFull())
-            {
                 MakeEditPartLengths();
-                MakeEditPartCOW();
-            }
-            else
-                currentPart.SetSeriesLengthToCommon();
         }
 
         private void MakeEditPartLengths()
@@ -394,7 +373,7 @@ namespace DDMediaWatched
             {
                 numericUpDownEditPartSeries.Value = 1;
                 numericUpDownEditPartSeries.Enabled = false;
-                panelEditPartLengths.Enabled = false;
+                panelEditPartLengths.Visible = false;
                 currentPart.SetPath(textBoxEditPartPath.Text);
                 if (File.Exists(currentPart.GetAbsolutePath()))
                     textBoxEditPartLength.Text = StaticUtils.GetVideoLength(currentPart.GetAbsolutePath());
@@ -402,7 +381,7 @@ namespace DDMediaWatched
             else
             {
                 numericUpDownEditPartSeries.Enabled = true;
-                panelEditPartLengths.Enabled = true;
+                panelEditPartLengths.Visible = true;
             }
         }
 
@@ -414,13 +393,9 @@ namespace DDMediaWatched
                     path = path.Substring(1, path.Length - 2);
             int p = StaticUtils.IsFileOrDirr(path);
             if (p == 0)
-            {
                 checkBoxEditPartIsPathFile.Checked = false;
-            }
             if (p == 1)
-            {
                 checkBoxEditPartIsPathFile.Checked = true;
-            }
         }
 
         private void buttonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
