@@ -184,7 +184,7 @@ namespace DDMediaWatched
         public void DrawStatistic()
         {
             string s = "";
-            s += String.Format("Current media volume: {0}\r\n", Program.pathLetter);
+            s += String.Format("Current media volume: {0}\r\n", StaticUtils.GetMediaDrivePath());
             long size = Franchise.GetAllSize();
             int watchedLength = Franchise.GetAllWatchedLength();
             int watchedUniqueLength = Franchise.GetAllUniqueWatchedLength();

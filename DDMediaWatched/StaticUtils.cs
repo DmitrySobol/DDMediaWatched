@@ -10,6 +10,8 @@ namespace DDMediaWatched
 {
     public static class StaticUtils
     {
+        private static string
+            mediaDrivePath = "null";
         public static void DirectorySize(string path, ref long size)
         {
             string[] s;
@@ -141,17 +143,32 @@ namespace DDMediaWatched
             return ret;
         }
 
-        public static string FindDiskLetter()
+        public static void FindMediaDrivePath()
         {
-            string path = "null";
+            mediaDrivePath = "null";
             string[] drivers = Environment.GetLogicalDrives();
             for (int i = 0; i < drivers.Length; i++)
             {
                 if (File.Exists(drivers[i] + "config.dat"))
                     if (File.ReadAllText(drivers[i] + "config.dat", Encoding.UTF8) == "LOLI_HDD")
-                        path = drivers[i];
+                    {
+                        mediaDrivePath = drivers[i];
+                        break;
+                    }
             }
-            return path;
+        }
+
+        public static bool IsMediaDriveExists()
+        {
+            if (mediaDrivePath == "null")
+                return false;
+            else
+                return true;
+        }
+
+        public static string GetMediaDrivePath()
+        {
+            return mediaDrivePath;
         }
     }
 }

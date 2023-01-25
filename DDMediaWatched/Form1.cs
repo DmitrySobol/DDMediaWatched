@@ -62,7 +62,7 @@ namespace DDMediaWatched
             SaveSortConfigs();
             LoadColumnsFranchises();
             LoadColumnsParts();
-            Program.pathLetter = StaticUtils.FindDiskLetter();
+            StaticUtils.FindMediaDrivePath();
             LoadControls();
         }
 
@@ -512,16 +512,14 @@ namespace DDMediaWatched
 
         private void findAllSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.pathLetter == "null")
-            {
-                MessageBox.Show("There isn't media volume!", "Error");
-            }
-            else
+            if (StaticUtils.IsMediaDriveExists())
             {
                 isEdited = true;
                 Franchise.FindAllSize();
                 Log("All size has been updated!");
             }
+            else
+                MessageBox.Show("There isn't media volume!", "Error");
         }
 
         private void backUpToolStripMenuItem_Click(object sender, EventArgs e)

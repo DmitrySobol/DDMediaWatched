@@ -239,14 +239,9 @@ namespace DDMediaWatched
 
         public void FindSize()
         {
-            if (Program.pathLetter == "null")
+            if (!StaticUtils.IsMediaDriveExists())
             {
                 Program.form1.Log("There is no media drives!");
-                return;
-            }
-            if (this.GetPath() == "")
-            {
-                Program.form1.Log("There is no path!");
                 return;
             }
             foreach (Part part in this.GetParts())
@@ -289,9 +284,9 @@ namespace DDMediaWatched
 
         public string GetAbsolutePath()
         {
-            if (Program.pathLetter == "null")
+            if (!StaticUtils.IsMediaDriveExists())
                 return "null";
-            return Program.pathLetter + path;
+            return StaticUtils.GetMediaDrivePath() + path;
         }
         //ULR
         public string GetURL()

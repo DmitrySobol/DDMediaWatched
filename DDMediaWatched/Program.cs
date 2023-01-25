@@ -10,8 +10,6 @@ namespace DDMediaWatched
 {
     static class Program
     {
-        public static string
-            pathLetter = "null";
         public static Form1 form1;
         public static string[]
             args;
