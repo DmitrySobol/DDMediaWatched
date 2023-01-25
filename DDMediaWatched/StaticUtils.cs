@@ -96,6 +96,12 @@ namespace DDMediaWatched
             return ret;
         }
 
+        public static string SecsToHMS(int s)
+        {
+            string ret = String.Format("{0}:{1:00}:{2:00}", s / 3600, s / 60 % 60, s % 60);
+            return ret;
+        }
+
         public static Color GetColor(string colorBy, Franchise franchise)
         {
             Color ret = Color.FromArgb(255, 255, 255);
