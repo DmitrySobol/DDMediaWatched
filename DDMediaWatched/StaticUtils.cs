@@ -5,13 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Management;
 
 namespace DDMediaWatched
 {
     public static class StaticUtils
     {
         private static string
-            mediaDrivePath = "null";
+            mediaDrivePath = "null",
+            mediaDriveSerialInfo = "null";
+        public static void LoadConfigs()
+        {
+            FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
+            StreamReader t = new StreamReader(fs, Encoding.UTF8);
+            Franchise.SetMediaPath(t.ReadLine());
+            mediaDriveSerialInfo = t.ReadLine();
+            t.Dispose();
+            t.Close();
+            fs.Dispose();
+            fs.Close();
+        }
+
+        private static void SaveConfigs()
+        {
+            FileStream fs = new FileStream("config.cfg", FileMode.Create, FileAccess.Write);
+            StreamWriter t = new StreamWriter(fs, Encoding.UTF8);
+            t.WriteLine(Franchise.GetMediaPath());
+            t.WriteLine(mediaDriveSerialInfo);
+            t.Dispose();
+            t.Close();
+            fs.Dispose();
+            fs.Close();
+        }
+
         public static void DirectorySize(string path, ref long size)
         {
             string[] s;
@@ -149,13 +175,19 @@ namespace DDMediaWatched
             string[] drivers = Environment.GetLogicalDrives();
             for (int i = 0; i < drivers.Length; i++)
             {
-                if (File.Exists(drivers[i] + "config.dat"))
-                    if (File.ReadAllText(drivers[i] + "config.dat", Encoding.UTF8) == "LOLI_HDD")
-                    {
-                        mediaDrivePath = drivers[i];
-                        break;
-                    }
+                if (GetSerialInfoFromDriveLetter(drivers[i].Substring(0, 2)) == mediaDriveSerialInfo)
+                {
+                    mediaDrivePath = drivers[i];
+                    break;
+                }
             }
+        }
+
+        public static void SetMediaDrivePath(string path)
+        {
+            mediaDriveSerialInfo = GetSerialInfoFromDriveLetter(path);
+            SaveConfigs();
+            FindMediaDrivePath();
         }
 
         public static bool IsMediaDriveExists()
@@ -169,6 +201,30 @@ namespace DDMediaWatched
         public static string GetMediaDrivePath()
         {
             return mediaDrivePath;
+        }
+
+        private static string GetSerialInfoFromDriveLetter(string driveLetter)
+        {
+            if (driveLetter.Length != 2)
+                return "";
+            try
+            {
+                var partitions = new ManagementObjectSearcher(
+                    "ASSOCIATORS OF {Win32_LogicalDisk.DeviceID='" +
+                    driveLetter +
+                    "'} WHERE ResultClass=Win32_DiskPartition");
+                foreach (var partition in partitions.Get())
+                {
+                    var drives = new ManagementObjectSearcher(
+                        "ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" +
+                        partition["DeviceID"] +
+                        "'} WHERE ResultClass=Win32_DiskDrive");
+                    foreach (var drive in drives.Get())
+                        return String.Format("[{0}][{1}][{2}]", drive["Model"], drive["SerialNumber"], partition["Index"]);
+                }
+            }
+            catch { }
+            return "<unknown>";
         }
     }
 }

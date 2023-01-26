@@ -57,7 +57,7 @@ namespace DDMediaWatched
         {
             InitializeComponent();
             InitializePanelsEditPart();
-            LoadConfigs();
+            StaticUtils.LoadConfigs();
             CheckCheckedListBoxes();
             SaveSortConfigs();
             LoadColumnsFranchises();
@@ -80,6 +80,7 @@ namespace DDMediaWatched
                 case Keys.F5:
                     {
                         SelectNone();
+                        StaticUtils.FindMediaDrivePath();
                         DrawStatistic();
                     }
                     break;
@@ -588,6 +589,7 @@ namespace DDMediaWatched
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
         }
+
         //Sort
         private void buttonSort_Click(object sender, EventArgs e)
         {
@@ -646,6 +648,15 @@ namespace DDMediaWatched
         {
             e.Cancel = true;
             AppClose();
+        }
+        //Chose media drive
+        private void choseMediaDriveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StaticUtils.SetMediaDrivePath(folderBrowserDialog1.SelectedPath.Substring(0, 2));
+                DrawStatistic();
+            }
         }
         //Other
         public void AppClose()

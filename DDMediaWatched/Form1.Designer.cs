@@ -106,6 +106,9 @@ namespace DDMediaWatched
             this.findAllSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -888,7 +891,8 @@ namespace DDMediaWatched
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
@@ -909,30 +913,45 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.choseMediaDriveToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // choseMediaDriveToolStripMenuItem
+            // 
+            this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
+            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
+            this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.choseMediaDriveToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1064,6 +1083,9 @@ namespace DDMediaWatched
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesURL;
         private System.Windows.Forms.Panel panelEditPartCOW;
         private System.Windows.Forms.Panel panelEditPartLengths;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem choseMediaDriveToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

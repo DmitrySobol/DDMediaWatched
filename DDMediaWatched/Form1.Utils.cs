@@ -12,17 +12,6 @@ namespace DDMediaWatched
 {
     partial class Form1
     {
-        private void LoadConfigs()
-        {
-            FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
-            StreamReader t = new StreamReader(fs, Encoding.UTF8);
-            Franchise.SetMediaPath(t.ReadLine());
-            t.Dispose();
-            t.Close();
-            fs.Dispose();
-            fs.Close();
-        }
-
         private void LoadControls()
         {
             controlsNewFranchise.Add(groupBoxEditFranchise);
