@@ -400,6 +400,13 @@ namespace DDMediaWatched
 
         private void buttonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
         {
+            int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
+            if (length == -1)
+            {
+                MessageBox.Show("Please, check common length!", "Error");
+                return;
+            }
+            currentPart.SetCommonLength(length);
             currentPart.SetSeriesLengthToCommon();
             MakeEditPartLengths();
         }
