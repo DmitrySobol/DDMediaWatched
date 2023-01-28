@@ -136,8 +136,8 @@ namespace DDMediaWatched
             this.listViewTitles.TabIndex = 0;
             this.listViewTitles.UseCompatibleStateImageBehavior = false;
             this.listViewTitles.View = System.Windows.Forms.View.Details;
-            this.listViewTitles.SelectedIndexChanged += new System.EventHandler(this.listViewTitles_SelectedIndexChanged);
-            this.listViewTitles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewTitles_MouseDoubleClick);
+            this.listViewTitles.SelectedIndexChanged += new System.EventHandler(this.ListViewTitles_SelectedIndexChanged);
+            this.listViewTitles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListViewTitles_MouseDoubleClick);
             // 
             // contextMenuStripTitle
             // 
@@ -154,28 +154,28 @@ namespace DDMediaWatched
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
             this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
-            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.DeleteToolStripMenuItem1_Click);
             // 
             // addFullWatchToolStripMenuItem
             // 
             this.addFullWatchToolStripMenuItem.Name = "addFullWatchToolStripMenuItem";
             this.addFullWatchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullWatchToolStripMenuItem.Text = "Add full view";
-            this.addFullWatchToolStripMenuItem.Click += new System.EventHandler(this.addFullWatchToolStripMenuItem_Click);
+            this.addFullWatchToolStripMenuItem.Click += new System.EventHandler(this.AddFullWatchToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem1
             // 
             this.findSizeToolStripMenuItem1.Name = "findSizeToolStripMenuItem1";
             this.findSizeToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.findSizeToolStripMenuItem1.Text = "Find size";
-            this.findSizeToolStripMenuItem1.Click += new System.EventHandler(this.findSizeToolStripMenuItem1_Click);
+            this.findSizeToolStripMenuItem1.Click += new System.EventHandler(this.FindSizeToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // labelTitles
             // 
@@ -238,7 +238,7 @@ namespace DDMediaWatched
             this.buttonNewFranchise.TabIndex = 6;
             this.buttonNewFranchise.Text = "New franchise";
             this.buttonNewFranchise.UseVisualStyleBackColor = true;
-            this.buttonNewFranchise.Click += new System.EventHandler(this.buttonNewFranchise_Click);
+            this.buttonNewFranchise.Click += new System.EventHandler(this.ButtonNewFranchise_Click);
             // 
             // buttonNewFranchiseSave
             // 
@@ -249,7 +249,7 @@ namespace DDMediaWatched
             this.buttonNewFranchiseSave.TabIndex = 7;
             this.buttonNewFranchiseSave.Text = "Save";
             this.buttonNewFranchiseSave.UseVisualStyleBackColor = true;
-            this.buttonNewFranchiseSave.Click += new System.EventHandler(this.buttonEditFranchiseSave_Click);
+            this.buttonNewFranchiseSave.Click += new System.EventHandler(this.ButtonEditFranchiseSave_Click);
             // 
             // labelEditFranchise1
             // 
@@ -320,7 +320,7 @@ namespace DDMediaWatched
             this.buttonNewPart.TabIndex = 14;
             this.buttonNewPart.Text = "New part";
             this.buttonNewPart.UseVisualStyleBackColor = true;
-            this.buttonNewPart.Click += new System.EventHandler(this.buttonNewPart_Click);
+            this.buttonNewPart.Click += new System.EventHandler(this.ButtonNewPart_Click);
             // 
             // buttonEditPartSave
             // 
@@ -331,7 +331,7 @@ namespace DDMediaWatched
             this.buttonEditPartSave.TabIndex = 15;
             this.buttonEditPartSave.Text = "Save";
             this.buttonEditPartSave.UseVisualStyleBackColor = true;
-            this.buttonEditPartSave.Click += new System.EventHandler(this.buttonEditPartSave_Click);
+            this.buttonEditPartSave.Click += new System.EventHandler(this.ButtonEditPartSave_Click);
             // 
             // textBoxEditPartName
             // 
@@ -358,7 +358,7 @@ namespace DDMediaWatched
             this.textBoxEditPartPath.Name = "textBoxEditPartPath";
             this.textBoxEditPartPath.Size = new System.Drawing.Size(264, 20);
             this.textBoxEditPartPath.TabIndex = 23;
-            this.textBoxEditPartPath.TextChanged += new System.EventHandler(this.textBoxEditPartPath_TextChanged);
+            this.textBoxEditPartPath.TextChanged += new System.EventHandler(this.TextBoxEditPartPath_TextChanged);
             // 
             // labelEditPart4
             // 
@@ -380,7 +380,7 @@ namespace DDMediaWatched
             this.checkBoxEditPartIsPathFile.TabIndex = 25;
             this.checkBoxEditPartIsPathFile.Text = "Is path file";
             this.checkBoxEditPartIsPathFile.UseVisualStyleBackColor = true;
-            this.checkBoxEditPartIsPathFile.CheckedChanged += new System.EventHandler(this.checkBoxEditPartIsPathFile_CheckedChanged);
+            this.checkBoxEditPartIsPathFile.CheckedChanged += new System.EventHandler(this.CheckBoxEditPartIsPathFile_CheckedChanged);
             // 
             // textBoxEditPartLength
             // 
@@ -424,7 +424,7 @@ namespace DDMediaWatched
             this.listViewParts.TabIndex = 29;
             this.listViewParts.UseCompatibleStateImageBehavior = false;
             this.listViewParts.View = System.Windows.Forms.View.Details;
-            this.listViewParts.SelectedIndexChanged += new System.EventHandler(this.listViewParts_SelectedIndexChanged);
+            this.listViewParts.SelectedIndexChanged += new System.EventHandler(this.ListViewParts_SelectedIndexChanged);
             // 
             // contextMenuStripPart
             // 
@@ -443,42 +443,42 @@ namespace DDMediaWatched
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // addFullViewToolStripMenuItem
             // 
             this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
             this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
-            this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.addFullViewToolStripMenuItem_Click);
+            this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.AddFullViewToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem
             // 
             this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
             this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.findSizeToolStripMenuItem.Text = "Find size";
-            this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.findSizeToolStripMenuItem_Click);
+            this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.FindSizeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
             this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.editToolStripMenuItem1.Text = "Edit";
-            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.EditToolStripMenuItem1_Click);
             // 
             // upToolStripMenuItem
             // 
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
             this.upToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.upToolStripMenuItem.Text = "Up";
-            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.UpToolStripMenuItem_Click);
             // 
             // downToolStripMenuItem
             // 
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
             this.downToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.downToolStripMenuItem.Text = "Down";
-            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.DownToolStripMenuItem_Click);
             // 
             // labelPartInfo
             // 
@@ -524,7 +524,7 @@ namespace DDMediaWatched
             0,
             0,
             0});
-            this.numericUpDownFontSize.ValueChanged += new System.EventHandler(this.numericUpDownFontSize_ValueChanged);
+            this.numericUpDownFontSize.ValueChanged += new System.EventHandler(this.NumericUpDownFontSize_ValueChanged);
             // 
             // labelFontSize
             // 
@@ -579,7 +579,7 @@ namespace DDMediaWatched
             0,
             0,
             0});
-            this.numericUpDownEditPartSeries.ValueChanged += new System.EventHandler(this.numericUpDownEditPartSeries_ValueChanged);
+            this.numericUpDownEditPartSeries.ValueChanged += new System.EventHandler(this.NumericUpDownEditPartSeries_ValueChanged);
             // 
             // openFileDialog1
             // 
@@ -635,7 +635,7 @@ namespace DDMediaWatched
             this.buttonEditPartCommonLengthToAll.TabIndex = 49;
             this.buttonEditPartCommonLengthToAll.Text = "Common to all";
             this.buttonEditPartCommonLengthToAll.UseVisualStyleBackColor = true;
-            this.buttonEditPartCommonLengthToAll.Click += new System.EventHandler(this.buttonEditPartCommonLengthToAll_Click);
+            this.buttonEditPartCommonLengthToAll.Click += new System.EventHandler(this.ButtonEditPartCommonLengthToAll_Click);
             // 
             // labelEditPartCOW
             // 
@@ -709,7 +709,7 @@ namespace DDMediaWatched
             this.buttonEditFranchiseToday.TabIndex = 16;
             this.buttonEditFranchiseToday.Text = "Today";
             this.buttonEditFranchiseToday.UseVisualStyleBackColor = true;
-            this.buttonEditFranchiseToday.Click += new System.EventHandler(this.buttonEditFranchiseToday_Click);
+            this.buttonEditFranchiseToday.Click += new System.EventHandler(this.ButtonEditFranchiseToday_Click);
             // 
             // labelEditFranchiseDate
             // 
@@ -738,7 +738,7 @@ namespace DDMediaWatched
             this.buttonSort.TabIndex = 50;
             this.buttonSort.Text = "Sort";
             this.buttonSort.UseVisualStyleBackColor = true;
-            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            this.buttonSort.Click += new System.EventHandler(this.ButtonSort_Click);
             // 
             // groupBoxSort
             // 
@@ -891,7 +891,7 @@ namespace DDMediaWatched
             this.buttonSortSave.TabIndex = 14;
             this.buttonSortSave.Text = "Save";
             this.buttonSortSave.UseVisualStyleBackColor = true;
-            this.buttonSortSave.Click += new System.EventHandler(this.buttonSortSave_Click);
+            this.buttonSortSave.Click += new System.EventHandler(this.ButtonSortSave_Click);
             // 
             // menuStrip1
             // 
@@ -920,28 +920,28 @@ namespace DDMediaWatched
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.importToolStripMenuItem.Text = "Import";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
             this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
-            this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
+            this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.FindAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
             this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
-            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.BackUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -956,7 +956,7 @@ namespace DDMediaWatched
             this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
             this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
-            this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.choseMediaDriveToolStripMenuItem_Click);
+            this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.ChoseMediaDriveToolStripMenuItem_Click);
             // 
             // numericUpDownEditTitleMark
             // 

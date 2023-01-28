@@ -19,7 +19,7 @@ namespace DDMediaWatched
         private static Part
             currentPart;
 
-        private List<Control>
+        private readonly List<Control>
             controlsNewFranchise = new List<Control>(),
             controlsInfo = new List<Control>(),
             controlsNewPart = new List<Control>(),
@@ -90,7 +90,7 @@ namespace DDMediaWatched
             this.panelEditPartLengths.AutoScroll = true;
         }
         //Edit Franchise
-        private void buttonNewFranchise_Click(object sender, EventArgs e)
+        private void ButtonNewFranchise_Click(object sender, EventArgs e)
         {
             ControlsDisable(controlsRightButtons);
             ControlsDisable(controlsListViews);
@@ -99,7 +99,7 @@ namespace DDMediaWatched
             EditFranchise();
         }
 
-        private void buttonEditFranchiseSave_Click(object sender, EventArgs e)
+        private void ButtonEditFranchiseSave_Click(object sender, EventArgs e)
         {
             isEdited = true;
             //Check name
@@ -147,12 +147,12 @@ namespace DDMediaWatched
             textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
         }
 
-        private void buttonEditFranchiseToday_Click(object sender, EventArgs e)
+        private void ButtonEditFranchiseToday_Click(object sender, EventArgs e)
         {
             textBoxEditFranchiseDate.Text = DateTime.Now.ToString("yyyy.MM.dd");
         }
         //ContexFranchise
-        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             isEdited = true;
             ControlsDisable(controlsRightButtons);
@@ -165,7 +165,7 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
-        private void addFullWatchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddFullWatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentFranchise == null)
                 return;
@@ -174,7 +174,7 @@ namespace DDMediaWatched
                 p.AddWatch();
         }
 
-        private void findSizeToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void FindSizeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (currentFranchise == null)
                 return;
@@ -182,7 +182,7 @@ namespace DDMediaWatched
             currentFranchise.FindSize();
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listViewTitles.SelectedItems.Count > 0)
             {
@@ -196,7 +196,7 @@ namespace DDMediaWatched
             }
         }
         //Edit Part
-        private void buttonNewPart_Click(object sender, EventArgs e)
+        private void ButtonNewPart_Click(object sender, EventArgs e)
         {
             if (currentFranchise == null)
                 return;
@@ -207,7 +207,7 @@ namespace DDMediaWatched
             EditPart();
         }
 
-        private void buttonEditPartSave_Click(object sender, EventArgs e)
+        private void ButtonEditPartSave_Click(object sender, EventArgs e)
         {
             isEdited = true;
             //Name
@@ -275,7 +275,7 @@ namespace DDMediaWatched
             MakeEditPartCOW();
         }
 
-        private void numericUpDownEditPartSeries_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownEditPartSeries_ValueChanged(object sender, EventArgs e)
         {
             int seriesCount = (int)numericUpDownEditPartSeries.Value;
             currentPart.SetSeriesCount(seriesCount);
@@ -370,7 +370,7 @@ namespace DDMediaWatched
             }
         }
 
-        private void checkBoxEditPartIsPathFile_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxEditPartIsPathFile_CheckedChanged(object sender, EventArgs e)
         {
             currentPart.SetIsPathFile(checkBoxEditPartIsPathFile.Checked);
             if (checkBoxEditPartIsPathFile.Checked)
@@ -389,7 +389,7 @@ namespace DDMediaWatched
             }
         }
 
-        private void textBoxEditPartPath_TextChanged(object sender, EventArgs e)
+        private void TextBoxEditPartPath_TextChanged(object sender, EventArgs e)
         {
             string path = textBoxEditPartPath.Text;
             if (path.Length > 0)
@@ -402,7 +402,7 @@ namespace DDMediaWatched
                 checkBoxEditPartIsPathFile.Checked = true;
         }
 
-        private void buttonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
+        private void ButtonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
         {
             int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (length == -1)
@@ -415,7 +415,7 @@ namespace DDMediaWatched
             MakeEditPartLengths();
         }
         //ContexParts
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
             ControlsDisable(controlsRightButtons);
@@ -433,7 +433,7 @@ namespace DDMediaWatched
             ControlsEnable(controlsRightButtons);
         }
 
-        private void addFullViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddFullViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentPart == null)
                 return;
@@ -441,7 +441,7 @@ namespace DDMediaWatched
             currentPart.AddWatch();
         }
 
-        private void findSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FindSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (currentPart == null)
                 return;
@@ -449,7 +449,7 @@ namespace DDMediaWatched
             currentPart.FindSize();
         }
 
-        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void EditToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (listViewParts.SelectedItems.Count > 0)
             {
@@ -469,14 +469,14 @@ namespace DDMediaWatched
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Franchise.SaveMedia();
             MessageBox.Show("Media has been saved succesful!!!", "Saved!");
             isEdited = false;
         }
 
-        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
             for (int i = 1; i < currentFranchise.GetParts().Count; i++)
@@ -492,7 +492,7 @@ namespace DDMediaWatched
             PartsToListView();
         }
 
-        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
             for (int i = 0; i < currentFranchise.GetParts().Count - 1; i++)
@@ -508,7 +508,7 @@ namespace DDMediaWatched
             PartsToListView();
         }
         //ToolStripMenu
-        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -520,7 +520,7 @@ namespace DDMediaWatched
             }
         }
 
-        private void findAllSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FindAllSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (StaticUtils.IsMediaDriveExists())
             {
@@ -532,14 +532,14 @@ namespace DDMediaWatched
                 MessageBox.Show("There isn't media volume!", "Error");
         }
 
-        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
             File.Copy(Franchise.GetMediaPath() + "Media.bin", Franchise.GetMediaPath() + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
             MessageBox.Show("BackUP has been created!", "Success");
         }
         //ListViews
-        private void listViewTitles_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListViewTitles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewTitles.SelectedItems.Count < 1)
             {
@@ -556,7 +556,7 @@ namespace DDMediaWatched
             PartsToListView();
         }
 
-        private void listViewTitles_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ListViewTitles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (currentFranchise == null)
                 return;
@@ -564,7 +564,7 @@ namespace DDMediaWatched
                 System.Diagnostics.Process.Start(currentFranchise.GetURL());
         }
 
-        private void listViewParts_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListViewParts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewParts.SelectedItems.Count < 1)
             {
@@ -584,7 +584,7 @@ namespace DDMediaWatched
             }
         }
         //Font size
-        private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownFontSize_ValueChanged(object sender, EventArgs e)
         {
             listViewParts.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
@@ -593,7 +593,7 @@ namespace DDMediaWatched
         }
 
         //Sort
-        private void buttonSort_Click(object sender, EventArgs e)
+        private void ButtonSort_Click(object sender, EventArgs e)
         {
             ControlsDisable(controlsRightButtons);
 
@@ -601,7 +601,7 @@ namespace DDMediaWatched
             ControlsOnVisible(controlsSort);
         }
 
-        private void buttonSortSave_Click(object sender, EventArgs e)
+        private void ButtonSortSave_Click(object sender, EventArgs e)
         {
             ControlsOffVisible(controlsSort);
             ControlsOnVisible(controlsInfo);
@@ -648,7 +648,7 @@ namespace DDMediaWatched
             AppClose();
         }
         //Chose media drive
-        private void choseMediaDriveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChoseMediaDriveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
