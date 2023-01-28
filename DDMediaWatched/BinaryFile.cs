@@ -9,31 +9,31 @@ namespace DDMediaWatched
 {
     public static class BinaryFile
     {
-        private static byte[]
+        private static readonly byte[]
             buf = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
-        public static int FileReadInt32(FileStream f)
+        public static int ReadInt32(FileStream f)
         {
             f.Read(buf, 0, 4);
             return BitConverter.ToInt32(buf, 0);
         }
 
-        public static void FileWriteInt32(FileStream f, int a)
+        public static void WriteInt32(FileStream f, int a)
         {
             f.Write(BitConverter.GetBytes(a), 0, 4);
         }
 
-        public static long FileReadInt64(FileStream f)
+        public static long ReadInt64(FileStream f)
         {
             f.Read(buf, 0, 8);
             return BitConverter.ToInt64(buf, 0);
         }
 
-        public static void FileWriteInt64(FileStream f, long a)
+        public static void WriteInt64(FileStream f, long a)
         {
             f.Write(BitConverter.GetBytes(a), 0, 8);
         }
 
-        public static string FileReadString(FileStream f)
+        public static string ReadString(FileStream f)
         {
             f.Read(buf, 0, 4);
             int p = BitConverter.ToInt32(buf, 0);
@@ -42,20 +42,20 @@ namespace DDMediaWatched
             return Encoding.UTF8.GetString(BigBuf, 0, p);
         }
 
-        public static void FileWriteString(FileStream f, string a)
+        public static void WriteString(FileStream f, string a)
         {
             byte[] BigBuf = Encoding.UTF8.GetBytes(a);
             f.Write(BitConverter.GetBytes(BigBuf.Length), 0, 4);
             f.Write(BigBuf, 0, BigBuf.Length);
         }
 
-        public static byte FileReadByte(FileStream f)
+        public static byte ReadByte(FileStream f)
         {
             f.Read(buf, 0, 1);
             return buf[0];
         }
 
-        public static void FileWriteByte(FileStream f, byte a)
+        public static void WriteByte(FileStream f, byte a)
         {
             buf[0] = a;
             f.Write(buf, 0, 1);

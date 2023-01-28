@@ -101,52 +101,52 @@ namespace DDMediaWatched
         public Franchise(FileStream f)
         {
             //type
-            type = (FranchiseType)BinaryFile.FileReadInt32(f);
+            type = (FranchiseType)BinaryFile.ReadInt32(f);
             //names
-            int p = BinaryFile.FileReadInt32(f);
+            int p = BinaryFile.ReadInt32(f);
             names = new List<string>();
             for (int i = 0; i < p; i++)
-                names.Add(BinaryFile.FileReadString(f));
+                names.Add(BinaryFile.ReadString(f));
             //mark
-            mark = BinaryFile.FileReadInt32(f);
+            mark = BinaryFile.ReadInt32(f);
             //path
-            path = BinaryFile.FileReadString(f);
+            path = BinaryFile.ReadString(f);
             //URL
-            URL = BinaryFile.FileReadString(f);
+            URL = BinaryFile.ReadString(f);
             //parts
-            p = BinaryFile.FileReadInt32(f);
+            p = BinaryFile.ReadInt32(f);
             parts = new List<Part>();
             for (int i = 0; i < p; i++)
                 parts.Add(new Part(f, this));
             //startingDate
-            int yy = BinaryFile.FileReadInt32(f);
-            int mm = BinaryFile.FileReadInt32(f);
-            int dd = BinaryFile.FileReadInt32(f);
+            int yy = BinaryFile.ReadInt32(f);
+            int mm = BinaryFile.ReadInt32(f);
+            int dd = BinaryFile.ReadInt32(f);
             startingDate = new DateTime(yy, mm, dd);
         }
 
         public void SaveToBin(FileStream f)
         {
             //type
-            BinaryFile.FileWriteInt32(f, (int)type);
+            BinaryFile.WriteInt32(f, (int)type);
             //names
-            BinaryFile.FileWriteInt32(f, names.Count);
+            BinaryFile.WriteInt32(f, names.Count);
             foreach (string s in names)
-                BinaryFile.FileWriteString(f, s);
+                BinaryFile.WriteString(f, s);
             //mark
-            BinaryFile.FileWriteInt32(f, mark);
+            BinaryFile.WriteInt32(f, mark);
             //path
-            BinaryFile.FileWriteString(f, path);
+            BinaryFile.WriteString(f, path);
             //URL
-            BinaryFile.FileWriteString(f, URL);
+            BinaryFile.WriteString(f, URL);
             //parts
-            BinaryFile.FileWriteInt32(f, parts.Count);
+            BinaryFile.WriteInt32(f, parts.Count);
             foreach (Part s in parts)
                 s.SaveToBin(f);
             //startingDate
-            BinaryFile.FileWriteInt32(f, startingDate.Year);
-            BinaryFile.FileWriteInt32(f, startingDate.Month);
-            BinaryFile.FileWriteInt32(f, startingDate.Day);
+            BinaryFile.WriteInt32(f, startingDate.Year);
+            BinaryFile.WriteInt32(f, startingDate.Month);
+            BinaryFile.WriteInt32(f, startingDate.Day);
         }
         //Names
         public void SetNames(string[] names)

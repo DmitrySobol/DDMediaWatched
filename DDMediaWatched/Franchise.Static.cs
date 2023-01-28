@@ -38,7 +38,7 @@ namespace DDMediaWatched
         public static void LoadMedia()
         {
             FileStream f = new FileStream(MediaPath + "Media.bin", FileMode.Open, FileAccess.Read);
-            int p = BinaryFile.FileReadInt32(f);
+            int p = BinaryFile.ReadInt32(f);
             for (int j = 0; j < p; j++)
             {
                 Franchise.franchises.Add(new Franchise(f));

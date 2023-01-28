@@ -82,6 +82,8 @@ namespace DDMediaWatched
             this.labelEditPartCOW = new System.Windows.Forms.Label();
             this.labelEditPartSeries = new System.Windows.Forms.Label();
             this.groupBoxEditFranchise = new System.Windows.Forms.GroupBox();
+            this.labelEditTitleMark = new System.Windows.Forms.Label();
+            this.numericUpDownEditFranchiseMark = new System.Windows.Forms.NumericUpDown();
             this.labelEditFranchiseURL = new System.Windows.Forms.Label();
             this.textBoxEditFranchiseURL = new System.Windows.Forms.TextBox();
             this.buttonEditFranchiseToday = new System.Windows.Forms.Button();
@@ -109,17 +111,15 @@ namespace DDMediaWatched
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.numericUpDownEditFranchiseMark = new System.Windows.Forms.NumericUpDown();
-            this.labelEditTitleMark = new System.Windows.Forms.Label();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditPartSeries)).BeginInit();
             this.groupBoxEditPart.SuspendLayout();
             this.groupBoxEditFranchise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).BeginInit();
             this.groupBoxSort.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -682,6 +682,28 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Text = "Edit franchise";
             this.groupBoxEditFranchise.Visible = false;
             // 
+            // labelEditTitleMark
+            // 
+            this.labelEditTitleMark.AutoSize = true;
+            this.labelEditTitleMark.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditTitleMark.Location = new System.Drawing.Point(161, 55);
+            this.labelEditTitleMark.Name = "labelEditTitleMark";
+            this.labelEditTitleMark.Size = new System.Drawing.Size(37, 13);
+            this.labelEditTitleMark.TabIndex = 53;
+            this.labelEditTitleMark.Text = "Mark:";
+            // 
+            // numericUpDownEditFranchiseMark
+            // 
+            this.numericUpDownEditFranchiseMark.Location = new System.Drawing.Point(164, 71);
+            this.numericUpDownEditFranchiseMark.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownEditFranchiseMark.Name = "numericUpDownEditFranchiseMark";
+            this.numericUpDownEditFranchiseMark.Size = new System.Drawing.Size(150, 20);
+            this.numericUpDownEditFranchiseMark.TabIndex = 52;
+            // 
             // labelEditFranchiseURL
             // 
             this.labelEditFranchiseURL.AutoSize = true;
@@ -895,6 +917,7 @@ namespace DDMediaWatched
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Consolas", 8F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.settingsToolStripMenuItem});
@@ -912,34 +935,34 @@ namespace DDMediaWatched
             this.backUpToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.FindAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.BackUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -948,37 +971,15 @@ namespace DDMediaWatched
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.choseMediaDriveToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // choseMediaDriveToolStripMenuItem
             // 
             this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
-            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
             this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.ChoseMediaDriveToolStripMenuItem_Click);
-            // 
-            // numericUpDownEditTitleMark
-            // 
-            this.numericUpDownEditFranchiseMark.Location = new System.Drawing.Point(164, 71);
-            this.numericUpDownEditFranchiseMark.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownEditFranchiseMark.Name = "numericUpDownEditTitleMark";
-            this.numericUpDownEditFranchiseMark.Size = new System.Drawing.Size(150, 20);
-            this.numericUpDownEditFranchiseMark.TabIndex = 52;
-            // 
-            // labelEditTitleMark
-            // 
-            this.labelEditTitleMark.AutoSize = true;
-            this.labelEditTitleMark.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditTitleMark.Location = new System.Drawing.Point(161, 55);
-            this.labelEditTitleMark.Name = "labelEditTitleMark";
-            this.labelEditTitleMark.Size = new System.Drawing.Size(37, 13);
-            this.labelEditTitleMark.TabIndex = 53;
-            this.labelEditTitleMark.Text = "Mark:";
             // 
             // Form1
             // 
@@ -1023,11 +1024,11 @@ namespace DDMediaWatched
             this.groupBoxEditPart.PerformLayout();
             this.groupBoxEditFranchise.ResumeLayout(false);
             this.groupBoxEditFranchise.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).EndInit();
             this.groupBoxSort.ResumeLayout(false);
             this.groupBoxSort.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

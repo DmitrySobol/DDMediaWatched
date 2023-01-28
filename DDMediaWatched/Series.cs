@@ -28,17 +28,17 @@ namespace DDMediaWatched
         public Series(FileStream f)
         {
             //length
-            length = BinaryFile.FileReadInt32(f);
+            length = BinaryFile.ReadInt32(f);
             //countWatch
-            countWatch = BinaryFile.FileReadInt32(f);
+            countWatch = BinaryFile.ReadInt32(f);
         }
 
         public void SaveToBin(FileStream f)
         {
             //length
-            BinaryFile.FileWriteInt32(f, length);
+            BinaryFile.WriteInt32(f, length);
             //countWatch
-            BinaryFile.FileWriteInt32(f, countWatch);
+            BinaryFile.WriteInt32(f, countWatch);
         }
 
         public void SetLength(int length)

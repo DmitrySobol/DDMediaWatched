@@ -145,9 +145,9 @@ namespace DDMediaWatched
         public void FranchisesToListView()
         {
             //Clear parts list
-            listViewParts.Items.Clear();
             currentPart = null;
             textBoxPartInfo.Text = "Selected None!\r\n";
+            listViewParts.Items.Clear();
             //Update franchises list
             currentFranchise = null;
             textBoxTitleInfo.Text = "Selected None!\r\n";
@@ -161,6 +161,7 @@ namespace DDMediaWatched
         public void PartsToListView()
         {
             currentPart = null;
+            textBoxPartInfo.Text = "Selected None!\r\n";
             listViewParts.Items.Clear();
             if (currentFranchise == null)
                 return;

@@ -243,7 +243,6 @@ namespace DDMediaWatched
             //
             ControlsOffVisible(controlsNewPart);
             ControlsOnVisible(controlsInfo);
-            currentPart = null;
             PartsToListView();
             ControlsEnable(controlsRightButtons);
             ControlsEnable(controlsListViews);
