@@ -12,14 +12,14 @@ namespace DDMediaWatched
     public static class StaticUtils
     {
         private static string
-            mediaDrivePath = "null",
-            mediaDriveSerialInfo = "null";
+            MediaDrivePath = "null",
+            MediaDriveSerialInfo = "null";
         public static void LoadConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
             StreamReader t = new StreamReader(fs, Encoding.UTF8);
             Franchise.SetMediaPath(t.ReadLine());
-            mediaDriveSerialInfo = t.ReadLine();
+            MediaDriveSerialInfo = t.ReadLine();
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -31,7 +31,7 @@ namespace DDMediaWatched
             FileStream fs = new FileStream("config.cfg", FileMode.Create, FileAccess.Write);
             StreamWriter t = new StreamWriter(fs, Encoding.UTF8);
             t.WriteLine(Franchise.GetMediaPath());
-            t.WriteLine(mediaDriveSerialInfo);
+            t.WriteLine(MediaDriveSerialInfo);
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -171,13 +171,13 @@ namespace DDMediaWatched
 
         public static void FindMediaDrivePath()
         {
-            mediaDrivePath = "null";
+            MediaDrivePath = "null";
             string[] drivers = Environment.GetLogicalDrives();
             for (int i = 0; i < drivers.Length; i++)
             {
-                if (GetSerialInfoFromDriveLetter(drivers[i].Substring(0, 2)) == mediaDriveSerialInfo)
+                if (GetSerialInfoFromDriveLetter(drivers[i].Substring(0, 2)) == MediaDriveSerialInfo)
                 {
-                    mediaDrivePath = drivers[i];
+                    MediaDrivePath = drivers[i];
                     break;
                 }
             }
@@ -185,14 +185,14 @@ namespace DDMediaWatched
 
         public static void SetMediaDrivePath(string path)
         {
-            mediaDriveSerialInfo = GetSerialInfoFromDriveLetter(path);
+            MediaDriveSerialInfo = GetSerialInfoFromDriveLetter(path);
             SaveConfigs();
             FindMediaDrivePath();
         }
 
         public static bool IsMediaDriveExists()
         {
-            if (mediaDrivePath == "null")
+            if (MediaDrivePath == "null")
                 return false;
             else
                 return true;
@@ -200,7 +200,7 @@ namespace DDMediaWatched
 
         public static string GetMediaDrivePath()
         {
-            return mediaDrivePath;
+            return MediaDrivePath;
         }
 
         private static string GetSerialInfoFromDriveLetter(string driveLetter)
