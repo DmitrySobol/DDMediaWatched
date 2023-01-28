@@ -206,6 +206,14 @@ namespace DDMediaWatched
             return length;
         }
 
+        public int GetDownloadedLength()
+        {
+            int length = 0;
+            foreach (Part part in this.parts)
+                length += part.GetDownloadedLength();
+            return length;
+        }
+
         public double GetPersentage()
         {
             if (this.GetLength() == 0)
@@ -253,7 +261,7 @@ namespace DDMediaWatched
         //BPS
         public double GetBPS()
         {
-            return this.GetSize() / (this.GetLength() / 60d / 24);
+            return this.GetSize() / (this.GetDownloadedLength() / 60d / 24);
         }
         //Path
         public void SetPath(string path)

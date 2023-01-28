@@ -110,6 +110,80 @@ namespace DDMediaWatched
             foreach (Series s in series)
                 s.SaveToBin(f);
         }
+        //Name
+        public string GetName()
+        {
+            return name;
+        }
+
+        public void SetName(string name)
+        {
+            this.name = name;
+        }
+        //Length
+        public int GetLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.GetLength();
+            return length;
+        }
+
+        public int GetWatchedLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.GetWatchedLength();
+            return length;
+        }
+
+        public int GetUniqueWatchedLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.GetUniqueWatchedLength();
+            return length;
+        }
+
+        public int GetDownloadedLength()
+        {
+            if (sizeD == 0)
+                return 0;
+            return this.GetLength();
+        }
+
+        public double GetPersentage()
+        {
+            double persentage = this.GetUniqueWatchedLength() * 100;
+            persentage /= this.GetLength();
+            return persentage;
+        }
+
+        public int GetCommonLength()
+        {
+            return this.commonLength;
+        }
+
+        public void SetCommonLength(int length)
+        {
+            this.commonLength = length;
+        }
+
+        public void SetSeriesLengthToCommon()
+        {
+            foreach (Series s in series)
+                s.SetLength(this.commonLength);
+        }
+        //Size
+        public long GetSize()
+        {
+            return sizeD;
+        }
+
+        public void SetSize(long size)
+        {
+            this.sizeD = size;
+        }
 
         public int FindSize()
         {
@@ -156,80 +230,7 @@ namespace DDMediaWatched
             //3 x -> 0
             //4 x -> y
         }
-
-        public void SetIsPathFile(bool isPathFile)
-        {
-            if (isPathFile)
-                this.isPathFile = 1;
-            else
-                this.isPathFile = 0;
-        }
-
-        public byte GetIsPathFile()
-        {
-            return isPathFile;
-        }
-
-        public bool IsFull()
-        {
-            if (isPathFile == 1)
-                return true;
-            if (isPathFile == 0)
-                return false;
-            return false;//ERROR
-        }
-
-        public long GetSize()
-        {
-            return sizeD;
-        }
-
-        public void SetSize(long size)
-        {
-            this.sizeD = size;
-        }
-
-        public int GetLength()
-        {
-            int length = 0;
-            foreach (Series series in this.series)
-                length += series.GetLength();
-            return length;
-        }
-
-        public int GetWatchedLength()
-        {
-            int length = 0;
-            foreach (Series series in this.series)
-                length += series.GetWatchedLength();
-            return length;
-        }
-
-        public int GetUniqueWatchedLength()
-        {
-            int length = 0;
-            foreach (Series series in this.series)
-                length += series.GetUniqueWatchedLength();
-            return length;
-        }
-
-        public double GetPersentage()
-        {
-            double persentage = this.GetUniqueWatchedLength() * 100;
-            persentage /= this.GetLength();
-            return persentage;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-        public void SetName(string name)
-        {
-            this.name = name;
-        }
-
+        //Path
         public string GetPath()
         {
             return path;
@@ -262,22 +263,19 @@ namespace DDMediaWatched
                 this.path = path;
         }
 
-        public int GetCommonLength()
+        public byte GetIsPathFile()
         {
-            return this.commonLength;
-        }
-        
-        public void SetCommonLength(int length)
-        {
-            this.commonLength = length;
+            return isPathFile;
         }
 
-        public void SetSeriesLengthToCommon()
+        public void SetIsPathFile(bool isPathFile)
         {
-            foreach (Series s in series)
-                s.SetLength(this.commonLength);
+            if (isPathFile)
+                this.isPathFile = 1;
+            else
+                this.isPathFile = 0;
         }
-
+        //Series
         public List<Series> GetSeries()
         {
             return series;
@@ -299,6 +297,15 @@ namespace DDMediaWatched
                 for (int i = 0; i < count; i++)
                     this.GetSeries().RemoveAt(this.GetSeries().Count - 1);
             }
+        }
+        //Other
+        public bool IsFull()
+        {
+            if (isPathFile == 1)
+                return true;
+            if (isPathFile == 0)
+                return false;
+            return false;//ERROR
         }
 
         public Franchise GetParent()
