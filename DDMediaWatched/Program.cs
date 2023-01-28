@@ -13,6 +13,8 @@ namespace DDMediaWatched
         public static Form1 form1;
         public static string[]
             args;
+        public static Action<string>
+            Log;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

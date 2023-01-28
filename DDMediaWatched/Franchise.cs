@@ -237,7 +237,7 @@ namespace DDMediaWatched
         {
             if (!StaticUtils.IsMediaDriveExists())
             {
-                Program.form1.Log("There is no media drives!");
+                Program.Log("There is no media drives!");
                 return;
             }
             foreach (Part part in this.GetParts())

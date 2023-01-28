@@ -122,7 +122,7 @@ namespace DDMediaWatched
             string path = parentFranchise.GetAbsolutePath();
             if (path == "null")
             {
-                Program.form1.Log("There is no media drives or no parent's path!");
+                Program.Log("There is no media drives or no parent's path!");
                 return output;
             }
             if (this.path.Length > 0)
@@ -131,15 +131,15 @@ namespace DDMediaWatched
                 newSize = StaticUtils.GetPathSize(path, this.IsFull());
                 if (newSize == -1)
                 {
-                    Program.form1.Log(String.Format("{0} - {1}. Path \"{2}\" has been removed!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
+                    Program.Log(String.Format("{0} - {1}. Path \"{2}\" has been removed!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
                     this.path = "";
                     newSize = 0;
                 }
             }
             if (sizeD != newSize)
-                Program.form1.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.parentFranchise.GetName(), this.GetName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
+                Program.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.parentFranchise.GetName(), this.GetName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
             //else
-            //    Program.form1.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
+            //    Program.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
             if (sizeD == 0 && newSize > 0)
                 output = 1;
             if (sizeD == newSize)

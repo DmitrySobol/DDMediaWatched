@@ -13,13 +13,13 @@ namespace DDMediaWatched
 {
     public partial class Form1 : Form
     {
-        public static Franchise
+        private static Franchise
             currentFranchise;
 
-        public static Part
+        private static Part
             currentPart;
 
-        public List<Control>
+        private List<Control>
             controlsNewFranchise = new List<Control>(),
             controlsInfo = new List<Control>(),
             controlsNewPart = new List<Control>(),
@@ -27,7 +27,7 @@ namespace DDMediaWatched
             controlsSort = new List<Control>(),
             controlsListViews = new List<Control>();
 
-        public static bool
+        private static bool
             isEdited = false;
 
         private readonly List<NumericUpDown>
@@ -39,6 +39,7 @@ namespace DDMediaWatched
         public Form1()
         {
             InitializeComponent();
+            Program.Log = this.Log;
             InitializePanelsEditPart();
             StaticUtils.LoadConfigs();
             CheckCheckedListBoxes();
@@ -656,7 +657,7 @@ namespace DDMediaWatched
             }
         }
         //Other
-        public void AppClose()
+        private void AppClose()
         {
             if (!isEdited)
                 Environment.Exit(0);
@@ -682,7 +683,7 @@ namespace DDMediaWatched
             }
         }
 
-        public void Log(string s)
+        private void Log(string s)
         {
             textBoxLog.Text += s + "\r\n";
         }
