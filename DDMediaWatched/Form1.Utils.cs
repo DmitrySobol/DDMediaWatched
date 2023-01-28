@@ -118,16 +118,6 @@ namespace DDMediaWatched
             listViewParts.Columns.AddRange(columns.ToArray());
         }
 
-        public void SelectNone()
-        {
-            currentFranchise = null;
-            textBoxTitleInfo.Text = "Selected None!\r\n";
-            currentPart = null;
-            textBoxPartInfo.Text = "Selected None!\r\n";
-            FranchisesToListView();
-            PartsToListView();
-        }
-
         private void ControlsOnVisible(List<Control> controls)
         {
             foreach (Control s in controls)
@@ -154,15 +144,23 @@ namespace DDMediaWatched
 
         public void FranchisesToListView()
         {
+            //Clear parts list
+            listViewParts.Items.Clear();
+            currentPart = null;
+            textBoxPartInfo.Text = "Selected None!\r\n";
+            //Update franchises list
+            currentFranchise = null;
+            textBoxTitleInfo.Text = "Selected None!\r\n";
             listViewTitles.Items.Clear();
-            List<Franchise> franchisesType = Franchise.GetFranchisesType();
-            SortFranchises(ref franchisesType);
-            foreach (Franchise el in franchisesType)
-                listViewTitles.Items.Add(el.ToListViewItem(colorBy));
+            List<Franchise> filteredFranchises = Franchise.GetFilteredFranchises();
+            SortFranchises(ref filteredFranchises);
+            foreach (Franchise el in filteredFranchises)
+                listViewTitles.Items.Add(el.ToListViewItem());
         }
 
         public void PartsToListView()
         {
+            currentPart = null;
             listViewParts.Items.Clear();
             if (currentFranchise == null)
                 return;
@@ -185,7 +183,7 @@ namespace DDMediaWatched
 
         public void SortFranchises(ref List<Franchise> list)
         {
-            switch (sortBy)
+            switch (Franchise.GetSortBy())
             {
                 case "Name":
                     {
@@ -248,7 +246,7 @@ namespace DDMediaWatched
                     }
                     break;
             }
-            if (reverseSort)
+            if (Franchise.IsReverseSort())
                 list.Reverse();
         }
     }

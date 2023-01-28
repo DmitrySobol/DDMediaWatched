@@ -27,24 +27,7 @@ namespace DDMediaWatched
             controlsSort = new List<Control>(),
             controlsListViews = new List<Control>();
 
-        public List<Franchise.FranchiseType>
-            TypeOnType = new List<Franchise.FranchiseType>();
-
-        public List<Franchise.FranchiseDown>
-            TypeOnDown = new List<Franchise.FranchiseDown>();
-
-        public List<Franchise.FranchisePersentage>
-            TypeOnPersentage = new List<Franchise.FranchisePersentage>();
-
-        public List<bool>
-            TypeOnURL = new List<bool>();
-
-        public static string
-            sortBy = "",
-            colorBy = "";
-
         public static bool
-            reverseSort = false,
             isEdited = false;
 
         private readonly List<NumericUpDown>
@@ -79,7 +62,7 @@ namespace DDMediaWatched
             {
                 case Keys.F5:
                     {
-                        SelectNone();
+                        FranchisesToListView();
                         StaticUtils.FindMediaDrivePath();
                         DrawStatistic();
                     }
@@ -118,18 +101,37 @@ namespace DDMediaWatched
         private void buttonEditFranchiseSave_Click(object sender, EventArgs e)
         {
             isEdited = true;
+            //Check name
+            if (!EditFranchiseCheckSameNames())
+            {
+                MessageBox.Show("There is alredy exist franchise with this name!", "Error");
+                return;
+            }
             ControlsOffVisible(controlsNewFranchise);
+            //UpdateFields
             currentFranchise.SetNames(textBoxEditFranchiseNames.Text.Split(';'));
-            currentFranchise.SetPath(textBoxEditFranchisePath.Text);
-            currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
             currentFranchise.SetType(comboBoxEditFranchiseType.SelectedIndex);
+            currentFranchise.SetMark((int)numericUpDownEditFranchiseMark.Value);
+            currentFranchise.SetPath(textBoxEditFranchisePath.Text);
             currentFranchise.SetStartingDate(textBoxEditFranchiseDate.Text);
-            foreach (Part part in currentFranchise.GetParts())
-                part.FindSize();
+            currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
+            //Conclusion
+            currentFranchise.FindSize();
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
             ControlsEnable(controlsListViews);
+        }
+
+        private bool EditFranchiseCheckSameNames()
+        {
+            string name = textBoxEditFranchiseNames.Text.Split(';')[0];
+            int countOfFranchiseWithSameName = Franchise.GetFranchiseCountWithName(name);
+            if (currentFranchise.GetName() == name)
+                countOfFranchiseWithSameName--;
+            if (countOfFranchiseWithSameName > 0)
+                return false;
+            return true;
         }
 
         private void EditFranchise()
@@ -137,10 +139,11 @@ namespace DDMediaWatched
             ControlsOffVisible(controlsInfo);
             ControlsOnVisible(controlsNewFranchise);
             textBoxEditFranchiseNames.Text = currentFranchise.GetAllNames();
-            textBoxEditFranchisePath.Text = currentFranchise.GetPath();
-            textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
             comboBoxEditFranchiseType.SelectedIndex = currentFranchise.GetFranchiseTypeInt();
+            numericUpDownEditFranchiseMark.Value = currentFranchise.GetMark();
+            textBoxEditFranchisePath.Text = currentFranchise.GetPath();
             textBoxEditFranchiseDate.Text = currentFranchise.GetStartingDate().ToString("yyyy.MM.dd");
+            textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
         }
 
         private void buttonEditFranchiseToday_Click(object sender, EventArgs e)
@@ -156,7 +159,6 @@ namespace DDMediaWatched
                 if (MessageBox.Show("Are you sure???", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Franchise.RemoveFranchise(currentFranchise.GetName());
-                    SelectNone();
                     FranchisesToListView();
                 }
             ControlsEnable(controlsRightButtons);
@@ -425,7 +427,7 @@ namespace DDMediaWatched
                             currentFranchise.GetParts().RemoveAt(i);
                             break;
                         }
-                    SelectNone();
+                    PartsToListView();
                 }
             ControlsEnable(controlsRightButtons);
         }
@@ -513,7 +515,6 @@ namespace DDMediaWatched
                 string[] s = File.ReadAllLines(openFileDialog1.FileName);
                 foreach (string p in s)
                     Franchise.AddFranchise(new Franchise(p.Split('|')));
-                SelectNone();
                 FranchisesToListView();
             }
         }
@@ -625,23 +626,19 @@ namespace DDMediaWatched
 
         private void SaveSortConfigs()
         {
-            TypeOnType.Clear();
+            Franchise.ClearFilters();
             foreach (int p in checkedListBoxSortTypesGenre.CheckedIndices)
-                TypeOnType.Add((Franchise.FranchiseType)p);
-            TypeOnDown.Clear();
+                Franchise.AddFiltersType((Franchise.FranchiseType)p);
             foreach (int p in checkedListBoxSortTypesDown.CheckedIndices)
-                TypeOnDown.Add((Franchise.FranchiseDown)p);
-            TypeOnPersentage.Clear();
+                Franchise.AddFiltersDown((Franchise.FranchiseDown)p);
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
-                TypeOnPersentage.Add((Franchise.FranchisePersentage)p);
-            TypeOnURL.Clear();
+                Franchise.AddFiltersPersentage((Franchise.FranchisePersentage)p);
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("URL"))
-                TypeOnURL.Add(true);
+                Franchise.AddFiltersURL(true);
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("-URL"))
-                TypeOnURL.Add(false);
-            sortBy = comboBoxSortSortBy.Text;
-            colorBy = comboBoxSortColorBy.Text;
-            reverseSort = checkBoxSortReverse.Checked;
+                Franchise.AddFiltersURL(false);
+            Franchise.SetSortBy(comboBoxSortSortBy.Text, checkBoxSortReverse.Checked);
+            Franchise.SetColorBy(comboBoxSortColorBy.Text);
         }
         //Form Closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

@@ -109,6 +109,8 @@ namespace DDMediaWatched
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.numericUpDownEditFranchiseMark = new System.Windows.Forms.NumericUpDown();
+            this.labelEditTitleMark = new System.Windows.Forms.Label();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -117,6 +119,7 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.SuspendLayout();
             this.groupBoxSort.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -287,7 +290,7 @@ namespace DDMediaWatched
             "Dorama"});
             this.comboBoxEditFranchiseType.Location = new System.Drawing.Point(7, 71);
             this.comboBoxEditFranchiseType.Name = "comboBoxEditFranchiseType";
-            this.comboBoxEditFranchiseType.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEditFranchiseType.Size = new System.Drawing.Size(150, 21);
             this.comboBoxEditFranchiseType.TabIndex = 11;
             // 
             // textBoxEditFranchisePath
@@ -656,6 +659,8 @@ namespace DDMediaWatched
             // 
             // groupBoxEditFranchise
             // 
+            this.groupBoxEditFranchise.Controls.Add(this.labelEditTitleMark);
+            this.groupBoxEditFranchise.Controls.Add(this.numericUpDownEditFranchiseMark);
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseURL);
             this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchiseURL);
             this.groupBoxEditFranchise.Controls.Add(this.buttonEditFranchiseToday);
@@ -764,9 +769,9 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypesURL.Items.AddRange(new object[] {
             "URL",
             "-URL"});
-            this.checkedListBoxSortTypesURL.Location = new System.Drawing.Point(6, 240);
+            this.checkedListBoxSortTypesURL.Location = new System.Drawing.Point(6, 194);
             this.checkedListBoxSortTypesURL.Name = "checkedListBoxSortTypesURL";
-            this.checkedListBoxSortTypesURL.Size = new System.Drawing.Size(120, 49);
+            this.checkedListBoxSortTypesURL.Size = new System.Drawing.Size(120, 34);
             this.checkedListBoxSortTypesURL.TabIndex = 25;
             // 
             // comboBoxSortColorBy
@@ -799,9 +804,9 @@ namespace DDMediaWatched
             "0%",
             "1%-99%",
             "100%"});
-            this.checkedListBoxSortTypesPersentage.Location = new System.Drawing.Point(6, 170);
+            this.checkedListBoxSortTypesPersentage.Location = new System.Drawing.Point(6, 139);
             this.checkedListBoxSortTypesPersentage.Name = "checkedListBoxSortTypesPersentage";
-            this.checkedListBoxSortTypesPersentage.Size = new System.Drawing.Size(120, 64);
+            this.checkedListBoxSortTypesPersentage.Size = new System.Drawing.Size(120, 49);
             this.checkedListBoxSortTypesPersentage.TabIndex = 22;
             // 
             // checkedListBoxSortTypesDown
@@ -811,9 +816,9 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypesDown.Items.AddRange(new object[] {
             "Downloaded",
             "Not downloaded"});
-            this.checkedListBoxSortTypesDown.Location = new System.Drawing.Point(6, 115);
+            this.checkedListBoxSortTypesDown.Location = new System.Drawing.Point(6, 99);
             this.checkedListBoxSortTypesDown.Name = "checkedListBoxSortTypesDown";
-            this.checkedListBoxSortTypesDown.Size = new System.Drawing.Size(120, 49);
+            this.checkedListBoxSortTypesDown.Size = new System.Drawing.Size(120, 34);
             this.checkedListBoxSortTypesDown.TabIndex = 21;
             // 
             // checkBoxSortReverse
@@ -865,7 +870,7 @@ namespace DDMediaWatched
             "Dorama"});
             this.checkedListBoxSortTypesGenre.Location = new System.Drawing.Point(6, 30);
             this.checkedListBoxSortTypesGenre.Name = "checkedListBoxSortTypesGenre";
-            this.checkedListBoxSortTypesGenre.Size = new System.Drawing.Size(120, 79);
+            this.checkedListBoxSortTypesGenre.Size = new System.Drawing.Size(120, 64);
             this.checkedListBoxSortTypesGenre.TabIndex = 16;
             // 
             // labelSortTypes
@@ -913,28 +918,28 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.findAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -949,9 +954,31 @@ namespace DDMediaWatched
             // choseMediaDriveToolStripMenuItem
             // 
             this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
-            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
             this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.choseMediaDriveToolStripMenuItem_Click);
+            // 
+            // numericUpDownEditTitleMark
+            // 
+            this.numericUpDownEditFranchiseMark.Location = new System.Drawing.Point(164, 71);
+            this.numericUpDownEditFranchiseMark.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownEditFranchiseMark.Name = "numericUpDownEditTitleMark";
+            this.numericUpDownEditFranchiseMark.Size = new System.Drawing.Size(150, 20);
+            this.numericUpDownEditFranchiseMark.TabIndex = 52;
+            // 
+            // labelEditTitleMark
+            // 
+            this.labelEditTitleMark.AutoSize = true;
+            this.labelEditTitleMark.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditTitleMark.Location = new System.Drawing.Point(161, 55);
+            this.labelEditTitleMark.Name = "labelEditTitleMark";
+            this.labelEditTitleMark.Size = new System.Drawing.Size(37, 13);
+            this.labelEditTitleMark.TabIndex = 53;
+            this.labelEditTitleMark.Text = "Mark:";
             // 
             // Form1
             // 
@@ -1000,6 +1027,7 @@ namespace DDMediaWatched
             this.groupBoxSort.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1086,6 +1114,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem choseMediaDriveToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label labelEditTitleMark;
+        private System.Windows.Forms.NumericUpDown numericUpDownEditFranchiseMark;
     }
 }
 

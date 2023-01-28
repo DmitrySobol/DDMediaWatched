@@ -10,10 +10,6 @@ namespace DDMediaWatched
 {
     public partial class Franchise
     {
-        public enum FranchiseType {Anime, Cartoon, Film, Dorama, No};
-        public enum FranchiseDown {Downloaded, NoDownloaded };
-        public enum FranchisePersentage {Zero, Started, Full };
-
         private readonly List<string>
             names;
 
@@ -400,6 +396,11 @@ namespace DDMediaWatched
         {
             return mark;
         }
+
+        public void SetMark(int mark)
+        {
+            this.mark = mark;
+        }
         //Parts
         public List<Part> GetParts()
         {
@@ -441,12 +442,12 @@ namespace DDMediaWatched
             return s;
         }
 
-        public ListViewItem ToListViewItem(string colorBy)
+        public ListViewItem ToListViewItem()
         {
             ListViewItem item = new ListViewItem()
             {
                 Text = this.GetName(),
-                BackColor = StaticUtils.GetColor(colorBy, this)
+                BackColor = StaticUtils.GetColor(ColorBy, this)
             };
             ListViewItem.ListViewSubItem si;
             //Length
