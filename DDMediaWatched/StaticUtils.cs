@@ -14,6 +14,9 @@ namespace DDMediaWatched
         private static string
             MediaDrivePath = "null",
             MediaDriveSerialInfo = "null";
+
+        private static Dictionary<string, string>
+            SerialInfos = new Dictionary<string, string>();
         public static void LoadConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
@@ -172,6 +175,7 @@ namespace DDMediaWatched
         public static void FindMediaDrivePath()
         {
             MediaDrivePath = "null";
+            LoadSerialInfo();
             string[] drivers = Environment.GetLogicalDrives();
             for (int i = 0; i < drivers.Length; i++)
             {
@@ -183,11 +187,12 @@ namespace DDMediaWatched
             }
         }
 
-        public static void SetMediaDrivePath(string path)
+        public static void SetMediaDriveLetter(string DriveLetter)
         {
-            MediaDriveSerialInfo = GetSerialInfoFromDriveLetter(path);
+            LoadSerialInfo();
+            MediaDriveSerialInfo = GetSerialInfoFromDriveLetter(DriveLetter);
+            MediaDrivePath = DriveLetter + @"\";
             SaveConfigs();
-            FindMediaDrivePath();
         }
 
         public static bool IsMediaDriveExists()
@@ -203,32 +208,26 @@ namespace DDMediaWatched
             return MediaDrivePath;
         }
 
+        private static void LoadSerialInfo()
+        {
+            SerialInfos.Clear();
+            ManagementObjectSearcher partitions = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_LogicalDisk");
+            foreach (ManagementBaseObject partition in partitions.Get())
+            {
+                string s = String.Format("[{0}][{1}][{2}][{3}]", partition["FileSystem"], partition["Size"], partition["VolumeName"], partition["VolumeSerialNumber"]);
+                SerialInfos.Add(partition["DeviceID"].ToString(), s);
+            }
+        }
+
         private static string GetSerialInfoFromDriveLetter(string driveLetter)
         {
-            Debug.SetDateTime();
             if (driveLetter.Length != 2)
                 return "";
-            try
-            {
-                var partitions = new ManagementObjectSearcher(
-                    "ASSOCIATORS OF {Win32_LogicalDisk.DeviceID='" +
-                    driveLetter +
-                    "'} WHERE ResultClass=Win32_DiskPartition");
-                foreach (var partition in partitions.Get())
+            foreach (KeyValuePair<string, string> p in SerialInfos)
+                if (p.Key == driveLetter)
                 {
-                    var drives = new ManagementObjectSearcher(
-                        "ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" +
-                        partition["DeviceID"] +
-                        "'} WHERE ResultClass=Win32_DiskDrive");
-                    foreach (var drive in drives.Get())
-                    {
-                        string s = String.Format("[{0}][{1}][{2}]", drive["Model"], drive["SerialNumber"], partition["Index"]);
-                        Debug.WriteTimeSpan(s);
-                        return String.Format("[{0}][{1}][{2}]", drive["Model"], drive["SerialNumber"], partition["Index"]);
-                    }
+                    return p.Value;
                 }
-            }
-            catch { }
             return "<unknown>";
         }
     }

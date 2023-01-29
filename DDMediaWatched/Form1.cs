@@ -43,7 +43,7 @@ namespace DDMediaWatched
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();//47 ms
             ResizeControls(1280, 710);
             Program.Log = this.Log;
             InitializePanelsEditPart();
@@ -52,14 +52,14 @@ namespace DDMediaWatched
             SaveSortConfigs();
             LoadColumnsFranchises();
             LoadColumnsParts();
-            StaticUtils.FindMediaDrivePath();
+            StaticUtils.FindMediaDrivePath();//365 ms
             LoadControls();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Franchise.LoadMedia();
-            FranchisesToListView();
+            FranchisesToListView();//24 ms
             DrawStatistic();
         }
 
@@ -716,7 +716,7 @@ namespace DDMediaWatched
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                StaticUtils.SetMediaDrivePath(folderBrowserDialog1.SelectedPath.Substring(0, 2));
+                StaticUtils.SetMediaDriveLetter(folderBrowserDialog1.SelectedPath.Substring(0, 2));
                 DrawStatistic();
             }
         }
