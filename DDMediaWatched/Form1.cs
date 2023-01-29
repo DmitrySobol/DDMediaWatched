@@ -43,7 +43,7 @@ namespace DDMediaWatched
 
         public Form1()
         {
-            InitializeComponent();//47 ms
+            InitializeComponent();
             ResizeControls(1280, 710);
             Program.Log = this.Log;
             InitializePanelsEditPart();
@@ -52,14 +52,14 @@ namespace DDMediaWatched
             SaveSortConfigs();
             LoadColumnsFranchises();
             LoadColumnsParts();
-            StaticUtils.FindMediaDrivePath();//365 ms
+            StaticUtils.FindMediaDrivePath();
             LoadControls();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Franchise.LoadMedia();
-            FranchisesToListView();//24 ms
+            FranchisesToListView();
             DrawStatistic();
         }
 
