@@ -205,6 +205,7 @@ namespace DDMediaWatched
 
         private static string GetSerialInfoFromDriveLetter(string driveLetter)
         {
+            Debug.SetDateTime();
             if (driveLetter.Length != 2)
                 return "";
             try
@@ -220,7 +221,11 @@ namespace DDMediaWatched
                         partition["DeviceID"] +
                         "'} WHERE ResultClass=Win32_DiskDrive");
                     foreach (var drive in drives.Get())
+                    {
+                        string s = String.Format("[{0}][{1}][{2}]", drive["Model"], drive["SerialNumber"], partition["Index"]);
+                        Debug.WriteTimeSpan(s);
                         return String.Format("[{0}][{1}][{2}]", drive["Model"], drive["SerialNumber"], partition["Index"]);
+                    }
                 }
             }
             catch { }

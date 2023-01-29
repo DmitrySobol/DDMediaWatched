@@ -231,6 +231,17 @@ namespace DDMediaWatched
             return persentage;
         }
 
+        public double GetPersentage99_0_100()
+        {
+            if (this.GetLength() == 0)
+                return 0;
+            double persentage = this.GetUniqueWatchedLength() * 100;
+            persentage /= this.GetLength();
+            if (this.GetPersentage() > 99.999d)
+                persentage = -1;
+            return persentage;
+        }
+
         public FranchisePersentage GetPersentageType()
         {
             FranchisePersentage fp = FranchisePersentage.Zero;

@@ -155,8 +155,11 @@ namespace DDMediaWatched
             listViewTitles.Items.Clear();
             List<Franchise> filteredFranchises = Franchise.GetFilteredFranchises();
             SortFranchises(ref filteredFranchises);
+            ListViewItem[] items = new ListViewItem[filteredFranchises.Count];
+            int i = 0;
             foreach (Franchise el in filteredFranchises)
-                listViewTitles.Items.Add(el.ToListViewItem());
+                items[i++] = el.ToListViewItem();
+            listViewTitles.Items.AddRange(items);
         }
 
         private void PartsToListView()
@@ -212,22 +215,7 @@ namespace DDMediaWatched
                     break;
                 case "Persentage (99-0, 100)":
                     {
-                        for (int j = 0; j < list.Count; j++)
-                            for (int i = 0; i < list.Count - 1; i++)
-                            {
-                                if (list[i].GetPersentage() < list[i + 1].GetPersentage() && list[i + 1].GetPersentageType() != Franchise.FranchisePersentage.Full)
-                                {
-                                    Franchise fr = list[i];
-                                    list[i] = list[i + 1];
-                                    list[i + 1] = fr;
-                                }
-                                if (list[i].GetPersentageType() == Franchise.FranchisePersentage.Full)
-                                {
-                                    Franchise fr = list[i];
-                                    list[i] = list[i + 1];
-                                    list[i + 1] = fr;
-                                }
-                            }
+                        list = list.OrderBy(x => 0 - x.GetPersentage99_0_100()).ToList();
                     }
                     break;
                 case "BPS":
