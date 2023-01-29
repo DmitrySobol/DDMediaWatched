@@ -144,6 +144,7 @@ namespace DDMediaWatched
 
         private void FranchisesToListView()
         {
+            menu = MenuState.Start;
             //Clear parts list
             currentPart = null;
             textBoxPartInfo.Text = "Selected None!\r\n";
@@ -160,6 +161,7 @@ namespace DDMediaWatched
 
         private void PartsToListView()
         {
+            menu = MenuState.Parts;
             currentPart = null;
             textBoxPartInfo.Text = "Selected None!\r\n";
             listViewParts.Items.Clear();

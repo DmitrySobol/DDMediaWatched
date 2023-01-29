@@ -36,6 +36,11 @@ namespace DDMediaWatched
         private readonly List<TextBox>
             PanelEditPartLengths = new List<TextBox>();
 
+        private enum MenuState {Start, Parts, EditFranchise, EditPart, SortMenu };
+
+        private MenuState
+            menu = MenuState.Start;
+
         public Form1()
         {
             InitializeComponent();
@@ -71,7 +76,34 @@ namespace DDMediaWatched
                     break;
                 case Keys.Escape:
                     {
-                        AppClose();
+                        switch (menu)
+                        {
+                            case MenuState.Start:
+                                {
+                                    AppClose();
+                                }
+                                break;
+                            case MenuState.Parts:
+                                {
+                                    FranchisesToListView();
+                                }
+                                break;
+                            case MenuState.EditFranchise:
+                                {
+                                    CloseEditFranchise();
+                                }
+                                break;
+                            case MenuState.EditPart:
+                                {
+                                    CloseEditPart();
+                                }
+                                break;
+                            case MenuState.SortMenu:
+                                {
+                                    CloseSortMenu();
+                                }
+                                break;
+                        }
                     }
                     break;
             }
@@ -124,7 +156,6 @@ namespace DDMediaWatched
                 MessageBox.Show("There is alredy exist franchise with this name!", "Error");
                 return;
             }
-            ControlsOffVisible(controlsNewFranchise);
             //UpdateFields
             currentFranchise.SetNames(textBoxEditFranchiseNames.Text.Split(';'));
             currentFranchise.SetType(comboBoxEditFranchiseType.SelectedIndex);
@@ -134,6 +165,12 @@ namespace DDMediaWatched
             currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
             //Conclusion
             currentFranchise.FindSize();
+            CloseEditFranchise();
+        }
+
+        private void CloseEditFranchise()
+        {
+            ControlsOffVisible(controlsNewFranchise);
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
@@ -153,6 +190,7 @@ namespace DDMediaWatched
 
         private void EditFranchise()
         {
+            menu = MenuState.EditFranchise;
             ControlsOffVisible(controlsInfo);
             ControlsOnVisible(controlsNewFranchise);
             textBoxEditFranchiseNames.Text = currentFranchise.GetAllNames();
@@ -257,6 +295,11 @@ namespace DDMediaWatched
                 currentPart.SetSeriesLengthToCommon();
             }
             //
+            CloseEditPart();
+        }
+
+        private void CloseEditPart()
+        {
             ControlsOffVisible(controlsNewPart);
             ControlsOnVisible(controlsInfo);
             PartsToListView();
@@ -279,6 +322,7 @@ namespace DDMediaWatched
 
         private void EditPart()
         {
+            menu = MenuState.EditPart;
             ControlsOffVisible(controlsInfo);
             ControlsOnVisible(controlsNewPart);
             textBoxEditPartName.Text = currentPart.GetName();
@@ -606,10 +650,10 @@ namespace DDMediaWatched
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
         }
-
         //Sort
         private void ButtonSort_Click(object sender, EventArgs e)
         {
+            menu = MenuState.SortMenu;
             ControlsDisable(controlsRightButtons);
 
             ControlsOffVisible(controlsInfo);
@@ -618,9 +662,14 @@ namespace DDMediaWatched
 
         private void ButtonSortSave_Click(object sender, EventArgs e)
         {
+            SaveSortConfigs();
+            CloseSortMenu();
+        }
+
+        private void CloseSortMenu()
+        {
             ControlsOffVisible(controlsSort);
             ControlsOnVisible(controlsInfo);
-            SaveSortConfigs();
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
         }
