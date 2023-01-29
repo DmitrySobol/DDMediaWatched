@@ -181,18 +181,26 @@ namespace DDMediaWatched
 
         public static int GetAllWatchedLength()
         {
-            int watchedLength = 0;
+            int Length = 0;
             foreach (Franchise f in Franchise.franchises)
-                watchedLength += f.GetWatchedLength();
-            return watchedLength;
+                Length += f.GetWatchedLength();
+            return Length;
         }
 
         public static int GetAllUniqueWatchedLength()
         {
-            int watchedUniqueLength = 0;
+            int Length = 0;
             foreach (Franchise f in Franchise.franchises)
-                watchedUniqueLength += f.GetUniqueWatchedLength();
-            return watchedUniqueLength;
+                Length += f.GetUniqueWatchedLength();
+            return Length;
+        }
+
+        public static int GetAllNoTouchedLength()
+        {
+            int Length = 0;
+            foreach (Franchise f in Franchise.franchises)
+                Length += f.GetNoTouchedLength();
+            return Length;
         }
 
         public static int GetFranchiseCountWithName(string name)

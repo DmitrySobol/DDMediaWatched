@@ -63,6 +63,13 @@ namespace DDMediaWatched
             return 0;
         }
 
+        public int GetNoTouchedLength()
+        {
+            if (countWatch == 0)
+                return length;
+            return 0;
+        }
+
         public void SetCountWatch(int countWatch)
         {
             this.countWatch = countWatch;

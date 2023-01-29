@@ -152,6 +152,14 @@ namespace DDMediaWatched
             return this.GetLength();
         }
 
+        public int GetNoTouchedLength()
+        {
+            int length = 0;
+            foreach (Series series in this.series)
+                length += series.GetNoTouchedLength();
+            return length;
+        }
+
         public double GetPersentage()
         {
             double persentage = this.GetUniqueWatchedLength() * 100;

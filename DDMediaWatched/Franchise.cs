@@ -214,6 +214,14 @@ namespace DDMediaWatched
             return length;
         }
 
+        public int GetNoTouchedLength()
+        {
+            int length = 0;
+            foreach (Part part in this.parts)
+                length += part.GetNoTouchedLength();
+            return length;
+        }
+
         public double GetPersentage()
         {
             if (this.GetLength() == 0)

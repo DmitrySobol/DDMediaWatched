@@ -142,7 +142,7 @@ namespace DDMediaWatched
                 s.Enabled = false;
         }
 
-        public void FranchisesToListView()
+        private void FranchisesToListView()
         {
             //Clear parts list
             currentPart = null;
@@ -158,7 +158,7 @@ namespace DDMediaWatched
                 listViewTitles.Items.Add(el.ToListViewItem());
         }
 
-        public void PartsToListView()
+        private void PartsToListView()
         {
             currentPart = null;
             textBoxPartInfo.Text = "Selected None!\r\n";
@@ -169,20 +169,22 @@ namespace DDMediaWatched
                 listViewParts.Items.Add(el.ToListViewItem());
         }
 
-        public void DrawStatistic()
+        private void DrawStatistic()
         {
             string s = "";
             s += String.Format("Current media volume: {0}\r\n", StaticUtils.GetMediaDrivePath());
             long size = Franchise.GetAllSize();
             int watchedLength = Franchise.GetAllWatchedLength();
             int watchedUniqueLength = Franchise.GetAllUniqueWatchedLength();
+            int noTouchedLength = Franchise.GetAllNoTouchedLength();
             s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "No touched", noTouchedLength / 60d / 60, noTouchedLength / 60d / 60 / 24);
             textBoxInfo.Text = s;
         }
 
-        public void SortFranchises(ref List<Franchise> list)
+        private void SortFranchises(ref List<Franchise> list)
         {
             switch (Franchise.GetSortBy())
             {
