@@ -39,6 +39,7 @@ namespace DDMediaWatched
         public Form1()
         {
             InitializeComponent();
+            ResizeControls(1280, 710);
             Program.Log = this.Log;
             InitializePanelsEditPart();
             StaticUtils.LoadConfigs();
@@ -74,6 +75,21 @@ namespace DDMediaWatched
                     }
                     break;
             }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            ResizeControls(this.ClientSize.Width, this.ClientSize.Height);
+        }
+
+        private void ResizeControls(int width, int height)
+        {
+            panelFranchises.Location = new Point(0, 25);
+            panelFranchises.Size = new Size(375 * width / 1000, height - 25);
+            panelParts.Location = new Point(375 * width / 1000 + 1, 25);
+            panelParts.Size = new Size(375 * width / 1000, height - 25);
+            panelRigth.Location = new Point(750 * width / 1000 + 2, 25);
+            panelRigth.Size = new Size(250 * width / 1000, height - 25);
         }
 
         private void InitializePanelsEditPart()

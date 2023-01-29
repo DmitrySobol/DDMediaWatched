@@ -71,7 +71,6 @@ namespace DDMediaWatched
             this.textBoxPartInfo = new System.Windows.Forms.TextBox();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
             this.labelFontSize = new System.Windows.Forms.Label();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.labelEditPartLengths = new System.Windows.Forms.Label();
             this.numericUpDownEditPartSeries = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -111,6 +110,11 @@ namespace DDMediaWatched
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.panelFranchises = new System.Windows.Forms.Panel();
+            this.panelParts = new System.Windows.Forms.Panel();
+            this.panelRigth = new System.Windows.Forms.Panel();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -120,16 +124,23 @@ namespace DDMediaWatched
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).BeginInit();
             this.groupBoxSort.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panelFranchises.SuspendLayout();
+            this.panelParts.SuspendLayout();
+            this.panelRigth.SuspendLayout();
+            this.tableLayoutPanelRightButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewTitles
             // 
+            this.listViewTitles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewTitles.ContextMenuStrip = this.contextMenuStripTitle;
             this.listViewTitles.Font = new System.Drawing.Font("Consolas", 8F);
             this.listViewTitles.FullRowSelect = true;
             this.listViewTitles.GridLines = true;
             this.listViewTitles.HideSelection = false;
-            this.listViewTitles.Location = new System.Drawing.Point(12, 25);
+            this.listViewTitles.Location = new System.Drawing.Point(12, 0);
             this.listViewTitles.MultiSelect = false;
             this.listViewTitles.Name = "listViewTitles";
             this.listViewTitles.Size = new System.Drawing.Size(460, 404);
@@ -189,8 +200,10 @@ namespace DDMediaWatched
             // 
             // textBoxTitleInfo
             // 
+            this.textBoxTitleInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxTitleInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 448);
+            this.textBoxTitleInfo.Location = new System.Drawing.Point(12, 423);
             this.textBoxTitleInfo.Multiline = true;
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
             this.textBoxTitleInfo.ReadOnly = true;
@@ -201,19 +214,23 @@ namespace DDMediaWatched
             // 
             // textBoxInfo
             // 
+            this.textBoxInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxInfo.Location = new System.Drawing.Point(958, 25);
+            this.textBoxInfo.Location = new System.Drawing.Point(0, 0);
             this.textBoxInfo.Multiline = true;
             this.textBoxInfo.Name = "textBoxInfo";
             this.textBoxInfo.ReadOnly = true;
-            this.textBoxInfo.Size = new System.Drawing.Size(310, 365);
+            this.textBoxInfo.Size = new System.Drawing.Size(320, 365);
             this.textBoxInfo.TabIndex = 3;
             // 
             // labelTitleInfo
             // 
+            this.labelTitleInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTitleInfo.AutoSize = true;
             this.labelTitleInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelTitleInfo.Location = new System.Drawing.Point(9, 432);
+            this.labelTitleInfo.Location = new System.Drawing.Point(9, 407);
             this.labelTitleInfo.Name = "labelTitleInfo";
             this.labelTitleInfo.Size = new System.Drawing.Size(73, 13);
             this.labelTitleInfo.TabIndex = 4;
@@ -231,8 +248,11 @@ namespace DDMediaWatched
             // 
             // buttonNewFranchise
             // 
+            this.buttonNewFranchise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonNewFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchise.Location = new System.Drawing.Point(952, 396);
+            this.buttonNewFranchise.Location = new System.Drawing.Point(3, 3);
             this.buttonNewFranchise.Name = "buttonNewFranchise";
             this.buttonNewFranchise.Size = new System.Drawing.Size(100, 23);
             this.buttonNewFranchise.TabIndex = 6;
@@ -242,8 +262,9 @@ namespace DDMediaWatched
             // 
             // buttonNewFranchiseSave
             // 
+            this.buttonNewFranchiseSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonNewFranchiseSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(184, 349);
+            this.buttonNewFranchiseSave.Location = new System.Drawing.Point(184, 337);
             this.buttonNewFranchiseSave.Name = "buttonNewFranchiseSave";
             this.buttonNewFranchiseSave.Size = new System.Drawing.Size(130, 23);
             this.buttonNewFranchiseSave.TabIndex = 7;
@@ -313,8 +334,11 @@ namespace DDMediaWatched
             // 
             // buttonNewPart
             // 
+            this.buttonNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonNewPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonNewPart.Location = new System.Drawing.Point(1062, 396);
+            this.buttonNewPart.Location = new System.Drawing.Point(109, 3);
             this.buttonNewPart.Name = "buttonNewPart";
             this.buttonNewPart.Size = new System.Drawing.Size(100, 23);
             this.buttonNewPart.TabIndex = 14;
@@ -324,8 +348,9 @@ namespace DDMediaWatched
             // 
             // buttonEditPartSave
             // 
+            this.buttonEditPartSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditPartSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonEditPartSave.Location = new System.Drawing.Point(184, 351);
+            this.buttonEditPartSave.Location = new System.Drawing.Point(184, 337);
             this.buttonEditPartSave.Name = "buttonEditPartSave";
             this.buttonEditPartSave.Size = new System.Drawing.Size(130, 23);
             this.buttonEditPartSave.TabIndex = 15;
@@ -412,12 +437,15 @@ namespace DDMediaWatched
             // 
             // listViewParts
             // 
+            this.listViewParts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewParts.ContextMenuStrip = this.contextMenuStripPart;
             this.listViewParts.Font = new System.Drawing.Font("Consolas", 8F);
             this.listViewParts.FullRowSelect = true;
             this.listViewParts.GridLines = true;
             this.listViewParts.HideSelection = false;
-            this.listViewParts.Location = new System.Drawing.Point(486, 25);
+            this.listViewParts.Location = new System.Drawing.Point(10, 0);
             this.listViewParts.MultiSelect = false;
             this.listViewParts.Name = "listViewParts";
             this.listViewParts.Size = new System.Drawing.Size(460, 404);
@@ -482,9 +510,10 @@ namespace DDMediaWatched
             // 
             // labelPartInfo
             // 
+            this.labelPartInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelPartInfo.AutoSize = true;
             this.labelPartInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelPartInfo.Location = new System.Drawing.Point(483, 432);
+            this.labelPartInfo.Location = new System.Drawing.Point(7, 407);
             this.labelPartInfo.Name = "labelPartInfo";
             this.labelPartInfo.Size = new System.Drawing.Size(67, 13);
             this.labelPartInfo.TabIndex = 33;
@@ -492,8 +521,10 @@ namespace DDMediaWatched
             // 
             // textBoxPartInfo
             // 
+            this.textBoxPartInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPartInfo.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxPartInfo.Location = new System.Drawing.Point(486, 448);
+            this.textBoxPartInfo.Location = new System.Drawing.Point(10, 423);
             this.textBoxPartInfo.Multiline = true;
             this.textBoxPartInfo.Name = "textBoxPartInfo";
             this.textBoxPartInfo.ReadOnly = true;
@@ -504,8 +535,11 @@ namespace DDMediaWatched
             // 
             // numericUpDownFontSize
             // 
+            this.numericUpDownFontSize.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownFontSize.Font = new System.Drawing.Font("Consolas", 8F);
-            this.numericUpDownFontSize.Location = new System.Drawing.Point(1142, 425);
+            this.numericUpDownFontSize.Location = new System.Drawing.Point(215, 32);
             this.numericUpDownFontSize.Maximum = new decimal(new int[] {
             32,
             0,
@@ -517,7 +551,7 @@ namespace DDMediaWatched
             0,
             0});
             this.numericUpDownFontSize.Name = "numericUpDownFontSize";
-            this.numericUpDownFontSize.Size = new System.Drawing.Size(130, 20);
+            this.numericUpDownFontSize.Size = new System.Drawing.Size(102, 20);
             this.numericUpDownFontSize.TabIndex = 36;
             this.numericUpDownFontSize.Value = new decimal(new int[] {
             8,
@@ -528,24 +562,13 @@ namespace DDMediaWatched
             // 
             // labelFontSize
             // 
+            this.labelFontSize.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelFontSize.AutoSize = true;
-            this.labelFontSize.Location = new System.Drawing.Point(1084, 429);
+            this.labelFontSize.Location = new System.Drawing.Point(157, 35);
             this.labelFontSize.Name = "labelFontSize";
             this.labelFontSize.Size = new System.Drawing.Size(52, 13);
             this.labelFontSize.TabIndex = 37;
             this.labelFontSize.Text = "Font size:";
-            // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxLog.Location = new System.Drawing.Point(962, 454);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(310, 244);
-            this.textBoxLog.TabIndex = 41;
-            this.textBoxLog.WordWrap = false;
             // 
             // labelEditPartLengths
             // 
@@ -588,6 +611,9 @@ namespace DDMediaWatched
             // 
             // groupBoxEditPart
             // 
+            this.groupBoxEditPart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxEditPart.Controls.Add(this.panelEditPartLengths);
             this.groupBoxEditPart.Controls.Add(this.panelEditPartCOW);
             this.groupBoxEditPart.Controls.Add(this.buttonEditPartCommonLengthToAll);
@@ -604,9 +630,9 @@ namespace DDMediaWatched
             this.groupBoxEditPart.Controls.Add(this.labelEditPart5);
             this.groupBoxEditPart.Controls.Add(this.textBoxEditPartLength);
             this.groupBoxEditPart.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxEditPart.Location = new System.Drawing.Point(952, 10);
+            this.groupBoxEditPart.Location = new System.Drawing.Point(0, 0);
             this.groupBoxEditPart.Name = "groupBoxEditPart";
-            this.groupBoxEditPart.Size = new System.Drawing.Size(320, 380);
+            this.groupBoxEditPart.Size = new System.Drawing.Size(320, 367);
             this.groupBoxEditPart.TabIndex = 48;
             this.groupBoxEditPart.TabStop = false;
             this.groupBoxEditPart.Text = "Edit part";
@@ -614,16 +640,20 @@ namespace DDMediaWatched
             // 
             // panelEditPartLengths
             // 
+            this.panelEditPartLengths.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelEditPartLengths.Location = new System.Drawing.Point(6, 135);
             this.panelEditPartLengths.Name = "panelEditPartLengths";
-            this.panelEditPartLengths.Size = new System.Drawing.Size(180, 209);
+            this.panelEditPartLengths.Size = new System.Drawing.Size(180, 196);
             this.panelEditPartLengths.TabIndex = 51;
             // 
             // panelEditPartCOW
             // 
+            this.panelEditPartCOW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelEditPartCOW.Location = new System.Drawing.Point(192, 136);
             this.panelEditPartCOW.Name = "panelEditPartCOW";
-            this.panelEditPartCOW.Size = new System.Drawing.Size(120, 209);
+            this.panelEditPartCOW.Size = new System.Drawing.Size(120, 195);
             this.panelEditPartCOW.TabIndex = 50;
             // 
             // buttonEditPartCommonLengthToAll
@@ -659,6 +689,9 @@ namespace DDMediaWatched
             // 
             // groupBoxEditFranchise
             // 
+            this.groupBoxEditFranchise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxEditFranchise.Controls.Add(this.labelEditTitleMark);
             this.groupBoxEditFranchise.Controls.Add(this.numericUpDownEditFranchiseMark);
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseURL);
@@ -674,9 +707,9 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchise3);
             this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchisePath);
             this.groupBoxEditFranchise.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxEditFranchise.Location = new System.Drawing.Point(952, 12);
+            this.groupBoxEditFranchise.Location = new System.Drawing.Point(0, 0);
             this.groupBoxEditFranchise.Name = "groupBoxEditFranchise";
-            this.groupBoxEditFranchise.Size = new System.Drawing.Size(320, 380);
+            this.groupBoxEditFranchise.Size = new System.Drawing.Size(320, 367);
             this.groupBoxEditFranchise.TabIndex = 49;
             this.groupBoxEditFranchise.TabStop = false;
             this.groupBoxEditFranchise.Text = "Edit franchise";
@@ -753,10 +786,13 @@ namespace DDMediaWatched
             // 
             // buttonSort
             // 
+            this.buttonSort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSort.Location = new System.Drawing.Point(1172, 396);
+            this.buttonSort.Location = new System.Drawing.Point(215, 3);
             this.buttonSort.Name = "buttonSort";
-            this.buttonSort.Size = new System.Drawing.Size(100, 23);
+            this.buttonSort.Size = new System.Drawing.Size(102, 23);
             this.buttonSort.TabIndex = 50;
             this.buttonSort.Text = "Sort";
             this.buttonSort.UseVisualStyleBackColor = true;
@@ -764,6 +800,9 @@ namespace DDMediaWatched
             // 
             // groupBoxSort
             // 
+            this.groupBoxSort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
             this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
             this.groupBoxSort.Controls.Add(this.labelSortColorBy);
@@ -776,9 +815,9 @@ namespace DDMediaWatched
             this.groupBoxSort.Controls.Add(this.labelSortTypes);
             this.groupBoxSort.Controls.Add(this.buttonSortSave);
             this.groupBoxSort.Font = new System.Drawing.Font("Consolas", 8F);
-            this.groupBoxSort.Location = new System.Drawing.Point(952, 11);
+            this.groupBoxSort.Location = new System.Drawing.Point(0, 0);
             this.groupBoxSort.Name = "groupBoxSort";
-            this.groupBoxSort.Size = new System.Drawing.Size(320, 380);
+            this.groupBoxSort.Size = new System.Drawing.Size(320, 367);
             this.groupBoxSort.TabIndex = 51;
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
@@ -906,8 +945,9 @@ namespace DDMediaWatched
             // 
             // buttonSortSave
             // 
+            this.buttonSortSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSortSave.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonSortSave.Location = new System.Drawing.Point(184, 350);
+            this.buttonSortSave.Location = new System.Drawing.Point(184, 337);
             this.buttonSortSave.Name = "buttonSortSave";
             this.buttonSortSave.Size = new System.Drawing.Size(130, 23);
             this.buttonSortSave.TabIndex = 14;
@@ -981,41 +1021,96 @@ namespace DDMediaWatched
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
             this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.ChoseMediaDriveToolStripMenuItem_Click);
             // 
+            // panelFranchises
+            // 
+            this.panelFranchises.Controls.Add(this.listViewTitles);
+            this.panelFranchises.Controls.Add(this.textBoxTitleInfo);
+            this.panelFranchises.Controls.Add(this.labelTitleInfo);
+            this.panelFranchises.Location = new System.Drawing.Point(0, 25);
+            this.panelFranchises.Name = "panelFranchises";
+            this.panelFranchises.Size = new System.Drawing.Size(480, 685);
+            this.panelFranchises.TabIndex = 54;
+            // 
+            // panelParts
+            // 
+            this.panelParts.Controls.Add(this.listViewParts);
+            this.panelParts.Controls.Add(this.textBoxPartInfo);
+            this.panelParts.Controls.Add(this.labelPartInfo);
+            this.panelParts.Location = new System.Drawing.Point(480, 25);
+            this.panelParts.Name = "panelParts";
+            this.panelParts.Size = new System.Drawing.Size(480, 685);
+            this.panelParts.TabIndex = 55;
+            // 
+            // panelRigth
+            // 
+            this.panelRigth.Controls.Add(this.tableLayoutPanelRightButtons);
+            this.panelRigth.Controls.Add(this.groupBoxSort);
+            this.panelRigth.Controls.Add(this.groupBoxEditFranchise);
+            this.panelRigth.Controls.Add(this.groupBoxEditPart);
+            this.panelRigth.Controls.Add(this.textBoxInfo);
+            this.panelRigth.Controls.Add(this.textBoxLog);
+            this.panelRigth.Location = new System.Drawing.Point(960, 25);
+            this.panelRigth.Name = "panelRigth";
+            this.panelRigth.Size = new System.Drawing.Size(320, 685);
+            this.panelRigth.TabIndex = 56;
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxLog.Location = new System.Drawing.Point(0, 423);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxLog.Size = new System.Drawing.Size(320, 250);
+            this.textBoxLog.TabIndex = 41;
+            this.textBoxLog.WordWrap = false;
+            // 
+            // tableLayoutPanelRightButtons
+            // 
+            this.tableLayoutPanelRightButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanelRightButtons.ColumnCount = 3;
+            this.tableLayoutPanelRightButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelRightButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelRightButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelRightButtons.Controls.Add(this.buttonNewFranchise, 0, 0);
+            this.tableLayoutPanelRightButtons.Controls.Add(this.buttonNewPart, 1, 0);
+            this.tableLayoutPanelRightButtons.Controls.Add(this.buttonSort, 2, 0);
+            this.tableLayoutPanelRightButtons.Controls.Add(this.numericUpDownFontSize, 2, 1);
+            this.tableLayoutPanelRightButtons.Controls.Add(this.labelFontSize, 1, 1);
+            this.tableLayoutPanelRightButtons.Location = new System.Drawing.Point(0, 366);
+            this.tableLayoutPanelRightButtons.Name = "tableLayoutPanelRightButtons";
+            this.tableLayoutPanelRightButtons.RowCount = 2;
+            this.tableLayoutPanelRightButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29F));
+            this.tableLayoutPanelRightButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanelRightButtons.Size = new System.Drawing.Size(320, 54);
+            this.tableLayoutPanelRightButtons.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 710);
+            this.Controls.Add(this.panelRigth);
+            this.Controls.Add(this.panelParts);
+            this.Controls.Add(this.panelFranchises);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupBoxSort);
-            this.Controls.Add(this.buttonSort);
-            this.Controls.Add(this.groupBoxEditFranchise);
-            this.Controls.Add(this.groupBoxEditPart);
-            this.Controls.Add(this.textBoxLog);
-            this.Controls.Add(this.labelFontSize);
-            this.Controls.Add(this.numericUpDownFontSize);
-            this.Controls.Add(this.labelPartInfo);
-            this.Controls.Add(this.textBoxPartInfo);
             this.Controls.Add(this.labelParts);
-            this.Controls.Add(this.listViewParts);
-            this.Controls.Add(this.buttonNewPart);
-            this.Controls.Add(this.buttonNewFranchise);
             this.Controls.Add(this.labelInfo);
-            this.Controls.Add(this.labelTitleInfo);
-            this.Controls.Add(this.textBoxInfo);
-            this.Controls.Add(this.textBoxTitleInfo);
             this.Controls.Add(this.labelTitles);
-            this.Controls.Add(this.listViewTitles);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Dax_Donamo Media Watched";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.contextMenuStripTitle.ResumeLayout(false);
             this.contextMenuStripPart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).EndInit();
@@ -1029,6 +1124,14 @@ namespace DDMediaWatched
             this.groupBoxSort.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panelFranchises.ResumeLayout(false);
+            this.panelFranchises.PerformLayout();
+            this.panelParts.ResumeLayout(false);
+            this.panelParts.PerformLayout();
+            this.panelRigth.ResumeLayout(false);
+            this.panelRigth.PerformLayout();
+            this.tableLayoutPanelRightButtons.ResumeLayout(false);
+            this.tableLayoutPanelRightButtons.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1065,7 +1168,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.TextBox textBoxPartInfo;
         private System.Windows.Forms.NumericUpDown numericUpDownFontSize;
         private System.Windows.Forms.Label labelFontSize;
-        private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.Label labelEditPartLengths;
         private System.Windows.Forms.NumericUpDown numericUpDownEditPartSeries;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -1117,6 +1219,11 @@ namespace DDMediaWatched
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label labelEditTitleMark;
         private System.Windows.Forms.NumericUpDown numericUpDownEditFranchiseMark;
+        private System.Windows.Forms.Panel panelFranchises;
+        private System.Windows.Forms.Panel panelParts;
+        private System.Windows.Forms.Panel panelRigth;
+        private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRightButtons;
     }
 }
 
