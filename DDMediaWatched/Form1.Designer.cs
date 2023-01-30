@@ -113,8 +113,8 @@ namespace DDMediaWatched
             this.panelFranchises = new System.Windows.Forms.Panel();
             this.panelParts = new System.Windows.Forms.Panel();
             this.panelRigth = new System.Windows.Forms.Panel();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -900,6 +900,8 @@ namespace DDMediaWatched
             "Name",
             "Size",
             "Length",
+            "Watched length",
+            "Unique watched length",
             "Persentage (0-100)",
             "Persentage (99-0, 100)",
             "BPS",
@@ -1054,20 +1056,6 @@ namespace DDMediaWatched
             this.panelRigth.Size = new System.Drawing.Size(320, 685);
             this.panelRigth.TabIndex = 56;
             // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxLog.Location = new System.Drawing.Point(0, 423);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(320, 250);
-            this.textBoxLog.TabIndex = 41;
-            this.textBoxLog.WordWrap = false;
-            // 
             // tableLayoutPanelRightButtons
             // 
             this.tableLayoutPanelRightButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -1088,6 +1076,20 @@ namespace DDMediaWatched
             this.tableLayoutPanelRightButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanelRightButtons.Size = new System.Drawing.Size(320, 54);
             this.tableLayoutPanelRightButtons.TabIndex = 34;
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxLog.Location = new System.Drawing.Point(0, 423);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxLog.Size = new System.Drawing.Size(320, 250);
+            this.textBoxLog.TabIndex = 41;
+            this.textBoxLog.WordWrap = false;
             // 
             // Form1
             // 

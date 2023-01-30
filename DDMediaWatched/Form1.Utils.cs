@@ -208,6 +208,16 @@ namespace DDMediaWatched
                         list = list.OrderBy(x => x.GetLength()).ToList();
                     }
                     break;
+                case "Watched length":
+                    {
+                        list = list.OrderBy(x => x.GetWatchedLength()).ToList();
+                    }
+                    break;
+                case "Unique watched length":
+                    {
+                        list = list.OrderBy(x => x.GetUniqueWatchedLength()).ToList();
+                    }
+                    break;
                 case "Persentage (0-100)":
                     {
                         list = list.OrderBy(x => x.GetPersentage()).ToList();
