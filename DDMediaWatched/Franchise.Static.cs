@@ -180,7 +180,7 @@ namespace DDMediaWatched
 
         public static long GetAllSize(bool IsFiltered)
         {
-            long size = 0;
+            long size;
             if (IsFiltered)
                 size = CountAllSize(Franchise.filteredFranchises);
             else
@@ -198,7 +198,7 @@ namespace DDMediaWatched
 
         public static int GetAllWatchedLength(bool IsFiltered)
         {
-            int Length = 0;
+            int Length;
             if (IsFiltered)
                 Length = CountAllWatchedLength(Franchise.filteredFranchises);
             else
@@ -216,7 +216,7 @@ namespace DDMediaWatched
 
         public static int GetAllUniqueWatchedLength(bool IsFiltered)
         {
-            int Length = 0;
+            int Length;
             if (IsFiltered)
                 Length = CountAllUniqueWatchedLength(Franchise.filteredFranchises);
             else
@@ -234,13 +234,14 @@ namespace DDMediaWatched
 
         public static int GetAllNoTouchedLength(bool IsFiltered)
         {
-            int Length = 0;
+            int Length;
             if (IsFiltered)
                 Length = CountAllNoTouchedLength(Franchise.filteredFranchises);
             else
                 Length = CountAllNoTouchedLength(Franchise.franchises);
             return Length;
         }
+
         private static int CountAllNoTouchedLength(List<Franchise> franchises)
         {
             int Length = 0;
