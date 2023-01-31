@@ -313,6 +313,7 @@ namespace DDMediaWatched
             this.comboBoxEditFranchiseType.Name = "comboBoxEditFranchiseType";
             this.comboBoxEditFranchiseType.Size = new System.Drawing.Size(150, 21);
             this.comboBoxEditFranchiseType.TabIndex = 11;
+            this.comboBoxEditFranchiseType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEditFranchiseType_SelectedIndexChanged);
             // 
             // textBoxEditFranchisePath
             // 

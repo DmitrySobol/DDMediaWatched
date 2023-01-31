@@ -213,8 +213,7 @@ namespace DDMediaWatched
                 newSize = StaticUtils.GetPathSize(path, this.IsFull());
                 if (newSize == -1)
                 {
-                    Program.Log(String.Format("{0} - {1}. Path \"{2}\" has been removed!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
-                    this.path = "";
+                    Program.Log(String.Format("{0} - {1}. Path \"{2}\" doesn't exist!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
                     newSize = 0;
                 }
             }

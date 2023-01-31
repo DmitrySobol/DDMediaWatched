@@ -36,6 +36,9 @@ namespace DDMediaWatched
         private readonly List<TextBox>
             PanelEditPartLengths = new List<TextBox>();
 
+        private readonly string[]
+            DefaultPath = new string[5] { @"Anime\", @"Video\Cartoons\", @"Video\Films\", @"Video\Doramas\", @"" };
+
         private enum MenuState {Start, Parts, EditFranchise, EditPart, SortMenu };
 
         private MenuState
@@ -204,6 +207,45 @@ namespace DDMediaWatched
         private void ButtonEditFranchiseToday_Click(object sender, EventArgs e)
         {
             textBoxEditFranchiseDate.Text = DateTime.Now.ToString("yyyy.MM.dd");
+        }
+
+        private void ComboBoxEditFranchiseType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (EditFranchseIsPathDefault())
+                switch (comboBoxEditFranchiseType.Text)
+                {
+                    case "Anime":
+                        {
+                            textBoxEditFranchisePath.Text = DefaultPath[0];
+                        }
+                        break;
+                    case "Cartoon":
+                        {
+                            textBoxEditFranchisePath.Text = DefaultPath[1];
+                        }
+                        break;
+                    case "Film":
+                        {
+                            textBoxEditFranchisePath.Text = DefaultPath[2];
+                        }
+                        break;
+                    case "Dorama":
+                        {
+                            textBoxEditFranchisePath.Text = DefaultPath[3];
+                        }
+                        break;
+                }
+        }
+
+        private bool EditFranchseIsPathDefault()
+        {
+            bool b = false;
+            foreach (string s in DefaultPath)
+                if (textBoxEditFranchisePath.Text == s)
+                {
+                    b = true;
+                }
+            return b;
         }
         //ContexFranchise
         private void DeleteToolStripMenuItem1_Click(object sender, EventArgs e)
