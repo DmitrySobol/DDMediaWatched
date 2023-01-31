@@ -831,7 +831,7 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypesURL.Items.AddRange(new object[] {
             "URL",
             "-URL"});
-            this.checkedListBoxSortTypesURL.Location = new System.Drawing.Point(6, 194);
+            this.checkedListBoxSortTypesURL.Location = new System.Drawing.Point(6, 210);
             this.checkedListBoxSortTypesURL.Name = "checkedListBoxSortTypesURL";
             this.checkedListBoxSortTypesURL.Size = new System.Drawing.Size(120, 34);
             this.checkedListBoxSortTypesURL.TabIndex = 25;
@@ -866,7 +866,7 @@ namespace DDMediaWatched
             "0%",
             "1%-99%",
             "100%"});
-            this.checkedListBoxSortTypesPersentage.Location = new System.Drawing.Point(6, 139);
+            this.checkedListBoxSortTypesPersentage.Location = new System.Drawing.Point(6, 155);
             this.checkedListBoxSortTypesPersentage.Name = "checkedListBoxSortTypesPersentage";
             this.checkedListBoxSortTypesPersentage.Size = new System.Drawing.Size(120, 49);
             this.checkedListBoxSortTypesPersentage.TabIndex = 22;
@@ -878,7 +878,7 @@ namespace DDMediaWatched
             this.checkedListBoxSortTypesDown.Items.AddRange(new object[] {
             "Downloaded",
             "Not downloaded"});
-            this.checkedListBoxSortTypesDown.Location = new System.Drawing.Point(6, 99);
+            this.checkedListBoxSortTypesDown.Location = new System.Drawing.Point(6, 115);
             this.checkedListBoxSortTypesDown.Name = "checkedListBoxSortTypesDown";
             this.checkedListBoxSortTypesDown.Size = new System.Drawing.Size(120, 34);
             this.checkedListBoxSortTypesDown.TabIndex = 21;
@@ -931,10 +931,11 @@ namespace DDMediaWatched
             "Anime",
             "Cartoon",
             "Film",
-            "Dorama"});
+            "Dorama",
+            "NULL"});
             this.checkedListBoxSortTypesGenre.Location = new System.Drawing.Point(6, 30);
             this.checkedListBoxSortTypesGenre.Name = "checkedListBoxSortTypesGenre";
-            this.checkedListBoxSortTypesGenre.Size = new System.Drawing.Size(120, 64);
+            this.checkedListBoxSortTypesGenre.Size = new System.Drawing.Size(120, 79);
             this.checkedListBoxSortTypesGenre.TabIndex = 16;
             // 
             // labelSortTypes

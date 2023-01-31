@@ -724,6 +724,7 @@ namespace DDMediaWatched
             checkedListBoxSortTypesGenre.SetItemChecked(1, true);
             checkedListBoxSortTypesGenre.SetItemChecked(2, true);
             checkedListBoxSortTypesGenre.SetItemChecked(3, true);
+            checkedListBoxSortTypesGenre.SetItemChecked(4, true);
             checkedListBoxSortTypesDown.SetItemChecked(0, true);
             checkedListBoxSortTypesDown.SetItemChecked(1, true);
             checkedListBoxSortTypesPersentage.SetItemChecked(0, true);
