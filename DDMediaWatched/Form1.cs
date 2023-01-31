@@ -62,6 +62,7 @@ namespace DDMediaWatched
         private void Form1_Load(object sender, EventArgs e)
         {
             Franchise.LoadMedia();
+            this.Location = new Point(225, 150);
             FranchisesToListView();
             DrawStatistic();
         }
@@ -713,6 +714,7 @@ namespace DDMediaWatched
             ControlsOffVisible(controlsSort);
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
+            DrawStatistic();
             ControlsEnable(controlsRightButtons);
         }
 

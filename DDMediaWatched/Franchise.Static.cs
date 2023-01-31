@@ -14,6 +14,7 @@ namespace DDMediaWatched
         public enum FranchisePersentage { Zero, Started, Full };
 
         private static readonly List<Franchise> franchises = new List<Franchise>();
+        private static readonly List<Franchise> filteredFranchises = new List<Franchise>();
 
         private static string
             MediaPath = "",
@@ -93,13 +94,19 @@ namespace DDMediaWatched
             return null;
         }
 
-        public static List<Franchise> GetFilteredFranchises()
+        private static void UpdateFilteredFranchises()
         {
-            List<Franchise> filteredFranchises = new List<Franchise>();
+            Franchise.filteredFranchises.Clear();
             foreach (Franchise el in Franchise.franchises)
                 if (IsFilterOn(el))
-                    filteredFranchises.Add(el);
-            return filteredFranchises;
+                    Franchise.filteredFranchises.Add(el);
+        }
+
+        public static List<Franchise> GetFilteredFranchises(bool update)
+        {
+            if (update)
+                UpdateFilteredFranchises();
+            return Franchise.filteredFranchises;
         }
 
         private static bool IsFilterOn(Franchise franchise)
@@ -171,34 +178,73 @@ namespace DDMediaWatched
                 franchise.FindSize();
         }
 
-        public static long GetAllSize()
+        public static long GetAllSize(bool IsFiltered)
         {
             long size = 0;
-            foreach (Franchise f in Franchise.franchises)
+            if (IsFiltered)
+                size = CountAllSize(Franchise.filteredFranchises);
+            else
+                size = CountAllSize(Franchise.franchises);
+            return size;
+        }
+
+        private static long CountAllSize(List<Franchise> franchises)
+        {
+            long size = 0;
+            foreach (Franchise f in franchises)
                 size += f.GetSize();
             return size;
         }
 
-        public static int GetAllWatchedLength()
+        public static int GetAllWatchedLength(bool IsFiltered)
         {
             int Length = 0;
-            foreach (Franchise f in Franchise.franchises)
+            if (IsFiltered)
+                Length = CountAllWatchedLength(Franchise.filteredFranchises);
+            else
+                Length = CountAllWatchedLength(Franchise.franchises);
+            return Length;
+        }
+
+        private static int CountAllWatchedLength(List<Franchise> franchises)
+        {
+            int Length = 0;
+            foreach (Franchise f in franchises)
                 Length += f.GetWatchedLength();
             return Length;
         }
 
-        public static int GetAllUniqueWatchedLength()
+        public static int GetAllUniqueWatchedLength(bool IsFiltered)
         {
             int Length = 0;
-            foreach (Franchise f in Franchise.franchises)
+            if (IsFiltered)
+                Length = CountAllUniqueWatchedLength(Franchise.filteredFranchises);
+            else
+                Length = CountAllUniqueWatchedLength(Franchise.franchises);
+            return Length;
+        }
+
+        private static int CountAllUniqueWatchedLength(List<Franchise> franchises)
+        {
+            int Length = 0;
+            foreach (Franchise f in franchises)
                 Length += f.GetUniqueWatchedLength();
             return Length;
         }
 
-        public static int GetAllNoTouchedLength()
+        public static int GetAllNoTouchedLength(bool IsFiltered)
         {
             int Length = 0;
-            foreach (Franchise f in Franchise.franchises)
+            if (IsFiltered)
+                Length = CountAllNoTouchedLength(Franchise.filteredFranchises);
+            else
+                Length = CountAllNoTouchedLength(Franchise.franchises);
+            return Length;
+        }
+        private static int CountAllNoTouchedLength(List<Franchise> franchises)
+        {
+            int Length = 0;
+            foreach (Franchise f in franchises)
                 Length += f.GetNoTouchedLength();
             return Length;
         }

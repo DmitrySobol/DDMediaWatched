@@ -153,7 +153,7 @@ namespace DDMediaWatched
             currentFranchise = null;
             textBoxTitleInfo.Text = "Selected None!\r\n";
             listViewTitles.Items.Clear();
-            List<Franchise> filteredFranchises = Franchise.GetFilteredFranchises();
+            List<Franchise> filteredFranchises = Franchise.GetFilteredFranchises(true);
             SortFranchises(ref filteredFranchises);
             ListViewItem[] items = new ListViewItem[filteredFranchises.Count];
             int i = 0;
@@ -178,10 +178,20 @@ namespace DDMediaWatched
         {
             string s = "";
             s += String.Format("Current media volume: {0}\r\n", StaticUtils.GetMediaDrivePath());
-            long size = Franchise.GetAllSize();
-            int watchedLength = Franchise.GetAllWatchedLength();
-            int watchedUniqueLength = Franchise.GetAllUniqueWatchedLength();
-            int noTouchedLength = Franchise.GetAllNoTouchedLength();
+            long size = Franchise.GetAllSize(false);
+            int watchedLength = Franchise.GetAllWatchedLength(false);
+            int watchedUniqueLength = Franchise.GetAllUniqueWatchedLength(false);
+            int noTouchedLength = Franchise.GetAllNoTouchedLength(false);
+            s += "All:\r\n";
+            s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
+            s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "No touched", noTouchedLength / 60d / 60, noTouchedLength / 60d / 60 / 24);
+            size = Franchise.GetAllSize(true);
+            watchedLength = Franchise.GetAllWatchedLength(true);
+            watchedUniqueLength = Franchise.GetAllUniqueWatchedLength(true);
+            noTouchedLength = Franchise.GetAllNoTouchedLength(true);
+            s += "Filtered:\r\n";
             s += String.Format("{0,-15}:{1,9:f2} GB  \r\n", "Size Total", size / 1024d / 1024 / 1024);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched", watchedLength / 60d / 60, watchedLength / 60d / 60 / 24);
             s += String.Format("{0,-15}:{1,9:f2} Hour|{2,8:f2} days\r\n", "Watched Unique", watchedUniqueLength / 60d / 60, watchedUniqueLength / 60d / 60 / 24);
