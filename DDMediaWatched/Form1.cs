@@ -161,7 +161,8 @@ namespace DDMediaWatched
                 return;
             }
             //UpdateFields
-            currentFranchise.SetNames(textBoxEditFranchiseNames.Text.Split(';'));
+            string names = textBoxEditFranchiseNames.Text.Replace(" / ", ";");
+            currentFranchise.SetNames(names.Split(';'));
             currentFranchise.SetType(comboBoxEditFranchiseType.SelectedIndex);
             currentFranchise.SetMark((int)numericUpDownEditFranchiseMark.Value);
             currentFranchise.SetPath(textBoxEditFranchisePath.Text);
