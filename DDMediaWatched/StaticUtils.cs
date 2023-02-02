@@ -15,8 +15,9 @@ namespace DDMediaWatched
             MediaDrivePath = "null",
             MediaDriveSerialInfo = "null";
 
-        private static Dictionary<string, string>
+        private static readonly Dictionary<string, string>
             SerialInfos = new Dictionary<string, string>();
+
         public static void LoadConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
