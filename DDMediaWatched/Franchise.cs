@@ -181,6 +181,14 @@ namespace DDMediaWatched
             }
             return s;
         }
+
+        public bool HasSecondaryName()
+        {
+            if (names.Count > 1)
+                return true;
+            else
+                return false;
+        }
         //Length
         public int GetLength()
         {

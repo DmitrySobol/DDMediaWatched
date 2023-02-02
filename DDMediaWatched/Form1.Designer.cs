@@ -116,6 +116,7 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.checkedListBoxSortTypesNames = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -805,6 +806,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesNames);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
             this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
             this.groupBoxSort.Controls.Add(this.labelSortColorBy);
@@ -1105,6 +1107,18 @@ namespace DDMediaWatched
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
+            // checkedListBoxSortTypesNames
+            // 
+            this.checkedListBoxSortTypesNames.CheckOnClick = true;
+            this.checkedListBoxSortTypesNames.FormattingEnabled = true;
+            this.checkedListBoxSortTypesNames.Items.AddRange(new object[] {
+            "1 name",
+            "2+ names"});
+            this.checkedListBoxSortTypesNames.Location = new System.Drawing.Point(6, 250);
+            this.checkedListBoxSortTypesNames.Name = "checkedListBoxSortTypesNames";
+            this.checkedListBoxSortTypesNames.Size = new System.Drawing.Size(120, 34);
+            this.checkedListBoxSortTypesNames.TabIndex = 26;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1241,6 +1255,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRightButtons;
         private System.Windows.Forms.TextBox textBoxFranchisesSearch;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesNames;
     }
 }
 

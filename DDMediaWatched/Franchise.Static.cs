@@ -35,7 +35,8 @@ namespace DDMediaWatched
             FiltersPersentage = new List<Franchise.FranchisePersentage>();
 
         private static readonly List<bool>
-            FiltersURL = new List<bool>();
+            FiltersURL = new List<bool>(),
+            FiltersNames = new List<bool>();
 
         public static void LoadMedia()
         {
@@ -121,6 +122,8 @@ namespace DDMediaWatched
                 b = false;
             if (!FiltersURL.Contains(franchise.IsURLExists()))
                 b = false;
+            if (!FiltersNames.Contains(franchise.HasSecondaryName()))
+                b = false;
             if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
                 b = false;
             return b;
@@ -156,13 +159,14 @@ namespace DDMediaWatched
         {
             Franchise.ColorBy = colorBy;
         }
-
+        //Filters
         public static void ClearFilters()
         {
             FiltersType.Clear();
             FiltersDownload.Clear();
             FiltersPersentage.Clear();
             FiltersURL.Clear();
+            FiltersNames.Clear();
         }
 
         public static void AddFiltersType(Franchise.FranchiseType p)
@@ -183,6 +187,11 @@ namespace DDMediaWatched
         public static void AddFiltersURL(bool b)
         {
             FiltersURL.Add(b);
+        }
+
+        public static void AddFiltersNames(bool b)
+        {
+            FiltersNames.Add(b);
         }
 
         public static void FindAllSize()

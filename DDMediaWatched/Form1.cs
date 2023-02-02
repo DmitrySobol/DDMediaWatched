@@ -732,6 +732,8 @@ namespace DDMediaWatched
             checkedListBoxSortTypesPersentage.SetItemChecked(2, true);
             checkedListBoxSortTypesURL.SetItemChecked(0, true);
             checkedListBoxSortTypesURL.SetItemChecked(1, true);
+            checkedListBoxSortTypesNames.SetItemChecked(0, true);
+            checkedListBoxSortTypesNames.SetItemChecked(1, true);
         }
 
         private void SaveSortConfigs()
@@ -743,10 +745,16 @@ namespace DDMediaWatched
                 Franchise.AddFiltersDown((Franchise.FranchiseDown)p);
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
                 Franchise.AddFiltersPersentage((Franchise.FranchisePersentage)p);
+            //URL
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("URL"))
                 Franchise.AddFiltersURL(true);
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("-URL"))
                 Franchise.AddFiltersURL(false);
+            //Names
+            if (checkedListBoxSortTypesNames.CheckedItems.Contains("1 name"))
+                Franchise.AddFiltersNames(false);
+            if (checkedListBoxSortTypesNames.CheckedItems.Contains("2+ names"))
+                Franchise.AddFiltersNames(true);
             Franchise.SetSortBy(comboBoxSortSortBy.Text, checkBoxSortReverse.Checked);
             Franchise.SetColorBy(comboBoxSortColorBy.Text);
         }
