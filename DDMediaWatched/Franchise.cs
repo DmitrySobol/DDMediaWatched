@@ -24,7 +24,8 @@ namespace DDMediaWatched
             type;
 
         private int
-            mark;
+            mark,
+            forWhom;
 
         private DateTime
             startingDate;
@@ -40,6 +41,7 @@ namespace DDMediaWatched
             URL = "";
             type = FranchiseType.No;
             mark = -1;
+            forWhom = 0;
             startingDate = new DateTime(2000, 1, 1);
         }
 
@@ -95,6 +97,7 @@ namespace DDMediaWatched
             }
             URL = "";
             mark = -1;
+            forWhom = 0;
             startingDate = new DateTime(2000, 1, 1);
         }
 
@@ -109,6 +112,8 @@ namespace DDMediaWatched
                 names.Add(BinaryFile.ReadString(f));
             //mark
             mark = BinaryFile.ReadInt32(f);
+            //forWhom
+            forWhom = BinaryFile.ReadInt32(f);
             //path
             path = BinaryFile.ReadString(f);
             //URL
@@ -135,6 +140,8 @@ namespace DDMediaWatched
                 BinaryFile.WriteString(f, s);
             //mark
             BinaryFile.WriteInt32(f, mark);
+            //forWhom
+            BinaryFile.WriteInt32(f, forWhom);
             //path
             BinaryFile.WriteString(f, path);
             //URL
@@ -435,6 +442,17 @@ namespace DDMediaWatched
         public void SetMark(int mark)
         {
             this.mark = mark;
+        }
+        //For whom
+
+        public int GetForWhom()
+        {
+            return forWhom;
+        }
+
+        public void SetForWhom(int forWhom)
+        {
+            this.forWhom = forWhom;
         }
         //Parts
         public List<Part> GetParts()

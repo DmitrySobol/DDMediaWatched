@@ -51,6 +51,8 @@ namespace DDMediaWatched
             Program.Log = this.Log;
             InitializePanelsEditPart();
             StaticUtils.LoadConfigs();
+            checkedListBoxSortTypesForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
+            comboBoxEditFranchiseForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
             CheckCheckedListBoxes();
             SaveSortConfigs();
             LoadColumnsFranchises();
@@ -168,6 +170,7 @@ namespace DDMediaWatched
             currentFranchise.SetPath(textBoxEditFranchisePath.Text);
             currentFranchise.SetStartingDate(textBoxEditFranchiseDate.Text);
             currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
+            currentFranchise.SetForWhom(comboBoxEditFranchiseForWhom.SelectedIndex);
             //Conclusion
             currentFranchise.FindSize();
             CloseEditFranchise();
@@ -204,6 +207,7 @@ namespace DDMediaWatched
             textBoxEditFranchisePath.Text = currentFranchise.GetPath();
             textBoxEditFranchiseDate.Text = currentFranchise.GetStartingDate().ToString("yyyy.MM.dd");
             textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
+            comboBoxEditFranchiseForWhom.SelectedIndex = currentFranchise.GetForWhom();
         }
 
         private void ButtonEditFranchiseToday_Click(object sender, EventArgs e)
@@ -721,29 +725,30 @@ namespace DDMediaWatched
 
         private void CheckCheckedListBoxes()
         {
-            checkedListBoxSortTypesGenre.SetItemChecked(0, true);
-            checkedListBoxSortTypesGenre.SetItemChecked(1, true);
-            checkedListBoxSortTypesGenre.SetItemChecked(2, true);
-            checkedListBoxSortTypesGenre.SetItemChecked(3, true);
-            checkedListBoxSortTypesGenre.SetItemChecked(4, true);
-            checkedListBoxSortTypesDown.SetItemChecked(0, true);
-            checkedListBoxSortTypesDown.SetItemChecked(1, true);
-            checkedListBoxSortTypesPersentage.SetItemChecked(0, true);
-            checkedListBoxSortTypesPersentage.SetItemChecked(1, true);
-            checkedListBoxSortTypesPersentage.SetItemChecked(2, true);
-            checkedListBoxSortTypesURL.SetItemChecked(0, true);
-            checkedListBoxSortTypesURL.SetItemChecked(1, true);
-            checkedListBoxSortTypesNames.SetItemChecked(0, true);
-            checkedListBoxSortTypesNames.SetItemChecked(1, true);
+            for (int i = 0; i < checkedListBoxSortTypesGenre.Items.Count; i++)
+                checkedListBoxSortTypesGenre.SetItemChecked(i, true);
+            for (int i = 0; i < checkedListBoxSortTypesDown.Items.Count; i++)
+                checkedListBoxSortTypesDown.SetItemChecked(i, true);
+            for (int i = 0; i < checkedListBoxSortTypesPersentage.Items.Count; i++)
+                checkedListBoxSortTypesPersentage.SetItemChecked(i, true);
+            for (int i = 0; i < checkedListBoxSortTypesURL.Items.Count; i++)
+                checkedListBoxSortTypesURL.SetItemChecked(i, true);
+            for (int i = 0; i < checkedListBoxSortTypesNames.Items.Count; i++)
+                checkedListBoxSortTypesNames.SetItemChecked(i, true);
+            for (int i = 0; i < checkedListBoxSortTypesForWhom.Items.Count; i++)
+                checkedListBoxSortTypesForWhom.SetItemChecked(i, true);
         }
 
         private void SaveSortConfigs()
         {
             Franchise.ClearFilters();
+            //Genres
             foreach (int p in checkedListBoxSortTypesGenre.CheckedIndices)
                 Franchise.AddFiltersType((Franchise.FranchiseType)p);
+            //Downloaded
             foreach (int p in checkedListBoxSortTypesDown.CheckedIndices)
                 Franchise.AddFiltersDown((Franchise.FranchiseDown)p);
+            //Persentage
             foreach (int p in checkedListBoxSortTypesPersentage.CheckedIndices)
                 Franchise.AddFiltersPersentage((Franchise.FranchisePersentage)p);
             //URL
@@ -756,6 +761,9 @@ namespace DDMediaWatched
                 Franchise.AddFiltersNames(false);
             if (checkedListBoxSortTypesNames.CheckedItems.Contains("2+ names"))
                 Franchise.AddFiltersNames(true);
+            //ForWhom
+            foreach (int p in checkedListBoxSortTypesForWhom.CheckedIndices)
+                Franchise.AddFiltersForWhom(p);
             Franchise.SetSortBy(comboBoxSortSortBy.Text, checkBoxSortReverse.Checked);
             Franchise.SetColorBy(comboBoxSortColorBy.Text);
         }

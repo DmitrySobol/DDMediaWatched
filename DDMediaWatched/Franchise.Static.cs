@@ -38,6 +38,9 @@ namespace DDMediaWatched
             FiltersURL = new List<bool>(),
             FiltersNames = new List<bool>();
 
+        private static readonly List<int>
+            FiltersForWhom = new List<int>();
+
         public static void LoadMedia()
         {
             FileStream f = new FileStream(MediaPath + "Media.bin", FileMode.Open, FileAccess.Read);
@@ -96,6 +99,21 @@ namespace DDMediaWatched
             return null;
         }
 
+        public static void FindAllSize()
+        {
+            foreach (Franchise franchise in Franchise.franchises)
+                franchise.FindSize();
+        }
+
+        public static int GetFranchiseCountWithName(string name)
+        {
+            int franchiseCount = 0;
+            foreach (Franchise franchise in franchises)
+                if (franchise.GetName() == name)
+                    franchiseCount++;
+            return franchiseCount;
+        }
+        //Filters
         private static void UpdateFilteredFranchises()
         {
             Franchise.filteredFranchises.Clear();
@@ -123,6 +141,8 @@ namespace DDMediaWatched
             if (!FiltersURL.Contains(franchise.IsURLExists()))
                 b = false;
             if (!FiltersNames.Contains(franchise.HasSecondaryName()))
+                b = false;
+            if (!FiltersForWhom.Contains(franchise.GetForWhom()))
                 b = false;
             if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
                 b = false;
@@ -167,6 +187,7 @@ namespace DDMediaWatched
             FiltersPersentage.Clear();
             FiltersURL.Clear();
             FiltersNames.Clear();
+            FiltersForWhom.Clear();
         }
 
         public static void AddFiltersType(Franchise.FranchiseType p)
@@ -194,19 +215,9 @@ namespace DDMediaWatched
             FiltersNames.Add(b);
         }
 
-        public static void FindAllSize()
+        public static void AddFiltersForWhom(int a)
         {
-            foreach (Franchise franchise in Franchise.franchises)
-                franchise.FindSize();
-        }
-
-        public static int GetFranchiseCountWithName(string name)
-        {
-            int franchiseCount = 0;
-            foreach (Franchise franchise in franchises)
-                if (franchise.GetName() == name)
-                    franchiseCount++;
-            return franchiseCount;
+            FiltersForWhom.Add(a);
         }
         //Draw Statistic
         public static int GetAllCount(bool IsFiltered)

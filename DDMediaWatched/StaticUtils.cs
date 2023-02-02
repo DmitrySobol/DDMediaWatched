@@ -18,12 +18,21 @@ namespace DDMediaWatched
         private static readonly Dictionary<string, string>
             SerialInfos = new Dictionary<string, string>();
 
+        private static readonly List<string>
+            ForWhomNames = new List<string>();
+
         public static void LoadConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
             StreamReader t = new StreamReader(fs, Encoding.UTF8);
             Franchise.SetMediaPath(t.ReadLine());
             MediaDriveSerialInfo = t.ReadLine();
+            ForWhomNames.Clear();
+            string[] p = t.ReadLine().Split(';');
+            for (int i = 1; i < int.Parse(p[0]) + 1; i++)
+            {
+                ForWhomNames.Add(p[i]);
+            }
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -36,6 +45,10 @@ namespace DDMediaWatched
             StreamWriter t = new StreamWriter(fs, Encoding.UTF8);
             t.WriteLine(Franchise.GetMediaPath());
             t.WriteLine(MediaDriveSerialInfo);
+            string p = ForWhomNames.Count.ToString();
+            foreach (string s in ForWhomNames)
+                p += ";" + s;
+            t.WriteLine(p);
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -230,6 +243,11 @@ namespace DDMediaWatched
                     return p.Value;
                 }
             return "<unknown>";
+        }
+
+        public static string[] GetForWhomNames()
+        {
+            return ForWhomNames.ToArray();
         }
     }
 }
