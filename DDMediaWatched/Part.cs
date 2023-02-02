@@ -333,6 +333,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.GetPath());
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFull() ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.GetSize() / 1024D / 1024 / 1024);
+            s += String.Format("{0,-15}| {1}\r\n", "Series", series.Count);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
