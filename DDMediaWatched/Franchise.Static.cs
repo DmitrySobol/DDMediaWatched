@@ -178,6 +178,31 @@ namespace DDMediaWatched
                 franchise.FindSize();
         }
 
+        public static int GetFranchiseCountWithName(string name)
+        {
+            int franchiseCount = 0;
+            foreach (Franchise franchise in franchises)
+                if (franchise.GetName() == name)
+                    franchiseCount++;
+            return franchiseCount;
+        }
+        //Draw Statistic
+        public static int GetAllCount(bool IsFiltered)
+        {
+            int count;
+            if (IsFiltered)
+                count = CountAllCount(Franchise.filteredFranchises);
+            else
+                count = CountAllCount(Franchise.franchises);
+            return count;
+        }
+
+        private static int CountAllCount(List<Franchise> franchises)
+        {
+            int count = franchises.Count;
+            return count;
+        }
+
         public static long GetAllSize(bool IsFiltered)
         {
             long size;
@@ -248,15 +273,6 @@ namespace DDMediaWatched
             foreach (Franchise f in franchises)
                 Length += f.GetNoTouchedLength();
             return Length;
-        }
-
-        public static int GetFranchiseCountWithName(string name)
-        {
-            int franchiseCount = 0;
-            foreach (Franchise franchise in franchises)
-                if (franchise.GetName() == name)
-                    franchiseCount++;
-            return franchiseCount;
         }
     }
 }
