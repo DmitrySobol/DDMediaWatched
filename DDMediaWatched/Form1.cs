@@ -765,6 +765,12 @@ namespace DDMediaWatched
                 DrawStatistic();
             }
         }
+        //Franchises search
+        private void TextBoxFranchisesSearch_TextChanged(object sender, EventArgs e)
+        {
+            Franchise.SetSearchMask(textBoxFranchisesSearch.Text);
+            FranchisesToListView();
+        }
         //Other
         private void AppClose()
         {

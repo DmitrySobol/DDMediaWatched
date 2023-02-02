@@ -111,6 +111,7 @@ namespace DDMediaWatched
             this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelFranchises = new System.Windows.Forms.Panel();
+            this.textBoxFranchisesSearch = new System.Windows.Forms.TextBox();
             this.panelParts = new System.Windows.Forms.Panel();
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -143,7 +144,7 @@ namespace DDMediaWatched
             this.listViewTitles.Location = new System.Drawing.Point(12, 0);
             this.listViewTitles.MultiSelect = false;
             this.listViewTitles.Name = "listViewTitles";
-            this.listViewTitles.Size = new System.Drawing.Size(460, 404);
+            this.listViewTitles.Size = new System.Drawing.Size(460, 378);
             this.listViewTitles.TabIndex = 0;
             this.listViewTitles.UseCompatibleStateImageBehavior = false;
             this.listViewTitles.View = System.Windows.Forms.View.Details;
@@ -1027,6 +1028,7 @@ namespace DDMediaWatched
             // 
             // panelFranchises
             // 
+            this.panelFranchises.Controls.Add(this.textBoxFranchisesSearch);
             this.panelFranchises.Controls.Add(this.listViewTitles);
             this.panelFranchises.Controls.Add(this.textBoxTitleInfo);
             this.panelFranchises.Controls.Add(this.labelTitleInfo);
@@ -1034,6 +1036,16 @@ namespace DDMediaWatched
             this.panelFranchises.Name = "panelFranchises";
             this.panelFranchises.Size = new System.Drawing.Size(480, 685);
             this.panelFranchises.TabIndex = 54;
+            // 
+            // textBoxFranchisesSearch
+            // 
+            this.textBoxFranchisesSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFranchisesSearch.Location = new System.Drawing.Point(12, 384);
+            this.textBoxFranchisesSearch.Name = "textBoxFranchisesSearch";
+            this.textBoxFranchisesSearch.Size = new System.Drawing.Size(460, 20);
+            this.textBoxFranchisesSearch.TabIndex = 5;
+            this.textBoxFranchisesSearch.TextChanged += new System.EventHandler(this.TextBoxFranchisesSearch_TextChanged);
             // 
             // panelParts
             // 
@@ -1228,6 +1240,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.Panel panelRigth;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRightButtons;
+        private System.Windows.Forms.TextBox textBoxFranchisesSearch;
     }
 }
 

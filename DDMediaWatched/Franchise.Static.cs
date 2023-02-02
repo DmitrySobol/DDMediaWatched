@@ -19,7 +19,8 @@ namespace DDMediaWatched
         private static string
             MediaPath = "",
             SortBy = "",
-            ColorBy = "";
+            ColorBy = "",
+            SearchMask = "";
 
         private static bool
             ReverseSort = false;
@@ -120,6 +121,8 @@ namespace DDMediaWatched
                 b = false;
             if (!FiltersURL.Contains(franchise.IsURLExists()))
                 b = false;
+            if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
+                b = false;
             return b;
         }
 
@@ -132,6 +135,16 @@ namespace DDMediaWatched
         public static string GetSortBy()
         {
             return Franchise.SortBy;
+        }
+
+        public static void SetSearchMask(string SearchMask)
+        {
+            Franchise.SearchMask = SearchMask.ToLower();
+        }
+
+        public static string GetSearchMask()
+        {
+            return Franchise.SearchMask;
         }
 
         public static bool IsReverseSort()
