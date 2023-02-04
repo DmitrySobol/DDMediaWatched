@@ -190,21 +190,14 @@ namespace DDMediaWatched
         {
             MediaDrivePath = "null";
             LoadSerialInfo();
-            string[] drivers = Environment.GetLogicalDrives();
-            for (int i = 0; i < drivers.Length; i++)
-            {
-                if (GetSerialInfoFromDriveLetter(drivers[i].Substring(0, 2)) == MediaDriveSerialInfo)
-                {
-                    MediaDrivePath = drivers[i];
-                    break;
-                }
-            }
+            if (SerialInfos.ContainsKey(MediaDriveSerialInfo))
+                MediaDrivePath = SerialInfos[MediaDriveSerialInfo]  + @"\";
         }
 
         public static void SetMediaDriveLetter(string DriveLetter)
         {
             LoadSerialInfo();
-            MediaDriveSerialInfo = GetSerialInfoFromDriveLetter(DriveLetter);
+            MediaDriveSerialInfo = SerialInfos.ToDictionary(x => x.Value, x => x.Key)[DriveLetter];
             MediaDrivePath = DriveLetter + @"\";
             SaveConfigs();
         }
@@ -229,20 +222,8 @@ namespace DDMediaWatched
             foreach (ManagementBaseObject partition in partitions.Get())
             {
                 string s = String.Format("[{0}][{1}][{2}][{3}]", partition["FileSystem"], partition["Size"], partition["VolumeName"], partition["VolumeSerialNumber"]);
-                SerialInfos.Add(partition["DeviceID"].ToString(), s);
+                SerialInfos.Add(s, partition["DeviceID"].ToString());
             }
-        }
-
-        private static string GetSerialInfoFromDriveLetter(string driveLetter)
-        {
-            if (driveLetter.Length != 2)
-                return "";
-            foreach (KeyValuePair<string, string> p in SerialInfos)
-                if (p.Key == driveLetter)
-                {
-                    return p.Value;
-                }
-            return "<unknown>";
         }
 
         public static string[] GetForWhomNames()

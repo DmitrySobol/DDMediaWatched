@@ -336,7 +336,7 @@ namespace DDMediaWatched
             int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (length != -1)
                 currentPart.SetCommonLength(length);
-            if (currentPart.IsFull())
+            if (currentPart.IsFile())
             {
                 if (length == -1)
                     return;
@@ -377,7 +377,7 @@ namespace DDMediaWatched
             textBoxEditPartPath.Text = currentPart.GetPath();
             textBoxEditPartLength.Text = StaticUtils.SecsToHMS(currentPart.GetCommonLength());
             numericUpDownEditPartSeries.Value = currentPart.GetSeries().Count();
-            checkBoxEditPartIsPathFile.Checked = currentPart.IsFull();
+            checkBoxEditPartIsPathFile.Checked = currentPart.IsFile();
             MakeEditPartLengths();
             MakeEditPartCOW();
         }
@@ -387,7 +387,7 @@ namespace DDMediaWatched
             int seriesCount = (int)numericUpDownEditPartSeries.Value;
             currentPart.SetSeriesCount(seriesCount);
             MakeEditPartCOW();
-            if (!currentPart.IsFull())
+            if (!currentPart.IsFile())
                 MakeEditPartLengths();
         }
 
@@ -495,12 +495,12 @@ namespace DDMediaWatched
                 panelEditPartLengths.Visible = true;
             }
         }
-
+        
         private void TextBoxEditPartPath_TextChanged(object sender, EventArgs e)
         {
             string path = textBoxEditPartPath.Text;
-            if (path.Length > 0)
-                if (path[0] == '"')
+            if (path.Length > 2)
+                if (path[0] == '"' && path[path.Length - 1] == '"')
                     path = path.Substring(1, path.Length - 2);
             int p = StaticUtils.IsFileOrDirr(path);
             if (p == 0)

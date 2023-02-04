@@ -54,7 +54,7 @@ namespace DDMediaWatched
             if (typeP == 1)
                 this.isPathFile = 1;
             if (autoSize)
-                this.sizeD = StaticUtils.GetPathSize(this.path, this.IsFull());
+                this.sizeD = StaticUtils.GetPathSize(this.path, this.IsFile());
             else
                 this.sizeD = 0;
             if (this.sizeD < 0)
@@ -188,29 +188,18 @@ namespace DDMediaWatched
             return sizeD;
         }
 
-        public void SetSize(long size)
+        public void FindSize()
         {
-            this.sizeD = size;
-        }
-
-        public int FindSize()
-        {
+            if (this.GetParent().GetAbsolutePath() == "null")
+            {
+                Program.Log("There is no media drives!");
+                return;
+            }
+            string path = this.GetAbsolutePath();
             long newSize = 0;
-            int output = 0;
-            if (this.path == "")
+            if (path != "null")
             {
-                newSize = 0;
-            }
-            string path = parentFranchise.GetAbsolutePath();
-            if (path == "null")
-            {
-                Program.Log("There is no media drives or no parent's path!");
-                return output;
-            }
-            if (this.path.Length > 0)
-            {
-                path += this.path;
-                newSize = StaticUtils.GetPathSize(path, this.IsFull());
+                newSize = StaticUtils.GetPathSize(path, this.IsFile());
                 if (newSize == -1)
                 {
                     Program.Log(String.Format("{0} - {1}. Path \"{2}\" doesn't exist!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
@@ -219,23 +208,7 @@ namespace DDMediaWatched
             }
             if (sizeD != newSize)
                 Program.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.parentFranchise.GetName(), this.GetName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
-            //else
-            //    Program.Log(String.Format("{0,-35} size hasn't been updated!", this.getName()));
-            if (sizeD == 0 && newSize > 0)
-                output = 1;
-            if (sizeD == newSize)
-                output = 2;
-            if (sizeD > 0 && newSize == 0)
-                output = 3;
-            if (sizeD != newSize && sizeD > 0 && newSize > 0)
-                output = 4;
             sizeD = newSize;
-            return output;
-            //0 no path
-            //1 0 -> x
-            //2 x == x
-            //3 x -> 0
-            //4 x -> y
         }
         //Path
         public string GetPath()
@@ -245,42 +218,34 @@ namespace DDMediaWatched
 
         public string GetAbsolutePath()
         {
-            string s = "";
-            if (this.path != "")
-                s = parentFranchise.GetAbsolutePath() + this.path;
-            return s;
+            if (this.path == "")
+                return "null";
+            string result = parentFranchise.GetAbsolutePath();
+            if (result == "null")
+                return "null";
+            result += this.path;
+            return result;
         }
 
         public void SetPath(string path)
         {
-            if (path.Length > 3)
+            if (path.Length > 5)
             {
-                if (path[0] == '"')
+                if (path[0] == '"' && path[path.Length - 1] == '"')
                     path = path.Substring(1, path.Length - 2);
                 if (path.Substring(1, 2) == @":\")
+                {
                     path = path.Substring(3);
-                if (path.Length >= GetParent().GetPath().Length)
-                    if (path.Substring(0, GetParent().GetPath().Length) == GetParent().GetPath())
-                    {
+                    if (path.IndexOf(GetParent().GetPath()) == 0)
                         path = path.Substring(GetParent().GetPath().Length);
-                    }
-                this.path = path;
+                }
             }
-            else
-                this.path = path;
-        }
-
-        public byte GetIsPathFile()
-        {
-            return isPathFile;
+            this.path = path;
         }
 
         public void SetIsPathFile(bool isPathFile)
         {
-            if (isPathFile)
-                this.isPathFile = 1;
-            else
-                this.isPathFile = 0;
+            this.isPathFile = isPathFile ? (byte)1 : (byte)0;
         }
         //Series
         public List<Series> GetSeries()
@@ -306,13 +271,9 @@ namespace DDMediaWatched
             }
         }
         //Other
-        public bool IsFull()
+        public bool IsFile()
         {
-            if (isPathFile == 1)
-                return true;
-            if (isPathFile == 0)
-                return false;
-            return false;//ERROR
+            return isPathFile > 0;
         }
 
         public Franchise GetParent()
@@ -331,7 +292,7 @@ namespace DDMediaWatched
             string s = "";
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
             s += String.Format("{0,-15}| {1}\r\n", "Path", this.GetPath());
-            s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFull() ? "File" : "Dirr");
+            s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFile() ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.GetSize() / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}\r\n", "Series", series.Count);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
@@ -352,42 +313,42 @@ namespace DDMediaWatched
             {
                 Text = this.GetName()
             };
-            ListViewItem.ListViewSubItem si;
+            ListViewItem.ListViewSubItem subItem;
             //Length
-            si = new ListViewItem.ListViewSubItem
+            subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "Length",
                 Text = String.Format("{0:f2} Hr", this.GetLength() / 3600d)
             };
-            item.SubItems.Add(si);
+            item.SubItems.Add(subItem);
             //Size
-            si = new ListViewItem.ListViewSubItem
+            subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "Size",
                 Text = this.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", this.GetSize() / 1024d / 1024 / 1024)
             };
-            item.SubItems.Add(si);
+            item.SubItems.Add(subItem);
             //BPS
-            si = new ListViewItem.ListViewSubItem
+            subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "BPS",
                 Text = this.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (this.GetSize() / 1024d / 1024) / (this.GetLength() / 60d / 24))
             };
-            item.SubItems.Add(si);
+            item.SubItems.Add(subItem);
             //%
-            si = new ListViewItem.ListViewSubItem
+            subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "%",
                 Text = String.Format("{0:f0}%", this.GetPersentage())
             };
-            item.SubItems.Add(si);
+            item.SubItems.Add(subItem);
             //Path
-            si = new ListViewItem.ListViewSubItem
+            subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "Path",
                 Text = this.GetPath()
             };
-            item.SubItems.Add(si);
+            item.SubItems.Add(subItem);
             return item;
         }
     }
