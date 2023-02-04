@@ -250,7 +250,7 @@ namespace DDMediaWatched
         {
             string s = "";
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.Name);
-            s += String.Format("{0,-15}| {1}\r\n", "Path", this.Path);
+            s += String.Format("{0,-15}| {1}\r\n", "Path", @".\" + this.Path);
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFile() ? "File" : "Dirr");
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.DiskSize / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}\r\n", "Series", Series.Count);

@@ -515,7 +515,7 @@ namespace DDMediaWatched
             string s = "";
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
-            s += String.Format("{0,-15}| {1}\r\n", "Path", this.Path);
+            s += String.Format("{0,-15}| {1}\r\n", "Path", @"X:\" + this.Path);
             s += String.Format("{0,-15}| {1}\r\n", "URL", this.URL);
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.Mark < 0 ? "" : this.Mark.ToString());
