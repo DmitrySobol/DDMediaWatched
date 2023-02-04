@@ -9,81 +9,60 @@ namespace DDMediaWatched
 {
     public class Series
     {
-        private int
-            length,//length in seconds
-            countWatch;
+        public int Length { get; set; }//length in seconds
+        public int CountWatch { get; set; }
 
         public Series()
         {
-            this.length = 0;
-            this.countWatch = 0;
+            this.Length = 0;
+            this.CountWatch = 0;
         }
 
         public Series(int length, int countWatch)
         {
-            this.length = length;
-            this.countWatch = countWatch;
+            this.Length = length;
+            this.CountWatch = countWatch;
         }
 
         public Series(FileStream f)
         {
             //length
-            length = BinaryFile.ReadInt32(f);
+            Length = BinaryFile.ReadInt32(f);
             //countWatch
-            countWatch = BinaryFile.ReadInt32(f);
+            CountWatch = BinaryFile.ReadInt32(f);
         }
 
         public void SaveToBin(FileStream f)
         {
             //length
-            BinaryFile.WriteInt32(f, length);
+            BinaryFile.WriteInt32(f, Length);
             //countWatch
-            BinaryFile.WriteInt32(f, countWatch);
-        }
-
-        public void SetLength(int length)
-        {
-            this.length = length;
-        }
-
-        public int GetLength()
-        {
-            return length;
+            BinaryFile.WriteInt32(f, CountWatch);
         }
 
         public int GetWatchedLength()
         {
-            return length * countWatch;
+            return Length * CountWatch;
         }
 
         public int GetUniqueWatchedLength()
         {
-            return countWatch > 0 ? length : 0;
+            return CountWatch > 0 ? Length : 0;
         }
 
         public int GetNoTouchedLength()
         {
-            return countWatch == 0 ? length : 0;
-        }
-
-        public void SetCountWatch(int countWatch)
-        {
-            this.countWatch = countWatch;
-        }
-
-        public int GetCountWatch()
-        {
-            return countWatch;
+            return CountWatch == 0 ? Length : 0;
         }
 
         public void AddWatch()
         {
-            this.countWatch++;
+            this.CountWatch++;
         }
 
         public override string ToString()
         {
-            string s = String.Format("{0:f2} min|{1} times", length / 60d, countWatch);
+            string s = String.Format("{0:f2} min|{1} times", Length / 60d, CountWatch);
             return s;
         }
     }

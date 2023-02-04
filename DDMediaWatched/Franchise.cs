@@ -10,25 +10,44 @@ namespace DDMediaWatched
 {
     public partial class Franchise
     {
-        private readonly List<string>
-            names;
+        private readonly List<string> names;
 
-        private readonly List<Part>
-            parts;
+        private List<Part> Parts { get; set; }
 
-        private string
-            path,
-            URL;
+        private string path;
+        public string Path
+        {
+            get
+            {
+                return path;
+            }
+            set
+            {
+                if (value.Length > 3)
+                {
+                    if (value[0] == '"')
+                        value = value.Substring(1, value.Length - 2);
+                    if (value.Substring(1, 2) == @":\")
+                        value = value.Substring(3);
+                    path = value;
+                }
+                else
+                    path = "";
+                if (path.Length > 0)
+                    if (path[path.Length - 1] != '\\')
+                        path += '\\';
+            }
+        }
 
-        private FranchiseType
-            type;
+        public string URL { get; set; }
 
-        private int
-            mark,
-            forWhom;
+        private FranchiseType type;
 
-        private DateTime
-            startingDate;
+        public int Mark { get; set; }
+
+        public int ForWhom { get; set; }
+
+        private DateTime startingDate;
 
         public Franchise()
         {
@@ -36,12 +55,12 @@ namespace DDMediaWatched
             {
                 ""
             };
-            parts = new List<Part>();
-            path = "";
+            Parts = new List<Part>();
+            Path = "";
             URL = "";
             type = FranchiseType.No;
-            mark = -1;
-            forWhom = 0;
+            Mark = -1;
+            ForWhom = 0;
             startingDate = new DateTime(2000, 1, 1);
         }
 
@@ -78,26 +97,26 @@ namespace DDMediaWatched
                     }
                     break;
             }
-            parts = new List<Part>();
+            Parts = new List<Part>();
             if (args.Length > 3)
             {
-                this.SetPath(path);
+                this.Path = path;
                 int[] ser = new int[args.Length - 3];
                 for (int i = 3; i < args.Length; i++)
                     ser[i - 3] = int.Parse(args[i]);
                 for (int i = 0; i < ser.Length; i++)
                 {
-                    parts.Add(new Part(String.Format("Part {0}", i + 1), "", ser[i], true, false, this));
+                    Parts.Add(new Part(String.Format("Part {0}", i + 1), "", ser[i], true, false, this));
                 }
             }
             else
             {
-                this.path = "";
-                parts.Add(new Part("Film", path, 1, true, true, this));
+                this.Path = "";
+                Parts.Add(new Part("Film", path, 1, true, true, this));
             }
             URL = "";
-            mark = -1;
-            forWhom = 0;
+            Mark = -1;
+            ForWhom = 0;
             startingDate = new DateTime(2000, 1, 1);
         }
 
@@ -111,18 +130,18 @@ namespace DDMediaWatched
             for (int i = 0; i < p; i++)
                 names.Add(BinaryFile.ReadString(f));
             //mark
-            mark = BinaryFile.ReadInt32(f);
+            Mark = BinaryFile.ReadInt32(f);
             //forWhom
-            forWhom = BinaryFile.ReadInt32(f);
+            ForWhom = BinaryFile.ReadInt32(f);
             //path
-            path = BinaryFile.ReadString(f);
+            Path = BinaryFile.ReadString(f);
             //URL
             URL = BinaryFile.ReadString(f);
             //parts
             p = BinaryFile.ReadInt32(f);
-            parts = new List<Part>();
+            Parts = new List<Part>();
             for (int i = 0; i < p; i++)
-                parts.Add(new Part(f, this));
+                Parts.Add(new Part(f, this));
             //startingDate
             int yy = BinaryFile.ReadInt32(f);
             int mm = BinaryFile.ReadInt32(f);
@@ -139,16 +158,16 @@ namespace DDMediaWatched
             foreach (string s in names)
                 BinaryFile.WriteString(f, s);
             //mark
-            BinaryFile.WriteInt32(f, mark);
+            BinaryFile.WriteInt32(f, Mark);
             //forWhom
-            BinaryFile.WriteInt32(f, forWhom);
+            BinaryFile.WriteInt32(f, ForWhom);
             //path
-            BinaryFile.WriteString(f, path);
+            BinaryFile.WriteString(f, Path);
             //URL
             BinaryFile.WriteString(f, URL);
             //parts
-            BinaryFile.WriteInt32(f, parts.Count);
-            foreach (Part s in parts)
+            BinaryFile.WriteInt32(f, Parts.Count);
+            foreach (Part s in Parts)
                 s.SaveToBin(f);
             //startingDate
             BinaryFile.WriteInt32(f, startingDate.Year);
@@ -200,7 +219,7 @@ namespace DDMediaWatched
         public int GetLength()
         {
             int length = 0;
-            foreach (Part part in this.parts)
+            foreach (Part part in this.Parts)
                 length += part.GetLength();
             return length;
         }
@@ -208,7 +227,7 @@ namespace DDMediaWatched
         public int GetWatchedLength()
         {
             int length = 0;
-            foreach (Part part in this.parts)
+            foreach (Part part in this.Parts)
                 length += part.GetWatchedLength();
             return length;
         }
@@ -216,7 +235,7 @@ namespace DDMediaWatched
         public int GetUniqueWatchedLength()
         {
             int length = 0;
-            foreach (Part part in this.parts)
+            foreach (Part part in this.Parts)
                 length += part.GetUniqueWatchedLength();
             return length;
         }
@@ -224,7 +243,7 @@ namespace DDMediaWatched
         public int GetDownloadedLength()
         {
             int length = 0;
-            foreach (Part part in this.parts)
+            foreach (Part part in this.Parts)
                 length += part.GetDownloadedLength();
             return length;
         }
@@ -232,7 +251,7 @@ namespace DDMediaWatched
         public int GetNoTouchedLength()
         {
             int length = 0;
-            foreach (Part part in this.parts)
+            foreach (Part part in this.Parts)
                 length += part.GetNoTouchedLength();
             return length;
         }
@@ -270,8 +289,8 @@ namespace DDMediaWatched
         public long GetSize()
         {
             long p = 0;
-            foreach (Part part in parts)
-                p += part.GetSize();
+            foreach (Part part in Parts)
+                p += part.DiskSize;
             return p;
         }
 
@@ -282,7 +301,7 @@ namespace DDMediaWatched
                 Program.Log("There is no media drives!");
                 return;
             }
-            foreach (Part part in this.GetParts())
+            foreach (Part part in this.Parts)
                 part.FindSize();
         }
 
@@ -298,45 +317,13 @@ namespace DDMediaWatched
             return this.GetSize() / (this.GetDownloadedLength() / 60d / 24);
         }
         //Path
-        public void SetPath(string path)
-        {
-            if (path.Length > 3)
-            {
-                if (path[0] == '"')
-                    path = path.Substring(1, path.Length - 2);
-                if (path.Substring(1, 2) == @":\")
-                    path = path.Substring(3);
-                this.path = path;
-            }
-            else
-                this.path = "";
-            if (this.path.Length > 0)
-                if (this.path[this.path.Length - 1] != '\\')
-                    this.path += '\\';
-        }
-
-        public string GetPath()
-        {
-            return path;
-        }
-
         public string GetAbsolutePath()
         {
             if (!StaticUtils.IsMediaDriveExists())
                 return "null";
-            return StaticUtils.GetMediaDrivePath() + path;
+            return StaticUtils.GetMediaDrivePath() + Path;
         }
         //ULR
-        public string GetURL()
-        {
-            return URL;
-        }
-
-        public void SetURL(string URL)
-        {
-            this.URL = URL;
-        }
-
         public bool IsURLExists()
         {
             if (this.URL == "")
@@ -433,32 +420,6 @@ namespace DDMediaWatched
             }
             return s;
         }
-        //Mark
-        public int GetMark()
-        {
-            return mark;
-        }
-
-        public void SetMark(int mark)
-        {
-            this.mark = mark;
-        }
-        //For whom
-
-        public int GetForWhom()
-        {
-            return forWhom;
-        }
-
-        public void SetForWhom(int forWhom)
-        {
-            this.forWhom = forWhom;
-        }
-        //Parts
-        public List<Part> GetParts()
-        {
-            return parts;
-        }
         //Date
         public DateTime GetStartingDate()
         {
@@ -477,16 +438,87 @@ namespace DDMediaWatched
         {
             startingDate = new DateTime(yy, mm, dd);
         }
+        //Parts
+        public void AddPart(Part part)
+        {
+            this.Parts.Add(part);
+        }
+
+        public void RemovePart(Part part)
+        {
+            for (int i = 0; i < this.Parts.Count; i++)
+                if (this.Parts[i].Name == part.Name)
+                {
+                    this.Parts.RemoveAt(i);
+                    break;
+                }
+        }
+
+        public Part GetPart(string name)
+        {
+            foreach (Part part in this.Parts)
+                if (part.Name == name)
+                    return part;
+            return null;
+        }
+
+        public void PartUp(string name)
+        {
+            for (int i = 1; i < this.Parts.Count; i++)
+                if (this.Parts[i].Name == name)
+                {
+                    Part p = this.Parts[i];
+                    this.Parts[i] = this.Parts[i - 1];
+                    this.Parts[i - 1] = p;
+                    break;
+                }
+        }
+
+        public void PartDown(string name)
+        {
+            for (int i = 0; i < this.Parts.Count - 1; i++)
+                if (this.Parts[i].Name == name)
+                {
+                    Part p = this.Parts[i];
+                    this.Parts[i] = this.Parts[i + 1];
+                    this.Parts[i + 1] = p;
+                    break;
+                }
+        }
+
+        public int GetPartsCountWithName(string name)
+        {
+            int partsCount = 0;
+            foreach (Part part in this.Parts)
+                if (part.Name == name)
+                    partsCount++;
+            return partsCount;
+        }
+
+        public ListViewItem[] GetListViewPartsArray()
+        {
+            ListViewItem[] parts = new ListViewItem[this.Parts.Count];
+            int i = 0;
+            foreach (Part part in this.Parts)
+                parts[i++] = part.ToListViewItem();
+            return parts;
+        }
         //Other
+        public void AddWatch()
+        {
+            foreach (Part p in Parts)
+                p.AddWatch();
+        }
+
         public override string ToString()
         {
             string s = "";
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
-            s += String.Format("{0,-15}| {1}\r\n", "Path", this.GetPath());
-            s += String.Format("{0,-15}| {1}\r\n", "URL", this.GetURL());
+            s += String.Format("{0,-15}| {1}\r\n", "Path", this.Path);
+            s += String.Format("{0,-15}| {1}\r\n", "URL", this.URL);
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
-            s += String.Format("{0,-15}| {1}\r\n", "Mark", this.GetMark() < 0 ? "" : this.GetMark().ToString());
+            s += String.Format("{0,-15}| {1}\r\n", "Mark", this.Mark < 0 ? "" : this.Mark.ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.GetSize() / 1024d / 1024/ 1024);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
@@ -542,7 +574,7 @@ namespace DDMediaWatched
             si = new ListViewItem.ListViewSubItem
             {
                 Tag = "Path",
-                Text = this.GetPath()
+                Text = this.Path
             };
             item.SubItems.Add(si);
             return item;

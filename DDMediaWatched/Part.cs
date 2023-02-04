@@ -10,36 +10,51 @@ namespace DDMediaWatched
 {
     public class Part
     {
-        private string
-            name;//Name of part (Season, Film ...)
+        public string Name { get; set; }//Name of part (Season, Film ...)
 
-        private int
-            commonLength;//common length
+        public int CommonLength { get; set; }//common length
 
-        private long
-            sizeD;//Size on disk in bytes
+        public long DiskSize { get; private set; }//Size on disk in bytes
 
-        private string
-            path;//Path to part
+        private string path;
+        public string Path
+        {
+            get
+            {
+                return path;
+            }
+            set
+            {
+                if (value.Length > 5)
+                {
+                    if (value[0] == '"' && value[value.Length - 1] == '"')
+                        value = value.Substring(1, value.Length - 2);
+                    if (value.Substring(1, 2) == @":\")
+                    {
+                        value = value.Substring(3);
+                        if (value.IndexOf(ParentFranchise.Path) == 0)
+                            value = value.Substring(ParentFranchise.Path.Length);
+                    }
+                }
+                path = value;
+            }
+        }//Path to part
 
-        private byte
-            isPathFile;//Is path file? Else directory
+        private byte isPathFile;//Is path file? Else directory
 
-        private readonly List<Series>
-            series;//Series
+        public List<Series> Series { get; private set; }//Series
 
-        private readonly Franchise
-            parentFranchise;
+        public Franchise ParentFranchise { get; private set; }
 
         public Part(Franchise parent)
         {
-            name = "";
-            commonLength = 1440;
-            sizeD = 0;
-            path = "";
+            Name = "";
+            CommonLength = 1440;
+            DiskSize = 0;
+            Path = "";
             isPathFile = 0;
-            parentFranchise = parent;
-            series = new List<Series>
+            ParentFranchise = parent;
+            Series = new List<Series>
             {
                 new Series(1440, 0)
             };
@@ -47,92 +62,82 @@ namespace DDMediaWatched
 
         public Part(string name, string path, int serCount, bool autoSize, bool autoLength, Franchise parent)
         {
-            this.name = name;
-            this.path = path;
-            int typeP = StaticUtils.IsFileOrDirr(this.path);
+            this.Name = name;
+            this.Path = path;
+            int typeP = StaticUtils.IsFileOrDirr(this.Path);
             this.isPathFile = 0;
             if (typeP == 1)
                 this.isPathFile = 1;
             if (autoSize)
-                this.sizeD = StaticUtils.GetPathSize(this.path, this.IsFile());
+                this.DiskSize = StaticUtils.GetPathSize(this.Path, this.IsFile());
             else
-                this.sizeD = 0;
-            if (this.sizeD < 0)
-                this.sizeD = 0;
-            this.commonLength = 1440;
+                this.DiskSize = 0;
+            if (this.DiskSize < 0)
+                this.DiskSize = 0;
+            this.CommonLength = 1440;
             if (autoLength)
             {
-                int p = StaticUtils.HMStoSecs(StaticUtils.GetVideoLength(this.path));
+                int p = StaticUtils.HMStoSecs(StaticUtils.GetVideoLength(this.Path));
                 if (p >= 0)
-                    this.commonLength = p;
+                    this.CommonLength = p;
             }
-            parentFranchise = parent;
-            series = new List<Series>();
+            ParentFranchise = parent;
+            Series = new List<Series>();
             for (int i = 0; i < serCount; i++)
-                series.Add(new Series());
+                Series.Add(new Series());
             this.SetSeriesLengthToCommon();
         }
 
         public Part(FileStream f, Franchise parent)
         {
-            parentFranchise = parent;
+            ParentFranchise = parent;
             //name
-            name = BinaryFile.ReadString(f);
+            Name = BinaryFile.ReadString(f);
             //sizeD
-            sizeD = BinaryFile.ReadInt64(f);
+            DiskSize = BinaryFile.ReadInt64(f);
             //path
-            path = BinaryFile.ReadString(f);
+            Path = BinaryFile.ReadString(f);
             //isPathFile
             isPathFile = BinaryFile.ReadByte(f);
             //common length
-            commonLength = BinaryFile.ReadInt32(f);
+            CommonLength = BinaryFile.ReadInt32(f);
             //series
             int p = BinaryFile.ReadInt32(f);
-            series = new List<Series>();
+            Series = new List<Series>();
             for (int i = 0; i < p; i++)
-                series.Add(new Series(f));
+                Series.Add(new Series(f));
         }
 
         public void SaveToBin(FileStream f)
         {
             //name
-            BinaryFile.WriteString(f, name);
+            BinaryFile.WriteString(f, Name);
             //sizeD
-            BinaryFile.WriteInt64(f, sizeD);
+            BinaryFile.WriteInt64(f, DiskSize);
             //path
-            BinaryFile.WriteString(f, path);
+            BinaryFile.WriteString(f, Path);
             //isPathFile
             BinaryFile.WriteByte(f, isPathFile);
             //common length
-            BinaryFile.WriteInt32(f, commonLength);
+            BinaryFile.WriteInt32(f, CommonLength);
             //series
-            BinaryFile.WriteInt32(f, series.Count);
-            foreach (Series s in series)
+            BinaryFile.WriteInt32(f, Series.Count);
+            foreach (Series s in Series)
                 s.SaveToBin(f);
-        }
-        //Name
-        public string GetName()
-        {
-            return name;
-        }
-
-        public void SetName(string name)
-        {
-            this.name = name;
         }
         //Length
         public int GetLength()
         {
             int length = 0;
-            foreach (Series series in this.series)
-                length += series.GetLength();
+            foreach (Series series in this.Series)
+                length += series.Length;
             return length;
         }
 
         public int GetWatchedLength()
         {
             int length = 0;
-            foreach (Series series in this.series)
+            foreach (Series series in this.Series)
                 length += series.GetWatchedLength();
             return length;
         }
@@ -140,14 +145,14 @@ namespace DDMediaWatched
         public int GetUniqueWatchedLength()
         {
             int length = 0;
-            foreach (Series series in this.series)
+            foreach (Series series in this.Series)
                 length += series.GetUniqueWatchedLength();
             return length;
         }
 
         public int GetDownloadedLength()
         {
-            if (sizeD == 0)
+            if (DiskSize == 0)
                 return 0;
             return this.GetLength();
         }
@@ -155,7 +160,7 @@ namespace DDMediaWatched
         public int GetNoTouchedLength()
         {
             int length = 0;
-            foreach (Series series in this.series)
+            foreach (Series series in this.Series)
                 length += series.GetNoTouchedLength();
             return length;
         }
@@ -167,30 +172,15 @@ namespace DDMediaWatched
             return persentage;
         }
 
-        public int GetCommonLength()
-        {
-            return this.commonLength;
-        }
-
-        public void SetCommonLength(int length)
-        {
-            this.commonLength = length;
-        }
-
         public void SetSeriesLengthToCommon()
         {
-            foreach (Series s in series)
-                s.SetLength(this.commonLength);
+            foreach (Series s in Series)
+                s.Length = this.CommonLength;
         }
         //Size
-        public long GetSize()
-        {
-            return sizeD;
-        }
-
         public void FindSize()
         {
-            if (this.GetParent().GetAbsolutePath() == "null")
+            if (this.ParentFranchise.GetAbsolutePath() == "null")
             {
                 Program.Log("There is no media drives!");
                 return;
@@ -202,104 +192,73 @@ namespace DDMediaWatched
                 newSize = StaticUtils.GetPathSize(path, this.IsFile());
                 if (newSize == -1)
                 {
-                    Program.Log(String.Format("{0} - {1}. Path \"{2}\" doesn't exist!", this.parentFranchise.GetName(), this.GetName(), this.GetPath()));
+                    Program.Log(String.Format("{0} - {1}. Path \"{2}\" doesn't exist!", this.ParentFranchise.GetName(), this.Name, this.Path));
                     newSize = 0;
                 }
             }
-            if (sizeD != newSize)
-                Program.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.parentFranchise.GetName(), this.GetName(), sizeD / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
-            sizeD = newSize;
+            if (DiskSize != newSize)
+                Program.Log(String.Format("{0} - {1} size has been updated from {2:f2} GB to {3:f2} GB", this.ParentFranchise.GetName(), this.Name, DiskSize / 1024d / 1024 / 1024, newSize / 1024d / 1024 / 1024));
+            DiskSize = newSize;
         }
         //Path
-        public string GetPath()
-        {
-            return path;
-        }
-
         public string GetAbsolutePath()
         {
-            if (this.path == "")
+            if (this.Path == "")
                 return "null";
-            string result = parentFranchise.GetAbsolutePath();
+            string result = ParentFranchise.GetAbsolutePath();
             if (result == "null")
                 return "null";
-            result += this.path;
+            result += this.Path;
             return result;
-        }
-
-        public void SetPath(string path)
-        {
-            if (path.Length > 5)
-            {
-                if (path[0] == '"' && path[path.Length - 1] == '"')
-                    path = path.Substring(1, path.Length - 2);
-                if (path.Substring(1, 2) == @":\")
-                {
-                    path = path.Substring(3);
-                    if (path.IndexOf(GetParent().GetPath()) == 0)
-                        path = path.Substring(GetParent().GetPath().Length);
-                }
-            }
-            this.path = path;
         }
 
         public void SetIsPathFile(bool isPathFile)
         {
             this.isPathFile = isPathFile ? (byte)1 : (byte)0;
         }
-        //Series
-        public List<Series> GetSeries()
-        {
-            return series;
-        }
 
-        public void SetSeriesCount(int count)
-        {
-            if (this.GetSeries().Count == count)
-                return;
-            if (this.GetSeries().Count < count)
-            {
-                count -= this.GetSeries().Count;
-                for (int i = 0; i < count; i++)
-                    this.GetSeries().Add(new Series(this.GetCommonLength(), 0));
-            }
-            else
-            {
-                count = this.GetSeries().Count - count;
-                for (int i = 0; i < count; i++)
-                    this.GetSeries().RemoveAt(this.GetSeries().Count - 1);
-            }
-        }
-        //Other
         public bool IsFile()
         {
             return isPathFile > 0;
         }
-
-        public Franchise GetParent()
+        //Series
+        public void SetSeriesCount(int count)
         {
-            return parentFranchise;
+            if (this.Series.Count == count)
+                return;
+            if (this.Series.Count < count)
+            {
+                count -= this.Series.Count;
+                for (int i = 0; i < count; i++)
+                    this.Series.Add(new Series(this.CommonLength, 0));
+            }
+            else
+            {
+                count = this.Series.Count - count;
+                for (int i = 0; i < count; i++)
+                    this.Series.RemoveAt(this.Series.Count - 1);
+            }
         }
-
+        //Other
         public void AddWatch()
         {
-            foreach (Series s in series)
+            foreach (Series s in Series)
                 s.AddWatch();
         }
 
         public override string ToString()
         {
             string s = "";
-            s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
-            s += String.Format("{0,-15}| {1}\r\n", "Path", this.GetPath());
+            s += String.Format("{0,-15}| {1}\r\n", "Name", this.Name);
+            s += String.Format("{0,-15}| {1}\r\n", "Path", this.Path);
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFile() ? "File" : "Dirr");
-            s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.GetSize() / 1024D / 1024 / 1024);
-            s += String.Format("{0,-15}| {1}\r\n", "Series", series.Count);
+            s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.DiskSize / 1024D / 1024 / 1024);
+            s += String.Format("{0,-15}| {1}\r\n", "Series", Series.Count);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
             int i = 0;
-            foreach (Series ser in series)
+            foreach (Series ser in Series)
             {
                 i++;
                 s += String.Format("{0,4}| {1}\r\n", i, ser.ToString());
@@ -311,7 +270,7 @@ namespace DDMediaWatched
         {
             ListViewItem item = new ListViewItem()
             {
-                Text = this.GetName()
+                Text = this.Name
             };
             ListViewItem.ListViewSubItem subItem;
             //Length
@@ -325,14 +284,14 @@ namespace DDMediaWatched
             subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "Size",
-                Text = this.GetSize() == 0 ? "" : String.Format("{0:f2} Gb", this.GetSize() / 1024d / 1024 / 1024)
+                Text = this.DiskSize == 0 ? "" : String.Format("{0:f2} Gb", this.DiskSize / 1024d / 1024 / 1024)
             };
             item.SubItems.Add(subItem);
             //BPS
             subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "BPS",
-                Text = this.GetSize() == 0 ? "" : String.Format("{0:f0} Mb", (this.GetSize() / 1024d / 1024) / (this.GetLength() / 60d / 24))
+                Text = this.DiskSize == 0 ? "" : String.Format("{0:f0} Mb", (this.DiskSize / 1024d / 1024) / (this.GetLength() / 60d / 24))
             };
             item.SubItems.Add(subItem);
             //%
@@ -346,7 +305,7 @@ namespace DDMediaWatched
             subItem = new ListViewItem.ListViewSubItem
             {
                 Tag = "Path",
-                Text = this.GetPath()
+                Text = this.Path
             };
             item.SubItems.Add(subItem);
             return item;

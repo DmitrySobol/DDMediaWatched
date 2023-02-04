@@ -81,6 +81,8 @@ namespace DDMediaWatched
             this.labelEditPartCOW = new System.Windows.Forms.Label();
             this.labelEditPartSeries = new System.Windows.Forms.Label();
             this.groupBoxEditFranchise = new System.Windows.Forms.GroupBox();
+            this.labelEditFranchiseForWhom = new System.Windows.Forms.Label();
+            this.comboBoxEditFranchiseForWhom = new System.Windows.Forms.ComboBox();
             this.labelEditTitleMark = new System.Windows.Forms.Label();
             this.numericUpDownEditFranchiseMark = new System.Windows.Forms.NumericUpDown();
             this.labelEditFranchiseURL = new System.Windows.Forms.Label();
@@ -90,6 +92,7 @@ namespace DDMediaWatched
             this.textBoxEditFranchiseDate = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
+            this.checkedListBoxSortTypesForWhom = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesNames = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesURL = new System.Windows.Forms.CheckedListBox();
             this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
@@ -117,9 +120,6 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
-            this.checkedListBoxSortTypesForWhom = new System.Windows.Forms.CheckedListBox();
-            this.labelEditFranchiseForWhom = new System.Windows.Forms.Label();
-            this.comboBoxEditFranchiseForWhom = new System.Windows.Forms.ComboBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -723,6 +723,25 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Text = "Edit franchise";
             this.groupBoxEditFranchise.Visible = false;
             // 
+            // labelEditFranchiseForWhom
+            // 
+            this.labelEditFranchiseForWhom.AutoSize = true;
+            this.labelEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditFranchiseForWhom.Location = new System.Drawing.Point(5, 201);
+            this.labelEditFranchiseForWhom.Name = "labelEditFranchiseForWhom";
+            this.labelEditFranchiseForWhom.Size = new System.Drawing.Size(61, 13);
+            this.labelEditFranchiseForWhom.TabIndex = 54;
+            this.labelEditFranchiseForWhom.Text = "For whom:";
+            // 
+            // comboBoxEditFranchiseForWhom
+            // 
+            this.comboBoxEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
+            this.comboBoxEditFranchiseForWhom.FormattingEnabled = true;
+            this.comboBoxEditFranchiseForWhom.Location = new System.Drawing.Point(6, 217);
+            this.comboBoxEditFranchiseForWhom.Name = "comboBoxEditFranchiseForWhom";
+            this.comboBoxEditFranchiseForWhom.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxEditFranchiseForWhom.TabIndex = 55;
+            // 
             // labelEditTitleMark
             // 
             this.labelEditTitleMark.AutoSize = true;
@@ -832,6 +851,15 @@ namespace DDMediaWatched
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
             this.groupBoxSort.Visible = false;
+            // 
+            // checkedListBoxSortTypesForWhom
+            // 
+            this.checkedListBoxSortTypesForWhom.CheckOnClick = true;
+            this.checkedListBoxSortTypesForWhom.FormattingEnabled = true;
+            this.checkedListBoxSortTypesForWhom.Location = new System.Drawing.Point(6, 290);
+            this.checkedListBoxSortTypesForWhom.Name = "checkedListBoxSortTypesForWhom";
+            this.checkedListBoxSortTypesForWhom.Size = new System.Drawing.Size(120, 64);
+            this.checkedListBoxSortTypesForWhom.TabIndex = 27;
             // 
             // checkedListBoxSortTypesNames
             // 
@@ -1124,34 +1152,6 @@ namespace DDMediaWatched
             this.textBoxLog.Size = new System.Drawing.Size(320, 250);
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
-            // 
-            // checkedListBoxSortTypesForWhom
-            // 
-            this.checkedListBoxSortTypesForWhom.CheckOnClick = true;
-            this.checkedListBoxSortTypesForWhom.FormattingEnabled = true;
-            this.checkedListBoxSortTypesForWhom.Location = new System.Drawing.Point(6, 290);
-            this.checkedListBoxSortTypesForWhom.Name = "checkedListBoxSortTypesForWhom";
-            this.checkedListBoxSortTypesForWhom.Size = new System.Drawing.Size(120, 64);
-            this.checkedListBoxSortTypesForWhom.TabIndex = 27;
-            // 
-            // labelEditFranchiseForWhom
-            // 
-            this.labelEditFranchiseForWhom.AutoSize = true;
-            this.labelEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseForWhom.Location = new System.Drawing.Point(5, 201);
-            this.labelEditFranchiseForWhom.Name = "labelEditFranchiseForWhom";
-            this.labelEditFranchiseForWhom.Size = new System.Drawing.Size(61, 13);
-            this.labelEditFranchiseForWhom.TabIndex = 54;
-            this.labelEditFranchiseForWhom.Text = "For whom:";
-            // 
-            // comboBoxEditFranchiseForWhom
-            // 
-            this.comboBoxEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
-            this.comboBoxEditFranchiseForWhom.FormattingEnabled = true;
-            this.comboBoxEditFranchiseForWhom.Location = new System.Drawing.Point(6, 217);
-            this.comboBoxEditFranchiseForWhom.Name = "comboBoxEditFranchiseForWhom";
-            this.comboBoxEditFranchiseForWhom.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxEditFranchiseForWhom.TabIndex = 55;
             // 
             // Form1
             // 

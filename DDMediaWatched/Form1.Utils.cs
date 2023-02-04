@@ -170,8 +170,7 @@ namespace DDMediaWatched
             listViewParts.Items.Clear();
             if (currentFranchise == null)
                 return;
-            foreach (Part el in currentFranchise.GetParts())
-                listViewParts.Items.Add(el.ToListViewItem());
+            listViewParts.Items.AddRange(currentFranchise.GetListViewPartsArray());
         }
 
         private void DrawStatistic()
@@ -254,7 +253,7 @@ namespace DDMediaWatched
                     break;
                 case "Mark":
                     {
-                        list = list.OrderBy(x => x.GetMark()).ToList();
+                        list = list.OrderBy(x => x.Mark).ToList();
                     }
                     break;
                 default:

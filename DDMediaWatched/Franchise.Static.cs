@@ -142,7 +142,7 @@ namespace DDMediaWatched
                 b = false;
             if (!FiltersNames.Contains(franchise.HasSecondaryName()))
                 b = false;
-            if (!FiltersForWhom.Contains(franchise.GetForWhom()))
+            if (!FiltersForWhom.Contains(franchise.ForWhom))
                 b = false;
             if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
                 b = false;
