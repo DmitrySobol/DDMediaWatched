@@ -113,6 +113,37 @@ namespace DDMediaWatched
                     franchiseCount++;
             return franchiseCount;
         }
+
+        public static int GetAvailableID()
+        {
+            int id = 0;
+            foreach (Franchise f in franchises)
+                if (f.ID >= id)
+                    id = f.ID + 1;
+            return id;
+        }
+        //Debug
+        public static int GetCountFranchise()
+        {
+            int p = 0;
+            p += franchises.Count;
+            return p;
+        }
+        public static int GetCountParts()
+        {
+            int p = 0;
+            foreach (Franchise f in franchises)
+                p += f.Parts.Count;
+            return p;
+        }
+        public static int GetCountSeries()
+        {
+            int p = 0;
+            foreach (Franchise f in franchises)
+                foreach (Part part in f.Parts)
+                    p += part.Series.Count;
+            return p;
+        }
         //Filters
         private static void UpdateFilteredFranchises()
         {

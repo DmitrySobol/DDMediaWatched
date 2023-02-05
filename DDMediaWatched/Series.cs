@@ -9,8 +9,8 @@ namespace DDMediaWatched
 {
     public class Series
     {
-        public int Length { get; set; }//length in seconds
-        public int CountWatch { get; set; }
+        public short Length { get; set; }//length in seconds
+        public short CountWatch { get; set; }
 
         public Series()
         {
@@ -18,7 +18,7 @@ namespace DDMediaWatched
             this.CountWatch = 0;
         }
 
-        public Series(int length, int countWatch)
+        public Series(short length, short countWatch)
         {
             this.Length = length;
             this.CountWatch = countWatch;
@@ -27,17 +27,17 @@ namespace DDMediaWatched
         public Series(FileStream f)
         {
             //length
-            Length = BinaryFile.ReadInt32(f);
+            Length = BinaryFile.ReadInt16(f);
             //countWatch
-            CountWatch = BinaryFile.ReadInt32(f);
+            CountWatch = BinaryFile.ReadInt16(f);
         }
 
         public void SaveToBin(FileStream f)
         {
             //length
-            BinaryFile.WriteInt32(f, Length);
+            BinaryFile.WriteInt16(f, Length);
             //countWatch
-            BinaryFile.WriteInt32(f, CountWatch);
+            BinaryFile.WriteInt16(f, CountWatch);
         }
 
         public int GetWatchedLength()

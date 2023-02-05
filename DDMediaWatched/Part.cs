@@ -10,9 +10,11 @@ namespace DDMediaWatched
 {
     public class Part
     {
+        public int ID { get; private set; }
+
         public string Name { get; set; }//Name of part (Season, Film ...)
 
-        public int CommonLength { get; set; }//common length
+        public short CommonLength { get; set; }//common length
 
         public long DiskSize { get; private set; }//Size on disk in bytes
 
@@ -48,6 +50,7 @@ namespace DDMediaWatched
 
         public Part(Franchise parent)
         {
+            ID = parent.GetAvailablePartID();
             Name = "";
             CommonLength = 1440;
             DiskSize = 0;
@@ -62,6 +65,7 @@ namespace DDMediaWatched
 
         public Part(string name, string path, int serCount, bool autoSize, bool autoLength, Franchise parent)
         {
+            this.ID = parent.GetAvailablePartID();
             this.Name = name;
             this.Path = path;
             int typeP = StaticUtils.IsFileOrDirr(this.Path);
@@ -77,7 +81,7 @@ namespace DDMediaWatched
             this.CommonLength = 1440;
             if (autoLength)
             {
-                int p = StaticUtils.HMStoSecs(StaticUtils.GetVideoLength(this.Path));
+                short p = StaticUtils.HMStoSecs(StaticUtils.GetVideoLength(this.Path));
                 if (p >= 0)
                     this.CommonLength = p;
             }
@@ -91,6 +95,8 @@ namespace DDMediaWatched
         public Part(FileStream f, Franchise parent)
         {
             ParentFranchise = parent;
+            //ID
+            ID = BinaryFile.ReadInt32(f);
             //name
             Name = BinaryFile.ReadString(f);
             //sizeD
@@ -100,7 +106,7 @@ namespace DDMediaWatched
             //isPathFile
             isPathFile = BinaryFile.ReadByte(f);
             //common length
-            CommonLength = BinaryFile.ReadInt32(f);
+            CommonLength = BinaryFile.ReadInt16(f);
             //series
             int p = BinaryFile.ReadInt32(f);
             Series = new List<Series>();
@@ -110,6 +116,8 @@ namespace DDMediaWatched
 
         public void SaveToBin(FileStream f)
         {
+            //ID
+            BinaryFile.WriteInt32(f, ID);
             //name
             BinaryFile.WriteString(f, Name);
             //sizeD
@@ -119,7 +127,7 @@ namespace DDMediaWatched
             //isPathFile
             BinaryFile.WriteByte(f, isPathFile);
             //common length
-            BinaryFile.WriteInt32(f, CommonLength);
+            BinaryFile.WriteInt16(f, CommonLength);
             //series
             BinaryFile.WriteInt32(f, Series.Count);
             foreach (Series s in Series)
@@ -249,6 +257,7 @@ namespace DDMediaWatched
         public override string ToString()
         {
             string s = "";
+            s += String.Format("{0,-15}| {1}\r\n", "ID", this.ID);
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.Name);
             s += String.Format("{0,-15}| {1}\r\n", "Path", @".\" + this.Path);
             s += String.Format("{0,-15}| {1}\r\n", "Path type", this.IsFile() ? "File" : "Dirr");

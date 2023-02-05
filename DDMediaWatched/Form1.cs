@@ -332,7 +332,7 @@ namespace DDMediaWatched
             //COW
             MakeCOWEditPart();
             //Length
-            int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
+            short length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (length != -1)
                 currentPart.CommonLength = length;
             if (currentPart.IsFile())
@@ -436,7 +436,7 @@ namespace DDMediaWatched
                     Size = new Size(45, 20),
                     Font = new Font("Consolas", 8),
                     Minimum = 0,
-                    Maximum = 9999,
+                    Maximum = 32767,
                     Increment = 1,
                     Value = s.CountWatch
                 };
@@ -450,7 +450,7 @@ namespace DDMediaWatched
         private bool MakeLengthsEditPart()
         {
             bool isConvertionCorrect = true;
-            int[] lengths = new int[currentPart.Series.Count];
+            short[] lengths = new short[currentPart.Series.Count];
             for (int i = 0; i < currentPart.Series.Count; i++)
             {
                 lengths[i] = StaticUtils.HMStoSecs(PanelEditPartLengths[i].Text);
@@ -469,7 +469,7 @@ namespace DDMediaWatched
         {
             for (int i = 0; i < currentPart.Series.Count; i++)
             {
-                int cow = (int)PanelEditPartCOW[i].Value;
+                short cow = (short)PanelEditPartCOW[i].Value;
                 currentPart.Series[i].CountWatch = cow;
             }
         }
@@ -508,7 +508,7 @@ namespace DDMediaWatched
 
         private void ButtonEditPartCommonLengthToAll_Click(object sender, EventArgs e)
         {
-            int length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
+            short length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (length == -1)
             {
                 MessageBox.Show("Please, check common length!", "Error");

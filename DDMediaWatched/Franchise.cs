@@ -10,6 +10,9 @@ namespace DDMediaWatched
 {
     public partial class Franchise
     {
+        public int ID { get; private set; }
+
+
         private readonly List<string> names;
 
         private List<Part> Parts { get; set; }
@@ -51,6 +54,7 @@ namespace DDMediaWatched
 
         public Franchise()
         {
+            ID = Franchise.GetAvailableID();
             names = new List<string>
             {
                 ""
@@ -66,6 +70,7 @@ namespace DDMediaWatched
 
         public Franchise(string[] args)
         {
+            ID = Franchise.GetAvailableID();
             names = new List<string>();
             this.SetNames(args[0].Trim().Split(';'));
             string path = args[1].Trim();
@@ -122,6 +127,8 @@ namespace DDMediaWatched
 
         public Franchise(FileStream f)
         {
+            //ID
+            ID = BinaryFile.ReadInt32(f);
             //type
             type = (FranchiseType)BinaryFile.ReadInt32(f);
             //names
@@ -151,6 +158,8 @@ namespace DDMediaWatched
 
         public void SaveToBin(FileStream f)
         {
+            //ID
+            BinaryFile.WriteInt32(f, ID);
             //type
             BinaryFile.WriteInt32(f, (int)type);
             //names
@@ -503,6 +512,15 @@ namespace DDMediaWatched
                 parts[i++] = part.ToListViewItem();
             return parts;
         }
+
+        public int GetAvailablePartID()
+        {
+            int id = 0;
+            foreach (Part p in Parts)
+                if (p.ID >= id)
+                    id = p.ID + 1;
+            return id;
+        }
         //Other
         public void AddWatch()
         {
@@ -513,6 +531,7 @@ namespace DDMediaWatched
         public override string ToString()
         {
             string s = "";
+            s += String.Format("{0,-15}| {1}\r\n", "ID", this.ID);
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
             s += String.Format("{0,-15}| {1}\r\n", "Path", @"X:\" + this.Path);

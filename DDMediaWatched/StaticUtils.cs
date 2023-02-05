@@ -125,7 +125,7 @@ namespace DDMediaWatched
             return value;
         }
 
-        public static int HMStoSecs(string s)
+        public static short HMStoSecs(string s)
         {
             int ret = 0, koef = 1;
             string[] hms = s.Split(':');
@@ -138,7 +138,9 @@ namespace DDMediaWatched
                 ret += p * koef;
                 koef *= 60;
             }
-            return ret;
+            if (ret > 32767)
+                return -1;
+            return (short)ret;
         }
 
         public static string SecsToHMS(int s)

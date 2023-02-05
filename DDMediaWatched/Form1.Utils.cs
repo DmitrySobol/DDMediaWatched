@@ -176,6 +176,7 @@ namespace DDMediaWatched
         private void DrawStatistic()
         {
             string s = "";
+            s += String.Format("FPS: {0}|{1}|{2}\r\n", Franchise.GetCountFranchise(), Franchise.GetCountParts(), Franchise.GetCountSeries());
             s += String.Format("Current media volume: {0}\r\n", StaticUtils.GetMediaDrivePath());
             int count = Franchise.GetAllCount(false);
             long size = Franchise.GetAllSize(false);

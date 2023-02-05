@@ -11,6 +11,18 @@ namespace DDMediaWatched
     {
         private static readonly byte[]
             buf = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+        public static short ReadInt16(FileStream f)
+        {
+            f.Read(buf, 0, 2);
+            return BitConverter.ToInt16(buf, 0);
+        }
+
+        public static void WriteInt16(FileStream f, short a)
+        {
+            f.Write(BitConverter.GetBytes(a), 0, 2);
+        }
+
         public static int ReadInt32(FileStream f)
         {
             f.Read(buf, 0, 4);
