@@ -64,8 +64,10 @@
       <DependentUpon>Franchise.cs</DependentUpon>
     </Compile>
     <Compile Include="Part.cs" />
+    <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Record.cs" />
     <Compile Include="Series.cs" />
     <Compile Include="StaticUtils.cs" />
     <EmbeddedResource Include="Form1.resx">

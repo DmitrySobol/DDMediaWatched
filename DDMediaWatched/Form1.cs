@@ -561,13 +561,6 @@ namespace DDMediaWatched
             }
         }
 
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Franchise.SaveMedia();
-            MessageBox.Show("Media has been saved succesful!!!", "Saved!");
-            isEdited = false;
-        }
-
         private void UpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isEdited = true;
@@ -609,8 +602,48 @@ namespace DDMediaWatched
         private void BackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            File.Copy(Franchise.GetMediaPath() + "Media.bin", Franchise.GetMediaPath() + String.Format("Media - {0}.bin", dt.ToString("yyyy.MM.dd HH.mm.ss")));
+            string path = String.Format("{0}BackUP - {1}\\", Franchise.GetMediaPath(), dt.ToString("yyyy.MM.dd HH.mm.ss"));
+            Directory.CreateDirectory(path);
+            string[] files = Directory.GetFiles(Franchise.GetMediaPath());
+            foreach (string file in files)
+            {
+                File.Copy(file, path + Path.GetFileName(file));
+            }
             MessageBox.Show("BackUP has been created!", "Success");
+        }
+
+        private void ChoseMediaDriveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StaticUtils.SetMediaDriveLetter(folderBrowserDialog1.SelectedPath.Substring(0, 2));
+                DrawStatistic();
+            }
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Franchise.SaveMedia();
+            MessageBox.Show("Media has been saved succesful!!!", "Saved!");
+            isEdited = false;
+        }
+
+        private void OpenProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isEdited)
+                if (MessageBox.Show("Do you wanna save changes?", "Save", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                {
+                    Franchise.SaveMedia();
+                    isEdited = false;
+                }
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Profile.SetPath(openFileDialog1.FileName);
+                Profile.LoadFile();
+                StaticUtils.SaveConfigs();
+                DrawStatistic();
+                FranchisesToListView();
+            }
         }
         //ListViews
         private void ListViewTitles_SelectedIndexChanged(object sender, EventArgs e)
@@ -728,20 +761,12 @@ namespace DDMediaWatched
             Franchise.SetSortBy(comboBoxSortSortBy.Text, checkBoxSortReverse.Checked);
             Franchise.SetColorBy(comboBoxSortColorBy.Text);
         }
+
         //Form Closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             AppClose();
-        }
-        //Chose media drive
-        private void ChoseMediaDriveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                StaticUtils.SetMediaDriveLetter(folderBrowserDialog1.SelectedPath.Substring(0, 2));
-                DrawStatistic();
-            }
         }
         //Franchises search
         private void TextBoxFranchisesSearch_TextChanged(object sender, EventArgs e)

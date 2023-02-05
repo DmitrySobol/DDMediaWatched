@@ -51,6 +51,8 @@ namespace DDMediaWatched
             }
             f.Dispose();
             f.Close();
+
+            Profile.LoadFile();
         }
 
         public static void SaveMedia()
@@ -63,6 +65,8 @@ namespace DDMediaWatched
             }
             f.Dispose();
             f.Close();
+
+            Profile.SaveFile();
         }
 
         public static void SetMediaPath(string path)
@@ -121,6 +125,36 @@ namespace DDMediaWatched
                 if (f.ID >= id)
                     id = f.ID + 1;
             return id;
+        }
+        //Profile
+        public static void ResetCow()
+        {
+            foreach (Franchise f in franchises)
+                foreach (Part p in f.Parts)
+                    foreach (Series s in p.Series)
+                        s.CountWatch = 0;
+        }
+
+        public static void RecordToSeries(Record record)
+        {
+            foreach (Franchise f in franchises)
+                if (f.ID == record.F_ID)
+                {
+                    foreach (Part p in f.Parts)
+                        if (p.ID == record.P_ID)
+                        {
+                            p.SetCowFromRecord(record.CountWatch);
+                            break;
+                        }
+                    break;
+                }
+        }
+
+        public static void AddCowRecords(List<Record> records)
+        {
+            foreach (Franchise f in franchises)
+                foreach (Part p in f.Parts)
+                    records.Add(new Record(f.ID, p.ID, p.GetCowRecords()));
         }
         //Debug
         public static int GetCountFranchise()

@@ -113,6 +113,7 @@ namespace DDMediaWatched
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.choseMediaDriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.choseProfileFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panelFranchises = new System.Windows.Forms.Panel();
             this.textBoxFranchisesSearch = new System.Windows.Forms.TextBox();
@@ -613,7 +614,6 @@ namespace DDMediaWatched
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "Films";
-            this.openFileDialog1.Filter = "Text files (*.txt)|*.txt";
             // 
             // groupBoxEditPart
             // 
@@ -1034,35 +1034,36 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.FindAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.BackUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.choseMediaDriveToolStripMenuItem});
+            this.choseMediaDriveToolStripMenuItem,
+            this.choseProfileFileToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -1070,9 +1071,16 @@ namespace DDMediaWatched
             // choseMediaDriveToolStripMenuItem
             // 
             this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
-            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
             this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.ChoseMediaDriveToolStripMenuItem_Click);
+            // 
+            // choseProfileFileToolStripMenuItem
+            // 
+            this.choseProfileFileToolStripMenuItem.Name = "choseProfileFileToolStripMenuItem";
+            this.choseProfileFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.choseProfileFileToolStripMenuItem.Text = "Open profile";
+            this.choseProfileFileToolStripMenuItem.Click += new System.EventHandler(this.OpenProfileToolStripMenuItem_Click);
             // 
             // panelFranchises
             // 
@@ -1293,6 +1301,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesForWhom;
         private System.Windows.Forms.Label labelEditFranchiseForWhom;
         private System.Windows.Forms.ComboBox comboBoxEditFranchiseForWhom;
+        private System.Windows.Forms.ToolStripMenuItem choseProfileFileToolStripMenuItem;
     }
 }
 

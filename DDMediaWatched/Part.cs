@@ -247,6 +247,24 @@ namespace DDMediaWatched
                     this.Series.RemoveAt(this.Series.Count - 1);
             }
         }
+
+        public void SetCowFromRecord(short[] CountWatch)
+        {
+            if (CountWatch.Length != Series.Count)
+                return;
+            int i = 0;
+            foreach (Series s in Series)
+                s.CountWatch = CountWatch[i++];
+        }
+
+        public short[] GetCowRecords()
+        {
+            short[] CountWatch = new short[Series.Count];
+            int i = 0;
+            foreach (Series s in Series)
+                CountWatch[i++] = s.CountWatch;
+            return CountWatch;
+        }
         //Other
         public void AddWatch()
         {

@@ -33,13 +33,14 @@ namespace DDMediaWatched
             {
                 ForWhomNames.Add(p[i]);
             }
+            Profile.User = t.ReadLine();
             t.Dispose();
             t.Close();
             fs.Dispose();
             fs.Close();
         }
 
-        private static void SaveConfigs()
+        public static void SaveConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Create, FileAccess.Write);
             StreamWriter t = new StreamWriter(fs, Encoding.UTF8);
@@ -49,6 +50,7 @@ namespace DDMediaWatched
             foreach (string s in ForWhomNames)
                 p += ";" + s;
             t.WriteLine(p);
+            t.WriteLine(Profile.User);
             t.Dispose();
             t.Close();
             fs.Dispose();
