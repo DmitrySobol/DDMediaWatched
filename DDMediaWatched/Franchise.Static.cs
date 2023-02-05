@@ -154,7 +154,8 @@ namespace DDMediaWatched
         {
             foreach (Franchise f in franchises)
                 foreach (Part p in f.Parts)
-                    records.Add(new Record(f.ID, p.ID, p.GetCowRecords()));
+                    if (p.GetWatchedCow() > 0)
+                        records.Add(new Record(f.ID, p.ID, p.GetCowRecords()));
         }
         //Debug
         public static int GetCountFranchise()

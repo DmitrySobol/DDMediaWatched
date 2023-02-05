@@ -265,6 +265,14 @@ namespace DDMediaWatched
                 CountWatch[i++] = s.CountWatch;
             return CountWatch;
         }
+
+        public int GetWatchedCow()
+        {
+            int CountWatch = 0;
+            foreach (Series s in Series)
+                CountWatch += s.CountWatch;
+            return CountWatch;
+        }
         //Other
         public void AddWatch()
         {
