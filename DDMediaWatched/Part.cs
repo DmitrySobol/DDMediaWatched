@@ -109,9 +109,14 @@ namespace DDMediaWatched
             CommonLength = BinaryFile.ReadInt16(f);
             //series
             int p = BinaryFile.ReadInt32(f);
+            bool IsSeriesCommon = BinaryFile.ReadByte(f) == 1;
             Series = new List<Series>();
-            for (int i = 0; i < p; i++)
-                Series.Add(new Series(f));
+            if (IsSeriesCommon)
+                for (int i = 0; i < p; i++)
+                    Series.Add(new Series(this.CommonLength, 0));
+            else
+                for (int i = 0; i < p; i++)
+                    Series.Add(new Series(f));
         }
 
         public void SaveToBin(FileStream f)
@@ -130,8 +135,14 @@ namespace DDMediaWatched
             BinaryFile.WriteInt16(f, CommonLength);
             //series
             BinaryFile.WriteInt32(f, Series.Count);
-            foreach (Series s in Series)
-                s.SaveToBin(f);
+            if (this.IsSeriesCommon())
+                BinaryFile.WriteByte(f, 1);
+            else
+            {
+                BinaryFile.WriteByte(f, 0);
+                foreach (Series s in Series)
+                    s.SaveToBin(f);
+            }
         }
         //Length
         public int GetLength()
@@ -272,6 +283,18 @@ namespace DDMediaWatched
             foreach (Series s in Series)
                 CountWatch += s.CountWatch;
             return CountWatch;
+        }
+
+        private bool IsSeriesCommon()
+        {
+            bool result = true;
+            foreach (Series s in Series)
+                if (s.Length != this.CommonLength)
+                {
+                    result = false;
+                    break;
+                }
+            return result;
         }
         //Other
         public void AddWatch()
