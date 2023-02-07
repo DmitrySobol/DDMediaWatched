@@ -53,7 +53,6 @@ namespace DDMediaWatched
             f.Close();
 
             Profile.LoadCow();
-            Profile.LoadTime();
         }
 
         public static void SaveMedia()
@@ -68,7 +67,6 @@ namespace DDMediaWatched
             f.Close();
 
             Profile.SaveCow();
-            Profile.SaveTime();
         }
 
         public static void SetMediaPath(string path)

@@ -693,12 +693,6 @@ namespace DDMediaWatched
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
         }
-
-        private void NumericUpDownTodayWatched_ValueChanged(object sender, EventArgs e)
-        {
-            isEdited = true;
-            Profile.SetTodayWatched((short)numericUpDownTodayWatched.Value);
-        }
         //Sort
         private void ButtonSort_Click(object sender, EventArgs e)
         {

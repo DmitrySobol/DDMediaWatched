@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryFile.cs" />
-    <Compile Include="DateTimeWatchCount.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

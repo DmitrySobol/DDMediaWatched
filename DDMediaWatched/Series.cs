@@ -55,7 +55,6 @@ namespace DDMediaWatched
         public void AddWatched(short count)
         {
             this.CountWatch += count;
-            Profile.AddTodayWatched(count);
         }
 
         public override string ToString()
