@@ -28,7 +28,8 @@ namespace DDMediaWatched
             controlsListViews = new List<Control>();
 
         private static bool
-            isEdited = false;
+            isEdited = false,
+            isExiting = false;
 
         private readonly List<NumericUpDown>
             PanelEditPartCOW = new List<NumericUpDown>();
@@ -75,9 +76,8 @@ namespace DDMediaWatched
             {
                 case Keys.F5:
                     {
-                        FranchisesToListView();
                         StaticUtils.FindMediaDrivePath();
-                        DrawStatistic();
+                        FranchisesToListView();
                     }
                     break;
                 case Keys.Escape:
@@ -350,6 +350,7 @@ namespace DDMediaWatched
             ControlsOffVisible(controlsNewPart);
             ControlsOnVisible(controlsInfo);
             PartsToListView();
+            DrawStatistic();
             ControlsEnable(controlsRightButtons);
             ControlsEnable(controlsListViews);
         }
@@ -470,7 +471,7 @@ namespace DDMediaWatched
             for (int i = 0; i < currentPart.Series.Count; i++)
             {
                 short cow = (short)PanelEditPartCOW[i].Value;
-                currentPart.Series[i].CountWatch = cow;
+                currentPart.Series[i].AddWatched((short)(cow - currentPart.Series[i].CountWatch));
             }
         }
 
@@ -639,9 +640,8 @@ namespace DDMediaWatched
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Profile.SetPath(openFileDialog1.FileName);
-                Profile.LoadFile();
+                Profile.LoadCow();
                 StaticUtils.SaveConfigs();
-                DrawStatistic();
                 FranchisesToListView();
             }
         }
@@ -684,13 +684,19 @@ namespace DDMediaWatched
                 textBoxPartInfo.Text = currentPart.ToString();
             }
         }
-        //Font size
+        //Right panel
         private void NumericUpDownFontSize_ValueChanged(object sender, EventArgs e)
         {
             listViewParts.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             listViewTitles.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxTitleInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
             textBoxPartInfo.Font = new Font("Consolas", (float)numericUpDownFontSize.Value);
+        }
+
+        private void NumericUpDownTodayWatched_ValueChanged(object sender, EventArgs e)
+        {
+            isEdited = true;
+            Profile.SetTodayWatched((short)numericUpDownTodayWatched.Value);
         }
         //Sort
         private void ButtonSort_Click(object sender, EventArgs e)
@@ -713,7 +719,6 @@ namespace DDMediaWatched
             ControlsOffVisible(controlsSort);
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
-            DrawStatistic();
             ControlsEnable(controlsRightButtons);
         }
 
@@ -765,8 +770,11 @@ namespace DDMediaWatched
         //Form Closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            AppClose();
+            if (!isExiting)
+            {
+                e.Cancel = true;
+                AppClose();
+            }
         }
         //Franchises search
         private void TextBoxFranchisesSearch_TextChanged(object sender, EventArgs e)
@@ -778,19 +786,24 @@ namespace DDMediaWatched
         private void AppClose()
         {
             if (!isEdited)
-                Environment.Exit(0);
+            {
+                isExiting = true;
+                Application.Exit();
+            }
             DialogResult dr = MessageBox.Show("Do you wanna save changes?", "Exit", MessageBoxButtons.YesNoCancel);
             switch (dr)
             {
                 case DialogResult.Yes:
                     {
                         Franchise.SaveMedia();
-                        Environment.Exit(0);
+                        isExiting = true;
+                        Application.Exit();
                     }
                     break;
                 case DialogResult.No:
                     {
-                        Environment.Exit(0);
+                        isExiting = true;
+                        Application.Exit();
                     }
                     break;
                 case DialogResult.Cancel:

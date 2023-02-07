@@ -52,9 +52,10 @@ namespace DDMediaWatched
             return CountWatch == 0 ? Length : 0;
         }
 
-        public void AddWatch()
+        public void AddWatched(short count)
         {
-            this.CountWatch++;
+            this.CountWatch += count;
+            Profile.AddTodayWatched(count);
         }
 
         public override string ToString()

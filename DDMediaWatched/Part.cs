@@ -300,7 +300,7 @@ namespace DDMediaWatched
         public void AddWatch()
         {
             foreach (Series s in Series)
-                s.AddWatch();
+                s.AddWatched(1);
         }
 
         public override string ToString()

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DDMediaWatched
 {
-    public class Record
+    public struct Record
     {
         public int F_ID { get; private set; }
 

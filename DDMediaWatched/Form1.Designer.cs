@@ -121,6 +121,7 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.numericUpDownTodayWatched = new System.Windows.Forms.NumericUpDown();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -134,6 +135,7 @@ namespace DDMediaWatched
             this.panelParts.SuspendLayout();
             this.panelRigth.SuspendLayout();
             this.tableLayoutPanelRightButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTodayWatched)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -1034,28 +1036,28 @@ namespace DDMediaWatched
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // findAllSizeToolStripMenuItem
             // 
             this.findAllSizeToolStripMenuItem.Name = "findAllSizeToolStripMenuItem";
-            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findAllSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.findAllSizeToolStripMenuItem.Text = "Find all size";
             this.findAllSizeToolStripMenuItem.Click += new System.EventHandler(this.FindAllSizeToolStripMenuItem_Click);
             // 
             // backUpToolStripMenuItem
             // 
             this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.backUpToolStripMenuItem.Text = "BackUp";
             this.backUpToolStripMenuItem.Click += new System.EventHandler(this.BackUpToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -1071,14 +1073,14 @@ namespace DDMediaWatched
             // choseMediaDriveToolStripMenuItem
             // 
             this.choseMediaDriveToolStripMenuItem.Name = "choseMediaDriveToolStripMenuItem";
-            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.choseMediaDriveToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.choseMediaDriveToolStripMenuItem.Text = "Chose media drive";
             this.choseMediaDriveToolStripMenuItem.Click += new System.EventHandler(this.ChoseMediaDriveToolStripMenuItem_Click);
             // 
             // choseProfileFileToolStripMenuItem
             // 
             this.choseProfileFileToolStripMenuItem.Name = "choseProfileFileToolStripMenuItem";
-            this.choseProfileFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.choseProfileFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.choseProfileFileToolStripMenuItem.Text = "Open profile";
             this.choseProfileFileToolStripMenuItem.Click += new System.EventHandler(this.OpenProfileToolStripMenuItem_Click);
             // 
@@ -1139,6 +1141,7 @@ namespace DDMediaWatched
             this.tableLayoutPanelRightButtons.Controls.Add(this.buttonSort, 2, 0);
             this.tableLayoutPanelRightButtons.Controls.Add(this.numericUpDownFontSize, 2, 1);
             this.tableLayoutPanelRightButtons.Controls.Add(this.labelFontSize, 1, 1);
+            this.tableLayoutPanelRightButtons.Controls.Add(this.numericUpDownTodayWatched, 0, 1);
             this.tableLayoutPanelRightButtons.Location = new System.Drawing.Point(0, 366);
             this.tableLayoutPanelRightButtons.Name = "tableLayoutPanelRightButtons";
             this.tableLayoutPanelRightButtons.RowCount = 2;
@@ -1160,6 +1163,19 @@ namespace DDMediaWatched
             this.textBoxLog.Size = new System.Drawing.Size(320, 250);
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
+            // 
+            // numericUpDownTodayWatched
+            // 
+            this.numericUpDownTodayWatched.Location = new System.Drawing.Point(3, 32);
+            this.numericUpDownTodayWatched.Maximum = new decimal(new int[] {
+            32767,
+            0,
+            0,
+            0});
+            this.numericUpDownTodayWatched.Name = "numericUpDownTodayWatched";
+            this.numericUpDownTodayWatched.Size = new System.Drawing.Size(100, 20);
+            this.numericUpDownTodayWatched.TabIndex = 51;
+            this.numericUpDownTodayWatched.ValueChanged += new System.EventHandler(this.NumericUpDownTodayWatched_ValueChanged);
             // 
             // Form1
             // 
@@ -1204,6 +1220,7 @@ namespace DDMediaWatched
             this.panelRigth.PerformLayout();
             this.tableLayoutPanelRightButtons.ResumeLayout(false);
             this.tableLayoutPanelRightButtons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTodayWatched)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1302,6 +1319,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelEditFranchiseForWhom;
         private System.Windows.Forms.ComboBox comboBoxEditFranchiseForWhom;
         private System.Windows.Forms.ToolStripMenuItem choseProfileFileToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown numericUpDownTodayWatched;
     }
 }
 

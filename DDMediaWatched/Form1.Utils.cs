@@ -160,6 +160,7 @@ namespace DDMediaWatched
             foreach (Franchise el in filteredFranchises)
                 items[i++] = el.ToListViewItem();
             listViewTitles.Items.AddRange(items);
+            DrawStatistic();
         }
 
         private void PartsToListView()
@@ -175,6 +176,7 @@ namespace DDMediaWatched
 
         private void DrawStatistic()
         {
+            this.numericUpDownTodayWatched.Value = Profile.GetTodayWatched();
             string s = "";
             s += String.Format("FPS: {0}|{1}|{2}\r\n", Franchise.GetCountFranchise(), Franchise.GetCountParts(), Franchise.GetCountSeries());
             s += String.Format("User: {0}\r\n", Profile.User);
