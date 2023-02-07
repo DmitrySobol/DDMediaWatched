@@ -68,6 +68,7 @@ namespace DDMediaWatched
             this.Location = new Point(225, 150);
             FranchisesToListView();
             DrawStatistic();
+            isEdited = false;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
