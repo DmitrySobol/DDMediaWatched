@@ -113,6 +113,12 @@ namespace DDMediaWatched
                         }
                     }
                     break;
+                case Keys.Control | Keys.C:
+                    {
+                        if (currentFranchise != null)
+                            Clipboard.SetDataObject(String.Format("{0} ({1})", currentFranchise.GetAllNames(), currentFranchise.URL));
+                    }
+                    break;
             }
         }
 
