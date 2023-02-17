@@ -234,5 +234,13 @@ namespace DDMediaWatched
         {
             return ForWhomNames.ToArray();
         }
+
+        public static string GetForWhomName(int index)
+        {
+            if (index >= 0 && index < ForWhomNames.Count)
+                return ForWhomNames[index];
+            else
+                return "ERROR";
+        }
     }
 }

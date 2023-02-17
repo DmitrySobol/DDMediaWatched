@@ -521,6 +521,11 @@ namespace DDMediaWatched
                     id = p.ID + 1;
             return id;
         }
+        //For Whom
+        public string GetForWhomName()
+        {
+            return StaticUtils.GetForWhomName(this.ForWhom);
+        }
         //Other
         public void AddWatch()
         {
@@ -539,6 +544,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.Mark < 0 ? "" : this.Mark.ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
+            s += String.Format("{0,-15}| {1}\r\n", "For whom", this.GetForWhomName());
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.GetSize() / 1024d / 1024/ 1024);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
@@ -587,6 +593,13 @@ namespace DDMediaWatched
             {
                 Tag = "Type",
                 Text = String.Format("{0}", this.GetFranchiseTypeLetter())
+            };
+            item.SubItems.Add(si);
+            //ForWhom
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "ForWhom",
+                Text = String.Format("{0}", this.GetForWhomName())
             };
             item.SubItems.Add(si);
             //Path

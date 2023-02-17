@@ -33,7 +33,7 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "Name",
-                Width = 180
+                Width = 200
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -63,7 +63,13 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "Type",
-                Width = 40
+                Width = 20
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
+                Text = "ForWhom",
+                Width = 50
             };
             columns.Add(ch);
             ch = new ColumnHeader
@@ -82,7 +88,7 @@ namespace DDMediaWatched
             ch = new ColumnHeader
             {
                 Text = "Name",
-                Width = 220
+                Width = 150
             };
             columns.Add(ch);
             ch = new ColumnHeader

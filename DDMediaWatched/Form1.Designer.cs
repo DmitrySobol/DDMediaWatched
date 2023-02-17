@@ -148,7 +148,7 @@ namespace DDMediaWatched
             this.listViewTitles.Location = new System.Drawing.Point(12, 0);
             this.listViewTitles.MultiSelect = false;
             this.listViewTitles.Name = "listViewTitles";
-            this.listViewTitles.Size = new System.Drawing.Size(460, 378);
+            this.listViewTitles.Size = new System.Drawing.Size(540, 378);
             this.listViewTitles.TabIndex = 0;
             this.listViewTitles.UseCompatibleStateImageBehavior = false;
             this.listViewTitles.View = System.Windows.Forms.View.Details;
@@ -213,7 +213,7 @@ namespace DDMediaWatched
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
             this.textBoxTitleInfo.ReadOnly = true;
             this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxTitleInfo.Size = new System.Drawing.Size(460, 250);
+            this.textBoxTitleInfo.Size = new System.Drawing.Size(540, 250);
             this.textBoxTitleInfo.TabIndex = 2;
             this.textBoxTitleInfo.WordWrap = false;
             // 
@@ -454,7 +454,7 @@ namespace DDMediaWatched
             this.listViewParts.Location = new System.Drawing.Point(10, 0);
             this.listViewParts.MultiSelect = false;
             this.listViewParts.Name = "listViewParts";
-            this.listViewParts.Size = new System.Drawing.Size(460, 404);
+            this.listViewParts.Size = new System.Drawing.Size(380, 404);
             this.listViewParts.TabIndex = 29;
             this.listViewParts.UseCompatibleStateImageBehavior = false;
             this.listViewParts.View = System.Windows.Forms.View.Details;
@@ -535,7 +535,7 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Name = "textBoxPartInfo";
             this.textBoxPartInfo.ReadOnly = true;
             this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxPartInfo.Size = new System.Drawing.Size(460, 250);
+            this.textBoxPartInfo.Size = new System.Drawing.Size(380, 250);
             this.textBoxPartInfo.TabIndex = 32;
             this.textBoxPartInfo.WordWrap = false;
             // 
@@ -1076,7 +1076,7 @@ namespace DDMediaWatched
             this.panelFranchises.Controls.Add(this.labelTitleInfo);
             this.panelFranchises.Location = new System.Drawing.Point(0, 25);
             this.panelFranchises.Name = "panelFranchises";
-            this.panelFranchises.Size = new System.Drawing.Size(480, 685);
+            this.panelFranchises.Size = new System.Drawing.Size(560, 685);
             this.panelFranchises.TabIndex = 54;
             // 
             // textBoxFranchisesSearch
@@ -1085,7 +1085,7 @@ namespace DDMediaWatched
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFranchisesSearch.Location = new System.Drawing.Point(12, 384);
             this.textBoxFranchisesSearch.Name = "textBoxFranchisesSearch";
-            this.textBoxFranchisesSearch.Size = new System.Drawing.Size(460, 20);
+            this.textBoxFranchisesSearch.Size = new System.Drawing.Size(540, 20);
             this.textBoxFranchisesSearch.TabIndex = 5;
             this.textBoxFranchisesSearch.TextChanged += new System.EventHandler(this.TextBoxFranchisesSearch_TextChanged);
             // 
@@ -1094,9 +1094,9 @@ namespace DDMediaWatched
             this.panelParts.Controls.Add(this.listViewParts);
             this.panelParts.Controls.Add(this.textBoxPartInfo);
             this.panelParts.Controls.Add(this.labelPartInfo);
-            this.panelParts.Location = new System.Drawing.Point(480, 25);
+            this.panelParts.Location = new System.Drawing.Point(560, 25);
             this.panelParts.Name = "panelParts";
-            this.panelParts.Size = new System.Drawing.Size(480, 685);
+            this.panelParts.Size = new System.Drawing.Size(400, 685);
             this.panelParts.TabIndex = 55;
             // 
             // panelRigth
