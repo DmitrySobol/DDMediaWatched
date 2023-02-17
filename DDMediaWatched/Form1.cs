@@ -733,8 +733,6 @@ namespace DDMediaWatched
                 checkedListBoxSortTypesPersentage.SetItemChecked(i, true);
             for (int i = 0; i < checkedListBoxSortTypesURL.Items.Count; i++)
                 checkedListBoxSortTypesURL.SetItemChecked(i, true);
-            for (int i = 0; i < checkedListBoxSortTypesNames.Items.Count; i++)
-                checkedListBoxSortTypesNames.SetItemChecked(i, true);
             for (int i = 0; i < checkedListBoxSortTypesForWhom.Items.Count; i++)
                 checkedListBoxSortTypesForWhom.SetItemChecked(i, true);
         }
@@ -756,11 +754,6 @@ namespace DDMediaWatched
                 Franchise.AddFiltersURL(true);
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("-URL"))
                 Franchise.AddFiltersURL(false);
-            //Names
-            if (checkedListBoxSortTypesNames.CheckedItems.Contains("1 name"))
-                Franchise.AddFiltersNames(false);
-            if (checkedListBoxSortTypesNames.CheckedItems.Contains("2+ names"))
-                Franchise.AddFiltersNames(true);
             //ForWhom
             foreach (int p in checkedListBoxSortTypesForWhom.CheckedIndices)
                 Franchise.AddFiltersForWhom(p);

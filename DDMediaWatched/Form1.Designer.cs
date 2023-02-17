@@ -93,7 +93,6 @@ namespace DDMediaWatched
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
             this.checkedListBoxSortTypesForWhom = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBoxSortTypesNames = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesURL = new System.Windows.Forms.CheckedListBox();
             this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
             this.labelSortColorBy = new System.Windows.Forms.Label();
@@ -831,7 +830,6 @@ namespace DDMediaWatched
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesForWhom);
-            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesNames);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
             this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
             this.groupBoxSort.Controls.Add(this.labelSortColorBy);
@@ -856,22 +854,10 @@ namespace DDMediaWatched
             // 
             this.checkedListBoxSortTypesForWhom.CheckOnClick = true;
             this.checkedListBoxSortTypesForWhom.FormattingEnabled = true;
-            this.checkedListBoxSortTypesForWhom.Location = new System.Drawing.Point(6, 290);
+            this.checkedListBoxSortTypesForWhom.Location = new System.Drawing.Point(6, 250);
             this.checkedListBoxSortTypesForWhom.Name = "checkedListBoxSortTypesForWhom";
-            this.checkedListBoxSortTypesForWhom.Size = new System.Drawing.Size(120, 64);
+            this.checkedListBoxSortTypesForWhom.Size = new System.Drawing.Size(120, 94);
             this.checkedListBoxSortTypesForWhom.TabIndex = 27;
-            // 
-            // checkedListBoxSortTypesNames
-            // 
-            this.checkedListBoxSortTypesNames.CheckOnClick = true;
-            this.checkedListBoxSortTypesNames.FormattingEnabled = true;
-            this.checkedListBoxSortTypesNames.Items.AddRange(new object[] {
-            "1 name",
-            "2+ names"});
-            this.checkedListBoxSortTypesNames.Location = new System.Drawing.Point(6, 250);
-            this.checkedListBoxSortTypesNames.Name = "checkedListBoxSortTypesNames";
-            this.checkedListBoxSortTypesNames.Size = new System.Drawing.Size(120, 34);
-            this.checkedListBoxSortTypesNames.TabIndex = 26;
             // 
             // checkedListBoxSortTypesURL
             // 
@@ -1297,7 +1283,6 @@ namespace DDMediaWatched
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRightButtons;
         private System.Windows.Forms.TextBox textBoxFranchisesSearch;
-        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesNames;
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesForWhom;
         private System.Windows.Forms.Label labelEditFranchiseForWhom;
         private System.Windows.Forms.ComboBox comboBoxEditFranchiseForWhom;
