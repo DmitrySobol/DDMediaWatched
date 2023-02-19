@@ -194,7 +194,8 @@ namespace DDMediaWatched
 
         private bool EditFranchiseCheckSameNames()
         {
-            string name = textBoxEditFranchiseNames.Text.Split(';')[0];
+            string names = textBoxEditFranchiseNames.Text.Replace(" / ", ";");
+            string name = names.Split(';')[0].Trim();
             int countOfFranchiseWithSameName = Franchise.GetFranchiseCountWithName(name);
             if (currentFranchise.GetName() == name)
                 countOfFranchiseWithSameName--;
