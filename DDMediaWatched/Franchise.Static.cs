@@ -197,16 +197,21 @@ namespace DDMediaWatched
         private static bool IsFilterOn(Franchise franchise)
         {
             bool b = true;
-            if (!FiltersType.Contains(franchise.GetFranchiseType()))
-                b = false;
-            if (!FiltersDownload.Contains(franchise.GetDownloadedType()))
-                b = false;
-            if (!FiltersPersentage.Contains(franchise.GetPersentageType()))
-                b = false;
-            if (!FiltersURL.Contains(franchise.IsURLExists()))
-                b = false;
-            if (!FiltersForWhom.Contains(franchise.ForWhom))
-                b = false;
+            if (FiltersType.Count > 0)
+                if (!FiltersType.Contains(franchise.GetFranchiseType()))
+                    b = false;
+            if (FiltersDownload.Count > 0)
+                if (!FiltersDownload.Contains(franchise.GetDownloadedType()))
+                    b = false;
+            if (FiltersPersentage.Count > 0)
+                if (!FiltersPersentage.Contains(franchise.GetPersentageType()))
+                    b = false;
+            if (FiltersURL.Count > 0)
+                if (!FiltersURL.Contains(franchise.IsURLExists()))
+                    b = false;
+            if (FiltersForWhom.Count > 0)
+                if (!FiltersForWhom.Contains(franchise.ForWhom))
+                    b = false;
             if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
                 b = false;
             return b;

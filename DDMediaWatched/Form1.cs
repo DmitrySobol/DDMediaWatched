@@ -54,7 +54,6 @@ namespace DDMediaWatched
             StaticUtils.LoadConfigs();
             checkedListBoxSortTypesForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
             comboBoxEditFranchiseForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
-            CheckCheckedListBoxes();
             SaveSortConfigs();
             LoadColumnsFranchises();
             LoadColumnsParts();
@@ -727,20 +726,6 @@ namespace DDMediaWatched
             ControlsOnVisible(controlsInfo);
             FranchisesToListView();
             ControlsEnable(controlsRightButtons);
-        }
-
-        private void CheckCheckedListBoxes()
-        {
-            for (int i = 0; i < checkedListBoxSortTypesGenre.Items.Count; i++)
-                checkedListBoxSortTypesGenre.SetItemChecked(i, true);
-            for (int i = 0; i < checkedListBoxSortTypesDown.Items.Count; i++)
-                checkedListBoxSortTypesDown.SetItemChecked(i, true);
-            for (int i = 0; i < checkedListBoxSortTypesPersentage.Items.Count; i++)
-                checkedListBoxSortTypesPersentage.SetItemChecked(i, true);
-            for (int i = 0; i < checkedListBoxSortTypesURL.Items.Count; i++)
-                checkedListBoxSortTypesURL.SetItemChecked(i, true);
-            for (int i = 0; i < checkedListBoxSortTypesForWhom.Items.Count; i++)
-                checkedListBoxSortTypesForWhom.SetItemChecked(i, true);
         }
 
         private void SaveSortConfigs()
