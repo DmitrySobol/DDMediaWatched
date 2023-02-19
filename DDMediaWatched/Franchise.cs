@@ -447,6 +447,11 @@ namespace DDMediaWatched
         {
             startingDate = new DateTime(yy, mm, dd);
         }
+
+        public void SetStartingDate(DateTime dt)
+        {
+            this.startingDate = new DateTime(dt.Year, dt.Month, dt.Day);
+        }
         //Parts
         public void AddPart(Part part)
         {

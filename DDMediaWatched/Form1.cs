@@ -338,6 +338,11 @@ namespace DDMediaWatched
             }
             //COW
             MakeCOWEditPart();
+            if (currentFranchise.GetStartingDate().Date == new DateTime(2000, 1, 1).Date)
+                if (currentPart.GetWatchedLength() > 0)
+                {
+                    currentFranchise.SetStartingDate(DateTime.Now);
+                }
             //Length
             short length = StaticUtils.HMStoSecs(textBoxEditPartLength.Text);
             if (length != -1)
