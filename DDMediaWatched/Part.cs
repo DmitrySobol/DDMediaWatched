@@ -247,6 +247,12 @@ namespace DDMediaWatched
         {
             return isPathFile > 0;
         }
+
+        public void DeletePath()
+        {
+            this.Path = "";
+            this.DiskSize = 0;
+        }
         //Series
         public void SetSeriesCount(int count)
         {

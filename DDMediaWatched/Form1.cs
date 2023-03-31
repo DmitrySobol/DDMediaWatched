@@ -280,6 +280,7 @@ namespace DDMediaWatched
                 return;
             isEdited = true;
             currentFranchise.AddWatch();
+            FranchisesToListView();
         }
 
         private void FindSizeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -288,6 +289,7 @@ namespace DDMediaWatched
                 return;
             isEdited = true;
             currentFranchise.FindSize();
+            FranchisesToListView();
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
@@ -302,6 +304,15 @@ namespace DDMediaWatched
                 currentFranchise = Franchise.GetFranchise(listViewTitles.SelectedItems[0].Text);
                 EditFranchise();
             }
+        }
+
+        private void DeleteSubpathesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (currentFranchise == null)
+                return;
+            isEdited = true;
+            currentFranchise.DeleteSubpathes();
+            FranchisesToListView();
         }
         //Edit Part
         private void ButtonNewPart_Click(object sender, EventArgs e)
@@ -551,6 +562,7 @@ namespace DDMediaWatched
                 return;
             isEdited = true;
             currentPart.AddWatch();
+            PartsToListView();
         }
 
         private void FindSizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -559,6 +571,7 @@ namespace DDMediaWatched
                 return;
             isEdited = true;
             currentPart.FindSize();
+            PartsToListView();
         }
 
         private void EditToolStripMenuItem1_Click(object sender, EventArgs e)

@@ -535,6 +535,14 @@ namespace DDMediaWatched
                     id = p.ID + 1;
             return id;
         }
+
+        public void DeleteSubpathes()
+        {
+            foreach (Part part in Parts)
+            {
+                part.DeletePath();
+            }
+        }
         //For Whom
         public string GetForWhomName()
         {
