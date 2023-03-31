@@ -274,6 +274,15 @@ namespace DDMediaWatched
             return persentage;
         }
 
+        public double GetPersentageAll()
+        {
+            if (this.GetLength() == 0)
+                return 0;
+            double persentage = this.GetWatchedLength() * 100;
+            persentage /= this.GetLength();
+            return persentage;
+        }
+
         public double GetPersentage99_0_100()
         {
             if (this.GetLength() == 0)
@@ -552,8 +561,8 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "For whom", this.GetForWhomName());
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size", this.GetSize() / 1024d / 1024/ 1024);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length W", this.GetWatchedLength() / 3600d, this.GetPersentageAll());
+            s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d, this.GetPersentage());
             return s;
         }
 

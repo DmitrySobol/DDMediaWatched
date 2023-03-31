@@ -940,6 +940,7 @@ namespace DDMediaWatched
             "Unique watched length",
             "Persentage (0-100)",
             "Persentage (99-0, 100)",
+            "Persentage All",
             "BPS",
             "Date",
             "Mark"});

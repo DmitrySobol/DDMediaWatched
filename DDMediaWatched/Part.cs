@@ -191,6 +191,13 @@ namespace DDMediaWatched
             return persentage;
         }
 
+        public double GetPersentageAll()
+        {
+            double persentage = this.GetWatchedLength() * 100;
+            persentage /= this.GetLength();
+            return persentage;
+        }
+
         public void SetSeriesLengthToCommon()
         {
             foreach (Series s in Series)
@@ -313,8 +320,8 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1:f2} GB\r\n", "Size on disk", this.DiskSize / 1024D / 1024 / 1024);
             s += String.Format("{0,-15}| {1}\r\n", "Series", Series.Count);
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length W", this.GetWatchedLength() / 3600d);
-            s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d);
+            s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length W", this.GetWatchedLength() / 3600d, this.GetPersentageAll());
+            s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d, this.GetPersentage());
             int i = 0;
             foreach (Series ser in Series)
             {

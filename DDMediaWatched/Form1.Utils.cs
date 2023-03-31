@@ -250,6 +250,11 @@ namespace DDMediaWatched
                         list = list.OrderBy(x => 0 - x.GetPersentage99_0_100()).ToList();
                     }
                     break;
+                case "Persentage All":
+                    {
+                        list = list.OrderBy(x => 0 - x.GetPersentageAll()).ToList();
+                    }
+                    break;
                 case "BPS":
                     {
                         list = list.OrderBy(x => x.GetBPS()).ToList();
