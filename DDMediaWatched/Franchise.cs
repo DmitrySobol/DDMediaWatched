@@ -42,7 +42,19 @@ namespace DDMediaWatched
             }
         }
 
-        public string URL { get; set; }
+        private string url;
+
+        public string URL
+        {
+            get
+            {
+                return url.Replace(@"$SHIKI$", StaticUtils.GetShikiPath());
+            }
+            set 
+            {
+                url = value;
+            }
+        }
 
         private FranchiseType type;
 

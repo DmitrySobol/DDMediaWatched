@@ -13,7 +13,8 @@ namespace DDMediaWatched
     {
         private static string
             MediaDrivePath = "null",
-            MediaDriveSerialInfo = "null";
+            MediaDriveSerialInfo = "null",
+            ShikiPath = "null";
 
         private static readonly Dictionary<string, string>
             SerialInfos = new Dictionary<string, string>();
@@ -34,6 +35,7 @@ namespace DDMediaWatched
                 ForWhomNames.Add(p[i]);
             }
             Profile.User = t.ReadLine();
+            ShikiPath = t.ReadLine();
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -217,6 +219,11 @@ namespace DDMediaWatched
         public static string GetMediaDrivePath()
         {
             return MediaDrivePath;
+        }
+
+        public static string GetShikiPath()
+        {
+            return ShikiPath;
         }
 
         private static void LoadSerialInfo()
