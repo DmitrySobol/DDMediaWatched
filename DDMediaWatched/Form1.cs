@@ -625,6 +625,13 @@ namespace DDMediaWatched
                 MessageBox.Show("There isn't media volume!", "Error");
         }
 
+        private void DeleteAllSubpathesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isEdited = true;
+            Franchise.DeleteAllZeroSubpathes();
+            Log("All zero subpathes has been deleted!");
+        }
+
         private void BackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;

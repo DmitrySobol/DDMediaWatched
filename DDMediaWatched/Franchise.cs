@@ -555,6 +555,14 @@ namespace DDMediaWatched
                 part.DeletePath();
             }
         }
+
+        public void DeleteZeroSubpathes()
+        {
+            foreach (Part part in Parts)
+            {
+                part.DeleteZeroPath();
+            }
+        }
         //For Whom
         public string GetForWhomName()
         {

@@ -108,6 +108,12 @@ namespace DDMediaWatched
                 franchise.FindSize();
         }
 
+        public static void DeleteAllZeroSubpathes()
+        {
+            foreach (Franchise franchise in Franchise.franchises)
+                franchise.DeleteZeroSubpathes();
+        }
+
         public static int GetFranchiseCountWithName(string name)
         {
             int franchiseCount = 0;
