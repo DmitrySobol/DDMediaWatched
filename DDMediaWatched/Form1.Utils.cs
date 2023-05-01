@@ -74,6 +74,12 @@ namespace DDMediaWatched
             columns.Add(ch);
             ch = new ColumnHeader
             {
+                Text = "Mark",
+                Width = 50
+            };
+            columns.Add(ch);
+            ch = new ColumnHeader
+            {
                 Text = "Path",
                 Width = 200
             };

@@ -52,7 +52,7 @@ namespace DDMediaWatched
             }
             set 
             {
-                url = value;
+                url = value.Replace(StaticUtils.GetShikiPath(), @"$SHIKI$");
             }
         }
 
@@ -642,6 +642,13 @@ namespace DDMediaWatched
             {
                 Tag = "ForWhom",
                 Text = String.Format("{0}", this.GetForWhomName())
+            };
+            item.SubItems.Add(si);
+            //Mark
+            si = new ListViewItem.ListViewSubItem
+            {
+                Tag = "Mark",
+                Text = String.Format("{0}", this.Mark)
             };
             item.SubItems.Add(si);
             //Path
