@@ -115,7 +115,7 @@ namespace DDMediaWatched
                 case Keys.Control | Keys.C:
                     {
                         if (currentFranchise != null)
-                            Clipboard.SetDataObject(String.Format("{0} ({1})", currentFranchise.GetAllNames(), currentFranchise.URL));
+                            Clipboard.SetDataObject(String.Format("{0} ({1})", currentFranchise.GetAllNames(), currentFranchise.GetURL()));
                     }
                     break;
             }
@@ -175,7 +175,8 @@ namespace DDMediaWatched
             currentFranchise.Mark = (int)numericUpDownEditFranchiseMark.Value;
             currentFranchise.Path = textBoxEditFranchisePath.Text;
             currentFranchise.SetStartingDate(textBoxEditFranchiseDate.Text);
-            currentFranchise.URL = textBoxEditFranchiseURL.Text;
+            currentFranchise.ShikiID = (int)numericUpDownEditFranchiseShikiID.Value;
+            currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
             currentFranchise.ForWhom = comboBoxEditFranchiseForWhom.SelectedIndex;
             //Conclusion
             currentFranchise.FindSize();
@@ -213,7 +214,8 @@ namespace DDMediaWatched
             numericUpDownEditFranchiseMark.Value = currentFranchise.Mark;
             textBoxEditFranchisePath.Text = currentFranchise.Path;
             textBoxEditFranchiseDate.Text = currentFranchise.GetStartingDate().ToString("yyyy.MM.dd");
-            textBoxEditFranchiseURL.Text = currentFranchise.URL;
+            numericUpDownEditFranchiseShikiID.Value = currentFranchise.ShikiID;
+            textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
             comboBoxEditFranchiseForWhom.SelectedIndex = currentFranchise.ForWhom;
         }
 
@@ -699,8 +701,8 @@ namespace DDMediaWatched
         {
             if (currentFranchise == null)
                 return;
-            if (currentFranchise.URL != "")
-                System.Diagnostics.Process.Start(currentFranchise.URL);
+            if (currentFranchise.GetURL() != "")
+                System.Diagnostics.Process.Start(currentFranchise.GetURL());
         }
 
         private void ListViewParts_SelectedIndexChanged(object sender, EventArgs e)

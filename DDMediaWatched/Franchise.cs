@@ -42,19 +42,9 @@ namespace DDMediaWatched
             }
         }
 
-        private string url;
+        public int ShikiID { get; set; }
 
-        public string URL
-        {
-            get
-            {
-                return url.Replace(@"$SHIKI$", StaticUtils.GetShikiPath());
-            }
-            set 
-            {
-                url = value.Replace(StaticUtils.GetShikiPath(), @"$SHIKI$");
-            }
-        }
+        private string URL;
 
         private FranchiseType type;
 
@@ -73,6 +63,7 @@ namespace DDMediaWatched
             };
             Parts = new List<Part>();
             Path = "";
+            ShikiID = 0;
             URL = "";
             type = FranchiseType.No;
             Mark = -1;
@@ -131,6 +122,7 @@ namespace DDMediaWatched
                 this.Path = "";
                 Parts.Add(new Part("Film", path, 1, true, true, this));
             }
+            ShikiID = 0;
             URL = "";
             Mark = -1;
             ForWhom = 0;
@@ -154,6 +146,8 @@ namespace DDMediaWatched
             ForWhom = BinaryFile.ReadInt32(f);
             //path
             Path = BinaryFile.ReadString(f);
+            //ShikiID
+            ShikiID = BinaryFile.ReadInt32(f);
             //URL
             URL = BinaryFile.ReadString(f);
             //parts
@@ -184,6 +178,8 @@ namespace DDMediaWatched
             BinaryFile.WriteInt32(f, ForWhom);
             //path
             BinaryFile.WriteString(f, Path);
+            //ShikiID
+            BinaryFile.WriteInt32(f, ShikiID);
             //URL
             BinaryFile.WriteString(f, URL);
             //parts
@@ -354,6 +350,50 @@ namespace DDMediaWatched
             return StaticUtils.GetMediaDrivePath() + Path;
         }
         //ULR
+        public string GetURL()
+        {
+            if (ShikiID > 0)
+                return StaticUtils.GetShikiPath() + this.ShikiID.ToString();
+            else
+                return this.URL;
+        }
+
+        public void SetURL(string URL)
+        {
+            if (URL.Contains(StaticUtils.GetShikiPath()))
+            {
+                this.URL = "";
+                URL = URL.Replace(StaticUtils.GetShikiPath(), "");
+                string StringID = "";
+                bool b = false;
+                foreach (char c in URL)
+                {
+                    if (Char.IsDigit(c) && !b)
+                    {
+                        b = true;
+                        StringID += c;
+                        continue;
+                    }
+                    if (Char.IsDigit(c) && b)
+                    {
+                        StringID += c;
+                        continue;
+                    }
+                    if (!Char.IsDigit(c) && !b)
+                    {
+                        continue;
+                    }
+                    if (!Char.IsDigit(c) && b)
+                    {
+                        break;
+                    }
+                }
+                this.ShikiID = int.Parse(StringID);
+            }
+            else
+                this.URL = URL;
+        }
+
         public bool IsURLExists()
         {
             if (this.URL == "")
@@ -582,7 +622,9 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
             s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
             s += String.Format("{0,-15}| {1}\r\n", "Path", @"X:\" + this.Path);
-            s += String.Format("{0,-15}| {1}\r\n", "URL", this.URL);
+            s += String.Format("{0,-15}| {1}\r\n", "ShikiID", this.ShikiID);
+            s += String.Format("{0,-15}| {1}\r\n", "this.URL", this.URL);
+            s += String.Format("{0,-15}| {1}\r\n", "URL", this.GetURL());
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.Mark < 0 ? "" : this.Mark.ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
