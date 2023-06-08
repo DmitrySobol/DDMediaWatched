@@ -12,7 +12,6 @@ namespace DDMediaWatched
     {
         public int ID { get; private set; }
 
-
         private readonly List<string> names;
 
         private List<Part> Parts { get; set; }
@@ -46,6 +45,8 @@ namespace DDMediaWatched
 
         private string URL;
 
+        public string Description { get; set; }
+
         private FranchiseType type;
 
         public int Mark { get; set; }
@@ -65,6 +66,7 @@ namespace DDMediaWatched
             Path = "";
             ShikiID = 0;
             URL = "";
+            Description = "";
             type = FranchiseType.No;
             Mark = -1;
             ForWhom = 0;
@@ -124,6 +126,7 @@ namespace DDMediaWatched
             }
             ShikiID = 0;
             URL = "";
+            Description = "";
             Mark = -1;
             ForWhom = 0;
             startingDate = new DateTime(2000, 1, 1);
@@ -150,6 +153,8 @@ namespace DDMediaWatched
             ShikiID = BinaryFile.ReadInt32(f);
             //URL
             URL = BinaryFile.ReadString(f);
+            //Description
+            Description = BinaryFile.ReadString(f);
             //parts
             p = BinaryFile.ReadInt32(f);
             Parts = new List<Part>();
@@ -182,6 +187,8 @@ namespace DDMediaWatched
             BinaryFile.WriteInt32(f, ShikiID);
             //URL
             BinaryFile.WriteString(f, URL);
+            //Description
+            BinaryFile.WriteString(f, Description);
             //parts
             BinaryFile.WriteInt32(f, Parts.Count);
             foreach (Part s in Parts)
@@ -619,12 +626,13 @@ namespace DDMediaWatched
         {
             string s = "";
             s += String.Format("{0,-15}| {1}\r\n", "ID", this.ID);
-            s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
-            s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
+            s += String.Format("{0,-15}| {1}\r\n", "Names", this.GetAllNames());
+            //s += String.Format("{0,-15}| {1}\r\n", "Name", this.GetName());
+            //s += String.Format("{0,-15}| {1}\r\n", "Other names", this.GetOtherNames());
             s += String.Format("{0,-15}| {1}\r\n", "Path", @"X:\" + this.Path);
             s += String.Format("{0,-15}| {1}\r\n", "ShikiID", this.ShikiID);
             s += String.Format("{0,-15}| {1}\r\n", "this.URL", this.URL);
-            s += String.Format("{0,-15}| {1}\r\n", "URL", this.GetURL());
+            //s += String.Format("{0,-15}| {1}\r\n", "URL", this.GetURL());
             s += String.Format("{0,-15}| {1}\r\n", "Type", this.GetFranchiseTypeString());
             s += String.Format("{0,-15}| {1}\r\n", "Mark", this.Mark < 0 ? "" : this.Mark.ToString());
             s += String.Format("{0,-15}| {1}\r\n", "Date", this.startingDate.Year == 2000 ? "" : this.startingDate.ToString("yyyy.MM.dd"));
@@ -633,6 +641,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length W", this.GetWatchedLength() / 3600d, this.GetPersentageAll());
             s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d, this.GetPersentage());
+            s += String.Format("{0,-15}| {1}\r\n", "Description", this.Description);
             return s;
         }
 

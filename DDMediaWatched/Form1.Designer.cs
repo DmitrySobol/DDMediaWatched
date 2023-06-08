@@ -82,6 +82,8 @@ namespace DDMediaWatched
             this.labelEditPartCOW = new System.Windows.Forms.Label();
             this.labelEditPartSeries = new System.Windows.Forms.Label();
             this.groupBoxEditFranchise = new System.Windows.Forms.GroupBox();
+            this.labelEditFranchiseDescription = new System.Windows.Forms.Label();
+            this.textBoxEditFranchiseDescription = new System.Windows.Forms.TextBox();
             this.numericUpDownEditFranchiseShikiID = new System.Windows.Forms.NumericUpDown();
             this.labelEditFranchiseShikiID = new System.Windows.Forms.Label();
             this.labelEditFranchiseForWhom = new System.Windows.Forms.Label();
@@ -225,10 +227,9 @@ namespace DDMediaWatched
             this.textBoxTitleInfo.Multiline = true;
             this.textBoxTitleInfo.Name = "textBoxTitleInfo";
             this.textBoxTitleInfo.ReadOnly = true;
-            this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxTitleInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxTitleInfo.Size = new System.Drawing.Size(540, 250);
             this.textBoxTitleInfo.TabIndex = 2;
-            this.textBoxTitleInfo.WordWrap = false;
             // 
             // textBoxInfo
             // 
@@ -483,47 +484,47 @@ namespace DDMediaWatched
             this.upToolStripMenuItem,
             this.downToolStripMenuItem});
             this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(181, 158);
+            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 136);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // addFullViewToolStripMenuItem
             // 
             this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
-            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.AddFullViewToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem
             // 
             this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
-            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.findSizeToolStripMenuItem.Text = "Find size";
             this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.FindSizeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.editToolStripMenuItem1.Text = "Edit";
             this.editToolStripMenuItem1.Click += new System.EventHandler(this.EditToolStripMenuItem1_Click);
             // 
             // upToolStripMenuItem
             // 
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.upToolStripMenuItem.Text = "Up";
             this.upToolStripMenuItem.Click += new System.EventHandler(this.UpToolStripMenuItem_Click);
             // 
             // downToolStripMenuItem
             // 
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.downToolStripMenuItem.Text = "Down";
             this.downToolStripMenuItem.Click += new System.EventHandler(this.DownToolStripMenuItem_Click);
             // 
@@ -547,10 +548,9 @@ namespace DDMediaWatched
             this.textBoxPartInfo.Multiline = true;
             this.textBoxPartInfo.Name = "textBoxPartInfo";
             this.textBoxPartInfo.ReadOnly = true;
-            this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxPartInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxPartInfo.Size = new System.Drawing.Size(380, 250);
             this.textBoxPartInfo.TabIndex = 32;
-            this.textBoxPartInfo.WordWrap = false;
             // 
             // numericUpDownFontSize
             // 
@@ -710,6 +710,8 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseDescription);
+            this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchiseDescription);
             this.groupBoxEditFranchise.Controls.Add(this.numericUpDownEditFranchiseShikiID);
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseShikiID);
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseForWhom);
@@ -737,9 +739,29 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Text = "Edit franchise";
             this.groupBoxEditFranchise.Visible = false;
             // 
+            // labelEditFranchiseDescription
+            // 
+            this.labelEditFranchiseDescription.AutoSize = true;
+            this.labelEditFranchiseDescription.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditFranchiseDescription.Location = new System.Drawing.Point(5, 213);
+            this.labelEditFranchiseDescription.Name = "labelEditFranchiseDescription";
+            this.labelEditFranchiseDescription.Size = new System.Drawing.Size(79, 13);
+            this.labelEditFranchiseDescription.TabIndex = 58;
+            this.labelEditFranchiseDescription.Text = "Description:";
+            // 
+            // textBoxEditFranchiseDescription
+            // 
+            this.textBoxEditFranchiseDescription.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxEditFranchiseDescription.Location = new System.Drawing.Point(5, 229);
+            this.textBoxEditFranchiseDescription.Multiline = true;
+            this.textBoxEditFranchiseDescription.Name = "textBoxEditFranchiseDescription";
+            this.textBoxEditFranchiseDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxEditFranchiseDescription.Size = new System.Drawing.Size(308, 59);
+            this.textBoxEditFranchiseDescription.TabIndex = 59;
+            // 
             // numericUpDownEditFranchiseShikiID
             // 
-            this.numericUpDownEditFranchiseShikiID.Location = new System.Drawing.Point(73, 202);
+            this.numericUpDownEditFranchiseShikiID.Location = new System.Drawing.Point(73, 190);
             this.numericUpDownEditFranchiseShikiID.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -753,7 +775,7 @@ namespace DDMediaWatched
             // 
             this.labelEditFranchiseShikiID.AutoSize = true;
             this.labelEditFranchiseShikiID.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseShikiID.Location = new System.Drawing.Point(6, 204);
+            this.labelEditFranchiseShikiID.Location = new System.Drawing.Point(6, 192);
             this.labelEditFranchiseShikiID.Name = "labelEditFranchiseShikiID";
             this.labelEditFranchiseShikiID.Size = new System.Drawing.Size(61, 13);
             this.labelEditFranchiseShikiID.TabIndex = 56;
@@ -763,7 +785,7 @@ namespace DDMediaWatched
             // 
             this.labelEditFranchiseForWhom.AutoSize = true;
             this.labelEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseForWhom.Location = new System.Drawing.Point(6, 222);
+            this.labelEditFranchiseForWhom.Location = new System.Drawing.Point(8, 291);
             this.labelEditFranchiseForWhom.Name = "labelEditFranchiseForWhom";
             this.labelEditFranchiseForWhom.Size = new System.Drawing.Size(61, 13);
             this.labelEditFranchiseForWhom.TabIndex = 54;
@@ -773,7 +795,7 @@ namespace DDMediaWatched
             // 
             this.comboBoxEditFranchiseForWhom.Font = new System.Drawing.Font("Consolas", 8F);
             this.comboBoxEditFranchiseForWhom.FormattingEnabled = true;
-            this.comboBoxEditFranchiseForWhom.Location = new System.Drawing.Point(7, 238);
+            this.comboBoxEditFranchiseForWhom.Location = new System.Drawing.Point(9, 307);
             this.comboBoxEditFranchiseForWhom.Name = "comboBoxEditFranchiseForWhom";
             this.comboBoxEditFranchiseForWhom.Size = new System.Drawing.Size(150, 21);
             this.comboBoxEditFranchiseForWhom.TabIndex = 55;
@@ -804,7 +826,7 @@ namespace DDMediaWatched
             // 
             this.labelEditFranchiseURL.AutoSize = true;
             this.labelEditFranchiseURL.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseURL.Location = new System.Drawing.Point(6, 180);
+            this.labelEditFranchiseURL.Location = new System.Drawing.Point(6, 168);
             this.labelEditFranchiseURL.Name = "labelEditFranchiseURL";
             this.labelEditFranchiseURL.Size = new System.Drawing.Size(31, 13);
             this.labelEditFranchiseURL.TabIndex = 50;
@@ -813,7 +835,7 @@ namespace DDMediaWatched
             // textBoxEditFranchiseURL
             // 
             this.textBoxEditFranchiseURL.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxEditFranchiseURL.Location = new System.Drawing.Point(43, 176);
+            this.textBoxEditFranchiseURL.Location = new System.Drawing.Point(43, 164);
             this.textBoxEditFranchiseURL.Name = "textBoxEditFranchiseURL";
             this.textBoxEditFranchiseURL.Size = new System.Drawing.Size(271, 20);
             this.textBoxEditFranchiseURL.TabIndex = 51;
@@ -821,9 +843,9 @@ namespace DDMediaWatched
             // buttonEditFranchiseToday
             // 
             this.buttonEditFranchiseToday.Font = new System.Drawing.Font("Consolas", 8F);
-            this.buttonEditFranchiseToday.Location = new System.Drawing.Point(182, 149);
+            this.buttonEditFranchiseToday.Location = new System.Drawing.Point(232, 137);
             this.buttonEditFranchiseToday.Name = "buttonEditFranchiseToday";
-            this.buttonEditFranchiseToday.Size = new System.Drawing.Size(130, 23);
+            this.buttonEditFranchiseToday.Size = new System.Drawing.Size(80, 23);
             this.buttonEditFranchiseToday.TabIndex = 16;
             this.buttonEditFranchiseToday.Text = "Today";
             this.buttonEditFranchiseToday.UseVisualStyleBackColor = true;
@@ -833,7 +855,7 @@ namespace DDMediaWatched
             // 
             this.labelEditFranchiseDate.AutoSize = true;
             this.labelEditFranchiseDate.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseDate.Location = new System.Drawing.Point(5, 133);
+            this.labelEditFranchiseDate.Location = new System.Drawing.Point(4, 142);
             this.labelEditFranchiseDate.Name = "labelEditFranchiseDate";
             this.labelEditFranchiseDate.Size = new System.Drawing.Size(37, 13);
             this.labelEditFranchiseDate.TabIndex = 14;
@@ -842,9 +864,9 @@ namespace DDMediaWatched
             // textBoxEditFranchiseDate
             // 
             this.textBoxEditFranchiseDate.Font = new System.Drawing.Font("Consolas", 8F);
-            this.textBoxEditFranchiseDate.Location = new System.Drawing.Point(6, 149);
+            this.textBoxEditFranchiseDate.Location = new System.Drawing.Point(43, 138);
             this.textBoxEditFranchiseDate.Name = "textBoxEditFranchiseDate";
-            this.textBoxEditFranchiseDate.Size = new System.Drawing.Size(171, 20);
+            this.textBoxEditFranchiseDate.Size = new System.Drawing.Size(183, 20);
             this.textBoxEditFranchiseDate.TabIndex = 15;
             // 
             // buttonSort
@@ -1338,6 +1360,8 @@ namespace DDMediaWatched
         private System.Windows.Forms.ToolStripMenuItem deleteAllSubpathesToolStripMenuItem;
         private System.Windows.Forms.NumericUpDown numericUpDownEditFranchiseShikiID;
         private System.Windows.Forms.Label labelEditFranchiseShikiID;
+        private System.Windows.Forms.Label labelEditFranchiseDescription;
+        private System.Windows.Forms.TextBox textBoxEditFranchiseDescription;
     }
 }
 

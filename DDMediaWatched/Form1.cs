@@ -177,6 +177,7 @@ namespace DDMediaWatched
             currentFranchise.SetStartingDate(textBoxEditFranchiseDate.Text);
             currentFranchise.ShikiID = (int)numericUpDownEditFranchiseShikiID.Value;
             currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
+            currentFranchise.Description = textBoxEditFranchiseDescription.Text;
             currentFranchise.ForWhom = comboBoxEditFranchiseForWhom.SelectedIndex;
             //Conclusion
             currentFranchise.FindSize();
@@ -216,6 +217,7 @@ namespace DDMediaWatched
             textBoxEditFranchiseDate.Text = currentFranchise.GetStartingDate().ToString("yyyy.MM.dd");
             numericUpDownEditFranchiseShikiID.Value = currentFranchise.ShikiID;
             textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
+            textBoxEditFranchiseDescription.Text = currentFranchise.Description;
             comboBoxEditFranchiseForWhom.SelectedIndex = currentFranchise.ForWhom;
         }
 
