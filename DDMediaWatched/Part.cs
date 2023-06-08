@@ -320,6 +320,18 @@ namespace DDMediaWatched
         {
             foreach (Series s in Series)
                 s.AddWatched(1);
+            if (this.ParentFranchise.GetStartingDate().Date == new DateTime(2000, 1, 1).Date && this.GetWatchedLength() > 0)
+                this.ParentFranchise.SetStartingDate(DateTime.Now);
+        }
+
+        public void SetWatch(int series, short count)
+        {
+            if (series < 0 || series >= this.Series.Count)
+                return;
+            this.Series[series].CountWatch = count;
+            if (count > 0)
+                if (this.ParentFranchise.GetStartingDate().Date == new DateTime(2000, 1, 1).Date && this.GetWatchedLength() > 0)
+                    this.ParentFranchise.SetStartingDate(DateTime.Now);
         }
 
         public override string ToString()

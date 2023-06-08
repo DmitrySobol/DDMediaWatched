@@ -82,6 +82,8 @@ namespace DDMediaWatched
             this.labelEditPartCOW = new System.Windows.Forms.Label();
             this.labelEditPartSeries = new System.Windows.Forms.Label();
             this.groupBoxEditFranchise = new System.Windows.Forms.GroupBox();
+            this.numericUpDownEditFranchiseShikiID = new System.Windows.Forms.NumericUpDown();
+            this.labelEditFranchiseShikiID = new System.Windows.Forms.Label();
             this.labelEditFranchiseForWhom = new System.Windows.Forms.Label();
             this.comboBoxEditFranchiseForWhom = new System.Windows.Forms.ComboBox();
             this.labelEditTitleMark = new System.Windows.Forms.Label();
@@ -122,14 +124,13 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
-            this.labelEditFranchiseShikiID = new System.Windows.Forms.Label();
-            this.numericUpDownEditFranchiseShikiID = new System.Windows.Forms.NumericUpDown();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditPartSeries)).BeginInit();
             this.groupBoxEditPart.SuspendLayout();
             this.groupBoxEditFranchise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseShikiID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).BeginInit();
             this.groupBoxSort.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -137,7 +138,6 @@ namespace DDMediaWatched
             this.panelParts.SuspendLayout();
             this.panelRigth.SuspendLayout();
             this.tableLayoutPanelRightButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseShikiID)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewTitles
@@ -483,47 +483,47 @@ namespace DDMediaWatched
             this.upToolStripMenuItem,
             this.downToolStripMenuItem});
             this.contextMenuStripPart.Name = "contextMenuStripPart";
-            this.contextMenuStripPart.Size = new System.Drawing.Size(144, 136);
+            this.contextMenuStripPart.Size = new System.Drawing.Size(181, 158);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // addFullViewToolStripMenuItem
             // 
             this.addFullViewToolStripMenuItem.Name = "addFullViewToolStripMenuItem";
-            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addFullViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addFullViewToolStripMenuItem.Text = "Add full view";
             this.addFullViewToolStripMenuItem.Click += new System.EventHandler(this.AddFullViewToolStripMenuItem_Click);
             // 
             // findSizeToolStripMenuItem
             // 
             this.findSizeToolStripMenuItem.Name = "findSizeToolStripMenuItem";
-            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.findSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findSizeToolStripMenuItem.Text = "Find size";
             this.findSizeToolStripMenuItem.Click += new System.EventHandler(this.FindSizeToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem1.Text = "Edit";
             this.editToolStripMenuItem1.Click += new System.EventHandler(this.EditToolStripMenuItem1_Click);
             // 
             // upToolStripMenuItem
             // 
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.upToolStripMenuItem.Text = "Up";
             this.upToolStripMenuItem.Click += new System.EventHandler(this.UpToolStripMenuItem_Click);
             // 
             // downToolStripMenuItem
             // 
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.downToolStripMenuItem.Text = "Down";
             this.downToolStripMenuItem.Click += new System.EventHandler(this.DownToolStripMenuItem_Click);
             // 
@@ -736,6 +736,28 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.TabStop = false;
             this.groupBoxEditFranchise.Text = "Edit franchise";
             this.groupBoxEditFranchise.Visible = false;
+            // 
+            // numericUpDownEditFranchiseShikiID
+            // 
+            this.numericUpDownEditFranchiseShikiID.Location = new System.Drawing.Point(73, 202);
+            this.numericUpDownEditFranchiseShikiID.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numericUpDownEditFranchiseShikiID.Name = "numericUpDownEditFranchiseShikiID";
+            this.numericUpDownEditFranchiseShikiID.Size = new System.Drawing.Size(235, 20);
+            this.numericUpDownEditFranchiseShikiID.TabIndex = 57;
+            // 
+            // labelEditFranchiseShikiID
+            // 
+            this.labelEditFranchiseShikiID.AutoSize = true;
+            this.labelEditFranchiseShikiID.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditFranchiseShikiID.Location = new System.Drawing.Point(6, 204);
+            this.labelEditFranchiseShikiID.Name = "labelEditFranchiseShikiID";
+            this.labelEditFranchiseShikiID.Size = new System.Drawing.Size(61, 13);
+            this.labelEditFranchiseShikiID.TabIndex = 56;
+            this.labelEditFranchiseShikiID.Text = "Shiki ID:";
             // 
             // labelEditFranchiseForWhom
             // 
@@ -1171,28 +1193,6 @@ namespace DDMediaWatched
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
-            // labelEditFranchiseShikiID
-            // 
-            this.labelEditFranchiseShikiID.AutoSize = true;
-            this.labelEditFranchiseShikiID.Font = new System.Drawing.Font("Consolas", 8F);
-            this.labelEditFranchiseShikiID.Location = new System.Drawing.Point(6, 204);
-            this.labelEditFranchiseShikiID.Name = "labelEditFranchiseShikiID";
-            this.labelEditFranchiseShikiID.Size = new System.Drawing.Size(61, 13);
-            this.labelEditFranchiseShikiID.TabIndex = 56;
-            this.labelEditFranchiseShikiID.Text = "Shiki ID:";
-            // 
-            // numericUpDownEditFranchiseShikiID
-            // 
-            this.numericUpDownEditFranchiseShikiID.Location = new System.Drawing.Point(73, 202);
-            this.numericUpDownEditFranchiseShikiID.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.numericUpDownEditFranchiseShikiID.Name = "numericUpDownEditFranchiseShikiID";
-            this.numericUpDownEditFranchiseShikiID.Size = new System.Drawing.Size(235, 20);
-            this.numericUpDownEditFranchiseShikiID.TabIndex = 57;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1223,6 +1223,7 @@ namespace DDMediaWatched
             this.groupBoxEditPart.PerformLayout();
             this.groupBoxEditFranchise.ResumeLayout(false);
             this.groupBoxEditFranchise.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseShikiID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseMark)).EndInit();
             this.groupBoxSort.ResumeLayout(false);
             this.groupBoxSort.PerformLayout();
@@ -1236,7 +1237,6 @@ namespace DDMediaWatched
             this.panelRigth.PerformLayout();
             this.tableLayoutPanelRightButtons.ResumeLayout(false);
             this.tableLayoutPanelRightButtons.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEditFranchiseShikiID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
