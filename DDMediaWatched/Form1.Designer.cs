@@ -126,6 +126,7 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.checkedListBoxSortTypesDescription = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -888,6 +889,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesDescription);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesForWhom);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
             this.groupBoxSort.Controls.Add(this.comboBoxSortColorBy);
@@ -1215,6 +1217,18 @@ namespace DDMediaWatched
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
+            // checkedListBoxSortTypesDescription
+            // 
+            this.checkedListBoxSortTypesDescription.CheckOnClick = true;
+            this.checkedListBoxSortTypesDescription.FormattingEnabled = true;
+            this.checkedListBoxSortTypesDescription.Items.AddRange(new object[] {
+            "Descr",
+            "-Descr"});
+            this.checkedListBoxSortTypesDescription.Location = new System.Drawing.Point(143, 210);
+            this.checkedListBoxSortTypesDescription.Name = "checkedListBoxSortTypesDescription";
+            this.checkedListBoxSortTypesDescription.Size = new System.Drawing.Size(120, 34);
+            this.checkedListBoxSortTypesDescription.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1362,6 +1376,7 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelEditFranchiseShikiID;
         private System.Windows.Forms.Label labelEditFranchiseDescription;
         private System.Windows.Forms.TextBox textBoxEditFranchiseDescription;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesDescription;
     }
 }
 

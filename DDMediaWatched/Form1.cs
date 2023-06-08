@@ -764,6 +764,11 @@ namespace DDMediaWatched
                 Franchise.AddFiltersURL(true);
             if (checkedListBoxSortTypesURL.CheckedItems.Contains("-URL"))
                 Franchise.AddFiltersURL(false);
+            //Description
+            if (checkedListBoxSortTypesDescription.CheckedItems.Contains("Descr"))
+                Franchise.AddFiltersDescription(true);
+            if (checkedListBoxSortTypesDescription.CheckedItems.Contains("-Descr"))
+                Franchise.AddFiltersDescription(false);
             //ForWhom
             foreach (int p in checkedListBoxSortTypesForWhom.CheckedIndices)
                 Franchise.AddFiltersForWhom(p);

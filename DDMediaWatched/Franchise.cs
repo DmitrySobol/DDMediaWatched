@@ -616,6 +616,11 @@ namespace DDMediaWatched
             return StaticUtils.GetForWhomName(this.ForWhom);
         }
         //Other
+        public bool IsDescriptionExists()
+        {
+            return !String.IsNullOrEmpty(this.Description);
+        }
+
         public void AddWatch()
         {
             foreach (Part p in Parts)

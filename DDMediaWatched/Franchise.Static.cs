@@ -37,6 +37,9 @@ namespace DDMediaWatched
         private static readonly List<bool>
             FiltersURL = new List<bool>();
 
+        private static readonly List<bool>
+            FiltersDescription = new List<bool>();
+
         private static readonly List<int>
             FiltersForWhom = new List<int>();
 
@@ -215,6 +218,9 @@ namespace DDMediaWatched
             if (FiltersURL.Count > 0)
                 if (!FiltersURL.Contains(franchise.IsURLExists()))
                     b = false;
+            if (FiltersDescription.Count > 0)
+                if (!FiltersDescription.Contains(franchise.IsDescriptionExists()))
+                    b = false;
             if (FiltersForWhom.Count > 0)
                 if (!FiltersForWhom.Contains(franchise.ForWhom))
                     b = false;
@@ -260,6 +266,7 @@ namespace DDMediaWatched
             FiltersDownload.Clear();
             FiltersPersentage.Clear();
             FiltersURL.Clear();
+            FiltersDescription.Clear();
             FiltersForWhom.Clear();
         }
 
@@ -281,6 +288,11 @@ namespace DDMediaWatched
         public static void AddFiltersURL(bool b)
         {
             FiltersURL.Add(b);
+        }
+
+        public static void AddFiltersDescription(bool b)
+        {
+            FiltersDescription.Add(b);
         }
 
         public static void AddFiltersForWhom(int a)
