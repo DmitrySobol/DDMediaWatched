@@ -115,7 +115,10 @@ namespace DDMediaWatched
                 case Keys.Control | Keys.C:
                     {
                         if (currentFranchise != null)
-                            Clipboard.SetDataObject(String.Format("{0} ({1})", currentFranchise.GetAllNames(), currentFranchise.GetURL()));
+                            if (currentFranchise.IsURLExists())
+                                Clipboard.SetDataObject(String.Format("{0} ({1})", currentFranchise.GetAllNames(), currentFranchise.GetURL()));
+                            else
+                                Clipboard.SetDataObject(String.Format("{0}", currentFranchise.GetAllNames()));
                     }
                     break;
             }
