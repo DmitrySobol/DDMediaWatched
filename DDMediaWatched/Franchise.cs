@@ -634,6 +634,20 @@ namespace DDMediaWatched
             return StaticUtils.GetCountryIndexByCode(Country);
         }
         //Other
+        public void RunCommand(string command)
+        {
+            string[] args = command.Split(';');
+            switch (args[0].ToLower())
+            {
+                case "country":
+                    {
+                        if (args.Length > 1)
+                            this.Country = args[1];
+                    }
+                    break;
+            }
+        }
+
         public bool IsDescriptionExists()
         {
             return !String.IsNullOrEmpty(this.Description);

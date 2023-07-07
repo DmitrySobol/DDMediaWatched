@@ -122,6 +122,17 @@ namespace DDMediaWatched
                                 Clipboard.SetDataObject(String.Format("{0}", currentFranchise.GetAllNames()));
                     }
                     break;
+                case Keys.Control | Keys.D:
+                    {
+                        if (currentFranchise != null)
+                        {
+                            string s = Clipboard.GetText();
+                            if (s.Contains("="))
+                                if (s.Split('=')[0] == "DDMW")
+                                    currentFranchise.RunCommand(s.Split('=')[1]);
+                        }
+                    }
+                    break;
             }
         }
 
