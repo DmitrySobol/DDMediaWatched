@@ -47,6 +47,8 @@ namespace DDMediaWatched
 
         public string Description { get; set; }
 
+        public string Country { get; set; }
+
         private FranchiseType type;
 
         public int Mark { get; set; }
@@ -67,6 +69,7 @@ namespace DDMediaWatched
             ShikiID = 0;
             URL = "";
             Description = "";
+            Country = "";
             type = FranchiseType.No;
             Mark = -1;
             ForWhom = 0;
@@ -126,6 +129,7 @@ namespace DDMediaWatched
             }
             ShikiID = 0;
             URL = "";
+            Country = "";
             Description = "";
             Mark = -1;
             ForWhom = 0;
@@ -155,6 +159,8 @@ namespace DDMediaWatched
             URL = BinaryFile.ReadString(f);
             //Description
             Description = BinaryFile.ReadString(f);
+            //Country
+            Country = BinaryFile.ReadString(f);
             //parts
             p = BinaryFile.ReadInt32(f);
             Parts = new List<Part>();
@@ -189,6 +195,8 @@ namespace DDMediaWatched
             BinaryFile.WriteString(f, URL);
             //Description
             BinaryFile.WriteString(f, Description);
+            //Country
+            BinaryFile.WriteString(f, Country);
             //parts
             BinaryFile.WriteInt32(f, Parts.Count);
             foreach (Part s in Parts)
@@ -615,6 +623,16 @@ namespace DDMediaWatched
         {
             return StaticUtils.GetForWhomName(this.ForWhom);
         }
+        //Country
+        public string GetCountryString()
+        {
+            return StaticUtils.GetCountryByCode(Country);
+        }
+
+        public int GetCountryIndex()
+        {
+            return StaticUtils.GetCountryIndexByCode(Country);
+        }
         //Other
         public bool IsDescriptionExists()
         {
@@ -646,6 +664,7 @@ namespace DDMediaWatched
             s += String.Format("{0,-15}| {1:f2} Hr\r\n", "Length", this.GetLength() / 3600d);
             s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length W", this.GetWatchedLength() / 3600d, this.GetPersentageAll());
             s += String.Format("{0,-15}| {1:f2} Hr, {2:f0} %\r\n", "Length WU", this.GetUniqueWatchedLength() / 3600d, this.GetPersentage());
+            s += String.Format("{0,-15}| {1}\r\n", "Country", GetCountryString());
             s += String.Format("{0,-15}| {1}\r\n", "Description", this.Description);
             return s;
         }

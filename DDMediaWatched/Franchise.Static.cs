@@ -43,6 +43,9 @@ namespace DDMediaWatched
         private static readonly List<int>
             FiltersForWhom = new List<int>();
 
+        private static readonly List<int>
+            FiltersCountry = new List<int>();
+
         public static void LoadMedia()
         {
             FileStream f = new FileStream(MediaPath + "Media.bin", FileMode.Open, FileAccess.Read);
@@ -224,6 +227,9 @@ namespace DDMediaWatched
             if (FiltersForWhom.Count > 0)
                 if (!FiltersForWhom.Contains(franchise.ForWhom))
                     b = false;
+            if (FiltersCountry.Count > 0)
+                if (!FiltersCountry.Contains(franchise.GetCountryIndex()))
+                    b = false;
             if (!franchise.GetAllNames().ToLower().Contains(SearchMask))
                 b = false;
             return b;
@@ -268,6 +274,7 @@ namespace DDMediaWatched
             FiltersURL.Clear();
             FiltersDescription.Clear();
             FiltersForWhom.Clear();
+            FiltersCountry.Clear();
         }
 
         public static void AddFiltersType(Franchise.FranchiseType p)
@@ -298,6 +305,11 @@ namespace DDMediaWatched
         public static void AddFiltersForWhom(int a)
         {
             FiltersForWhom.Add(a);
+        }
+
+        public static void AddFiltersCountry(int a)
+        {
+            FiltersCountry.Add(a);
         }
         //Draw Statistic
         public static int GetAllCount(bool IsFiltered)

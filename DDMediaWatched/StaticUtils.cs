@@ -14,10 +14,14 @@ namespace DDMediaWatched
         private static string
             MediaDrivePath = "null",
             MediaDriveSerialInfo = "null",
-            ShikiPath = "null";
+            ShikiPath = "null",
+            CountryLine = "";
 
         private static readonly Dictionary<string, string>
             SerialInfos = new Dictionary<string, string>();
+
+        private static readonly Dictionary<string, string>
+            Countries = new Dictionary<string, string>();
 
         private static readonly List<string>
             ForWhomNames = new List<string>();
@@ -36,6 +40,12 @@ namespace DDMediaWatched
             }
             Profile.User = t.ReadLine();
             ShikiPath = t.ReadLine();
+            CountryLine = t.ReadLine();
+            foreach (string s in CountryLine.Split(';'))
+            {
+                if (s.Length > 3)
+                    Countries.Add(s.Substring(0, 2), s.Substring(3));
+            }
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -53,6 +63,8 @@ namespace DDMediaWatched
                 p += ";" + s;
             t.WriteLine(p);
             t.WriteLine(Profile.User);
+            t.WriteLine(ShikiPath);
+            t.WriteLine(CountryLine);
             t.Dispose();
             t.Close();
             fs.Dispose();
@@ -224,6 +236,40 @@ namespace DDMediaWatched
         public static string GetShikiPath()
         {
             return ShikiPath;
+        }
+
+        public static string GetCountryByCode(string code)
+        {
+            if (Countries.ContainsKey(code))
+                return Countries[code];
+            else
+                return "NULL";
+        }
+
+        public static int GetCountryIndexByCode(string code)
+        {
+            if (Countries.ContainsKey(code))
+            {
+                int i = 0;
+                foreach (KeyValuePair<string, string> p in Countries)
+                {
+                    if (p.Key == code)
+                        return i;
+                    else
+                        i++;
+                }
+            }
+            return Countries.Count;
+        }
+
+        public static string[] GetCountriesArray()
+        {
+            string[] a = Countries.Values.ToArray();
+            string[] result = new string[a.Length + 1];
+            for (int i = 0; i < a.Length; i++)
+                result[i] = a[i];
+            result[result.Length - 1] = "NULL";
+            return result;
         }
 
         private static void LoadSerialInfo()

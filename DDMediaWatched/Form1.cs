@@ -54,6 +54,7 @@ namespace DDMediaWatched
             StaticUtils.LoadConfigs();
             checkedListBoxSortTypesForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
             comboBoxEditFranchiseForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
+            checkedListBoxSortTypesCountry.Items.AddRange(StaticUtils.GetCountriesArray());
             SaveSortConfigs();
             LoadColumnsFranchises();
             LoadColumnsParts();
@@ -181,6 +182,7 @@ namespace DDMediaWatched
             currentFranchise.ShikiID = (int)numericUpDownEditFranchiseShikiID.Value;
             currentFranchise.SetURL(textBoxEditFranchiseURL.Text);
             currentFranchise.Description = textBoxEditFranchiseDescription.Text;
+            currentFranchise.Country = textBoxEditFranchiseCountry.Text;
             currentFranchise.ForWhom = comboBoxEditFranchiseForWhom.SelectedIndex;
             //Conclusion
             currentFranchise.FindSize();
@@ -221,6 +223,7 @@ namespace DDMediaWatched
             numericUpDownEditFranchiseShikiID.Value = currentFranchise.ShikiID;
             textBoxEditFranchiseURL.Text = currentFranchise.GetURL();
             textBoxEditFranchiseDescription.Text = currentFranchise.Description;
+            textBoxEditFranchiseCountry.Text = currentFranchise.Country;
             comboBoxEditFranchiseForWhom.SelectedIndex = currentFranchise.ForWhom;
         }
 
@@ -775,6 +778,9 @@ namespace DDMediaWatched
             //ForWhom
             foreach (int p in checkedListBoxSortTypesForWhom.CheckedIndices)
                 Franchise.AddFiltersForWhom(p);
+            //Country
+            foreach (int p in checkedListBoxSortTypesCountry.CheckedIndices)
+                Franchise.AddFiltersCountry(p);
             Franchise.SetSortBy(comboBoxSortSortBy.Text, checkBoxSortReverse.Checked);
             Franchise.SetColorBy(comboBoxSortColorBy.Text);
         }

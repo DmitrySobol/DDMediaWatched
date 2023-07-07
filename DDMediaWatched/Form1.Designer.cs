@@ -97,6 +97,8 @@ namespace DDMediaWatched
             this.textBoxEditFranchiseDate = new System.Windows.Forms.TextBox();
             this.buttonSort = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
+            this.checkedListBoxSortTypesCountry = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxSortTypesDescription = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesForWhom = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxSortTypesURL = new System.Windows.Forms.CheckedListBox();
             this.comboBoxSortColorBy = new System.Windows.Forms.ComboBox();
@@ -126,7 +128,8 @@ namespace DDMediaWatched
             this.panelRigth = new System.Windows.Forms.Panel();
             this.tableLayoutPanelRightButtons = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxLog = new System.Windows.Forms.TextBox();
-            this.checkedListBoxSortTypesDescription = new System.Windows.Forms.CheckedListBox();
+            this.labelEditFranchiseCountry = new System.Windows.Forms.Label();
+            this.textBoxEditFranchiseCountry = new System.Windows.Forms.TextBox();
             this.contextMenuStripTitle.SuspendLayout();
             this.contextMenuStripPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -711,6 +714,8 @@ namespace DDMediaWatched
             this.groupBoxEditFranchise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseCountry);
+            this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchiseCountry);
             this.groupBoxEditFranchise.Controls.Add(this.labelEditFranchiseDescription);
             this.groupBoxEditFranchise.Controls.Add(this.textBoxEditFranchiseDescription);
             this.groupBoxEditFranchise.Controls.Add(this.numericUpDownEditFranchiseShikiID);
@@ -889,6 +894,7 @@ namespace DDMediaWatched
             this.groupBoxSort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesCountry);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesDescription);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesForWhom);
             this.groupBoxSort.Controls.Add(this.checkedListBoxSortTypesURL);
@@ -910,6 +916,27 @@ namespace DDMediaWatched
             this.groupBoxSort.TabStop = false;
             this.groupBoxSort.Text = "Sort";
             this.groupBoxSort.Visible = false;
+            // 
+            // checkedListBoxSortTypesCountry
+            // 
+            this.checkedListBoxSortTypesCountry.CheckOnClick = true;
+            this.checkedListBoxSortTypesCountry.FormattingEnabled = true;
+            this.checkedListBoxSortTypesCountry.Location = new System.Drawing.Point(142, 195);
+            this.checkedListBoxSortTypesCountry.Name = "checkedListBoxSortTypesCountry";
+            this.checkedListBoxSortTypesCountry.Size = new System.Drawing.Size(120, 139);
+            this.checkedListBoxSortTypesCountry.TabIndex = 29;
+            // 
+            // checkedListBoxSortTypesDescription
+            // 
+            this.checkedListBoxSortTypesDescription.CheckOnClick = true;
+            this.checkedListBoxSortTypesDescription.FormattingEnabled = true;
+            this.checkedListBoxSortTypesDescription.Items.AddRange(new object[] {
+            "Descr",
+            "-Descr"});
+            this.checkedListBoxSortTypesDescription.Location = new System.Drawing.Point(142, 155);
+            this.checkedListBoxSortTypesDescription.Name = "checkedListBoxSortTypesDescription";
+            this.checkedListBoxSortTypesDescription.Size = new System.Drawing.Size(120, 34);
+            this.checkedListBoxSortTypesDescription.TabIndex = 28;
             // 
             // checkedListBoxSortTypesForWhom
             // 
@@ -1217,17 +1244,23 @@ namespace DDMediaWatched
             this.textBoxLog.TabIndex = 41;
             this.textBoxLog.WordWrap = false;
             // 
-            // checkedListBoxSortTypesDescription
+            // labelEditFranchiseCountry
             // 
-            this.checkedListBoxSortTypesDescription.CheckOnClick = true;
-            this.checkedListBoxSortTypesDescription.FormattingEnabled = true;
-            this.checkedListBoxSortTypesDescription.Items.AddRange(new object[] {
-            "Descr",
-            "-Descr"});
-            this.checkedListBoxSortTypesDescription.Location = new System.Drawing.Point(143, 210);
-            this.checkedListBoxSortTypesDescription.Name = "checkedListBoxSortTypesDescription";
-            this.checkedListBoxSortTypesDescription.Size = new System.Drawing.Size(120, 34);
-            this.checkedListBoxSortTypesDescription.TabIndex = 28;
+            this.labelEditFranchiseCountry.AutoSize = true;
+            this.labelEditFranchiseCountry.Font = new System.Drawing.Font("Consolas", 8F);
+            this.labelEditFranchiseCountry.Location = new System.Drawing.Point(181, 291);
+            this.labelEditFranchiseCountry.Name = "labelEditFranchiseCountry";
+            this.labelEditFranchiseCountry.Size = new System.Drawing.Size(55, 13);
+            this.labelEditFranchiseCountry.TabIndex = 60;
+            this.labelEditFranchiseCountry.Text = "Country:";
+            // 
+            // textBoxEditFranchiseCountry
+            // 
+            this.textBoxEditFranchiseCountry.Font = new System.Drawing.Font("Consolas", 8F);
+            this.textBoxEditFranchiseCountry.Location = new System.Drawing.Point(184, 307);
+            this.textBoxEditFranchiseCountry.Name = "textBoxEditFranchiseCountry";
+            this.textBoxEditFranchiseCountry.Size = new System.Drawing.Size(130, 20);
+            this.textBoxEditFranchiseCountry.TabIndex = 61;
             // 
             // Form1
             // 
@@ -1377,6 +1410,9 @@ namespace DDMediaWatched
         private System.Windows.Forms.Label labelEditFranchiseDescription;
         private System.Windows.Forms.TextBox textBoxEditFranchiseDescription;
         private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesDescription;
+        private System.Windows.Forms.CheckedListBox checkedListBoxSortTypesCountry;
+        private System.Windows.Forms.Label labelEditFranchiseCountry;
+        private System.Windows.Forms.TextBox textBoxEditFranchiseCountry;
     }
 }
 
