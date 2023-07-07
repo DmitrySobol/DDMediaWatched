@@ -411,7 +411,7 @@ namespace DDMediaWatched
 
         public bool IsURLExists()
         {
-            if (this.URL == "")
+            if (this.GetURL() == "")
                 return false;
             else
                 return true;
