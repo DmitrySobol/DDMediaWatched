@@ -47,19 +47,31 @@ namespace DDMediaWatched
 
         public Form1()
         {
-            InitializeComponent();
-            ResizeControls(1280, 710);
-            Program.Log = this.Log;
-            InitializePanelsEditPart();
-            StaticUtils.LoadConfigs();
-            checkedListBoxSortTypesForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
-            comboBoxEditFranchiseForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
-            checkedListBoxSortTypesCountry.Items.AddRange(StaticUtils.GetCountriesArray());
-            SaveSortConfigs();
-            LoadColumnsFranchises();
-            LoadColumnsParts();
-            StaticUtils.FindMediaDrivePath();
-            LoadControls();
+            try
+            {
+                StaticUtils.LoadConfigs();
+                InitializeComponent();
+                ResizeControls(1280, 710);
+                Program.Log = this.Log;
+                InitializePanelsEditPart();
+                checkedListBoxSortTypesForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
+                comboBoxEditFranchiseForWhom.Items.AddRange(StaticUtils.GetForWhomNames());
+                checkedListBoxSortTypesCountry.Items.AddRange(StaticUtils.GetCountriesArray());
+                SaveSortConfigs();
+                LoadColumnsFranchises();
+                LoadColumnsParts();
+                StaticUtils.FindMediaDrivePath();
+                LoadControls();
+            }
+            catch (Exception e)
+            {              
+                DialogResult dr = MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK);               
+                if (dr == DialogResult.OK) {
+                    this.Close();
+                    Environment.Exit(0);
+
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

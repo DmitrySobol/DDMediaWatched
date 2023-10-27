@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Management;
@@ -17,6 +16,8 @@ namespace DDMediaWatched
             ShikiPath = "null",
             CountryLine = "";
 
+        readonly static string ConfigPath = "config.cfg";
+
         private static readonly Dictionary<string, string>
             SerialInfos = new Dictionary<string, string>();
 
@@ -28,30 +29,27 @@ namespace DDMediaWatched
 
         public static void LoadConfigs()
         {
-            FileStream fs = new FileStream("config.cfg", FileMode.Open, FileAccess.Read);
-            StreamReader t = new StreamReader(fs, Encoding.UTF8);
-            Franchise.SetMediaPath(t.ReadLine());
-            MediaDriveSerialInfo = t.ReadLine();
+            StreamReader configStreamReader = new StreamReader(ConfigPath, Encoding.UTF8);
+
+            Franchise.SetMediaPath(configStreamReader.ReadLine());
+            MediaDriveSerialInfo = configStreamReader.ReadLine();
             ForWhomNames.Clear();
-            string[] p = t.ReadLine().Split(';');
+            string[] p = configStreamReader.ReadLine().Split(';');
             for (int i = 1; i < int.Parse(p[0]) + 1; i++)
             {
                 ForWhomNames.Add(p[i]);
             }
-            Profile.User = t.ReadLine();
-            ShikiPath = t.ReadLine();
-            CountryLine = t.ReadLine();
+            Profile.User = configStreamReader.ReadLine();
+            ShikiPath = configStreamReader.ReadLine();
+            CountryLine = configStreamReader.ReadLine();
             foreach (string s in CountryLine.Split(';'))
             {
                 if (s.Length > 3)
                     Countries.Add(s.Substring(0, 2), s.Substring(3));
             }
-            t.Dispose();
-            t.Close();
-            fs.Dispose();
-            fs.Close();
-        }
-
+            configStreamReader.Dispose();
+            configStreamReader.Close();            
+        }  
         public static void SaveConfigs()
         {
             FileStream fs = new FileStream("config.cfg", FileMode.Create, FileAccess.Write);
@@ -209,7 +207,7 @@ namespace DDMediaWatched
             MediaDrivePath = "null";
             LoadSerialInfo();
             if (SerialInfos.ContainsKey(MediaDriveSerialInfo))
-                MediaDrivePath = SerialInfos[MediaDriveSerialInfo]  + @"\";
+                MediaDrivePath = SerialInfos[MediaDriveSerialInfo] + @"\";
         }
 
         public static void SetMediaDriveLetter(string DriveLetter)
